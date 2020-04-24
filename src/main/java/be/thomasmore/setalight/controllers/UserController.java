@@ -25,13 +25,13 @@ public class UserController {
         return "/user/register";
     }
 
-    @PostMapping("/user/register")
+    @PostMapping("/register")
     public String registered(@RequestParam String username,
                              @RequestParam String password,
                              Model model) {
         logger.info(String.format("username= %s -- password= %s\n",
                 username, password));
-        return "redirect/";
+        return "redirect:/";
     }
 
 }
