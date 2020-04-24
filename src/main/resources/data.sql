@@ -1,2 +1,4 @@
-insert into user(ID, USER_NAME, PASSWORD)
-    values (0, 'test username', 'dit is geen password');
+INSERT INTO USER (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'admin', '$2a$10$9MIX8kYPkuB7uE/H5nHF8.KG6.YdjBA/voOnjSZnZDxLXL/2BIerS', 'ADMIN');
+INSERT INTO USER (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'marie', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER');
