@@ -1,9 +1,11 @@
 package be.thomasmore.setalight.controllers;
 
+import be.thomasmore.setalight.model.User;
 import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
 
     private Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRepository userRepository;
@@ -31,6 +36,11 @@ public class UserController {
                              Model model) {
         logger.info(String.format("username= %s -- password= %s\n",
                 username, password));
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setRole("USER");
+        userRepository.save(user);
         return "redirect:/";
     }
 
