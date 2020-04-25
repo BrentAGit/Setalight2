@@ -25,12 +25,14 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/admin")
-    public String admin(Principal principal) {
-        String loggedInName = principal != null ? principal.getName() : "nobody";
-        logger.info(String.format("logged in: %s",
-                loggedInName));
-        return "/admin/test";
+    @GetMapping({"/login"})
+    public String login(Model model) {
+        return "/login";
+    }
+
+    @GetMapping({"/logout"})
+    public String logout(Model model) {
+        return "/logout";
     }
 
 }

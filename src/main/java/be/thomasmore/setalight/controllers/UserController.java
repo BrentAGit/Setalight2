@@ -54,16 +54,6 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping({"/login"})
-    public String login(Model model) {
-        return "/user/login";
-    }
-
-    @GetMapping({"/logout"})
-    public String logout(Model model) {
-        return "/user/logout";
-    }
-
     private void autologin(String userName, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
         try {
