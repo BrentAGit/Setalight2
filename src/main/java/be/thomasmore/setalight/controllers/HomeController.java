@@ -25,8 +25,8 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/admin/test")
-    public String testPage(Principal principal) {
+    @GetMapping("/admin")
+    public String admin(Principal principal) {
         String loggedInName = principal != null ? principal.getName() : "nobody";
         logger.info(String.format("logged in: %s",
                 loggedInName));
