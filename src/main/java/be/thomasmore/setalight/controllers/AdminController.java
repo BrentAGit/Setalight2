@@ -54,16 +54,6 @@ public class AdminController {
         return "redirect:/";
     }
 
-    @GetMapping({"/login"})
-    public String login(Model model) {
-        return "/admin/login";
-    }
-
-    @GetMapping({"/logout"})
-    public String logout(Model model) {
-        return "/admin/logout";
-    }
-
     private void autologin(String username, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
         try {
