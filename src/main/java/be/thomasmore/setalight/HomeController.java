@@ -14,5 +14,4 @@ public class HomeController {
         model.addAttribute("application", this.application);
         return "home";
     }
-
 }
