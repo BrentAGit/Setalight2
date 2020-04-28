@@ -1,6 +1,6 @@
 package be.thomasmore.setalight.controllers;
 
-import be.thomasmore.setalight.model.User;
+import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package be.thomasmore.setalight.model;
+package be.thomasmore.setalight.models;
 
 import javax.persistence.*;
 
