@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:value="${application}">Setalight</title>
+</head>
+<body>
+<h1>Setalight</h1>
+<a href="/">Home</a><br>
+<br>
+<form th:action="@{|/edit-event/${event.id}|}" th:method="post">
+    <div>
+        <input type="text" id="name" name="name" th:value="${event.getName()}">
+        <label for="name"> Name event:</label>
+    </div>
+    <div>
+        <input type="text" id="description" name="description" th:value="${event.getDescription()}">
+        <label for="description"> description:</label>
+    </div>
+    <div>
+        <input type="number" id="aantaldeelnemers" name="aantaldeelnemers" th:value="${event.getAantaldeelnemers()}">
+        <label for="name"> aantal deelnemers</label>
+    </div>
+    <div class="buttons">
+        <input type="submit" value="Save" >
+        <a href="/" >cancel</a>
+    </div>
+</form>
+
+
+</body>
+</html>

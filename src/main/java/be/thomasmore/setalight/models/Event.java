@@ -1,6 +1,7 @@
 package be.thomasmore.setalight.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.sql.Time;
@@ -9,6 +10,7 @@ import java.util.Date;
 
 @Entity
 public class Event {
+    @GeneratedValue
     @Id
     private int id;
     private String name;
