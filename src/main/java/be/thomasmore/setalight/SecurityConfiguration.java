@@ -19,7 +19,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 
     protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests().antMatchers("/admin/**").authenticated().anyRequest().permitAll().and().formLogin();
+        http.authorizeRequests().antMatchers("/admin/**").authenticated().anyRequest().permitAll().and().formLogin();
         http.csrf().ignoringAntMatchers("/h2-console/**").and().headers().frameOptions().sameOrigin();
         http.formLogin().loginPage("/login").defaultSuccessUrl("/", true);
         http.logout().logoutUrl("/logout").logoutSuccessUrl("/");
