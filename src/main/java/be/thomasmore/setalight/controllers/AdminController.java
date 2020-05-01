@@ -54,6 +54,11 @@ public class AdminController {
         return "redirect:/";
     }
 
+    @GetMapping({"/testAdmin"})
+    public String testAdmin(Model model) {
+        return "/admin/testAdmin";
+    }
+
     private void autologin(String username, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
         try {
