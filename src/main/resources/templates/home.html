@@ -18,6 +18,6 @@
 <div th:each="event : ${events}">
     <a th:text="${event.getName()}" th:href="${'/edit-event/' + event.getId()}"  href="/edit-event/eventId"></a>
 </div>
-<a href="/productiehuis/page/"></a>
+<a th:href="'/productiehuis/page/' + ${user.getId()}" href="/"></a>
 </body>
 </html>

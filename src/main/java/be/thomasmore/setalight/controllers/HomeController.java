@@ -30,7 +30,7 @@ public class HomeController {
     @GetMapping("/")
     public String home(Principal principal, Model model) {
         String loggedInName = principal != null ? principal.getName() : "nobody";
-        User user;
+        User user = new User();
         if (!loggedInName.contains("nobody") || !loggedInName.isEmpty()) {
             Optional<User> userFromDb = userRepository.findUserByUsername(loggedInName);
             user = userFromDb.get();
