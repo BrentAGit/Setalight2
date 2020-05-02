@@ -44,6 +44,7 @@ public class EventController {
         event.setName(name);
         event.setAantaldeelnemers(aantaldeelnemers);
         event.setDescription(description);
+        event.setControle(false);
         eventRepository.save(event);
 
 
