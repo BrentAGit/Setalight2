@@ -11,12 +11,12 @@
 <a href="/user/register">register</a><br>
 <a href="/login">login</a><br>
 <a href="/logout">logout</a><br>
-<a href="/event">create event</a><br>
+<a href="/event/event">create event</a><br>
 
 <br>
 <a href="/admin/register">admin register</a><br>
 <div th:each="event : ${events}">
-    <a th:text="${event.getName()}" th:href="${'/edit-event/' + event.getId()}"  href="/edit-event/eventId"></a>
+    <a th:text="${event.getName()}" th:href="${'/event/edit-event/' + event.getId()}"  href="/edit-event/eventId"></a>
 </div>
 <a th:href="'/productiehuis/page/' + ${user.getId()}" href="/">I am a big retard?</a>
 </body>
