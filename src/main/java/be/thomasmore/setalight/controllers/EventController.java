@@ -34,9 +34,9 @@ public class EventController {
     }
     @PostMapping({"/event"})
     public String createEvent(@RequestParam String name,
-                                  @RequestParam String description,
-                                  @RequestParam Integer aantaldeelnemers,
-                                  Model model) {
+                              @RequestParam String description,
+                              @RequestParam Integer aantaldeelnemers,
+                              Model model) {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
                 name, description,aantaldeelnemers
         ));
