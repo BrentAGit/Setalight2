@@ -1,6 +1,8 @@
 package be.thomasmore.setalight.controllers;
 
+import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
+import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +12,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 public class HomeController {
 
     private Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    @Autowired
+    private UserRepository userRepository;
 
     private String application = "Setalight";
 
@@ -24,8 +30,14 @@ public class HomeController {
     @GetMapping("/")
     public String home(Principal principal, Model model) {
         String loggedInName = principal != null ? principal.getName() : "nobody";
+        User user;
+        if (!loggedInName.contains("nobody") || !loggedInName.isEmpty()) {
+            Optional<User> userFromDb = userRepository.findUserByUsername(loggedInName);
+            user = userFromDb.get();
+        }
         logger.info(String.format("logged in: %s",
                 loggedInName));
+        model.addAttribute("user", user);
         model.addAttribute("application", this.application);
         model.addAttribute("events", eventRepository.findAll());
         return "home";
