@@ -33,7 +33,9 @@ public class HomeController {
         User user = new User();
         if (!loggedInName.contains("nobody") || !loggedInName.isEmpty()) {
             Optional<User> userFromDb = userRepository.findUserByUsername(loggedInName);
-            user = userFromDb.get();
+            if (userFromDb.isPresent()) {
+                user = userFromDb.get();
+            }
         }
         logger.info(String.format("logged in: %s",
                 loggedInName));
