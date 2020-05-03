@@ -5,9 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <title th:value="${application}">Setalight</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+<!--    add here personal CSS-->
 </head>
 <body>
-<div th:replace="fragments/header">Header</div>
+<div class="container" th:replace="fragments/header">Header</div>
 <h1>Setalight</h1>
 <a href="/user/register">register</a><br>
 <a href="/login">login</a><br>
