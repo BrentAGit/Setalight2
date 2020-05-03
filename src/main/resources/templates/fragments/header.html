@@ -13,6 +13,9 @@
     </div>
     <div sec:authorize="isAnonymous()" class="row">
         <div class="col-1">
+            <a href="/">Home</a>
+        </div>
+        <div class="col-1">
             <a href="/user/register">register</a>
         </div>
         <div class="col-1">
@@ -22,11 +25,17 @@
     </div>
     <div sec:authorize="isAuthenticated()" class="row">
         <div class="col-1">
+            <a href="/">Home</a>
+        </div>
+        <div class="col-1">
             <a href="/logout">logout</a>
         </div>
         <!--            Add here extra stuff for when some one is logged in-->
     </div>
     <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" class="row">
+        <div class="col-1">
+            <a href="/">Home</a>
+        </div>
         <div class="col-1">
             <a href="/event/event">create event</a>
         </div>
