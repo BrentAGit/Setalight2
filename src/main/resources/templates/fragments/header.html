@@ -12,16 +12,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-1">
-            <a href="/user/register">register</a>
-        </div>
-        <div class="col-1">
-            <a href="/login">login</a>
+        <div sec:authorize="isAnonymous()">
+            <div class="col-1">
+                <a href="/user/register">register</a>
+            </div>
+            <div class="col-1">
+                <a href="/login">login</a>
+            </div>
+<!--            Add here extra stuff if needed for when no one is loged in-->
         </div>
         <div sec:authorize="isAuthenticated()">
             <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')">
-                only for the OG's
+                <a href="/event/event">create event</a>
             </div>
+
+<!--            Add here extra stuff for when some one is logged in-->
         </div>
     </div>
 </div>
