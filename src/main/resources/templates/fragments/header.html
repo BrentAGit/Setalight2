@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<body xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>fragmentsHeader</title>
@@ -15,11 +15,11 @@
         <div class="col-1">
             <a href="/user/register">register</a>
         </div>
-        <div class="col-2">
+        <div class="col-1">
             <a href="/login">login</a>
         </div>
         <div sec:authorize="isAuthenticated()">
-            <div sec:authorize="hasAuthority('ADMIN')">
+            <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')">
                 only for the OG's
             </div>
         </div>
