@@ -18,6 +18,11 @@
         <div class="col-2">
             <a href="/login">login</a>
         </div>
+        <div sec:authorize="isAuthenticated()">
+            <div sec:authorize="hasAuthority('ADMIN')">
+                only for the OG's
+            </div>
+        </div>
     </div>
 </div>
 </body>
