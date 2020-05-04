@@ -14,7 +14,7 @@
 <br>
 <form th:action="@{|/edit-event/${event.id}|}" th:method="post">
     <div>
-        <label for="name"> Name event:</label>
+        <label class="align-middle" for="name"> Name event:</label>
         <input class="input" type="text" id="name" name="name" th:value="${event.getName()}">
     </div>
     <div>
