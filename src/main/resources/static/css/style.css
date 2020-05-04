@@ -3,3 +3,10 @@ oranje:#EC7969
 wit:#ffffff
 zwart:#000000
 */
+body{
+    background-color: #000000;
+    color: #ffffff;
+}
+h1{
+    color: #EC7969;
+}
