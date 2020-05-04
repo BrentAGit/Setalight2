@@ -10,3 +10,33 @@ body{
 h1{
     color: #EC7969;
 }
+.input{
+    background-color: #5a6268;
+    border-radius: 5px;
+}
+.btn-primary{
+    background-color: #EC7969;
+    border-color: #EC7969;
+    color: #ffffff;
+}
+.btn-primary:hover{
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #EC7969;
+}
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #EC7969;
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+btn-primary:link{
+    background-color: #EC7969;
+    border-color: #EC7969;
+    color: #ffffff;
+}
+.btn-primary:focus{
+    background-color: #EC7969;
+    border-color: #EC7969;
+    color: #ffffff;
+    box-shadow: 0 0 0 .2rem #EC7969;
+}
