@@ -21,7 +21,7 @@
         <div class="col-1">
             <a href="/login">login</a>
         </div>
-        <!--            Add here extra stuff if needed for when no one is loged in-->
+        <!--            Add here extra stuff if needed for when no one is logged in-->
     </div>
     <div sec:authorize="isAuthenticated()" class="row">
         <div class="col-1">
@@ -30,6 +30,10 @@
         <div class="col-1">
             <a href="/logout">logout</a>
         </div>
+        <div class="col-1">
+            <a href="/user/profilepage">edit profile</a>
+        </div>
+
         <!--            Add here extra stuff for when some one is logged in-->
     </div>
     <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" class="row">

@@ -53,6 +53,9 @@ public class UserController {
         autologin(username, password);
         return "redirect:/";
     }
+    @GetMapping("/profilepage")
+    public String profile(Model model){
+        return "/user/profilepage";}
 
     private void autologin(String userName, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
