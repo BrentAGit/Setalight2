@@ -11,7 +11,7 @@
 <body>
 <div th:replace="fragments/header">Header</div>
 <a href="/event/event">create event</a><br>
-
+<a th:href="'user/profilepage/' + ${user.getId()}" href="/">profilepage</a>
 <br>
 <a href="/admin/register">admin register</a><br>
 <div th:each="event : ${events}">
