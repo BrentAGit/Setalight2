@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -53,13 +55,19 @@ public class UserController {
         autologin(username, password);
         return "redirect:/";
     }
-    @GetMapping("/profilepage")
-    public String profile(Model model){
-        return "/user/profilepage";}
+
+    @GetMapping("/profilepage/{userId}")
+    public String profile(@RequestParam int userId,
+                          Model model) {
+        Optional<User> userFromDb = userRepository.findById(userId);
+        model.addAttribute("user", userFromDb.get());
+        return "/user/profilepage";
+    }
 
     @GetMapping("/edit-profile")
-    public String editProfile(Model model){
-        return "/user/edit-profile";}
+    public String editProfile(Model model) {
+        return "/user/edit-profile";
+    }
 
     private void autologin(String userName, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
