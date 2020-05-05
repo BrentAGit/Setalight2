@@ -4,35 +4,40 @@
 <head>
         <meta charset="UTF-8">
         <title th:value="${application}">Setalight</title>
+    <style>
+        li {
+            list-style-type: none;
+        }
+    </style>
     </head>
 <body>
-<h1>Setalight</h1>
+<div th:replace="fragments/header">Header</div>
+<a href="/user/edit-profile">edit</a>
 Algemene gegevens
 <ul>
 <li>Naam</li>
     <li>Leeftijd</li>
    <li>Geboortedatum</li>
-<li>Geslacht</li>
-<li>Beroep/studie</li>
-<li>Afkomst</li>
-<li>Etniciteit</li>
-<li>Gesproken Talen</li>
-<li>Gesproken dialecten</li>
-<li>Eigen vervoer</li>
-<li>Autorijbewijs</li>
+    <li>Geslacht</li>
+    <li>Beroep/studie</li>
+    <li>Afkomst</li>
+    <li>Etniciteit</li>
+    <li>Gesproken Talen</li>
+    <li>Gesproken dialecten</li>
+    <li>Eigen vervoer</li>
+    <li>Autorijbewijs</li>
 
 </ul>
-
-Contactgegevens
+    Contactgegevens
 <ul>
-<li>Straat + nr.</li>
-<li>Postcode</li>
-<li>Gemeente</li>
-<li>Provincie</li>
-<li>Land</li>
-<li>Telefoonnr.</li>
-<li>Mobielnr.</li>
-<li>E-mailadres</li>
+    <li>Straat + nr.</li>
+    <li>Postcode</li>
+    <li>Gemeente</li>
+    <li>Provincie</li>
+    <li>Land</li>
+    <li>Telefoonnr.</li>
+    <li>Mobielnr.</li>
+    <li>E-mailadres</li>
 </ul>
 </body>
 </html>

@@ -57,6 +57,10 @@ public class UserController {
     public String profile(Model model){
         return "/user/profilepage";}
 
+    @GetMapping("/edit-profile")
+    public String editProfile(Model model){
+        return "/user/edit-profile";}
+
     private void autologin(String userName, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
         try {
