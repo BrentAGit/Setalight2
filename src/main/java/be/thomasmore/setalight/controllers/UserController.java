@@ -69,14 +69,14 @@ public class UserController {
         return "/user/edit-profile";
     }
 
-    @PostMapping("/esit-profile/{userId}")
+    @PostMapping("/edit-profile/{userId}")
     public String editedProfile(@PathVariable int userId,
                                 @RequestParam String username,
                                 Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
         if (userFromDb.isPresent()) {
-            user = userFromDb.get()
+            user = userFromDb.get();
         }
         user.setUsername(username);
         userRepository.save(user);

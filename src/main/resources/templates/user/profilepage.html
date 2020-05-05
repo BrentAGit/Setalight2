@@ -9,7 +9,7 @@
 </head>
 <body>
 <div th:replace="fragments/header">Header</div>
-<a href="/user/edit-profile">edit</a>
+<a th:href="'/user/edit-profile/' + ${user.getId()}" href="/">edit</a>
 Algemene gegevens
 <ul>
     <li>
