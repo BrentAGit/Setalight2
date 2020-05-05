@@ -28,7 +28,10 @@
             <a href="/">Home</a>
         </div>
         <div class="col-1">
-            <a href="/logout">logout</a>
+            <form th:action="@{/logout}" method="post">
+                <input class="btn-primary" type="submit" id="logout" name="logout" value="Logout">
+            </form>
+
         </div>
         <div class="col-1">
             <a th:href="'/user/profilepage/' + ${user.getId()}" href="/">profile</a>
