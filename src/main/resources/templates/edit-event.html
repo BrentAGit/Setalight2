@@ -4,6 +4,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
     <title th:value="${application}">Setalight</title>
 </head>
 <body>
@@ -12,20 +14,20 @@
 <br>
 <form th:action="@{|/edit-event/${event.id}|}" th:method="post">
     <div>
-        <input type="text" id="name" name="name" th:value="${event.getName()}">
-        <label for="name"> Name event:</label>
+        <label class="align-middle" for="name"> Name event:</label>
+        <input class="input" type="text" id="name" name="name" th:value="${event.getName()}">
     </div>
     <div>
-        <input type="text" id="description" name="description" th:value="${event.getDescription()}">
         <label for="description"> description:</label>
+        <textarea class="input" id="description" name="description" th:value="${event.getDescription()}"></textarea>
     </div>
     <div>
-        <input type="number" id="aantaldeelnemers" name="aantaldeelnemers" th:value="${event.getAantaldeelnemers()}">
-        <label for="name"> aantal deelnemers</label>
+        <label for="name"> aantal deelnemers:</label>
+        <input class="input" type="number" id="aantaldeelnemers" name="aantaldeelnemers" th:value="${event.getAantaldeelnemers()}">
     </div>
     <div class="buttons">
-        <input type="submit" value="Save" >
-        <a href="/" >cancel</a>
+        <input class="btn btn-primary" type="submit" value="Save" >
+        <a class="btn btn-primary" href="/" >cancel</a>
     </div>
 </form>
 
