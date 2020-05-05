@@ -8,6 +8,7 @@
 <body>
 <div th:replace="fragments/header">Header</div>
 <p>Algemene gegevens</p>
+<form th:action="@{|/user/edit-profile/${user.getId}|}"></form>
 <table style="width: 100%">
     <tr>
         <td>Naam:<input type="text" name="" id=""></td>

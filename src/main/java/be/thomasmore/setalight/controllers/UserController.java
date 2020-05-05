@@ -14,10 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -57,16 +54,33 @@ public class UserController {
     }
 
     @GetMapping("/profilepage/{userId}")
-    public String profile(@RequestParam int userId,
+    public String profile(@PathVariable int userId,
                           Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
         model.addAttribute("user", userFromDb.get());
         return "/user/profilepage";
     }
 
-    @GetMapping("/edit-profile")
-    public String editProfile(Model model) {
+    @GetMapping("/edit-profile/{userId}")
+    public String editProfile(@PathVariable int userId,
+                              Model model) {
+        Optional<User> userFromDb = userRepository.findById(userId);
+        model.addAttribute("user", userFromDb.get());
         return "/user/edit-profile";
+    }
+
+    @PostMapping("/esit-profile/{userId}")
+    public String editedProfile(@PathVariable int userId,
+                                @RequestParam String username,
+                                Model model) {
+        Optional<User> userFromDb = userRepository.findById(userId);
+        User user = new User();
+        if (userFromDb.isPresent()) {
+            user = userFromDb.get()
+        }
+        user.setUsername(username);
+        userRepository.save(user);
+        return "redirect:/user/profilepage/" + userId;
     }
 
     private void autologin(String userName, String password) {
