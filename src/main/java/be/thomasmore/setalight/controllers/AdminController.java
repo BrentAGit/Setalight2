@@ -59,6 +59,22 @@ public class AdminController {
         return "/admin/productiehuis-register";
     }
 
+    @PostMapping("/productiehuis/register")
+    public String registeredProductiehuis(@RequestParam String username,
+                                          @RequestParam String password,
+                                          Model model) {
+        logger.info(String.format("username= %s -- password= %s\n",
+                username, password));
+        User admin = new User();
+        admin.setUsername(username);
+        admin.setPassword(passwordEncoder.encode(password));
+        admin.setRole("PRODUCTIEHUIS");
+        admin.setVerified(false);
+        userRepository.save(admin);
+        autologin(username, password);
+        return "redirect:/";
+    }
+
     @GetMapping({"/testAdmin"})
     public String testAdmin(Model model) {
         return "/admin/testAdmin";
