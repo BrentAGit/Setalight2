@@ -87,6 +87,18 @@ public class AdminController {
         return "admin/verify";
     }
 
+    @PostMapping("/verify/{userId}")
+    public String verifiedProductiehuis(@PathVariable int userId) {
+        Optional<User> userFromDb = userRepository.findById(userId);
+        User user = new User();
+        if (userFromDb.isPresent()){
+            user = userFromDb.get();
+        }
+        user.setVerified(true);
+        userRepository.save(user);
+        return "redirect:/admin/verifyproductiehuis";
+    }
+
     @GetMapping({"/testAdmin"})
     public String testAdmin(Model model) {
         return "/admin/testAdmin";
