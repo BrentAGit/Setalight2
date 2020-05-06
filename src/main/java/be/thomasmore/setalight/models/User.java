@@ -12,6 +12,15 @@ public class User {
     private String username;
     private String password;
     private String role;
+    private boolean verified;
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
 
     public User() {
     }
