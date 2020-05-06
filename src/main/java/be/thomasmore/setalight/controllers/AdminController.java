@@ -75,6 +75,12 @@ public class AdminController {
         return "redirect:/";
     }
 
+    @GetMapping({"/verifyproductiehuis"})
+    public String verifyproductiehuis(Model model) {
+        model.addAttribute("productiehuizen", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", false));
+        return "/admin/verifyproductiehuis";
+    }
+
     @GetMapping({"/testAdmin"})
     public String testAdmin(Model model) {
         return "/admin/testAdmin";
