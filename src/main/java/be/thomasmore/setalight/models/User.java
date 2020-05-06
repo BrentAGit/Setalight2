@@ -13,11 +13,12 @@ public class User {
     private String username;
     private String password;
     private String role;
-    private Date geboortedatum;
-    private String profielfoto;
+    private Date birthdate;
+    private String profilepicture;
     private String email;
-    private double lengte;
-    private String haarkleur;
+    private double length;
+    private String haircolor;
+    private String fullpicture;
 
 
     public User() {
