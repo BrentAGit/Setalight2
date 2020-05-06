@@ -16,6 +16,7 @@ public class User {
     private Date geboortedatum;
     private String profielfoto;
     private String email;
+    private double lengte;
     
 
     public User() {
