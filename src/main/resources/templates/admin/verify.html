@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>Verify</title>
+</head>
+<body>
+    <div th:replace="fragments/header">Header</div>
+    <form th:action="@{|/admin/verify/${user.getId()}|}" method="post">
+        <a href="/admin/verifyproductiehuis">
+            back
+        </a>
+        <p th:text="${user.getUsername()}"></p>
+        <input type="submit" id="submit" name="submit" value="verify">
+    </form>
+</body>
+</html>

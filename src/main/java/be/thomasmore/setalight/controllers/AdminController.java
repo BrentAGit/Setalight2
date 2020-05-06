@@ -14,10 +14,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -52,6 +51,52 @@ public class AdminController {
         userRepository.save(admin);
         autologin(username, password);
         return "redirect:/";
+    }
+
+    @GetMapping("/productiehuis/register")
+    public String registerProductiehuis(Model model) {
+        return "/admin/productiehuis-register";
+    }
+
+    @PostMapping("/productiehuis/register")
+    public String registeredProductiehuis(@RequestParam String username,
+                                          @RequestParam String password,
+                                          Model model) {
+        logger.info(String.format("username= %s -- password= %s\n",
+                username, password));
+        User admin = new User();
+        admin.setUsername(username);
+        admin.setPassword(passwordEncoder.encode(password));
+        admin.setRole("PRODUCTIEHUIS");
+        admin.setVerified(false);
+        userRepository.save(admin);
+        autologin(username, password);
+        return "redirect:/";
+    }
+
+    @GetMapping({"/verifyproductiehuis"})
+    public String verifyproductiehuis(Model model) {
+        model.addAttribute("productiehuizen", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", false));
+        return "/admin/verifyproductiehuis";
+    }
+
+    @GetMapping({"/verify/{userId}"})
+    public String verify(@PathVariable int userId, Model model) {
+        Optional<User> userFromDb = userRepository.findById(userId);
+        model.addAttribute("user", userFromDb.get());
+        return "admin/verify";
+    }
+
+    @PostMapping("/verify/{userId}")
+    public String verifiedProductiehuis(@PathVariable int userId) {
+        Optional<User> userFromDb = userRepository.findById(userId);
+        User user = new User();
+        if (userFromDb.isPresent()){
+            user = userFromDb.get();
+        }
+        user.setVerified(true);
+        userRepository.save(user);
+        return "redirect:/admin/verifyproductiehuis";
     }
 
     @GetMapping({"/testAdmin"})
