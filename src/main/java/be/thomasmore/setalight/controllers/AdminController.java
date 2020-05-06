@@ -54,6 +54,11 @@ public class AdminController {
         return "redirect:/";
     }
 
+    @GetMapping("/productiehuis/register")
+    public String registerProductiehuis(Model model) {
+        return "/admin/productiehuis-register";
+    }
+
     @GetMapping({"/testAdmin"})
     public String testAdmin(Model model) {
         return "/admin/testAdmin";
