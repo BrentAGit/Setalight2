@@ -15,7 +15,8 @@ public class User {
     private String role;
     private Date geboortedatum;
     private String profielfoto;
-
+    private String email;
+    
 
     public User() {
     }
