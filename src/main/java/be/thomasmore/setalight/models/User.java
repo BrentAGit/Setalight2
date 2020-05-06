@@ -17,7 +17,8 @@ public class User {
     private String profielfoto;
     private String email;
     private double lengte;
-    
+    private String haarkleur;
+
 
     public User() {
     }
