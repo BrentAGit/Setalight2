@@ -96,4 +96,12 @@ public class Event {
     public void setControle(boolean controle) {
         this.controle = controle;
     }
+
+    public Collection<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Collection<User> users) {
+        this.users = users;
+    }
 }

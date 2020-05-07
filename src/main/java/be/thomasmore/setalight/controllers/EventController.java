@@ -1,6 +1,7 @@
 package be.thomasmore.setalight.controllers;
 
 import be.thomasmore.setalight.models.Event;
+import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
@@ -11,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 
 @Controller
@@ -48,13 +51,28 @@ public class EventController {
     }
 
     @GetMapping({"/events/{eventsId"})
-    public String usereEvent(@PathVariable int eventsId,
-                             Model model) {
+    public String userEvent(@PathVariable int eventsId,
+                            Model model) {
         Optional<Event> eventFromDb = eventRepository.findById(eventsId);
-        Event event = null;
+        Event event = new Event();
         if (eventFromDb.isPresent()) event = eventFromDb.get();
         model.addAttribute("event", event);
         return "userEvent";
+    }
+
+    @PostMapping({"/events/{eventsId}"})
+    public String goingEvent(@PathVariable int eventsId, Principal principal,
+                             Model model) {
+        Optional<Event> eventFromDb = eventRepository.findById(eventsId);
+        Optional<User> userFromDB = userRepository.findUserByUsername(principal.getName());
+        User user = new User();
+        Event event = new Event();
+        if (eventFromDb.isPresent()) event = eventFromDb.get();
+        if (userFromDB.isPresent()) user = userFromDB.get();
+        Collection<User> userCollection = new ArrayList<>();
+        userCollection.add(user);
+        event.setUsers(userCollection);
+        return "redirect:/";
     }
 
     @PostMapping({"event"})
