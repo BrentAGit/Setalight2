@@ -35,6 +35,7 @@ public class EventController {
         model.addAttribute("events", eventRepository.findAll());
         return "event";
     }
+
     @GetMapping("/events")
     public String events(Principal principal, Model model) {
         String loggedInName = principal != null ? principal.getName() : "nobody";
@@ -45,6 +46,7 @@ public class EventController {
         model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
         return "events";
     }
+
     @PostMapping({"event"})
     public String createEvent(@RequestParam String name,
                               @RequestParam String description,
