@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -58,7 +59,7 @@ public class AdminController {
         return "/admin/productiehuis-register";
     }
 
-    @PostMapping("/productiehuis/register")
+    @PostMapping("/productiehuis-register")
     public String registeredProductiehuis(@RequestParam String username,
                                           @RequestParam String password,
                                           Model model) {
@@ -75,9 +76,10 @@ public class AdminController {
     }
 
     @GetMapping({"/verifyproductiehuis"})
-    public String verifyproductiehuis(Model model) {
+    public String verifyproductiehuis(Principal principal, Model model) {
         model.addAttribute("productiehuizen", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", false));
-        return "/admin/verifyproductiehuis";
+        model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
+        return "admin/verifyproductiehuis";
     }
 
     @GetMapping({"/verify/{userId}"})

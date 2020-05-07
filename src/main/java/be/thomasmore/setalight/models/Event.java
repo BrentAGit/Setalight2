@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.sql.Time;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Date;
 
