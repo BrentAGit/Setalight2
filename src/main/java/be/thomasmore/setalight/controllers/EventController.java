@@ -2,6 +2,7 @@ package be.thomasmore.setalight.controllers;
 
 import be.thomasmore.setalight.models.Event;
 import be.thomasmore.setalight.repositories.EventRepository;
+import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class EventController {
 
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/event")
     public String home(Principal principal, Model model) {
@@ -32,7 +35,17 @@ public class EventController {
         model.addAttribute("events", eventRepository.findAll());
         return "event";
     }
-    @PostMapping({"/event"})
+    @GetMapping("/events")
+    public String events(Principal principal, Model model) {
+        String loggedInName = principal != null ? principal.getName() : "nobody";
+        logger.info(String.format("logged in: %s",
+                loggedInName));
+        model.addAttribute("application", this.application);
+        model.addAttribute("events", eventRepository.findAll());
+        model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
+        return "events";
+    }
+    @PostMapping({"events"})
     public String createEvent(@RequestParam String name,
                               @RequestParam String description,
                               @RequestParam Integer aantaldeelnemers,
