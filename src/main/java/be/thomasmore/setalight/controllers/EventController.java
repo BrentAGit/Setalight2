@@ -47,13 +47,23 @@ public class EventController {
         return "events";
     }
 
+    @GetMapping({"/events/{eventsId"})
+    public String usereEvent(@PathVariable int eventsId,
+                             Model model) {
+        Optional<Event> eventFromDb = eventRepository.findById(eventsId);
+        Event event = null;
+        if (eventFromDb.isPresent()) event = eventFromDb.get();
+        model.addAttribute("event", event);
+        return "userEvent";
+    }
+
     @PostMapping({"event"})
     public String createEvent(@RequestParam String name,
                               @RequestParam String description,
                               @RequestParam Integer aantaldeelnemers,
                               Model model) {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
-                name, description,aantaldeelnemers
+                name, description, aantaldeelnemers
         ));
         Event event = new Event();
         event.setName(name);
@@ -68,11 +78,11 @@ public class EventController {
 
     @GetMapping({"/edit-event/{eventId}"})
     public String editGetEvent(@PathVariable(required = false) int eventId,
-                                  Model model) {
+                               Model model) {
 
         Optional<Event> event = eventRepository.findById(eventId);
         Event event1 = event.get();
-        model.addAttribute("event",event1);
+        model.addAttribute("event", event1);
         return "edit-event";
     }
 
@@ -81,22 +91,21 @@ public class EventController {
                                 @RequestParam String name,
                                 @RequestParam String description,
                                 @RequestParam Integer aantaldeelnemers,
-                            Model model) {
+                                Model model) {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
-                name, description,aantaldeelnemers
+                name, description, aantaldeelnemers
         ));
-      Optional<Event> eventDromDB = eventRepository.findById(eventId);
-      if (eventDromDB.isPresent()){
-          Event event =eventDromDB.get();
-          event.setName(name);
-          event.setAantaldeelnemers(aantaldeelnemers);
-          event.setDescription(description);
-          eventRepository.save(event);
-      }
+        Optional<Event> eventDromDB = eventRepository.findById(eventId);
+        if (eventDromDB.isPresent()) {
+            Event event = eventDromDB.get();
+            event.setName(name);
+            event.setAantaldeelnemers(aantaldeelnemers);
+            event.setDescription(description);
+            eventRepository.save(event);
+        }
 
         return "redirect:/event/events";
     }
-
 
 
 }
