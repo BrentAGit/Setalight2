@@ -12,7 +12,7 @@
 <h1>Setalight</h1>
 <a href="/">Home</a><br>
 <br>
-<form th:action="@{|/edit-event/${event.id}|}" th:method="post">
+<form th:action="@{|/event/edit-event/${event.id}|}" th:method="post">
     <div>
         <label class="align-middle" for="name"> Name event:</label>
         <input class="input" type="text" id="name" name="name" th:value="${event.getName()}">

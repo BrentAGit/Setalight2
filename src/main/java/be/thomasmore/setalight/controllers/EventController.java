@@ -45,7 +45,7 @@ public class EventController {
         model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
         return "events";
     }
-    @PostMapping({"events"})
+    @PostMapping({"event"})
     public String createEvent(@RequestParam String name,
                               @RequestParam String description,
                               @RequestParam Integer aantaldeelnemers,
@@ -67,6 +67,7 @@ public class EventController {
     @GetMapping({"/edit-event/{eventId}"})
     public String editGetEvent(@PathVariable(required = false) int eventId,
                                   Model model) {
+
         Optional<Event> event = eventRepository.findById(eventId);
         Event event1 = event.get();
         model.addAttribute("event",event1);
@@ -79,6 +80,9 @@ public class EventController {
                                 @RequestParam String description,
                                 @RequestParam Integer aantaldeelnemers,
                             Model model) {
+        logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
+                name, description,aantaldeelnemers
+        ));
       Optional<Event> eventDromDB = eventRepository.findById(eventId);
       if (eventDromDB.isPresent()){
           Event event =eventDromDB.get();
@@ -88,7 +92,7 @@ public class EventController {
           eventRepository.save(event);
       }
 
-        return "redirect:/";
+        return "redirect:/event/events";
     }
 
 
