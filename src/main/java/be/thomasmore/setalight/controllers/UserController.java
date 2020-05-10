@@ -1,6 +1,8 @@
 package be.thomasmore.setalight.controllers;
 
+import be.thomasmore.setalight.models.Event;
 import be.thomasmore.setalight.models.User;
+import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -29,6 +35,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -57,7 +66,12 @@ public class UserController {
     public String profile(@PathVariable int userId,
                           Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
-        model.addAttribute("user", userFromDb.get());
+        User user = new User();
+        if (userFromDb.isPresent()) user = userFromDb.get();
+        Calendar calendar = Calendar.getInstance();
+        List<Event> eventsFromDb = eventRepository.findAllByUsersAndDatumBefore(user, calendar.getTime());
+        model.addAttribute("user", user);
+        model.addAttribute("events", eventsFromDb);
         return "/user/profilepage";
     }
 
