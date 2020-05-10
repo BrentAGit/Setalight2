@@ -50,7 +50,7 @@ public class EventController {
         return "events";
     }
 
-    @GetMapping({"/{eventsId}"})
+    @GetMapping({"/events/{eventsId}"})
     public String userEvent(@PathVariable int eventsId,
                             Principal principal,
                             Model model) {
