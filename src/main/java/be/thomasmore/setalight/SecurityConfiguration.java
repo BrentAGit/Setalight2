@@ -22,6 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin/register").permitAll()
                 .antMatchers("/event/**").hasAnyAuthority("ADMIN", "PRODUCTIEHUIS")
+                .antMatchers("/event/events/**").hasAuthority("USER")
                 .antMatchers("/productiehuis/**").hasAuthority("PRODUCTIEHUIS")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().permitAll().and().formLogin();

@@ -50,13 +50,14 @@ public class EventController {
         return "events";
     }
 
-    @GetMapping({"/events/{eventsId"})
+    @GetMapping({"/{eventsId}"})
     public String userEvent(@PathVariable int eventsId,
+                            Principal principal,
                             Model model) {
         Optional<Event> eventFromDb = eventRepository.findById(eventsId);
         Event event = new Event();
         if (eventFromDb.isPresent()) event = eventFromDb.get();
-        model.addAttribute("event", event);
+        model.addAttribute("event", event);model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
         return "userEvent";
     }
 
@@ -69,9 +70,8 @@ public class EventController {
         Event event = new Event();
         if (eventFromDb.isPresent()) event = eventFromDb.get();
         if (userFromDB.isPresent()) user = userFromDB.get();
-        Collection<User> userCollection = new ArrayList<>();
-        userCollection.add(user);
-        event.setUsers(userCollection);
+        event.getUsers().add(user);
+        eventRepository.save(event);
         return "redirect:/";
     }
 

@@ -101,7 +101,7 @@ public class Event {
         return users;
     }
 
-    public void setUsers(Collection<User> users) {
-        this.users = users;
+    public void addUser(User user) {
+        users.add(user);
     }
 }

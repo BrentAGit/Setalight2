@@ -9,12 +9,12 @@
 </head>
 <body>
 <div th:replace="fragments/header">Header</div>
-<form th:action="@{|/event/events/event.getId()|}" method="post">
+<form th:action="@{|/event/events/${event.getId()}|}" method="post">
     <div>
 <!--        Add here event details-->
         <p th:text="${event.getName()}">name</p>
     </div>
-    <input type="submit" id="going" name="going" th:value="I am going!">
+    <input type="submit" id="going" name="going" th:value="'I am going!'">
 </form>
 </body>
 </html>
