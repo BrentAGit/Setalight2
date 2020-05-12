@@ -12,6 +12,18 @@
 <body>
 <div th:replace="fragments/header">Header</div>
 <br>
+<div class="container">
+    <div class="card-columns">
+        <div th:each="event : ${events}" class="card">
+            <h3 th:text="${event.getName()}">eventName</h3>
+            <p th:text="${event.getDescription()}">description</p>
+            <div class="card-footer">
+                <p th:text="${event.getDatum()}">datum</p>
+                <a th:href="'/event/events/' + ${event.getId()}" class="btn btn-danger" href="/"></a>
+            </div>
+        </div>
+    </div>
+</div>
 <a class="btn btn-primary" href="/admin/register">admin register</a><br>
 </body>
 </html>
