@@ -1,6 +1,8 @@
 package be.thomasmore.setalight.models;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Date;
 
 @Entity
 public class User {
