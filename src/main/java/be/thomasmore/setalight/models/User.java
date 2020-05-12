@@ -12,6 +12,19 @@ public class User {
     private String username;
     private String password;
     private String role;
+    private Date birthdate;
+    private String profilepicture;
+    private String email;
+    private double length;
+    private String haircolor;
+    private String fullpicture;
+    private String physicalAtributes;
+    private String rijksregisternummer;
+    @ManyToMany
+    private Collection<User> Frends;
+    @ManyToMany
+    private Collection<Event> ervaring;
+
     private boolean verified;
 
     public boolean isVerified() {
