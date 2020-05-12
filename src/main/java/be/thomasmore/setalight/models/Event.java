@@ -67,7 +67,7 @@ public class Event {
     }
 
     public String getDatum() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         return format.format(datum);
     }
 
