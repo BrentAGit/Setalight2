@@ -19,7 +19,7 @@
     </div>
     <div>
         <label for="description"> description:</label>
-        <textarea class="input" id="description" name="description" th:value="${event.getDescription()}"></textarea>
+        <textarea class="input" type="text" id="description" name="description" th:text="${event.getDescription()}"></textarea>
     </div>
     <div>
         <label for="name"> aantal deelnemers:</label>

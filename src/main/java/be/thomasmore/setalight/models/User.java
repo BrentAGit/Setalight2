@@ -17,7 +17,6 @@ public class User {
     private Date birthdate;
     private String profilepicture;
     private String email;
-    private double length;
     private String haircolor;
     private String fullpicture;
     private String physicalAtributes;
