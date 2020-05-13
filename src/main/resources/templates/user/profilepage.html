@@ -17,6 +17,13 @@ Algemene gegevens
         <p>Naam</p>
         <p th:text="${user.getUsername()}">username</p>
     </li>
+    <li th:text="${user.getBirthdate()}">Geboortedatum</li>
+    <li th:text="${user.getEmail()}"></li>
+    <li><img th:src="${user.getProfilepicture()}"></li>
+    <li><img th:src="${user.getFullpicture()}"></li>
+    <li th:each="user: ${user.getFrends()}">
+        <a th:href="|/profilepage/${user.getId()}|" th:text="${user.getUsername()}"></a>
+    </li>
     <!--<li>Leeftijd</li>
     <li>Geboortedatum</li>
     <li>Geslacht</li>
