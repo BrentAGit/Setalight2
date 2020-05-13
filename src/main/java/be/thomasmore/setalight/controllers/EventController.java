@@ -36,7 +36,6 @@ public class EventController {
         String loggedInName = principal != null ? principal.getName() : "nobody";
         logger.info(String.format("logged in: %s",
                 loggedInName));
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = java.sql.Date.valueOf(LocalDate.now());
 
         model.addAttribute("application", this.application);
@@ -48,8 +47,9 @@ public class EventController {
         String loggedInName = principal != null ? principal.getName() : "nobody";
         logger.info(String.format("logged in: %s",
                 loggedInName));
+        Date date = java.sql.Date.valueOf(LocalDate.now());
         model.addAttribute("application", this.application);
-        model.addAttribute("events", eventRepository.findAll());
+        model.addAttribute("events", eventRepository.findAllByDateAfter(date));
         model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
         return "events";
     }
