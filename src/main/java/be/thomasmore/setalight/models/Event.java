@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Date;
@@ -95,5 +97,10 @@ public class Event {
 
     public void setControle(boolean controle) {
         this.controle = controle;
+    }
+
+    public String getDateString(){
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(datum);
     }
 }

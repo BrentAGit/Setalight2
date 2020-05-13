@@ -11,6 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -31,8 +36,11 @@ public class EventController {
         String loggedInName = principal != null ? principal.getName() : "nobody";
         logger.info(String.format("logged in: %s",
                 loggedInName));
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = java.sql.Date.valueOf(LocalDate.now());
+
         model.addAttribute("application", this.application);
-        model.addAttribute("events", eventRepository.findAll());
+        model.addAttribute("events", eventRepository.findAllByDateAfter(date));
         return "event";
     }
     @GetMapping("/events")
@@ -49,14 +57,18 @@ public class EventController {
     public String createEvent(@RequestParam String name,
                               @RequestParam String description,
                               @RequestParam Integer aantaldeelnemers,
-                              Model model) {
-        logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
-                name, description,aantaldeelnemers
+                              @RequestParam String date,
+                              Model model) throws ParseException {
+        logger.info(String.format("new name=%s -- new date=%S -- new artists=%d    \n",
+                name, date,aantaldeelnemers
         ));
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
         Event event = new Event();
         event.setName(name);
         event.setAantaldeelnemers(aantaldeelnemers);
         event.setDescription(description);
+        event.setDatum(format.parse(date));
         event.setControle(false);
         eventRepository.save(event);
 
