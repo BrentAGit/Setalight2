@@ -89,9 +89,6 @@ public class EventController {
                               @RequestParam Integer aantaldeelnemers,
                               @RequestParam String date,
                               Model model) throws ParseException {
-        logger.info(String.format("new name=%s -- new date=%S -- new artists=%d    \n",
-                name, date,aantaldeelnemers
-                              Model model) {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
                 name, description, aantaldeelnemers
         ));
