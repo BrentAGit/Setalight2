@@ -20,7 +20,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/user/**").authenticated()
+                .antMatchers("/user/register").permitAll()
+//                .antMatchers("/user/**").authenticated()
                 .antMatchers("/admin/register").permitAll()
                 .antMatchers("/event/events/**").hasAuthority("USER")
                 .antMatchers("/event/event", "/event/events", "/event/edit-event/**").hasAnyAuthority("ADMIN", "PRODUCTIEHUIS")
