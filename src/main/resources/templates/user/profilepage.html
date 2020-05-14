@@ -11,14 +11,20 @@
 <body>
 <div th:replace="fragments/header">Header</div>
 <a th:href="'/user/edit-profile/' + ${user.getId()}" href="/">edit</a>
-
-    <div class="container-fluid">
-    <h4>Algemene gegevens</h4>
-        <div class="row">
-
-<div class="col">
+Algemene gegevens
+<ul>
+    <li>
         <p>Naam</p>
         <p th:text="${user.getUsername()}">username</p>
+    </li>
+    <li th:text="${user.getBirthdate()}">Geboortedatum</li>
+    <li th:text="${user.getEmail()}"></li>
+    <li><img th:src="${user.getProfilepicture()}"></li>
+    <li><img th:src="${user.getFullpicture()}"></li>
+    <li th:text="${user.getBirthdate()}"></li>
+    <li th:each="user: ${user.getFrends()}">
+        <a th:href="|/profilepage/${user.getId()}|" th:text="${user.getUsername()}"></a>
+    </li>
         </div>
     <div class="" th:each="event : ${events}">
         <p th:text="${event.getName()}">naam</p>
@@ -35,7 +41,8 @@
     <li>Eigen vervoer</li>
     <li>Autorijbewijs</li>-->
 
-<h4>Contactgegevens</h4>
+</ul>
+Contactgegevens
 <ul>
     <!--<li>Straat + nr.</li>
     <li>Postcode</li>
@@ -46,6 +53,5 @@
     <li>Mobielnr.</li>
     <li>E-mailadres</li>-->
 </ul>
-    </div>
 </body>
 </html>
