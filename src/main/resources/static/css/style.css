@@ -4,14 +4,14 @@ wit:#ffffff
 zwart:#000000
 */
 body{
-    background-color: #000000;
+    background-color: rgb(35, 35, 35);
     color: #ffffff;
 }
 h1{
     color: #EC7969;
 }
 .input{
-    background-color: #5a6268;
+    background-color: #3c3f41;
     border-radius: 5px;
 }
 .btn-primary{
@@ -38,5 +38,9 @@ btn-primary:link{
     background-color: #EC7969;
     border-color: #EC7969;
     color: #ffffff;
-    box-shadow: 0 0 0 .2rem #EC7969;
+    box-shadow: 0 0 0 .2rem #ec7969;
+}
+
+.data {
+    color:#ec7969;
 }
