@@ -50,15 +50,15 @@ public class UserController {
     @PostMapping("/register")
     public String registered(@RequestParam String username,
                              @RequestParam String password,
-                             @RequestParam @DateTimeFormat(pattern = "yyyy-mm-dd") Date birthdate,
+                             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthdate,
                              @RequestParam String email,
                              @RequestParam String haircolor,
                              @RequestParam MultipartFile profilepicture,
                              @RequestParam MultipartFile fullpicture,
                              @RequestParam Double length ,
                              Model model) {
-        logger.info(String.format("username= %s -- password= %s -- birthdate\n",
-                username, password));
+        logger.info(String.format("username= %s -- password= %s -- birthdate=%s\n",
+                username, password, birthdate));
         User user = new User();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
