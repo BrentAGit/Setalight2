@@ -10,7 +10,7 @@
 <body>
 <div th:replace="fragments/header">Header</div>
 <form th:action="@{|/event/events/${event.getId()}|}" method="post">
-    <div>
+    <div class="event">
 <!--        Add here event details-->
         <p th:text="${event.getName()}">name</p>
     </div>
