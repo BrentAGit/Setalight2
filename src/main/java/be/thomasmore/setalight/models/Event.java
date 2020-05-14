@@ -1,9 +1,6 @@
 package be.thomasmore.setalight.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -14,9 +11,11 @@ import java.util.Date;
 
 @Entity
 public class Event {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "event_generator")
+    @SequenceGenerator(name = "event_generator", sequenceName = "event_seq",
+            initialValue = 0, allocationSize = 1)
     @Id
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private int aantaldeelnemers;
@@ -28,11 +27,11 @@ public class Event {
     @ManyToMany
     private Collection<User> users;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
