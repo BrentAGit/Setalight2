@@ -82,7 +82,7 @@ public class UserController {
         if(!profilePictureName.equals(user.getProfilepicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
-                imageFileDir.mkdir();
+                imageFileDir.mkdirs();
             }
             File imageFile= new File(uploadImagesDirString,profilePictureName);
                 try {
@@ -96,9 +96,9 @@ public class UserController {
         if(!fullPictureName.equals(user.getFullpicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
-                imageFileDir.mkdir();
+                imageFileDir.mkdirs();
             }
-            File imageFile= new File(uploadImagesDirString,profilePictureName);
+            File imageFile= new File(uploadImagesDirString,fullPictureName);
             try {
                 fullpicture.transferTo(imageFile);
                 user.setFullpicture("/"+fullPictureName);
