@@ -21,6 +21,7 @@ public class User {
     private String fullpicture;
     private String physicalAtributes;
     private String nationalInsuranceNumber;
+    private double length;
     @ManyToMany
     private Collection<User> Frends;
     @ManyToMany

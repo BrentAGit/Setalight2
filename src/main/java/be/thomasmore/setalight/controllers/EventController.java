@@ -65,7 +65,8 @@ public class EventController {
         Optional<Event> eventFromDb = eventRepository.findById(eventsId);
         Event event = new Event();
         if (eventFromDb.isPresent()) event = eventFromDb.get();
-        model.addAttribute("event", event);model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
+        model.addAttribute("event", event);
+        model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
         return "userEvent";
     }
 
