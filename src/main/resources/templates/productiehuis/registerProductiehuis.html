@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>register productiehuis</title>
+</head>
+<body>
+<form th:action="@{/productiehuis/registerProductiehuis}" method="post">
+    <h1>
+        register
+    </h1>
+    <label for="username">Enter your username:</label>
+    <input type="text" name="username" id="username" size="60"><br>
+    <label for="password">Enter your password:</label>
+    <input type="password" name="password" id="password" size="60"><br>
+    <input type="submit" name="register" id="register" value="Register">
+</form>
+</body>
+</html>
