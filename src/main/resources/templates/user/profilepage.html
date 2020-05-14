@@ -21,6 +21,7 @@ Algemene gegevens
     <li th:text="${user.getEmail()}"></li>
     <li><img th:src="${user.getProfilepicture()}"></li>
     <li><img th:src="${user.getFullpicture()}"></li>
+    <li th:text="${user.getBirthdate()}"></li>
     <li th:each="user: ${user.getFrends()}">
         <a th:href="|/profilepage/${user.getId()}|" th:text="${user.getUsername()}"></a>
     </li>

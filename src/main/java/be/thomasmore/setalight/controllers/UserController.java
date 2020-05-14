@@ -56,6 +56,7 @@ public class UserController {
                              @RequestParam MultipartFile profilepicture,
                              @RequestParam MultipartFile fullpicture,
                              @RequestParam Double length ,
+                             @RequestParam String nationalInsuranceNumber,
                              Model model) {
         logger.info(String.format("username= %s -- password= %s -- birthdate=%s\n",
                 username, password, birthdate));
@@ -64,6 +65,10 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("USER");
         user.setBirthdate(birthdate);
+        user.setEmail(email);
+        user.setHaircolor(haircolor);
+        user.setLength(length);
+        user.setNationalInsuranceNumber(nationalInsuranceNumber);
         String profilePictureName = profilepicture.getOriginalFilename();
         if(!profilePictureName.equals(user.getProfilepicture())){
             File imageFileDir= new File(uploadImagesDirString);
@@ -73,10 +78,25 @@ public class UserController {
             File imageFile= new File(uploadImagesDirString,profilePictureName);
                 try {
                     profilepicture.transferTo(imageFile);
+                    user.setProfilepicture("/"+profilePictureName);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
+        String fullPictureName = fullpicture.getOriginalFilename();
+        if(!fullPictureName.equals(user.getFullpicture())){
+            File imageFileDir= new File(uploadImagesDirString);
+            if(!imageFileDir.exists()){
+                imageFileDir.mkdir();
+            }
+            File imageFile= new File(uploadImagesDirString,profilePictureName);
+            try {
+                fullpicture.transferTo(imageFile);
+                user.setFullpicture("/"+fullPictureName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         userRepository.save(user);
         autologin(username, password);
         return "redirect:/";

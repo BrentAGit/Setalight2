@@ -1,7 +1,7 @@
 INSERT INTO USER (ID, USERNAME, PASSWORD, ROLE, VERIFIED, "LENGTH")
     VALUES (nextval('USER_SEQ'), 'admin', '$2a$10$9MIX8kYPkuB7uE/H5nHF8.KG6.YdjBA/voOnjSZnZDxLXL/2BIerS', 'ADMIN', false,0 );--paswoord:admin
-INSERT INTO USER (ID, USERNAME, PASSWORD, ROLE, VERIFIED, "LENGTH",EMAIL)
-    VALUES (nextval('USER_SEQ'), 'marie', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER', false,0,'r0790860@student.thomasmore.be');--paswoord:password
+INSERT INTO USER (ID, USERNAME, PASSWORD, ROLE, VERIFIED, "LENGTH",EMAIL, BIRTHDATE, PROFILEPICTURE,FULPICTURE)
+    VALUES (nextval('USER_SEQ'), 'marie', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER', false,0,'r0790860@student.thomasmore.be','1999-05-17','/img/41.png','/img/20993');--paswoord:password
 INSERT INTO user (ID, USERNAME, PASSWORD, ROLE, VERIFIED, "LENGTH")
     VALUES (nextval('USER_SEQ'), 'testHuis', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS', false,0);--paswoord:password
 
