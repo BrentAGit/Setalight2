@@ -20,7 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/user/register").permitAll()
+                .antMatchers("/user/register", "/logout").permitAll()
 //                .antMatchers("/user/**").authenticated()
                 .antMatchers("user/profilpage/**", "user/edit-profile/**").hasAuthority("USER")
                 .antMatchers("/admin/register").permitAll()
