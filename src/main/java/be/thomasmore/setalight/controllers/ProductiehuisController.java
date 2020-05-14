@@ -42,9 +42,8 @@ public class ProductiehuisController {
     }
 
     @GetMapping("/registerProductiehuis")
-    public String registerProductiehuis(Model model) {
-        return "/productiehuis/registerProductiehuis";
-    }
+    public String registerProductiehuis(Model model)
+    {return "/productiehuis/registerProductiehuis";}
 
     @PostMapping("/registerProductiehuis")
     public String registeredProductiehuis(@RequestParam String username,
@@ -61,6 +60,10 @@ public class ProductiehuisController {
         autologin(username, password);
         return "redirect:/";
     }
+
+    @GetMapping("/")
+    public String homepageProductiehuis(Model model)
+    {return "/productiehuis/homepage";}
 
     private void autologin(String userName, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
