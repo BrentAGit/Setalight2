@@ -23,7 +23,7 @@ public class Profile {
     @ManyToMany
     private Collection<User> friends;
     private String Height;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private User userId;
 
     public Integer getId() {
