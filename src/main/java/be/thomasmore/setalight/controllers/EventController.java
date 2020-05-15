@@ -54,7 +54,7 @@ public class EventController {
         Date date = java.sql.Date.valueOf(LocalDate.now());
         model.addAttribute("application", this.application);
         model.addAttribute("events", eventRepository.findAllByDateAfter(date));
-        model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
+//        model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
         return "events";
     }
 
@@ -66,7 +66,7 @@ public class EventController {
         Event event = new Event();
         if (eventFromDb.isPresent()) event = eventFromDb.get();
         model.addAttribute("event", event);
-        model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
+//        model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
         return "userEvent";
     }
 
