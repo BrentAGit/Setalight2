@@ -73,12 +73,12 @@ public class UserController {
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("USER");
-        user.setBirthdate(birthdate);
+        /*user.setBirthdate(birthdate);
         user.setEmail(email);
         user.setHaircolor(haircolor);
         user.setLength(length);
-        user.setNationalInsuranceNumber(nationalInsuranceNumber);
-        String profilePictureName = profilepicture.getOriginalFilename();
+        user.setNationalInsuranceNumber(nationalInsuranceNumber);*/
+        /*String profilePictureName = profilepicture.getOriginalFilename();
         if(!profilePictureName.equals(user.getProfilepicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
@@ -105,7 +105,7 @@ public class UserController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
         userRepository.save(user);
         autologin(username, password);
         return "redirect:/";
