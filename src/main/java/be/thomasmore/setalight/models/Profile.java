@@ -11,7 +11,6 @@ public class Profile {
     @Id
     private Integer id;
     private Date birthdate;
-    private Date birthdate;
     private String profilepicture;
     private String email;
     private String haircolor;
@@ -22,7 +21,6 @@ public class Profile {
     @ManyToMany
     private Collection<User> Frends;
     private String Height;
-    private String haircolor;
     @OneToOne
     private User userId;
 
@@ -64,5 +62,61 @@ public class Profile {
 
     public void setUserId(User userId) {
         this.userId = userId;
+    }
+
+    public String getProfilepicture() {
+        return profilepicture;
+    }
+
+    public void setProfilepicture(String profilepicture) {
+        this.profilepicture = profilepicture;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFullpicture() {
+        return fullpicture;
+    }
+
+    public void setFullpicture(String fullpicture) {
+        this.fullpicture = fullpicture;
+    }
+
+    public String getPhysicalAtributes() {
+        return physicalAtributes;
+    }
+
+    public void setPhysicalAtributes(String physicalAtributes) {
+        this.physicalAtributes = physicalAtributes;
+    }
+
+    public String getNationalInsuranceNumber() {
+        return nationalInsuranceNumber;
+    }
+
+    public void setNationalInsuranceNumber(String nationalInsuranceNumber) {
+        this.nationalInsuranceNumber = nationalInsuranceNumber;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
+    }
+
+    public Collection<User> getFrends() {
+        return Frends;
+    }
+
+    public void setFrends(Collection<User> frends) {
+        Frends = frends;
     }
 }
