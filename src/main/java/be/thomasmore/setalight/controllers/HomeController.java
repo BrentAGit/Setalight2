@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.Calendar;
 import java.util.Optional;
 
 @Controller
@@ -39,9 +40,10 @@ public class HomeController {
         }
         logger.info(String.format("logged in: %s",
                 loggedInName));
+        Calendar calendar = Calendar.getInstance();
         model.addAttribute("user", user);
         model.addAttribute("application", this.application);
-        model.addAttribute("events", eventRepository.findAll());
+        model.addAttribute("events", eventRepository.findAllByDateAfter(calendar.getTime()));
         return "home";
     }
 
