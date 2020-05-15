@@ -125,9 +125,13 @@ public class UserController {
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
         if (userFromDb.isPresent()) user = userFromDb.get();
+        Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
+        Profile profile = new Profile();
+        if (profileFromDb.isPresent()) profile = profileFromDb.get();
         Calendar calendar = Calendar.getInstance();
         List<Event> eventsFromDb = eventRepository.findAllByUsersAndDatumBefore(user, calendar.getTime());
         model.addAttribute("user", user);
+        model.addAttribute("profile", profile);
         model.addAttribute("events", eventsFromDb);
         return "/user/profilepage";
     }
