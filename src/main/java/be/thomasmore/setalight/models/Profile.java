@@ -1,9 +1,7 @@
 package be.thomasmore.setalight.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -13,6 +11,16 @@ public class Profile {
     @Id
     private Integer id;
     private Date birthdate;
+    private Date birthdate;
+    private String profilepicture;
+    private String email;
+    private String haircolor;
+    private String fullpicture;
+    private String physicalAtributes;
+    private String nationalInsuranceNumber;
+    private double length;
+    @ManyToMany
+    private Collection<User> Frends;
     private String Height;
     private String haircolor;
     @OneToOne
