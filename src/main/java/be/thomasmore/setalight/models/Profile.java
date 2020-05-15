@@ -21,7 +21,7 @@ public class Profile {
     private String nationalInsuranceNumber;
     private double length;
     @ManyToMany
-    private Collection<User> Frends;
+    private Collection<User> friends;
     private String Height;
     @OneToOne
     private User userId;
@@ -114,11 +114,11 @@ public class Profile {
         this.length = length;
     }
 
-    public Collection<User> getFrends() {
-        return Frends;
+    public Collection<User> getFriends() {
+        return friends;
     }
 
-    public void setFrends(Collection<User> frends) {
-        Frends = frends;
+    public void setFriends(Collection<User> friends) {
+        this.friends = friends;
     }
 }
