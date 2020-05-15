@@ -1,8 +1,10 @@
 package be.thomasmore.setalight.controllers;
 
 import be.thomasmore.setalight.models.Event;
+import be.thomasmore.setalight.models.Profile;
 import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
+import be.thomasmore.setalight.repositories.ProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +48,9 @@ public class UserController {
     private EventRepository eventRepository;
 
     @Autowired
+    private ProfileRepository profileRepository;
+
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Value("${upload.images.dir}")
@@ -70,16 +75,18 @@ public class UserController {
         logger.info(String.format("username= %s -- password= %s\n",
                 username, password));
         User user = new User();
+        Profile profile = new Profile();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("USER");
-        /*user.setBirthdate(birthdate);
-        user.setEmail(email);
-        user.setHaircolor(haircolor);
-        user.setLength(length);
-        user.setNationalInsuranceNumber(nationalInsuranceNumber);*/
-        /*String profilePictureName = profilepicture.getOriginalFilename();
-        if(!profilePictureName.equals(user.getProfilepicture())){
+        profile.setUserId(user);
+        profile.setBirthdate(birthdate);
+        profile.setEmail(email);
+        profile.setHaircolor(haircolor);
+        profile.setLength(length);
+        profile.setNationalInsuranceNumber(nationalInsuranceNumber);
+        String profilePictureName = profilepicture.getOriginalFilename();
+        if(!profilePictureName.equals(profile.getProfilepicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
                 imageFileDir.mkdirs();
@@ -87,13 +94,13 @@ public class UserController {
             File imageFile= new File(uploadImagesDirString,profilePictureName);
                 try {
                     profilepicture.transferTo(imageFile);
-                    user.setProfilepicture("/"+profilePictureName);
+                    profile.setProfilepicture("/"+profilePictureName);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         String fullPictureName = fullpicture.getOriginalFilename();
-        if(!fullPictureName.equals(user.getFullpicture())){
+        if(!fullPictureName.equals(profile.getFullpicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
                 imageFileDir.mkdirs();
@@ -101,12 +108,13 @@ public class UserController {
             File imageFile= new File(uploadImagesDirString,fullPictureName);
             try {
                 fullpicture.transferTo(imageFile);
-                user.setFullpicture("/"+fullPictureName);
+                profile.setFullpicture("/"+fullPictureName);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
         userRepository.save(user);
+        profileRepository.save(profile);
         autologin(username, password);
         return "redirect:/";
     }
