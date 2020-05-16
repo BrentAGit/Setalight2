@@ -174,6 +174,10 @@ public class UserController {
         profile.setHaircolor(haircolor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
+        String profilePictureName = profilepicture.getOriginalFilename();
+        fileUpload(profilePictureName, profile, profilepicture);
+        String fullPictureName = fullpicture.getOriginalFilename();
+        fileUpload(fullPictureName, profile, fullpicture);
         profileRepository.save(profile);
         user.setUsername(username);
         userRepository.save(user);
