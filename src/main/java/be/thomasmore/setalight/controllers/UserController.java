@@ -140,7 +140,13 @@ public class UserController {
     public String editProfile(@PathVariable int userId,
                               Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
-        model.addAttribute("user", userFromDb.get());
+        User user = new User();
+        if (userFromDb.isPresent()) user = userFromDb.get();
+        Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
+        Profile profile = new Profile();
+        if (profileFromDb.isPresent()) profile = profileFromDb.get();
+        model.addAttribute("user", user);
+        model.addAttribute("profile", profile);
         return "/user/edit-profile";
     }
 
