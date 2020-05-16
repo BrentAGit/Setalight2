@@ -86,7 +86,8 @@ public class UserController {
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
         String profilePictureName = profilepicture.getOriginalFilename();
-        if(!profilePictureName.equals(profile.getProfilepicture())){
+        fileUpload(profilePictureName, profile, profilepicture);
+        /*if(!profilePictureName.equals(profile.getProfilepicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
                 imageFileDir.mkdirs();
@@ -98,9 +99,10 @@ public class UserController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
         String fullPictureName = fullpicture.getOriginalFilename();
-        if(!fullPictureName.equals(profile.getFullpicture())){
+        fileUpload(fullPictureName, profile, fullpicture);
+        /*if(!fullPictureName.equals(profile.getFullpicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
                 imageFileDir.mkdirs();
@@ -112,7 +114,7 @@ public class UserController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
         userRepository.save(user);
         profileRepository.save(profile);
         autologin(username, password);
@@ -187,6 +189,22 @@ public class UserController {
             sc.setAuthentication(auth);
         } catch (AuthenticationException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void fileUpload(String name, Profile profile, MultipartFile picture) {
+        if(!name.equals(profile.getFullpicture())){
+            File imageFileDir= new File(uploadImagesDirString);
+            if(!imageFileDir.exists()){
+                imageFileDir.mkdirs();
+            }
+            File imageFile= new File(uploadImagesDirString, name);
+            try {
+                picture.transferTo(imageFile);
+                profile.setFullpicture("/" + name);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
