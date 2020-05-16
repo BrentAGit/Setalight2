@@ -153,12 +153,26 @@ public class UserController {
     @PostMapping("/edit-profile/{userId}")
     public String editedProfile(@PathVariable int userId,
                                 @RequestParam String username,
+                                @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthdate,
+                                @RequestParam String email,
+                                @RequestParam String haircolor,
+                                @RequestParam MultipartFile profilepicture,
+                                @RequestParam MultipartFile fullpicture,
+                                @RequestParam Double length ,
+                                @RequestParam String nationalInsuranceNumber,
                                 Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
-        if (userFromDb.isPresent()) {
-            user = userFromDb.get();
-        }
+        if (userFromDb.isPresent()) user = userFromDb.get();
+        Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
+        Profile profile = new Profile();
+        if (profileFromDb.isPresent()) profile = profileFromDb.get();
+        profile.setBirthdate(birthdate);
+        profile.setEmail(email);
+        profile.setHaircolor(haircolor);
+        profile.setLength(length);
+        profile.setNationalInsuranceNumber(nationalInsuranceNumber);
+        profileRepository.save(profile);
         user.setUsername(username);
         userRepository.save(user);
         return "redirect:/user/profilepage/" + userId;
