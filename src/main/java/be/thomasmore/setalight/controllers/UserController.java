@@ -85,8 +85,7 @@ public class UserController {
         profile.setHaircolor(haircolor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-        String profilePictureName = profilepicture.getOriginalFilename();
-        fileUpload(profilePictureName, profile, profilepicture);
+        fileUpload(profile, profilepicture, 0);
         /*if(!profilePictureName.equals(profile.getProfilepicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
@@ -100,8 +99,7 @@ public class UserController {
                     e.printStackTrace();
                 }
             }*/
-        String fullPictureName = fullpicture.getOriginalFilename();
-        fileUpload(fullPictureName, profile, fullpicture);
+        fileUpload(profile, fullpicture, 1);
         /*if(!fullPictureName.equals(profile.getFullpicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
@@ -174,10 +172,8 @@ public class UserController {
         profile.setHaircolor(haircolor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-        String profilePictureName = profilepicture.getOriginalFilename();
-        fileUpload(profilePictureName, profile, profilepicture);
-        String fullPictureName = fullpicture.getOriginalFilename();
-        fileUpload(fullPictureName, profile, fullpicture);
+        fileUpload(profile, profilepicture, 0);
+        fileUpload(profile, fullpicture, 1);
         profileRepository.save(profile);
         user.setUsername(username);
         userRepository.save(user);
@@ -196,7 +192,8 @@ public class UserController {
         }
     }
 
-    private void fileUpload(String name, Profile profile, MultipartFile picture) {
+    private void fileUpload(Profile profile, MultipartFile picture, int cindOfPicture) {
+        String name = picture.getOriginalFilename();
         if(!name.equals(profile.getFullpicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
@@ -205,7 +202,14 @@ public class UserController {
             File imageFile= new File(uploadImagesDirString, name);
             try {
                 picture.transferTo(imageFile);
-                profile.setFullpicture("/" + name);
+                switch (cindOfPicture){
+                    case 0:
+                        profile.setProfilepicture("/" + name);
+                        break;
+                    case 1:
+                        profile.setFullpicture("/" + name);
+                        break;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
