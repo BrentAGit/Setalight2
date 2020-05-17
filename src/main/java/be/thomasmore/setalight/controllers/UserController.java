@@ -86,33 +86,7 @@ public class UserController {
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
         fileUpload(profile, profilepicture, 0);
-        /*if(!profilePictureName.equals(profile.getProfilepicture())){
-            File imageFileDir= new File(uploadImagesDirString);
-            if(!imageFileDir.exists()){
-                imageFileDir.mkdirs();
-            }
-            File imageFile= new File(uploadImagesDirString,profilePictureName);
-                try {
-                    profilepicture.transferTo(imageFile);
-                    profile.setProfilepicture("/"+profilePictureName);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }*/
         fileUpload(profile, fullpicture, 1);
-        /*if(!fullPictureName.equals(profile.getFullpicture())){
-            File imageFileDir= new File(uploadImagesDirString);
-            if(!imageFileDir.exists()){
-                imageFileDir.mkdirs();
-            }
-            File imageFile= new File(uploadImagesDirString,fullPictureName);
-            try {
-                fullpicture.transferTo(imageFile);
-                profile.setFullpicture("/"+fullPictureName);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
         userRepository.save(user);
         profileRepository.save(profile);
         autologin(username, password);
@@ -147,8 +121,6 @@ public class UserController {
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
         model.addAttribute("user", user);
         model.addAttribute("profile", profile);
-        return "/user/edit-profile";
-        model.addAttribute("user", userFromDb.get());
         return "user/edit-profile";
     }
 
