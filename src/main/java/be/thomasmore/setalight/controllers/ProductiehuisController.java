@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -38,17 +39,19 @@ public class ProductiehuisController {
         Optional<User> userFromDb = userRepository.findById(ID);
         User user = userFromDb.get();
         model.addAttribute("user", user);
-        return "/productiehuis/TEST";
+        return "productiehuis/TEST";
     }
 
     @GetMapping("/registerProductiehuis")
-    public String registerProductiehuis(Model model)
-    {return "/productiehuis/registerProductiehuis";}
+    public String registerProductiehuis(Principal principal, Model model) {
+        addUser(principal, model);
+        return "productiehuis/registerProductiehuis";
+    }
 
     @PostMapping("/registerProductiehuis")
     public String registeredProductiehuis(@RequestParam String username,
-                             @RequestParam String password,
-                             Model model) {
+                                          @RequestParam String password,
+                                          Model model) {
         logger.info(String.format("username= %s -- password= %s\n",
                 username, password));
         User user = new User();
@@ -62,8 +65,10 @@ public class ProductiehuisController {
     }
 
     @GetMapping("/")
-    public String homepageProductiehuis(Model model)
-    {return "/productiehuis/homepage";}
+    public String homepageProductiehuis(Principal principal, Model model) {
+        addUser(principal, model);
+        return "productiehuis/homepage";
+    }
 
     private void autologin(String userName, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
@@ -75,5 +80,17 @@ public class ProductiehuisController {
         } catch (AuthenticationException e) {
             e.printStackTrace();
         }
+    }
+
+    private void addUser(Principal principal, Model model) {
+        String loggedInName = principal != null ? principal.getName() : "nobody";
+        User user = new User();
+        if (!loggedInName.contains("nobody") || !loggedInName.isEmpty()) {
+            Optional<User> userFromDb = userRepository.findUserByUsername(loggedInName);
+            if (userFromDb.isPresent()) {
+                user = userFromDb.get();
+            }
+        }
+        model.addAttribute("user", user);
     }
 }

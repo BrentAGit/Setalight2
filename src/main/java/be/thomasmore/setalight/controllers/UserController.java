@@ -53,7 +53,7 @@ public class UserController {
 
     @GetMapping("/register")
     public String registerUser(Model model) {
-        return "/user/register";
+        return "user/register";
     }
 
     @PostMapping("/register")
@@ -121,7 +121,7 @@ public class UserController {
         List<Event> eventsFromDb = eventRepository.findAllByUsersAndDatumBefore(user, calendar.getTime());
         model.addAttribute("user", user);
         model.addAttribute("events", eventsFromDb);
-        return "/user/profilepage";
+        return "user/profilepage";
     }
 
     @GetMapping("/edit-profile/{userId}")
@@ -129,7 +129,7 @@ public class UserController {
                               Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
         model.addAttribute("user", userFromDb.get());
-        return "/user/edit-profile";
+        return "user/edit-profile";
     }
 
     @PostMapping("/edit-profile/{userId}")

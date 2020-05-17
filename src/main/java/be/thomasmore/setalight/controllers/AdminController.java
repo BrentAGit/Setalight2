@@ -35,8 +35,9 @@ public class AdminController {
     private AuthenticationManager authenticationManager;
 
     @GetMapping("/register")
-    public String registeradmin(Model model) {
-        return "/admin/register";
+    public String registeradmin(Principal principal, Model model) {
+        addUser(principal, model);
+        return "admin/register";
     }
 
     @PostMapping("/register")
@@ -55,8 +56,9 @@ public class AdminController {
     }
 
     @GetMapping("/productiehuis/register")
-    public String registerProductiehuis(Model model) {
-        return "/admin/productiehuis-register";
+    public String registerProductiehuis(Principal principal, Model model) {
+        addUser(principal, model);
+        return "admin/productiehuis-register";
     }
 
     @PostMapping("/productiehuis-register")
@@ -77,8 +79,8 @@ public class AdminController {
 
     @GetMapping({"/verifyproductiehuis"})
     public String verifyproductiehuis(Principal principal, Model model) {
+        addUser(principal, model);
         model.addAttribute("productiehuizen", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", false));
-//        model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
         return "admin/verifyproductiehuis";
     }
 
@@ -103,7 +105,7 @@ public class AdminController {
 
     @GetMapping({"/testAdmin"})
     public String testAdmin(Model model) {
-        return "/admin/testAdmin";
+        return "admin/testAdmin";
     }
 
     private void autologin(String username, String password) {
@@ -116,6 +118,18 @@ public class AdminController {
         } catch (AuthenticationException e) {
             e.printStackTrace();
         }
+    }
+
+    private void addUser(Principal principal, Model model) {
+        String loggedInName = principal != null ? principal.getName() : "nobody";
+        User user = new User();
+        if (!loggedInName.contains("nobody") || !loggedInName.isEmpty()) {
+            Optional<User> userFromDb = userRepository.findUserByUsername(loggedInName);
+            if (userFromDb.isPresent()) {
+                user = userFromDb.get();
+            }
+        }
+        model.addAttribute("user", user);
     }
 
 }

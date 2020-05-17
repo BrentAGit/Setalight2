@@ -49,12 +49,12 @@ public class HomeController {
 
     @GetMapping({"/login"})
     public String login(Model model) {
-        return "/login";
+        return "login";
     }
 
     @GetMapping({"/logout"})
     public String logout(Model model) {
-        return "/logout";
+        return "logout";
     }
 
 }

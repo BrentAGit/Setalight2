@@ -40,7 +40,7 @@ public class EventController {
         logger.info(String.format("logged in: %s",
                 loggedInName));
         Date date = java.sql.Date.valueOf(LocalDate.now());
-
+        addUser(principal, model);
         model.addAttribute("application", this.application);
         model.addAttribute("events", eventRepository.findAllByDateAfter(date));
         return "event";
@@ -54,7 +54,7 @@ public class EventController {
         Date date = java.sql.Date.valueOf(LocalDate.now());
         model.addAttribute("application", this.application);
         model.addAttribute("events", eventRepository.findAllByDateAfter(date));
-//        model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
+        addUser(principal, model);
         return "events";
     }
 
@@ -66,7 +66,7 @@ public class EventController {
         Event event = new Event();
         if (eventFromDb.isPresent()) event = eventFromDb.get();
         model.addAttribute("event", event);
-//        model.addAttribute("user", userRepository.findUserByUsername(principal.getName()).get());
+        addUser(principal, model);
         return "userEvent";
     }
 
@@ -109,10 +109,12 @@ public class EventController {
 
     @GetMapping({"/edit-event/{eventId}"})
     public String editGetEvent(@PathVariable(required = false) int eventId,
+                               Principal principal,
                                Model model) {
 
         Optional<Event> event = eventRepository.findById(eventId);
         Event event1 = event.get();
+        addUser(principal, model);
         model.addAttribute("event", event1);
         return "edit-event";
     }
@@ -122,6 +124,7 @@ public class EventController {
                                 @RequestParam String name,
                                 @RequestParam String description,
                                 @RequestParam Integer aantaldeelnemers,
+                                Principal principal,
                                 Model model) {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
                 name, description, aantaldeelnemers
@@ -134,9 +137,20 @@ public class EventController {
             event.setDescription(description);
             eventRepository.save(event);
         }
-
+        addUser(principal, model);
         return "redirect:/event/events";
     }
 
+    private void addUser(Principal principal, Model model) {
+        String loggedInName = principal != null ? principal.getName() : "nobody";
+        User user = new User();
+        if (!loggedInName.contains("nobody") || !loggedInName.isEmpty()) {
+            Optional<User> userFromDb = userRepository.findUserByUsername(loggedInName);
+            if (userFromDb.isPresent()) {
+                user = userFromDb.get();
+            }
+        }
+        model.addAttribute("user", user);
+    }
 
 }
