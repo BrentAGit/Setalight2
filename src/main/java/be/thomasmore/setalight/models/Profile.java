@@ -9,7 +9,7 @@ public class Profile {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "profile_generator")
     @SequenceGenerator(name = "profile_generator", sequenceName = "profile_seq",
-            initialValue = 0, allocationSize = 1)
+            initialValue = 1, allocationSize = 1)
     @Id
     private Integer id;
     private Date birthdate;
