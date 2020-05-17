@@ -13,7 +13,7 @@ import java.util.Date;
 public class Event {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "event_generator")
     @SequenceGenerator(name = "event_generator", sequenceName = "event_seq",
-            initialValue = 0, allocationSize = 1)
+            initialValue = 1, allocationSize = 1)
     @Id
     private Integer id;
     private String name;

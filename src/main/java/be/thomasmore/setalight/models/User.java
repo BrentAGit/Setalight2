@@ -5,10 +5,11 @@ import java.util.Collection;
 import java.util.Date;
 
 @Entity
+@Table(name = "users")
 public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
     @SequenceGenerator(name = "user_generator", sequenceName = "user_seq",
-            initialValue = 0, allocationSize = 1)
+            initialValue = 1, allocationSize = 1)
     @Id
     private Integer id;
     private String username;
