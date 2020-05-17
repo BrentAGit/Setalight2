@@ -1,8 +1,10 @@
 package be.thomasmore.setalight.controllers;
 
 import be.thomasmore.setalight.models.Event;
+import be.thomasmore.setalight.models.Profile;
 import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
+import be.thomasmore.setalight.repositories.ProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +48,9 @@ public class UserController {
     private EventRepository eventRepository;
 
     @Autowired
+    private ProfileRepository profileRepository;
+
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Value("${upload.images.dir}")
@@ -70,16 +75,18 @@ public class UserController {
         logger.info(String.format("username= %s -- password= %s\n",
                 username, password));
         User user = new User();
+        Profile profile = new Profile();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("USER");
-        user.setBirthdate(birthdate);
-        user.setEmail(email);
-        user.setHaircolor(haircolor);
-        user.setLength(length);
-        user.setNationalInsuranceNumber(nationalInsuranceNumber);
-        String profilePictureName = profilepicture.getOriginalFilename();
-        if(!profilePictureName.equals(user.getProfilepicture())){
+        profile.setUserId(user);
+        profile.setBirthdate(birthdate);
+        profile.setEmail(email);
+        profile.setHaircolor(haircolor);
+        profile.setLength(length);
+        profile.setNationalInsuranceNumber(nationalInsuranceNumber);
+        fileUpload(profile, profilepicture, 0);
+        /*if(!profilePictureName.equals(profile.getProfilepicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
                 imageFileDir.mkdirs();
@@ -87,13 +94,13 @@ public class UserController {
             File imageFile= new File(uploadImagesDirString,profilePictureName);
                 try {
                     profilepicture.transferTo(imageFile);
-                    user.setProfilepicture("/"+profilePictureName);
+                    profile.setProfilepicture("/"+profilePictureName);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-        String fullPictureName = fullpicture.getOriginalFilename();
-        if(!fullPictureName.equals(user.getFullpicture())){
+            }*/
+        fileUpload(profile, fullpicture, 1);
+        /*if(!fullPictureName.equals(profile.getFullpicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
                 imageFileDir.mkdirs();
@@ -101,12 +108,13 @@ public class UserController {
             File imageFile= new File(uploadImagesDirString,fullPictureName);
             try {
                 fullpicture.transferTo(imageFile);
-                user.setFullpicture("/"+fullPictureName);
+                profile.setFullpicture("/"+fullPictureName);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
         userRepository.save(user);
+        profileRepository.save(profile);
         autologin(username, password);
         return "redirect:/";
     }
@@ -117,9 +125,13 @@ public class UserController {
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
         if (userFromDb.isPresent()) user = userFromDb.get();
+        Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
+        Profile profile = new Profile();
+        if (profileFromDb.isPresent()) profile = profileFromDb.get();
         Calendar calendar = Calendar.getInstance();
         List<Event> eventsFromDb = eventRepository.findAllByUsersAndDatumBefore(user, calendar.getTime());
         model.addAttribute("user", user);
+        model.addAttribute("profile", profile);
         model.addAttribute("events", eventsFromDb);
         return "user/profilepage";
     }
@@ -128,6 +140,14 @@ public class UserController {
     public String editProfile(@PathVariable int userId,
                               Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
+        User user = new User();
+        if (userFromDb.isPresent()) user = userFromDb.get();
+        Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
+        Profile profile = new Profile();
+        if (profileFromDb.isPresent()) profile = profileFromDb.get();
+        model.addAttribute("user", user);
+        model.addAttribute("profile", profile);
+        return "/user/edit-profile";
         model.addAttribute("user", userFromDb.get());
         return "user/edit-profile";
     }
@@ -135,12 +155,28 @@ public class UserController {
     @PostMapping("/edit-profile/{userId}")
     public String editedProfile(@PathVariable int userId,
                                 @RequestParam String username,
+                                @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthdate,
+                                @RequestParam String email,
+                                @RequestParam String haircolor,
+                                @RequestParam MultipartFile profilepicture,
+                                @RequestParam MultipartFile fullpicture,
+                                @RequestParam Double length ,
+                                @RequestParam String nationalInsuranceNumber,
                                 Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
-        if (userFromDb.isPresent()) {
-            user = userFromDb.get();
-        }
+        if (userFromDb.isPresent()) user = userFromDb.get();
+        Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
+        Profile profile = new Profile();
+        if (profileFromDb.isPresent()) profile = profileFromDb.get();
+        profile.setBirthdate(birthdate);
+        profile.setEmail(email);
+        profile.setHaircolor(haircolor);
+        profile.setLength(length);
+        profile.setNationalInsuranceNumber(nationalInsuranceNumber);
+        fileUpload(profile, profilepicture, 0);
+        fileUpload(profile, fullpicture, 1);
+        profileRepository.save(profile);
         user.setUsername(username);
         userRepository.save(user);
         return "redirect:/user/profilepage/" + userId;
@@ -155,6 +191,30 @@ public class UserController {
             sc.setAuthentication(auth);
         } catch (AuthenticationException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void fileUpload(Profile profile, MultipartFile picture, int cindOfPicture) {
+        String name = picture.getOriginalFilename();
+        if(!name.equals(profile.getFullpicture())){
+            File imageFileDir= new File(uploadImagesDirString);
+            if(!imageFileDir.exists()){
+                imageFileDir.mkdirs();
+            }
+            File imageFile= new File(uploadImagesDirString, name);
+            try {
+                picture.transferTo(imageFile);
+                switch (cindOfPicture){
+                    case 0:
+                        profile.setProfilepicture("/" + name);
+                        break;
+                    case 1:
+                        profile.setFullpicture("/" + name);
+                        break;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
