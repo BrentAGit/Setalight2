@@ -1,9 +1,6 @@
 package be.thomasmore.setalight.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -15,7 +12,7 @@ public class Profile {
     private Date birthdate;
     private String Height;
     private String haircolor;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private User userId;
 
     public Integer getId() {
