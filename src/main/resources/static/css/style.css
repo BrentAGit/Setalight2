@@ -16,7 +16,12 @@ h1{
     background-color: rgb(35, 35, 35) ;
     border: 0;
 }
+
 .menu-link:hover{
+    color: #EC7969;
+    text-decoration: none;
+}
+.menu-link:active{
     color: #EC7969;
     text-decoration: none;
 }
