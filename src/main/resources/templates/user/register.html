@@ -4,31 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <title>register new user</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <style>
+        .container {
+            margin-left: 100px;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function checkPassword(form) {
+            password1 = form.password.value;
+            password2 = form.rePassword.value;
+
+            if (password1 === '')
+                alert ("Please enter Password");
+
+            else if (password2 === '')
+                alert ("Please enter confirm password");
+
+            else if (password1 !== password2) {
+                alert ("\nPassword did not match: Please try again...")
+                return false;
+            }
+
+            else{
+                alert("Password Match: Welcome to GeeksforGeeks!")
+                return true;
+            }
+        }
+    </script>
 </head>
 <body>
-<form th:action="@{/user/register}" method="post" enctype="multipart/form-data">
-    <h1>
-        register
-    </h1>
-    <label for="username">Enter your username:</label>
-    <input type="text" name="username" id="username"><br>
-    <label for="password">Enter your password:</label>
-    <input type="password" name="password" id="password"><br>
-    <label for="birthdate">Geboortedatum:</label>
-    <input type="date" name="birthdate" id="birthdate"><br>
-    <label for="email">Email:</label>
-    <input type="text" name="email" id="email"><br>
-    <label for="haircolor">Haarkleur:</label>
-    <input type="text" name="haircolor" id="haircolor"><br>
-    <label for="profilepicture">Profiel foto:</label>
-    <input type="file" name="profilepicture" id="profilepicture"><br>
-    <label for="fullpicture">Volledige foto:</label>
-    <input type="file" name="fullpicture" id="fullpicture"><br>
-    <label for="length">Lengte in Meter:</label>
-    <input type="number" name="length" id="length" step="0.01"><br>
-    <label for="nationalInsuranceNumber">Rijksregisternummer:</label>
-    <input type="text" name="nationalInsuranceNumber" id="nationalInsuranceNumber"><br>
-    <input type="submit" name="register" id="register" value="Register">
-</form>
+<div class="container">
+    <form th:action="@{/user/register}" method="post" enctype="multipart/form-data" onsubmit="return checkPassword(this)">
+        <h1>
+            register
+        </h1>
+        <label for="username">Enter your username:</label>
+        <input type="text" name="username" id="username"><br>
+        <label for="password">Enter your password:</label>
+        <input type="password" name="password" id="password"><br>
+        <label for="rePassword">Re type your password</label>
+        <input type="password" id="rePassword" name="rePassword"><br>
+        <label for="birthdate">Geboortedatum:</label>
+        <input type="date" name="birthdate" id="birthdate"><br>
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email"><br>
+        <label for="haircolor">Haarkleur:</label>
+        <input type="text" name="haircolor" id="haircolor"><br>
+        <label for="profilepicture">Profiel foto:</label>
+        <input type="file" name="profilepicture" id="profilepicture"><br>
+        <label for="fullpicture">Volledige foto:</label>
+        <input type="file" name="fullpicture" id="fullpicture"><br>
+        <label for="length">Lengte in Meter:</label>
+        <input type="number" name="length" id="length" step="0.01"><br>
+        <label for="nationalInsuranceNumber">Rijksregisternummer:</label>
+        <input type="text" name="nationalInsuranceNumber" id="nationalInsuranceNumber"><br>
+        <input type="submit" name="register" id="register" value="Register">
+    </form>
+</div>
 </body>
 </html>
