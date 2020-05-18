@@ -13,6 +13,8 @@ h1{
 
 .menu-link{
     color: #ffffff;
+    background-color: rgb(35, 35, 35) ;
+    border: 0;
 }
 .menu-link:hover{
     color: #EC7969;

@@ -29,7 +29,7 @@
         </div>
         <div sec:authorize="isAuthenticated()" class="col-1">
             <form class="menu-link" th:action="@{/logout}" method="post">
-                <input  type="submit" id="logout" name="logout" value="Logout">
+                <input class="menu-link" type="submit" id="logout" name="logout" value="Logout">
             </form>
 
         </div>
