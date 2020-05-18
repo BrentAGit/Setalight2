@@ -17,6 +17,7 @@ public class ProductiehuisProfile {
     String houseNumber;
     String companyNumber;
     String nameOwner;
+    String logo;
     @OneToOne
     User userId;
 
@@ -90,5 +91,21 @@ public class ProductiehuisProfile {
 
     public void setNameOwner(String nameOwner) {
         this.nameOwner = nameOwner;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 }
