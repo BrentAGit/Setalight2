@@ -68,7 +68,16 @@ btn-primary:link{
     color: #ffffff;
     box-shadow: none;
 }
-
+.login-link-text{
+    font-size: small;
+    display: inline;
+}
+.login-link{
+    color: #ec7969;
+}
+.login-link:hover{
+    color: #ffffff;
+}
 .data {
     color:#ec7969;
 }
