@@ -2,9 +2,13 @@
 oranje:#EC7969
 wit:#ffffff
 zwart:#000000
+grijs:#3c3f41
+transparent:rgba(0,0,0,0)
 */
 body{
-    background-color: rgb(35, 35, 35);
+    /*background-color: rgb(35, 35, 35);*/
+    background-image: url("/img/nsplsh_31494e3957795170353641_mv2_d_5472_3648_s_4_2.jpg");
+    background-size: cover;
     color: #ffffff;
 }
 h1{
@@ -28,15 +32,21 @@ h1{
 .input{
     background-color: #3c3f41;
     border-radius: 5px;
+    color:#ffffff;
+}
+.input:focus{
+    color: #EC7969;
 }
 .btn-primary{
     background-color: #EC7969;
     border-color: #EC7969;
-    color: #ffffff;
+    border: 2px;
+    color: rgba(0,0,0,0);
+    border-radius: 0px;
 }
 .btn-primary:hover{
-    background-color: #ffffff;
-    border-color: #ffffff;
+    background-color: rgba(0,0,0,0);
+    border-color: #EC7969;
     color: #EC7969;
 }
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
