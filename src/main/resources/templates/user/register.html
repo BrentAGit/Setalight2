@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>register new user</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 <form th:action="@{/user/register}" method="post" enctype="multipart/form-data">
@@ -11,7 +13,7 @@
         register
     </h1>
     <label for="username">Enter your username:</label>
-    <input type="text" name="username" id="username"><br>
+    <input  type="text" name="username" id="username"><br>
     <label for="password">Enter your password:</label>
     <input type="password" name="password" id="password"><br>
     <label for="birthdate">Geboortedatum:</label>
