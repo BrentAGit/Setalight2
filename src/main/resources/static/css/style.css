@@ -12,10 +12,11 @@ h1{
 }
 
 .menu-link{
-    color: #EC7969;
+    color: #ffffff;
 }
 .menu-link:hover{
-    color: #ffffff;
+    color: #EC7969;
+    text-decoration: none;
 }
 .input{
     background-color: #3c3f41;
