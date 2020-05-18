@@ -85,19 +85,19 @@ public class EventController {
     @PostMapping({"event"})
     public String createEvent(@RequestParam String name,
                               @RequestParam String description,
-                              @RequestParam Integer aantaldeelnemers,
+                              @RequestParam Integer amountOfParticipants,
                               @RequestParam String date,
                               Model model) throws ParseException {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
-                name, description, aantaldeelnemers
+                name, description, amountOfParticipants
         ));
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         Event event = new Event();
         event.setName(name);
-        event.setAmountOfParticipants(aantaldeelnemers);
+        event.setAmountOfParticipants(amountOfParticipants);
         event.setDescription(description);
-        event.setDatum(format.parse(date));
+        event.setDate(format.parse(date));
         event.setControl(false);
         eventRepository.save(event);
 
@@ -121,17 +121,17 @@ public class EventController {
     public String editPostEvent(@PathVariable(required = false) int eventId,
                                 @RequestParam String name,
                                 @RequestParam String description,
-                                @RequestParam Integer aantaldeelnemers,
+                                @RequestParam Integer amountOfParticipants,
                                 Principal principal,
                                 Model model) {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
-                name, description, aantaldeelnemers
+                name, description, amountOfParticipants
         ));
         Optional<Event> eventDromDB = eventRepository.findById(eventId);
         if (eventDromDB.isPresent()) {
             Event event = eventDromDB.get();
             event.setName(name);
-            event.setAmountOfParticipants(aantaldeelnemers);
+            event.setAmountOfParticipants(amountOfParticipants);
             event.setDescription(description);
             eventRepository.save(event);
         }

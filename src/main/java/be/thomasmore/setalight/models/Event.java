@@ -65,11 +65,11 @@ public class Event {
         this.address = address;
     }
 
-    public Date getDatum() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDatum(Date date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

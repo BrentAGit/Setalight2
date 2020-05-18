@@ -15,11 +15,11 @@
         <tr>
             <td>Naam:<input type="text" name="username" id="username" th:value="${user.getUsername()}"></td>
         </tr>
-        <input type="date" name="birthdate" id="birthdate" th:value="${profile.getBirthDate()}"><br>
+        <input type="date" name="birthDate" id="birthDate" th:value="${profile.getBirthDate()}"><br>
         <input type="text" name="email" id="email" th:value="${profile.getEmail()}"><br>
-        <input type="text" name="haircolor" id="haircolor" th:value="${profile.getHairColor()}"><br>
-        <input type="file" name="profilepicture" id="profilepicture" th:value="${profile.getProfilePicture()}"><br>
-        <input type="file" name="fullpicture" id="fullpicture" th:value="${profile.getFullPicture()}"><br>
+        <input type="text" name="hairColor" id="hairColor" th:value="${profile.getHairColor()}"><br>
+        <input type="file" name="profilePicture" id="profilePicture" th:value="${profile.getProfilePicture()}"><br>
+        <input type="file" name="fullPicture" id="fullPicture" th:value="${profile.getFullPicture()}"><br>
         <input type="number" name="length" id="length" step="0.01" th:value="${profile.getLength()}"><br>
         <input type="text" name="nationalInsuranceNumber" id="nationalInsuranceNumber" th:value="${profile.getNationalInsuranceNumber()}"><br>
         <input type="submit" name="save" id="save" value="Save">
