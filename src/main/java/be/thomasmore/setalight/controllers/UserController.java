@@ -53,7 +53,7 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    //@Value("${upload.images.dir}")
+    @Value("${upload.images.dir}")
     private String uploadImagesDirString;
 
     @GetMapping("/register")
