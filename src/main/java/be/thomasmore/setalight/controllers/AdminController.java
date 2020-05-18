@@ -78,21 +78,21 @@ public class AdminController {
     }
 
     @GetMapping({"/verifyproductiehuis"})
-    public String verifyProductiehuis(Principal principal, Model model) {
+    public String findUnverifiedProductiehuis(Principal principal, Model model) {
         addUser(principal, model);
         model.addAttribute("productiehuizen", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", false));
         return "admin/verifyproductiehuis";
     }
 
     @GetMapping({"/verify/{userId}"})
-    public String verify(@PathVariable int userId, Model model) {
+    public String verifySpecificProductiehuis(@PathVariable int userId, Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
         model.addAttribute("user", userFromDb.get());
         return "admin/verify";
     }
 
     @PostMapping("/verify/{userId}")
-    public String verifiedProductiehuis(@PathVariable int userId) {
+    public String verifyProductiehuis(@PathVariable int userId) {
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
         if (userFromDb.isPresent()){
@@ -100,6 +100,7 @@ public class AdminController {
         }
         user.setVerified(true);
         userRepository.save(user);
+
         return "redirect:/admin/verifyproductiehuis";
     }
 

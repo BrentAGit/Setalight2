@@ -38,8 +38,8 @@ public class Profile {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthdate) {
-        this.birthDate = birthdate;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getHeight() {
