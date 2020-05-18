@@ -19,35 +19,34 @@
             <a class="menu-link"  href="/user/register">register</a>
         </div>
         <div class="col-1">
-            <a href="/login">login</a>
+            <a class="menu-link" href="/login">login</a>
         </div>
         <!--            Add here extra stuff if needed for when no one is logged in-->
     </div>
-    <div sec:authorize="isAuthenticated()" class="row">
-        <div class="col-1">
-            <a href="/">Home</a>
+    <div  class="row">
+        <div sec:authorize="isAuthenticated()" class="col-1">
+            <a class="menu-link" href="/">Home</a>
         </div>
-        <div class="col-1">
-            <form th:action="@{/logout}" method="post">
-                <input class="btn-primary" type="submit" id="logout" name="logout" value="Logout">
+        <div sec:authorize="isAuthenticated()" class="col-1">
+            <form class="menu-link" th:action="@{/logout}" method="post">
+                <input  type="submit" id="logout" name="logout" value="Logout">
             </form>
 
         </div>
-        <div class="col-1">
-            <a th:href="'/user/profilepage/' + ${user.getId()}" href="/">profile</a>
+        <div sec:authorize="isAuthenticated()" class="col-1">
+            <a class="menu-link" th:href="'/user/profilepage/' + ${user.getId()}" href="/">profile</a>
         </div>
+        <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" class="col-1">
+            <a class="menu-link" href="/event/event">newevent</a>
+        </div>
+        <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" class="col-1">
+                <a class="menu-link" href="/event/events">events</a>
+        </div>
+            <!--        Add here extra stuff for when an ADMIN/PRODUCTIEHUIS is logged in-->
 
         <!--            Add here extra stuff for when some one is logged in-->
     </div>
-    <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" class="row">
-        <div class="col-3">
-            <a href="/event/event">create event</a>
-        </div>
-        <div class="col-3">
-            <a href="/event/events">events</a>
-        </div>
-<!--        Add here extra stuff for when an ADMIN/PRODUCTIEHUIS is logged in-->
-    </div>
+
 </div>
 </body>
 </html>
