@@ -35,13 +35,13 @@ public class AdminController {
     private AuthenticationManager authenticationManager;
 
     @GetMapping("/register")
-    public String registerAdmin(Principal principal, Model model) {
+    public String registerPageAdmin(Principal principal, Model model) {
         addUser(principal, model);
         return "admin/register";
     }
 
     @PostMapping("/register")
-    public String registered(@RequestParam String username,
+    public String registerFormAdmin(@RequestParam String username,
                              @RequestParam String password,
                              Model model) {
         logger.info(String.format("username= %s -- password= %s\n",
@@ -56,13 +56,13 @@ public class AdminController {
     }
 
     @GetMapping("/productiehuis/register")
-    public String registerProductiehuis(Principal principal, Model model) {
+    public String registerPageProductiehuis(Principal principal, Model model) {
         addUser(principal, model);
         return "admin/productiehuis-register";
     }
 
     @PostMapping("/productiehuis-register")
-    public String registeredProductiehuis(@RequestParam String username,
+    public String registerFormProductiehuis(@RequestParam String username,
                                           @RequestParam String password,
                                           Model model) {
         logger.info(String.format("username= %s -- password= %s\n",

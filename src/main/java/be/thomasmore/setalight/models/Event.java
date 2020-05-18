@@ -16,12 +16,12 @@ public class Event {
     private Integer id;
     private String name;
     private String description;
-    private int aantalDeelnemers;
-    private String adres;
-    private Date datum;
+    private int amountOfParticipants;
+    private String address;
+    private Date date;
     private Time startTime;
     private Time endTime;
-    private boolean controle;
+    private boolean control;
     @ManyToMany
     private Collection<User> users;
 
@@ -49,28 +49,28 @@ public class Event {
         this.description = description;
     }
 
-    public int getAantalDeelnemers() {
-        return aantalDeelnemers;
+    public int getAmountOfParticipants() {
+        return amountOfParticipants;
     }
 
-    public void setAantalDeelnemers(int aantaldeelnemers) {
-        this.aantalDeelnemers = aantaldeelnemers;
+    public void setAmountOfParticipants(int amountOfParticipants) {
+        this.amountOfParticipants = amountOfParticipants;
     }
 
-    public String getAdres() {
-        return adres;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdres(String adres) {
-        this.adres = adres;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Date getDatum() {
-        return datum;
+        return date;
     }
 
-    public void setDatum(Date datum) {
-        this.datum = datum;
+    public void setDatum(Date date) {
+        this.date = date;
     }
 
     public Time getStartTime() {
@@ -89,12 +89,12 @@ public class Event {
         this.endTime = endTime;
     }
 
-    public boolean isControle() {
-        return controle;
+    public boolean isControl() {
+        return control;
     }
 
-    public void setControle(boolean controle) {
-        this.controle = controle;
+    public void setControl(boolean control) {
+        this.control = control;
     }
 
     public Collection<User> getUsers() {
@@ -107,6 +107,6 @@ public class Event {
 
     public String getDateString(){
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        return format.format(datum);
+        return format.format(date);
     }
 }

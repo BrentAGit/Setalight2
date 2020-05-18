@@ -95,10 +95,10 @@ public class EventController {
 
         Event event = new Event();
         event.setName(name);
-        event.setAantalDeelnemers(aantaldeelnemers);
+        event.setAmountOfParticipants(aantaldeelnemers);
         event.setDescription(description);
         event.setDatum(format.parse(date));
-        event.setControle(false);
+        event.setControl(false);
         eventRepository.save(event);
 
 
@@ -131,7 +131,7 @@ public class EventController {
         if (eventDromDB.isPresent()) {
             Event event = eventDromDB.get();
             event.setName(name);
-            event.setAantalDeelnemers(aantaldeelnemers);
+            event.setAmountOfParticipants(aantaldeelnemers);
             event.setDescription(description);
             eventRepository.save(event);
         }
