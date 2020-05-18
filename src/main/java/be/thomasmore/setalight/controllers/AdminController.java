@@ -35,7 +35,7 @@ public class AdminController {
     private AuthenticationManager authenticationManager;
 
     @GetMapping("/register")
-    public String registeradmin(Principal principal, Model model) {
+    public String registerAdmin(Principal principal, Model model) {
         addUser(principal, model);
         return "admin/register";
     }
@@ -51,7 +51,7 @@ public class AdminController {
         admin.setPassword(passwordEncoder.encode(password));
         admin.setRole("ADMIN");
         userRepository.save(admin);
-        autologin(username, password);
+        autoLogin(username, password);
         return "redirect:/";
     }
 
@@ -73,12 +73,12 @@ public class AdminController {
         admin.setRole("PRODUCTIEHUIS");
         admin.setVerified(false);
         userRepository.save(admin);
-        autologin(username, password);
+        autoLogin(username, password);
         return "redirect:/";
     }
 
     @GetMapping({"/verifyproductiehuis"})
-    public String verifyproductiehuis(Principal principal, Model model) {
+    public String verifyProductiehuis(Principal principal, Model model) {
         addUser(principal, model);
         model.addAttribute("productiehuizen", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", false));
         return "admin/verifyproductiehuis";
@@ -108,7 +108,7 @@ public class AdminController {
         return "admin/testAdmin";
     }
 
-    private void autologin(String username, String password) {
+    private void autoLogin(String username, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
         try {
             Authentication auth = authenticationManager.authenticate(token);

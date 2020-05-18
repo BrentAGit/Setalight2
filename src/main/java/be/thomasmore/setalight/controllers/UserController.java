@@ -26,8 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -89,7 +87,7 @@ public class UserController {
         fileUpload(profile, fullpicture, 1);
         userRepository.save(user);
         profileRepository.save(profile);
-        autologin(username, password);
+        autoLogin(username, password);
         return "redirect:/";
     }
 
@@ -154,7 +152,7 @@ public class UserController {
         return "redirect:/user/profilepage/" + userId;
     }
 
-    private void autologin(String userName, String password) {
+    private void autoLogin(String userName, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
         try {
             Authentication auth = authenticationManager.authenticate(token);
