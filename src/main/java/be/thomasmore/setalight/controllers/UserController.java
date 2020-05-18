@@ -62,11 +62,11 @@ public class UserController {
     @PostMapping("/register")
     public String registered(@RequestParam String username,
                              @RequestParam String password,
-                             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthdate,
+                             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate,
                              @RequestParam String email,
-                             @RequestParam String haircolor,
-                             @RequestParam MultipartFile profilepicture,
-                             @RequestParam MultipartFile fullpicture,
+                             @RequestParam String hairColor,
+                             @RequestParam MultipartFile profilePicture,
+                             @RequestParam MultipartFile fullPicture,
                              @RequestParam Double length ,
                              @RequestParam String nationalInsuranceNumber,
                              Model model) {
@@ -78,13 +78,13 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("USER");
         profile.setUserId(user);
-        profile.setBirthDate(birthdate);
+        profile.setBirthDate(birthDate);
         profile.setEmail(email);
-        profile.setHairColor(haircolor);
+        profile.setHairColor(hairColor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-        fileUpload(profile, profilepicture, 0);
-        fileUpload(profile, fullpicture, 1);
+        fileUpload(profile, profilePicture, 0);
+        fileUpload(profile, fullPicture, 1);
         userRepository.save(user);
         profileRepository.save(profile);
         autoLogin(username, password);
