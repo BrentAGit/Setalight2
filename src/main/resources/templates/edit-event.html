@@ -9,8 +9,7 @@
     <title th:value="${application}">Setalight</title>
 </head>
 <body>
-<h1>Setalight</h1>
-<a href="/">Home</a><br>
+<div th:replace="fragments/header">Header</div>
 <br>
 <form th:action="@{|/event/edit-event/${event.id}|}" th:method="post">
     <div>
