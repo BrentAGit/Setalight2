@@ -78,9 +78,9 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("USER");
         profile.setUserId(user);
-        profile.setBirthdate(birthdate);
+        profile.setBirthDate(birthdate);
         profile.setEmail(email);
-        profile.setHaircolor(haircolor);
+        profile.setHairColor(haircolor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
         fileUpload(profile, profilepicture, 0);
@@ -139,9 +139,9 @@ public class UserController {
         Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
         Profile profile = new Profile();
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
-        profile.setBirthdate(birthdate);
+        profile.setBirthDate(birthdate);
         profile.setEmail(email);
-        profile.setHaircolor(haircolor);
+        profile.setHairColor(haircolor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
         fileUpload(profile, profilepicture, 0);
@@ -166,7 +166,7 @@ public class UserController {
 
     private void fileUpload(Profile profile, MultipartFile picture, int cindOfPicture) {
         String name = picture.getOriginalFilename();
-        if(!name.equals(profile.getFullpicture())){
+        if(!name.equals(profile.getFullPicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
                 imageFileDir.mkdirs();
@@ -176,10 +176,10 @@ public class UserController {
                 picture.transferTo(imageFile);
                 switch (cindOfPicture){
                     case 0:
-                        profile.setProfilepicture("/" + name);
+                        profile.setProfilePicture("/" + name);
                         break;
                     case 1:
-                        profile.setFullpicture("/" + name);
+                        profile.setFullPicture("/" + name);
                         break;
                 }
             } catch (IOException e) {

@@ -12,17 +12,17 @@ public class Profile {
             initialValue = 1, allocationSize = 1)
     @Id
     private Integer id;
-    private Date birthdate;
-    private String profilepicture;
+    private Date birthDate;
+    private String profilePicture;
     private String email;
-    private String haircolor;
-    private String fullpicture;
-    private String physicalAtributes;
+    private String hairColor;
+    private String fullPicture;
+    private String physicalAttributes;
     private String nationalInsuranceNumber;
     private double length;
     @ManyToMany
     private Collection<User> friends;
-    private String Height;
+    private String height;
     @OneToOne(fetch = FetchType.LAZY)
     private User userId;
 
@@ -34,28 +34,28 @@ public class Profile {
         this.id = id;
     }
 
-    public Date getBirthdate() {
-        return birthdate;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(Date birthdate) {
+        this.birthDate = birthdate;
     }
 
     public String getHeight() {
-        return Height;
+        return height;
     }
 
     public void setHeight(String height) {
-        Height = height;
+        this.height = height;
     }
 
-    public String getHaircolor() {
-        return haircolor;
+    public String getHairColor() {
+        return hairColor;
     }
 
-    public void setHaircolor(String haircolor) {
-        this.haircolor = haircolor;
+    public void setHairColor(String haircolor) {
+        this.hairColor = haircolor;
     }
 
     public User getUserId() {
@@ -66,12 +66,12 @@ public class Profile {
         this.userId = userId;
     }
 
-    public String getProfilepicture() {
-        return profilepicture;
+    public String getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setProfilepicture(String profilepicture) {
-        this.profilepicture = profilepicture;
+    public void setProfilePicture(String profilepicture) {
+        this.profilePicture = profilepicture;
     }
 
     public String getEmail() {
@@ -82,20 +82,20 @@ public class Profile {
         this.email = email;
     }
 
-    public String getFullpicture() {
-        return fullpicture;
+    public String getFullPicture() {
+        return fullPicture;
     }
 
-    public void setFullpicture(String fullpicture) {
-        this.fullpicture = fullpicture;
+    public void setFullPicture(String fullpicture) {
+        this.fullPicture = fullpicture;
     }
 
-    public String getPhysicalAtributes() {
-        return physicalAtributes;
+    public String getPhysicalAttributes() {
+        return physicalAttributes;
     }
 
-    public void setPhysicalAtributes(String physicalAtributes) {
-        this.physicalAtributes = physicalAtributes;
+    public void setPhysicalAttributes(String physicalAtributes) {
+        this.physicalAttributes = physicalAtributes;
     }
 
     public String getNationalInsuranceNumber() {

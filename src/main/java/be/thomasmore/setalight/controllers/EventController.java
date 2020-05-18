@@ -17,8 +17,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
 
 @Controller
@@ -97,7 +95,7 @@ public class EventController {
 
         Event event = new Event();
         event.setName(name);
-        event.setAantaldeelnemers(aantaldeelnemers);
+        event.setAantalDeelnemers(aantaldeelnemers);
         event.setDescription(description);
         event.setDatum(format.parse(date));
         event.setControle(false);
@@ -133,7 +131,7 @@ public class EventController {
         if (eventDromDB.isPresent()) {
             Event event = eventDromDB.get();
             event.setName(name);
-            event.setAantaldeelnemers(aantaldeelnemers);
+            event.setAantalDeelnemers(aantaldeelnemers);
             event.setDescription(description);
             eventRepository.save(event);
         }

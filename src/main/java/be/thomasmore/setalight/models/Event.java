@@ -4,8 +4,6 @@ import javax.persistence.*;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Date;
 
@@ -18,7 +16,7 @@ public class Event {
     private Integer id;
     private String name;
     private String description;
-    private int aantaldeelnemers;
+    private int aantalDeelnemers;
     private String adres;
     private Date datum;
     private Time startTime;
@@ -51,12 +49,12 @@ public class Event {
         this.description = description;
     }
 
-    public int getAantaldeelnemers() {
-        return aantaldeelnemers;
+    public int getAantalDeelnemers() {
+        return aantalDeelnemers;
     }
 
-    public void setAantaldeelnemers(int aantaldeelnemers) {
-        this.aantaldeelnemers = aantaldeelnemers;
+    public void setAantalDeelnemers(int aantaldeelnemers) {
+        this.aantalDeelnemers = aantaldeelnemers;
     }
 
     public String getAdres() {
