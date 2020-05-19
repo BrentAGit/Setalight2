@@ -25,6 +25,8 @@ public class Profile {
     private String height;
     @OneToOne(fetch = FetchType.LAZY)
     private User userId;
+    @OneToMany
+    private Collection<Event> checkedEvents;
 
     public Integer getId() {
         return id;
@@ -121,4 +123,13 @@ public class Profile {
     public void setFriends(Collection<User> friends) {
         this.friends = friends;
     }
+
+    public Collection<Event> getCheckedEvents() {
+        return checkedEvents;
+    }
+
+    public void setCheckedEvents(Collection<Event> checkedEvents) {
+        this.checkedEvents = checkedEvents;
+    }
 }
+
