@@ -13,4 +13,5 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     Optional<User> findUserById(int id);
 
     List<User> findUserByRoleAndVerified(String role, boolean verified);
+    List<User> findUsersByRoleIs(String role);
 }

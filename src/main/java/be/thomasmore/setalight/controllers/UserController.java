@@ -25,12 +25,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
+import java.util.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
@@ -122,6 +119,40 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("profile", profile);
         return "user/edit-profile";
+    }
+    @GetMapping("/addFriends/{userId}")
+    public String addFriendsPage(@PathVariable int userId,
+                                Model model){
+        Profile profile = getProfile(userId);
+        Collection<Profile> profiles= profileRepository.findAllByFriendsNotIn(profile.getFriends());
+        model.addAttribute("friends",profiles);
+        model.addAttribute("currentProfile",profile);
+        return "/user/addFriends";
+    }
+
+    private Profile getProfile(int userId) {
+        Optional<User> userFromDb=userRepository.findUserById(userId);
+        User user= new User();
+        if(userFromDb.isPresent()){
+            user= userFromDb.get();
+        }
+        Optional<Profile> profileFromDb=profileRepository.findByUserId(user);
+        Profile profile= new Profile();
+        if(profileFromDb.isPresent()){
+            profile= profileFromDb.get();
+        }
+        return profile;
+    }
+
+    @PostMapping("/addFriends/{userId}")
+    public String addFriends(@PathVariable int userId,
+                             @RequestParam int user,
+                             Model model){
+        Profile currentProfile=getProfile(userId);
+        Profile friendProfile=getProfile(user);
+        currentProfile.getFriends().add(friendProfile);
+        profileRepository.save(currentProfile);
+        return "redirect:/user/addFreinds/"+userId;
     }
 
     @PostMapping("/edit-profile/{userId}")
