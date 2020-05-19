@@ -80,8 +80,8 @@ public class AdminController {
     @GetMapping({"/verifyproductiehuis"})
     public String verifyproductiehuis(Principal principal, Model model) {
         addUser(principal, model);
-        model.addAttribute("productiehuizen2", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", false));
-        model.addAttribute("productiehuizen", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", true));
+        model.addAttribute("productiehuizenNotV", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", false));
+        model.addAttribute("productiehuizenV", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", true));
         return "admin/verifyproductiehuis";
     }
 
