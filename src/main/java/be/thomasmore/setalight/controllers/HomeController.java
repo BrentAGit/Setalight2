@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
@@ -28,8 +29,9 @@ public class HomeController {
     @Autowired
     private EventRepository eventRepository;
 
-    @GetMapping("/")
-    public String home(Principal principal, Model model) {
+    @GetMapping({"/", "/{filter}"})
+    public String home(@PathVariable(required = false) String filter,
+                       Principal principal, Model model) {
         String loggedInName = principal != null ? principal.getName() : "nobody";
         User user = new User();
         if (!loggedInName.contains("nobody") || !loggedInName.isEmpty()) {
@@ -38,12 +40,29 @@ public class HomeController {
                 user = userFromDb.get();
             }
         }
+        Calendar calendar = Calendar.getInstance();
+        Calendar secondDate = Calendar.getInstance();
+        if (filter != null) {
+            switch (filter) {
+                case "all":
+                    model.addAttribute("events", eventRepository.findAllByDateAfter(calendar.getTime()));
+                    break;
+                case "week":
+                    secondDate.add(Calendar.WEEK_OF_YEAR, 1);
+                    model.addAttribute("events", eventRepository.findAllByDatumBetween(calendar.getTime(), secondDate.getTime()));
+                    break;
+                case "month":
+                    secondDate.add(Calendar.MONTH, 1);
+                    model.addAttribute("events", eventRepository.findAllByDatumBetween(calendar.getTime(), secondDate.getTime()));
+                    break;
+            }
+        }
+        else model.addAttribute("events", eventRepository.findAllByDateAfter(calendar.getTime()));
         logger.info(String.format("logged in: %s",
                 loggedInName));
-        Calendar calendar = Calendar.getInstance();
+        model.addAttribute("filterButtons", new String[] {"all", "week", "month"});
         model.addAttribute("user", user);
         model.addAttribute("application", this.application);
-        model.addAttribute("events", eventRepository.findAllByDateAfter(calendar.getTime()));
         return "home";
     }
 

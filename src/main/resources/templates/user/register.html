@@ -4,31 +4,93 @@
 <head>
     <meta charset="UTF-8">
     <title>register new user</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <style>
+        .container {
+            margin-left: 50px;
+            margin-top: 10px;
+        }
+
+        .fault {
+            color: firebrick;
+            font-size: 15px;
+        }
+    </style>
+    <script>
+        function checkPassword(form) {
+            password1 = form.password.value;
+            password2 = form.rePassword.value;
+            let noPassword = document.getElementById("noPassword");
+            let noConfirmPassword = document.getElementById("noConfirmPassword");
+            let noMatch = document.getElementById("noMatch");
+
+            if (password1 === '') {
+                // alert ("Please enter Password");
+                noPassword.style.display = "inline-block";
+                noConfirmPassword.style.display = "none";
+                noMatch.style.display = "none";
+                return false;
+            } else if (password2 === '') {
+                // alert ("Please enter confirm password");
+                noPassword.style.display = "none";
+                noConfirmPassword.style.display = "inline-block";
+                noMatch.style.display = "none";
+                return false;
+            } else if (password1 !== password2) {
+                // alert ("\nPassword did not match: Please try again...")
+                noPassword.style.display = "none";
+                noConfirmPassword.style.display = "none";
+                noMatch.style.display = "inline-block";
+                return false;
+            } else {
+                // alert("Password Match: Welcome to GeeksforGeeks!")
+                noPassword.style.display = "none";
+                noConfirmPassword.style.display = "none";
+                noMatch.style.display = "none";
+                return true;
+            }
+        }
+    </script>
 </head>
 <body>
-<form th:action="@{/user/register}" method="post" enctype="multipart/form-data">
-    <h1>
-        register
-    </h1>
-    <label for="username">Enter your username:</label>
-    <input type="text" name="username" id="username"><br>
-    <label for="password">Enter your password:</label>
-    <input type="password" name="password" id="password"><br>
-    <label for="birthdate">Geboortedatum:</label>
-    <input type="date" name="birthdate" id="birthdate"><br>
-    <label for="email">Email:</label>
-    <input type="text" name="email" id="email"><br>
-    <label for="haircolor">Haarkleur:</label>
-    <input type="text" name="haircolor" id="haircolor"><br>
-    <label for="profilepicture">Profiel foto:</label>
-    <input type="file" name="profilepicture" id="profilepicture"><br>
-    <label for="fullpicture">Volledige foto:</label>
-    <input type="file" name="fullpicture" id="fullpicture"><br>
-    <label for="length">Lengte in Meter:</label>
-    <input type="number" name="length" id="length" step="0.01"><br>
-    <label for="nationalInsuranceNumber">Rijksregisternummer:</label>
-    <input type="text" name="nationalInsuranceNumber" id="nationalInsuranceNumber"><br>
-    <input type="submit" name="register" id="register" value="Register">
-</form>
+<div class="container">
+    <form th:action="@{/user/register}" method="post" enctype="multipart/form-data"
+          onsubmit="return checkPassword(this)">
+        <h1>
+            register
+        </h1>
+        <label for="username">Enter your username:</label>
+        <input type="text" name="username" id="username"><br>
+        <label for="password">Enter your password:</label>
+        <input type="password" name="password" id="password">
+        <p style="display: none" id="noPassword" class="fault">
+            You didn't enter a password
+        </p>
+        <br><label for="rePassword">Re type your password</label>
+        <input type="password" id="rePassword" name="rePassword">
+        <p style="display: none" id="noConfirmPassword" class="fault">
+            you din't confirm your password
+        </p>
+        <p style="display: none" id="noMatch" class="fault">
+            passwords don't match
+        </p>
+        <br><label for="birthdate">Geboortedatum:</label>
+        <input type="date" name="birthdate" id="birthdate"><br>
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email"><br>
+        <label for="haircolor">Haarkleur:</label>
+        <input type="text" name="haircolor" id="haircolor"><br>
+        <label for="profilepicture">Profiel foto:</label>
+        <input type="file" name="profilepicture" id="profilepicture"><br>
+        <label for="fullpicture">Volledige foto:</label>
+        <input type="file" name="fullpicture" id="fullpicture"><br>
+        <label for="length">Lengte in Meter:</label>
+        <input type="number" name="length" id="length" step="0.01"><br>
+        <label for="nationalInsuranceNumber">Rijksregisternummer:</label>
+        <input type="text" name="nationalInsuranceNumber" id="nationalInsuranceNumber"><br>
+        <input type="submit" name="register" id="register" value="Register">
+    </form>
+</div>
 </body>
 </html>
