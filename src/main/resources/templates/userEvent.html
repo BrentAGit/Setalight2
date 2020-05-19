@@ -35,12 +35,12 @@
     </div>
     <div>
         <p>adres:</p>
-        <p th:text="${event.getAdres1()}"></p>
-        <p th:text="${event.getAdres2()}"></p>
+        <p th:text="${event.getCityAndPostcode()}"></p>
+        <p th:text="${event.getStreetAndNumber()}"></p>
     </div>
     <div>
         maximun aantal deelnermers:
-        <p th:text="${event.getAantaldeelnemers()}"></p>
+        <p th:text="${event.getAmountOfParticipants()}"></p>
     </div>
     <div>
         aantal deelnermers:

@@ -146,9 +146,13 @@ public class Event {
         return format.format(date);
     }
 
-    public String getAdres() {
+    public String getCityAndPostcode() {
         return String.format(" stad : %s %s ", getCity(), getPostcode());
     }
+    public String getStreetAndNumber() {
+        return String.format(" straat : %s %s ", getStreet(), getHouseNumber());
+    }
+
 
     public Integer countUsers() {
         return getUsers().size();
