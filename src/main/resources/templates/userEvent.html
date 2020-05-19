@@ -35,6 +35,11 @@
         maximun aantal deelnermers:
         <p th:text="${event.getAantaldeelnemers()}"></p>
     </div>
+    <div>
+        aantal deelnermers:
+        <p th:text="${event.countUsers()}"></p>
+    </div>
+
     <div sec:authorize="hasAnyAuthority('USER')">
     <form th:action="@{|/event/events/${event.getId()}|}" method="post">
         <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'I am going!'">

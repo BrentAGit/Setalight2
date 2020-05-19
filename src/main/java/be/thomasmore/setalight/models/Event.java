@@ -147,4 +147,7 @@ public class Event {
         return String.format(" straat : %s %s  ",getStreet(),getHousenumber() );
 
     }
+    public Integer countUsers(){
+        return getUsers().size();
+    }
 }
