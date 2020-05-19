@@ -78,13 +78,15 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("USER");
         profile.setUserId(user);
-        profile.setBirthDate(birthDate);
-        profile.setEmail(email);
-        profile.setHairColor(hairColor);
-        profile.setLength(length);
-        profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-        fileUpload(profile, profilePicture, 0);
-        fileUpload(profile, fullPicture, 1);
+        if (!(birthDate == null && email.isEmpty() && hairColor.isEmpty() && profilePicture.isEmpty() && fullPicture.isEmpty() && length.isNaN() && nationalInsuranceNumber.isEmpty())) {
+            profile.setBirthDate(birthDate);
+            profile.setEmail(email);
+            profile.setHairColor(hairColor);
+            profile.setLength(length);
+            profile.setNationalInsuranceNumber(nationalInsuranceNumber);
+            fileUpload(profile, profilePicture, 0);
+            fileUpload(profile, fullPicture, 1);
+        }
         userRepository.save(user);
         profileRepository.save(profile);
         autoLogin(username, password);
