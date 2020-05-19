@@ -34,27 +34,6 @@ public class AdminController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @GetMapping("/register")
-    public String registerPageAdmin(Principal principal, Model model) {
-        addUser(principal, model);
-        return "admin/register";
-    }
-
-    @PostMapping("/register")
-    public String registerFormAdmin(@RequestParam String username,
-                             @RequestParam String password,
-                             Model model) {
-        logger.info(String.format("username= %s -- password= %s\n",
-                username, password));
-        User admin = new User();
-        admin.setUsername(username);
-        admin.setPassword(passwordEncoder.encode(password));
-        admin.setRole("ADMIN");
-        userRepository.save(admin);
-        autoLogin(username, password);
-        return "redirect:/";
-    }
-
     @GetMapping("/productiehuis/register")
     public String registerPageProductiehuis(Principal principal, Model model) {
         addUser(principal, model);
