@@ -9,12 +9,14 @@
 </head>
 <body>
     <div th:replace="fragments/header">Header</div>
+    <br>
+    <div class="container">
     <form th:action="@{|/admin/verify/${user.getId()}|}" method="post">
-        <a href="/admin/verifyproductiehuis">
-            back
-        </a>
+
         <p th:text="${user.getUsername()}"></p>
-        <input type="submit" id="submit" name="submit" value="verify">
+        <input class="btn btn-primary" type="submit" id="submit" name="submit" value="verify">
+        <a class="btn-primary btn" href="/admin/verifyproductiehuis">Cancel</a>
     </form>
+    </div>
 </body>
 </html>
