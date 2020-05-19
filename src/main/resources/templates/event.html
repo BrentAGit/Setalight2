@@ -12,53 +12,64 @@
 <div th:replace="fragments/header">Header</div>
 <br>
 
+<div class="container">
 <form th:action="@{|/event/event/|}" th:method="post">
-    <div>
-        <label for="name"> Name event:</label>
-        <input class="input" type="text" id="name" name="name">
+    <div class="row">
+        <label class="col-2" for="name"> Name event:</label>
+        <input class="input col-2" type="text" id="name" name="name">
     </div>
-    <div>
-        <label for="description"> description:</label>
-        <textarea class="input" id="description" name="description"></textarea>
+    <br>
+    <div class="row">
+        <label class="col-2"  for="description"> description:</label>
+        <textarea class="input col-2" id="description" name="description"></textarea>
     </div>
-    <div>
-        <label for="aantaldeelnemers"> aantal deelnemers:</label>
-        <input class="input" type="number" id="aantaldeelnemers" name="aantaldeelnemers">
+    <br>
+    <div class="row">
+        <label class="col-2"  for="aantaldeelnemers"> aantal deelnemers:</label>
+        <input class="input col-2" type="number" id="aantaldeelnemers" name="aantaldeelnemers">
     </div>
-    <div>
-        <label for="date"> datum:</label>
-        <input class="input" type="date" id="date" name="date"  >
+    <br>
+    <div class="row">
+        <label class="col-2"  for="date"> datum:</label>
+        <input class="input col-2" type="date" id="date" name="date"  >
     </div>
-    <div>
-        <label for="startTime"> begin tijd:</label>
-        <input class="input" type="time" id="startTime" name="startTime"  >
+    <br>
+    <div class="row">
+        <label class="col-2"  for="startTime"> begin tijd:</label>
+        <input class="input col-2" type="time" id="startTime" name="startTime"  >
     </div>
-    <div>
-        <label for="endTime"> eind tijd:</label>
-        <input class="input" type="time" id="endTime" name="endTime"  >
+    <br>
+    <div class="row">
+        <label class="col-2"  for="endTime"> eind tijd:</label>
+        <input class="input col-2" type="time" id="endTime" name="endTime"  >
     </div>
-    <div>
-        <label for="city"> stad/gemeente:</label>
-        <input class="input" type="text" id="city" name="city">
+    <br>
+    <div class="row">
+        <label class="col-2"  for="city"> stad/gemeente:</label>
+        <input class="input col-2" type="text" id="city" name="city">
     </div>
-    <div>
-        <label for="postcode"> postcode:</label>
-        <input class="input" type="text" id="postcode" name="postcode">
+    <br>
+    <div class="row">
+        <label class="col-2"  for="postcode"> postcode:</label>
+        <input class="input col-2" type="text" id="postcode" name="postcode">
     </div>
-    <div>
-        <label for="street"> straatnaam:</label>
-        <input class="input" type="text" id="street" name="street">
+    <br>
+    <div class="row">
+        <label class="col-2"  for="street"> straatnaam:</label>
+        <input class="input col-2" type="text" id="street" name="street">
     </div>
-    <div>
-        <label for="houseNumber"> huisnummer:</label>
-        <input class="input" type="text" id="houseNumber" name="houseNumber">
-    </div>
+    <br>
+    <div class="row">
+        <label class="col-2"  for="houseNumber"> huisnummer:</label>
+        <input class="input col-2" type="text" id="houseNumber" name="houseNumber">
+    </div >
+    <br>
     <div class="buttons">
         <input class="btn btn-primary" type="submit" value="Create" >
         <a class="btn btn-primary" href="/" >cancel</a>
     </div>
 </form>
-
+</div>
 
 </body>
 </html>
