@@ -13,10 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.sql.Time;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
@@ -115,7 +112,7 @@ public class EventController {
         event.setCity(city);
         event.setPostcode(postcode);
         event.setStreet(street);
-        event.setHousenumber(houseNumber);
+        event.setHouseNumber(houseNumber);
         event.setControl(false);
         event.setControl(false);
         eventRepository.save(event);
@@ -167,7 +164,7 @@ public class EventController {
             event.setCity(city);
             event.setPostcode(postcode);
             event.setStreet(street);
-            event.setHousenumber(houseNumber);
+            event.setHouseNumber(houseNumber);
             eventRepository.save(event);
         }
         addUser(principal, model);

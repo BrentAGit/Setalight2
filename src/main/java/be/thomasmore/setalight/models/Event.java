@@ -1,12 +1,9 @@
 package be.thomasmore.setalight.models;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Date;
 
@@ -20,19 +17,15 @@ public class Event {
     private String name;
     private String description;
     private int amountOfParticipants;
-    private String address;
     private Date date;
     private boolean control;
-    private int aantaldeelnemers;
     private String postcode;
     private String city;
     private String street;
-    private String housenumber;
-    private Date datum;
+    private String houseNumber;
     private LocalTime startTime;
     private LocalTime endTime;
     private String typeWanted;
-    private boolean controle;
     @ManyToMany
     private Collection<User> users;
 
@@ -84,10 +77,6 @@ public class Event {
         this.city = city;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
     public String getStreet() {
         return street;
     }
@@ -96,16 +85,12 @@ public class Event {
         this.street = street;
     }
 
-    public String getHousenumber() {
-        return housenumber;
+    public String getHouseNumber() {
+        return houseNumber;
     }
 
-    public void setHousenumber(String housenumber) {
-        this.housenumber = housenumber;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setHouseNumber(String housenumber) {
+        this.houseNumber = housenumber;
     }
 
     public Date getDate() {
@@ -158,7 +143,7 @@ public class Event {
 
     public String getDateString() {
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        return format.format(datum);
+        return format.format(date);
     }
 
     public String getAdres() {

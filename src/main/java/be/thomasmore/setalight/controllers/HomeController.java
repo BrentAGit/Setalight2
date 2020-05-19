@@ -57,11 +57,11 @@ public class HomeController {
                     break;
                 case "week":
                     secondDate.add(Calendar.WEEK_OF_YEAR, 1);
-                    model.addAttribute("events", eventRepository.findAllByDatumBetween(calendar.getTime(), secondDate.getTime()));
+                    model.addAttribute("events", eventRepository.findAllByDateBetween(calendar.getTime(), secondDate.getTime()));
                     break;
                 case "month":
                     secondDate.add(Calendar.MONTH, 1);
-                    model.addAttribute("events", eventRepository.findAllByDatumBetween(calendar.getTime(), secondDate.getTime()));
+                    model.addAttribute("events", eventRepository.findAllByDateBetween(calendar.getTime(), secondDate.getTime()));
                     break;
             }
         }
