@@ -67,7 +67,7 @@ public class UserController {
                              @RequestParam(required = false) String hairColor,
                              @RequestParam(required = false) MultipartFile profilePicture,
                              @RequestParam(required = false) MultipartFile fullPicture,
-                             @RequestParam(required = false) Double length ,
+                             @RequestParam(required = false) Double length,
                              @RequestParam(required = false) String nationalInsuranceNumber,
                              Model model) {
         logger.info(String.format("username= %s -- password= %s\n",
@@ -132,7 +132,7 @@ public class UserController {
                                 @RequestParam String haircolor,
                                 @RequestParam MultipartFile profilepicture,
                                 @RequestParam MultipartFile fullpicture,
-                                @RequestParam Double length ,
+                                @RequestParam Double length,
                                 @RequestParam String nationalInsuranceNumber,
                                 Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
@@ -168,15 +168,15 @@ public class UserController {
 
     private void fileUpload(Profile profile, MultipartFile picture, int cindOfPicture) {
         String name = picture.getOriginalFilename();
-        if(!name.equals(profile.getFullPicture())){
-            File imageFileDir= new File(uploadImagesDirString);
-            if(!imageFileDir.exists()){
+        if (!name.equals(profile.getFullPicture())) {
+            File imageFileDir = new File(uploadImagesDirString);
+            if (!imageFileDir.exists()) {
                 imageFileDir.mkdirs();
             }
-            File imageFile= new File(uploadImagesDirString, name);
+            File imageFile = new File(uploadImagesDirString, name);
             try {
                 picture.transferTo(imageFile);
-                switch (cindOfPicture){
+                switch (cindOfPicture) {
                     case 0:
                         profile.setProfilePicture("/" + name);
                         break;
