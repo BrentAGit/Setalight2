@@ -23,7 +23,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/register", "/logout").permitAll()
 //                .antMatchers("/user/**").authenticated()
                 .antMatchers("user/profilpage/**", "user/edit-profile/**").hasAuthority("USER")
-                .antMatchers("/admin/register").permitAll()
                 .antMatchers("/event/events/**").permitAll()
                 .antMatchers("/event/event", "/event/events", "/event/edit-event/**").hasAnyAuthority("ADMIN", "PRODUCTIEHUIS")
 //                .antMatchers("/productiehuis/**").hasAuthority("PRODUCTIEHUIS")

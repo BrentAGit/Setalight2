@@ -61,13 +61,13 @@ public class UserController {
     @PostMapping("/register")
     public String registered(@RequestParam String username,
                              @RequestParam String password,
-                             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthdate,
-                             @RequestParam String email,
-                             @RequestParam String haircolor,
-                             @RequestParam MultipartFile profilepicture,
-                             @RequestParam MultipartFile fullpicture,
-                             @RequestParam Double length ,
-                             @RequestParam String nationalInsuranceNumber,
+                             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate,
+                             @RequestParam(required = false) String email,
+                             @RequestParam(required = false) String hairColor,
+                             @RequestParam(required = false) MultipartFile profilePicture,
+                             @RequestParam(required = false) MultipartFile fullPicture,
+                             @RequestParam(required = false) Double length,
+                             @RequestParam(required = false) String nationalInsuranceNumber,
                              Model model) {
         logger.info(String.format("username= %s -- password= %s\n",
                 username, password));
@@ -77,16 +77,18 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("USER");
         profile.setUserId(user);
-        profile.setBirthdate(birthdate);
-        profile.setEmail(email);
-        profile.setHaircolor(haircolor);
-        profile.setLength(length);
-        profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-        fileUpload(profile, profilepicture, 0);
-        fileUpload(profile, fullpicture, 1);
+        if (!(birthDate == null && email.isEmpty() && hairColor.isEmpty() && profilePicture.isEmpty() && fullPicture.isEmpty() && length == null && nationalInsuranceNumber.isEmpty())) {
+            profile.setBirthDate(birthDate);
+            profile.setEmail(email);
+            profile.setHairColor(hairColor);
+            profile.setLength(length);
+            profile.setNationalInsuranceNumber(nationalInsuranceNumber);
+            fileUpload(profile, profilePicture, 0);
+            fileUpload(profile, fullPicture, 1);
+        }
         userRepository.save(user);
         profileRepository.save(profile);
-        autologin(username, password);
+        autoLogin(username, password);
         return "redirect:/";
     }
 
@@ -100,7 +102,7 @@ public class UserController {
         Profile profile = new Profile();
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
         Calendar calendar = Calendar.getInstance();
-        List<Event> eventsFromDb = eventRepository.findAllByUsersAndDatumBefore(user, calendar.getTime());
+        List<Event> eventsFromDb = eventRepository.findAllByUsersAndDateAfter(user, calendar.getTime());
         model.addAttribute("user", user);
         model.addAttribute("profile", profile);
         model.addAttribute("events", eventsFromDb);
@@ -163,7 +165,7 @@ public class UserController {
                                 @RequestParam String haircolor,
                                 @RequestParam MultipartFile profilepicture,
                                 @RequestParam MultipartFile fullpicture,
-                                @RequestParam Double length ,
+                                @RequestParam Double length,
                                 @RequestParam String nationalInsuranceNumber,
                                 Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
@@ -172,9 +174,9 @@ public class UserController {
         Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
         Profile profile = new Profile();
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
-        profile.setBirthdate(birthdate);
+        profile.setBirthDate(birthdate);
         profile.setEmail(email);
-        profile.setHaircolor(haircolor);
+        profile.setHairColor(haircolor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
         fileUpload(profile, profilepicture, 0);
@@ -199,20 +201,20 @@ public class UserController {
 
     private void fileUpload(Profile profile, MultipartFile picture, int cindOfPicture) {
         String name = picture.getOriginalFilename();
-        if(!name.equals(profile.getFullpicture())){
-            File imageFileDir= new File(uploadImagesDirString);
-            if(!imageFileDir.exists()){
+        if (!name.equals(profile.getFullPicture())) {
+            File imageFileDir = new File(uploadImagesDirString);
+            if (!imageFileDir.exists()) {
                 imageFileDir.mkdirs();
             }
-            File imageFile= new File(uploadImagesDirString, name);
+            File imageFile = new File(uploadImagesDirString, name);
             try {
                 picture.transferTo(imageFile);
-                switch (cindOfPicture){
+                switch (cindOfPicture) {
                     case 0:
-                        profile.setProfilepicture("/" + name);
+                        profile.setProfilePicture("/" + name);
                         break;
                     case 1:
-                        profile.setFullpicture("/" + name);
+                        profile.setFullPicture("/" + name);
                         break;
                 }
             } catch (IOException e) {

@@ -3,32 +3,96 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="/img/Logo.png" type="image/gif" sizes="16x16">
     <title>register new user</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <style>
+        .container {
+            margin-left: 50px;
+            margin-top: 10px;
+        }
+
+        .fault {
+            color: firebrick;
+            font-size: 15px;
+        }
+    </style>
+    <script>
+        function checkPassword(form) {
+            password1 = form.password.value;
+            password2 = form.rePassword.value;
+            username = form.username.value;
+            let noPassword = document.getElementById("noPassword");
+            let noConfirmPassword = document.getElementById("noConfirmPassword");
+            let noMatch = document.getElementById("noMatch");
+
+            if (password1 === '') {
+                noPassword.style.display = "inline-block";
+                noConfirmPassword.style.display = "none";
+                noMatch.style.display = "none";
+                return false;
+            } else if (password2 === '') {
+                noPassword.style.display = "none";
+                noConfirmPassword.style.display = "inline-block";
+                noMatch.style.display = "none";
+                return false;
+            } else if (password1 !== password2) {
+                noPassword.style.display = "none";
+                noConfirmPassword.style.display = "none";
+                noMatch.style.display = "inline-block";
+                return false;
+            } else if (username === "" && password1 === "" && password2 === "") {
+                return false;
+            } else {
+                noPassword.style.display = "none";
+                noConfirmPassword.style.display = "none";
+                noMatch.style.display = "none";
+                return true;
+            }
+        }
+    </script>
 </head>
 <body>
-<form th:action="@{/user/register}" method="post" enctype="multipart/form-data">
-    <h1>
-        register
-    </h1>
-    <label for="username">Enter your username:</label>
-    <input type="text" name="username" id="username"><br>
-    <label for="password">Enter your password:</label>
-    <input type="password" name="password" id="password"><br>
-    <label for="birthdate">Geboortedatum:</label>
-    <input type="date" name="birthdate" id="birthdate"><br>
-    <label for="email">Email:</label>
-    <input type="text" name="email" id="email"><br>
-    <label for="haircolor">Haarkleur:</label>
-    <input type="text" name="haircolor" id="haircolor"><br>
-    <label for="profilepicture">Profiel foto:</label>
-    <input type="file" name="profilepicture" id="profilepicture"><br>
-    <label for="fullpicture">Volledige foto:</label>
-    <input type="file" name="fullpicture" id="fullpicture"><br>
-    <label for="length">Lengte in Meter:</label>
-    <input type="number" name="length" id="length" step="0.01"><br>
-    <label for="nationalInsuranceNumber">Rijksregisternummer:</label>
-    <input type="text" name="nationalInsuranceNumber" id="nationalInsuranceNumber"><br>
-    <input type="submit" name="register" id="register" value="Register">
-</form>
+<div class="offset-lg-3 col-lg-6">
+    <form th:action="@{/user/register}" method="post" enctype="multipart/form-data"
+          onsubmit="return checkPassword(this)">
+        <h1>
+            REGISTER
+        </h1>
+        <label for="username">Enter your username:</label>
+        <input class="m-lg-1 input" type="text" name="username" id="username" required><br>
+        <label for="password">Enter your password:</label>
+        <input class="m-lg-1 input" type="password" name="password" id="password" required>
+        <p style="display: none" id="noPassword" class="fault">
+            You didn't enter a password
+        </p>
+        <br><label for="rePassword">Re type your password</label>
+        <input class="m-lg-1 input" type="password" id="rePassword" name="rePassword" required>
+        <p style="display: none" id="noConfirmPassword" class="fault">
+            you din't confirm your password
+        </p>
+        <p style="display: none" id="noMatch" class="fault">
+            passwords don't match
+        </p>
+        <br><label for="birthDate">Geboortedatum:</label>
+        <input class="m-lg-1 input" type="date" name="birthDate" id="birthDate"><br>
+        <label for="email">Email:</label>
+        <input class="m-lg-1 input" type="text" name="email" id="email"><br>
+        <label for="hairColor">Haarkleur:</label>
+        <input class="m-lg-1 input" type="text" name="hairColor" id="hairColor"><br>
+        <label for="profilePicture">Profiel foto:</label>
+        <input class="m-lg-1" type="file" name="profilePicture" id="profilePicture"><br>
+        <label for="fullPicture">Volledige foto:</label>
+        <input class="m-lg-1" type="file" name="fullPicture" id="fullPicture"><br>
+        <label for="length">Lengte in Meter:</label>
+        <input class="m-lg-1 input" type="number" name="length" id="length" step="0.01"><br>
+        <label for="nationalInsuranceNumber">Rijksregisternummer:</label>
+        <input class="m-lg-1 input" type="text" name="nationalInsuranceNumber" id="nationalInsuranceNumber"><br>
+        <input class="btn btn-primary m-lg-1" type="submit" name="register" id="register" value="Register">
+        <p class="login-link-text">Heb je al een account?<a class="login-link" th:href="|/login|">klik hier</a></p>
+    </form>
+</div>
+
 </body>
 </html>

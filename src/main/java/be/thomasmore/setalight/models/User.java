@@ -2,7 +2,6 @@ package be.thomasmore.setalight.models;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Date;
 
 @Entity
 @Table(name = "users")
@@ -17,7 +16,7 @@ public class User {
     private String role;
 
     @ManyToMany
-    private Collection<Event> ervaring;
+    private Collection<Event> experience;
 
     private boolean verified;
 
@@ -64,11 +63,11 @@ public class User {
         this.password = password;
     }
 
-    public Collection<Event> getErvaring() {
-        return ervaring;
+    public Collection<Event> getExperience() {
+        return experience;
     }
 
-    public void setErvaring(Collection<Event> ervaring) {
-        this.ervaring = ervaring;
+    public void setExperience(Collection<Event> experience) {
+        this.experience = experience;
     }
 }

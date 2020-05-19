@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Setalight</title>
@@ -9,12 +9,54 @@
 </head>
 <body>
 <div th:replace="fragments/header">Header</div>
-<form th:action="@{|/event/events/${event.getId()}|}" method="post">
-    <div class="event">
-<!--        Add here event details-->
-        <p th:text="${event.getName()}">name</p>
+
+
+<div class="container">
+    <div>
+        <h2 th:text="${event.getName()}">name </h2>
     </div>
-    <input type="submit" id="going" name="going" th:value="'I am going!'">
-</form>
+    <div>
+        <p th:text="${event.getDescription()}"></p>
+    </div>
+    <div>
+        <p th:text="'gezocht :' +${event.getTypeWanted()}"></p>
+    </div>
+
+    <div>
+        <p th:text="${event.getDateString()}"></p>
+        <div>
+            <label for="startTime">begin tijd :</label>
+            <p id="startTime" th:text="${event.getStartTime()}"></p>
+        </div>
+        <div>
+            <label for="endTime">eind tijd :</label>
+            <p id="endTime" th:text="${event.getEndTime()}"></p>
+        </div>
+    </div>
+    <div>
+        <p>adres:</p>
+        <p th:text="${event.getCityAndPostcode()}"></p>
+        <p th:text="${event.getStreetAndNumber()}"></p>
+    </div>
+    <div>
+        maximun aantal deelnermers:
+        <p th:text="${event.getAmountOfParticipants()}"></p>
+    </div>
+    <div>
+        aantal deelnermers:
+        <p th:text="${event.countUsers()}"></p>
+    </div>
+
+    <div sec:authorize="hasAnyAuthority('USER')">
+    <form th:action="@{|/event/events/${event.getId()}|}" method="post">
+        <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'I am going!'">
+    </form>
+    </div>
+    <br>
+    <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" >
+        <a class="btn btn-primary"  th:href="${'/event/edit-event/' + event.getId()}"  href="/edit-event/eventId">edit event</a>
+    </div>
+</div>
+
 </body>
 </html>

@@ -1,11 +1,9 @@
 package be.thomasmore.setalight.models;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.Date;
 
@@ -18,12 +16,16 @@ public class Event {
     private Integer id;
     private String name;
     private String description;
-    private int aantaldeelnemers;
-    private String adres;
-    private Date datum;
-    private Time startTime;
-    private Time endTime;
-    private boolean controle;
+    private int amountOfParticipants;
+    private Date date;
+    private boolean control;
+    private String postcode;
+    private String city;
+    private String street;
+    private String houseNumber;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private String typeWanted;
     @ManyToMany
     private Collection<User> users;
 
@@ -51,52 +53,76 @@ public class Event {
         this.description = description;
     }
 
-    public int getAantaldeelnemers() {
-        return aantaldeelnemers;
+    public int getAmountOfParticipants() {
+        return amountOfParticipants;
     }
 
-    public void setAantaldeelnemers(int aantaldeelnemers) {
-        this.aantaldeelnemers = aantaldeelnemers;
+    public void setAmountOfParticipants(int amountOfParticipants) {
+        this.amountOfParticipants = amountOfParticipants;
     }
 
-    public String getAdres() {
-        return adres;
+    public String getPostcode() {
+        return postcode;
     }
 
-    public void setAdres(String adres) {
-        this.adres = adres;
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 
-    public Date getDatum() {
-        return datum;
+    public String getCity() {
+        return city;
     }
 
-    public void setDatum(Date datum) {
-        this.datum = datum;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public Time getStartTime() {
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getHouseNumber() {
+        return houseNumber;
+    }
+
+    public void setHouseNumber(String housenumber) {
+        this.houseNumber = housenumber;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 
-    public boolean isControle() {
-        return controle;
+    public boolean isControl() {
+        return control;
     }
 
-    public void setControle(boolean controle) {
-        this.controle = controle;
+    public void setControl(boolean control) {
+        this.control = control;
     }
 
     public Collection<User> getUsers() {
@@ -107,8 +133,28 @@ public class Event {
         users.add(user);
     }
 
-    public String getDateString(){
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        return format.format(datum);
+    public String getTypeWanted() {
+        return typeWanted;
+    }
+
+    public void setTypeWanted(String typeWanted) {
+        this.typeWanted = typeWanted;
+    }
+
+    public String getDateString() {
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        return format.format(date);
+    }
+
+    public String getCityAndPostcode() {
+        return String.format(" stad : %s %s ", getCity(), getPostcode());
+    }
+    public String getStreetAndNumber() {
+        return String.format(" straat : %s %s ", getStreet(), getHouseNumber());
+    }
+
+
+    public Integer countUsers() {
+        return getUsers().size();
     }
 }

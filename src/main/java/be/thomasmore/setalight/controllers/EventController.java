@@ -7,18 +7,16 @@ import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
 
 @Controller
@@ -79,7 +77,10 @@ public class EventController {
         Event event = new Event();
         if (eventFromDb.isPresent()) event = eventFromDb.get();
         if (userFromDB.isPresent()) user = userFromDB.get();
-        event.getUsers().add(user);
+        if (!event.getUsers().contains(user)) {
+            event.getUsers().add(user);
+        }
+
         eventRepository.save(event);
         return "redirect:/";
     }
@@ -87,20 +88,33 @@ public class EventController {
     @PostMapping({"event"})
     public String createEvent(@RequestParam String name,
                               @RequestParam String description,
-                              @RequestParam Integer aantaldeelnemers,
-                              @RequestParam String date,
+                              @RequestParam Integer amountOfParticipants,
+                              @RequestParam String typeWanted,
+                              @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+                              @RequestParam String startTime,
+                              @RequestParam String endTime,
+                              @RequestParam String city,
+                              @RequestParam String postcode,
+                              @RequestParam String street,
+                              @RequestParam String houseNumber,
                               Model model) throws ParseException {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
-                name, description, aantaldeelnemers
+                name, description, amountOfParticipants
         ));
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
         Event event = new Event();
         event.setName(name);
-        event.setAantaldeelnemers(aantaldeelnemers);
+        event.setAmountOfParticipants(amountOfParticipants);
         event.setDescription(description);
-        event.setDatum(format.parse(date));
-        event.setControle(false);
+        event.setTypeWanted(typeWanted);
+        event.setDate(date);
+        event.setStartTime(LocalTime.parse(startTime));
+        event.setEndTime(LocalTime.parse(endTime));
+        event.setCity(city);
+        event.setPostcode(postcode);
+        event.setStreet(street);
+        event.setHouseNumber(houseNumber);
+        event.setControl(false);
+        event.setControl(false);
         eventRepository.save(event);
 
 
@@ -123,22 +137,38 @@ public class EventController {
     public String editPostEvent(@PathVariable(required = false) int eventId,
                                 @RequestParam String name,
                                 @RequestParam String description,
-                                @RequestParam Integer aantaldeelnemers,
+                                @RequestParam Integer amountOfParticipants,
+                                @RequestParam String typeWanted,
+                                @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+                                @RequestParam String startTime,
+                                @RequestParam String endTime,
+                                @RequestParam String city,
+                                @RequestParam String postcode,
+                                @RequestParam String street,
+                                @RequestParam String houseNumber,
                                 Principal principal,
                                 Model model) {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
-                name, description, aantaldeelnemers
+                name, description, amountOfParticipants
         ));
         Optional<Event> eventDromDB = eventRepository.findById(eventId);
         if (eventDromDB.isPresent()) {
             Event event = eventDromDB.get();
             event.setName(name);
-            event.setAantaldeelnemers(aantaldeelnemers);
+            event.setAmountOfParticipants(amountOfParticipants);
             event.setDescription(description);
+            event.setTypeWanted(typeWanted);
+            event.setDate(date);
+            event.setStartTime(LocalTime.parse(startTime));
+            event.setEndTime(LocalTime.parse(endTime));
+            event.setCity(city);
+            event.setPostcode(postcode);
+            event.setStreet(street);
+            event.setHouseNumber(houseNumber);
             eventRepository.save(event);
         }
         addUser(principal, model);
-        return "redirect:/event/events";
+        return "redirect:/event/events/{eventId}";
     }
 
     private void addUser(Principal principal, Model model) {

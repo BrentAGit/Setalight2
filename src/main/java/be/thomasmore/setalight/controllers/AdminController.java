@@ -34,35 +34,14 @@ public class AdminController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @GetMapping("/register")
-    public String registeradmin(Principal principal, Model model) {
-        addUser(principal, model);
-        return "admin/register";
-    }
-
-    @PostMapping("/register")
-    public String registered(@RequestParam String username,
-                             @RequestParam String password,
-                             Model model) {
-        logger.info(String.format("username= %s -- password= %s\n",
-                username, password));
-        User admin = new User();
-        admin.setUsername(username);
-        admin.setPassword(passwordEncoder.encode(password));
-        admin.setRole("ADMIN");
-        userRepository.save(admin);
-        autologin(username, password);
-        return "redirect:/";
-    }
-
     @GetMapping("/productiehuis/register")
-    public String registerProductiehuis(Principal principal, Model model) {
+    public String registerPageProductiehuis(Principal principal, Model model) {
         addUser(principal, model);
         return "admin/productiehuis-register";
     }
 
     @PostMapping("/productiehuis-register")
-    public String registeredProductiehuis(@RequestParam String username,
+    public String registerFormProductiehuis(@RequestParam String username,
                                           @RequestParam String password,
                                           Model model) {
         logger.info(String.format("username= %s -- password= %s\n",
@@ -73,26 +52,27 @@ public class AdminController {
         admin.setRole("PRODUCTIEHUIS");
         admin.setVerified(false);
         userRepository.save(admin);
-        autologin(username, password);
+        autoLogin(username, password);
         return "redirect:/";
     }
 
     @GetMapping({"/verifyproductiehuis"})
-    public String verifyproductiehuis(Principal principal, Model model) {
+    public String findUnverifiedProductiehuis(Principal principal, Model model) {
         addUser(principal, model);
-        model.addAttribute("productiehuizen", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", false));
+        model.addAttribute("productiehuizenNotV", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", false));
+        model.addAttribute("productiehuizenV", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", true));
         return "admin/verifyproductiehuis";
     }
 
     @GetMapping({"/verify/{userId}"})
-    public String verify(@PathVariable int userId, Model model) {
+    public String verifySpecificProductiehuis(@PathVariable int userId, Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
         model.addAttribute("user", userFromDb.get());
         return "admin/verify";
     }
 
     @PostMapping("/verify/{userId}")
-    public String verifiedProductiehuis(@PathVariable int userId) {
+    public String verifyProductiehuis(@PathVariable int userId) {
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
         if (userFromDb.isPresent()){
@@ -100,6 +80,7 @@ public class AdminController {
         }
         user.setVerified(true);
         userRepository.save(user);
+
         return "redirect:/admin/verifyproductiehuis";
     }
 
@@ -108,7 +89,7 @@ public class AdminController {
         return "admin/testAdmin";
     }
 
-    private void autologin(String username, String password) {
+    private void autoLogin(String username, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
         try {
             Authentication auth = authenticationManager.authenticate(token);
