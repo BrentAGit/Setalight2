@@ -7,6 +7,7 @@ import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -90,7 +91,7 @@ public class EventController {
     public String createEvent(@RequestParam String name,
                               @RequestParam String description,
                               @RequestParam Integer aantaldeelnemers,
-                              @RequestParam String date,
+                              @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date date,
                               @RequestParam String startTime,
                               @RequestParam String endTime,
                               Model model) throws ParseException {
@@ -98,14 +99,11 @@ public class EventController {
                 name, description, aantaldeelnemers
         ));
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat df = new SimpleDateFormat("HH:mm");
-
-
         Event event = new Event();
         event.setName(name);
         event.setAantaldeelnemers(aantaldeelnemers);
         event.setDescription(description);
-        event.setDatum(format.parse(date));
+        event.setDatum(date);
         event.setStartTime(LocalTime.parse(startTime));
         event.setEndTime(LocalTime.parse(endTime));
         event.setControle(false);
