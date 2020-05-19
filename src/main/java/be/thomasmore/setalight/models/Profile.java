@@ -1,6 +1,7 @@
 package be.thomasmore.setalight.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -27,8 +28,10 @@ public class Profile {
     @OneToOne(fetch = FetchType.LAZY)
     private User userId;
     @OneToMany
-    private Collection<Event> checkedEvents;
+    private Collection<Event> checkedEvents = new ArrayList<Event>();
 
+    public Profile() {
+    }
 
     public Integer getId() {
         return id;

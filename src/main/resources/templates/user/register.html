@@ -27,25 +27,21 @@
             let noMatch = document.getElementById("noMatch");
 
             if (password1 === '') {
-                // alert ("Please enter Password");
                 noPassword.style.display = "inline-block";
                 noConfirmPassword.style.display = "none";
                 noMatch.style.display = "none";
                 return false;
             } else if (password2 === '') {
-                // alert ("Please enter confirm password");
                 noPassword.style.display = "none";
                 noConfirmPassword.style.display = "inline-block";
                 noMatch.style.display = "none";
                 return false;
             } else if (password1 !== password2) {
-                // alert ("\nPassword did not match: Please try again...")
                 noPassword.style.display = "none";
                 noConfirmPassword.style.display = "none";
                 noMatch.style.display = "inline-block";
                 return false;
             } else {
-                // alert("Password Match: Welcome to GeeksforGeeks!")
                 noPassword.style.display = "none";
                 noConfirmPassword.style.display = "none";
                 noMatch.style.display = "none";

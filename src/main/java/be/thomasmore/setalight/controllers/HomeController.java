@@ -45,7 +45,9 @@ public class HomeController {
             Optional<User> userFromDb = userRepository.findUserByUsername(loggedInName);
             if (userFromDb.isPresent()) {
                 user = userFromDb.get();
-                this.addRewards(user);
+                if (user.getRole().contains("USER")) {
+                    this.addRewards(user);
+                }
             }
         }
         Calendar calendar = Calendar.getInstance();
