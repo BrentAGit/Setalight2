@@ -73,6 +73,7 @@ public class HomeController {
         for (Event event:eventFromDb) {
             if (!profile.getCheckedEvents().contains(event)){
                 profile.getCheckedEvents().add(event);
+                profile.setRewardPoints(profile.getRewardPoints() + 20);
             }
         }
         profileRepository.save(profile);
