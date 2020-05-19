@@ -17,9 +17,18 @@
     </div>
     <div>
         <p th:text="${event.getDateString()}"></p>
+        <div>
+            <label for="startTime">begin tijd :</label>
+            <p id="startTime" th:text="${event.getStartTime()}"></p>
+        </div>
+        <div>
+            <label for="endTime">eind tijd :</label>
+            <p id="endTime" th:text="${event.getEndTime()}"></p>
+        </div>
+
     </div>
     <div>
-        <p>maximun aantal deelnermers:</p>
+        maximun aantal deelnermers:
         <p th:text="${event.getAantaldeelnemers()}"></p>
     </div>
     <div sec:authorize="isAuthenticated()">

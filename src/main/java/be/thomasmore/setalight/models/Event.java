@@ -21,7 +21,10 @@ public class Event {
     private String name;
     private String description;
     private int aantaldeelnemers;
-    private String adres;
+    private String postcode;
+    private String city;
+    private String street;
+    private String housenumber;
     private Date datum;
     private LocalTime startTime;
     private LocalTime endTime;
@@ -61,12 +64,34 @@ public class Event {
         this.aantaldeelnemers = aantaldeelnemers;
     }
 
-    public String getAdres() {
-        return adres;
+    public String getPostcode() { return postcode; }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 
-    public void setAdres(String adres) {
-        this.adres = adres;
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getHousenumber() {
+        return housenumber;
+    }
+
+    public void setHousenumber(String housenumber) {
+        this.housenumber = housenumber;
     }
 
     public Date getDatum() {
