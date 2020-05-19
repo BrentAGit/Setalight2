@@ -31,7 +31,7 @@
     <br>
     <div class="row">
         <label class="col-2"  for="typeWanted"> gezocht:</label>
-        <select class="input col-2" id="typeWanted" name="typeWanted" th:value="${event.getTypeWanted()}" th:text="${event.getTypeWanted()}" th:selected="${event.getTypeWanted()}">
+        <select class="input col-2" id="typeWanted" name="typeWanted" >
             <option th:text="figurant"/>
             <option th:text="publiek"/>
         </select>
@@ -74,7 +74,7 @@
     <br>
     <div class="buttons">
         <input class="btn btn-primary" type="submit" value="Save" >
-        <a class="btn btn-primary" href="/event/events" >cancel</a>
+        <a class="btn btn-primary" href="/" >cancel</a>
     </div>
 </form>
 

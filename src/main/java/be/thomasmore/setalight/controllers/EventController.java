@@ -172,7 +172,7 @@ public class EventController {
             eventRepository.save(event);
         }
         addUser(principal, model);
-        return "redirect:/event/events";
+        return "redirect:/event/events/{eventId}";
     }
 
     private void addUser(Principal principal, Model model) {
