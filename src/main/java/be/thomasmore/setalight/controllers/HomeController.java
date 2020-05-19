@@ -1,5 +1,6 @@
 package be.thomasmore.setalight.controllers;
 
+import be.thomasmore.setalight.models.Event;
 import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -57,4 +59,8 @@ public class HomeController {
         return "logout";
     }
 
+    public void addRewards(User user){
+        Calendar calendar = Calendar.getInstance();
+        List<Event> eventFromDb = eventRepository.findAllByUsersAndDateBefore(user, calendar.getTime());
+    }
 }
