@@ -187,7 +187,7 @@ public class UserController {
         return "redirect:/user/profilepage/" + userId;
     }
 
-    private void autologin(String userName, String password) {
+    private void autoLogin(String userName, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
         try {
             Authentication auth = authenticationManager.authenticate(token);
