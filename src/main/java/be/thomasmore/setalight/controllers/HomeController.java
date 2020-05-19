@@ -43,6 +43,7 @@ public class HomeController {
             Optional<User> userFromDb = userRepository.findUserByUsername(loggedInName);
             if (userFromDb.isPresent()) {
                 user = userFromDb.get();
+                this.addRewards(user);
             }
         }
         logger.info(String.format("logged in: %s",
