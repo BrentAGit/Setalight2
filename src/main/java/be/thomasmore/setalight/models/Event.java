@@ -28,6 +28,7 @@ public class Event {
     private Date datum;
     private LocalTime startTime;
     private LocalTime endTime;
+    private String typeWanted;
     private boolean controle;
     @ManyToMany
     private Collection<User> users;
@@ -132,6 +133,14 @@ public class Event {
 
     public void addUser(User user) {
         users.add(user);
+    }
+
+    public String getTypeWanted() {
+        return typeWanted;
+    }
+
+    public void setTypeWanted(String typeWanted) {
+        this.typeWanted = typeWanted;
     }
 
     public String getDateString(){

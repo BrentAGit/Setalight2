@@ -16,6 +16,13 @@
         <h2 th:text="${event.getName()}">name </h2>
     </div>
     <div>
+        <p th:text="${event.getDescription()}"></p>
+    </div>
+    <div>
+        <p th:text="'gezocht :' +${event.getTypeWanted()}"></p>
+    </div>
+
+    <div>
         <p th:text="${event.getDateString()}"></p>
         <div>
             <label for="startTime">begin tijd :</label>
