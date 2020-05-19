@@ -20,6 +20,7 @@ public class Profile {
     private String physicalAttributes;
     private String nationalInsuranceNumber;
     private double length;
+    private int rewardPoints;
     @ManyToMany
     private Collection<User> friends;
     private String height;
@@ -27,6 +28,7 @@ public class Profile {
     private User userId;
     @OneToMany
     private Collection<Event> checkedEvents;
+
 
     public Integer getId() {
         return id;
@@ -130,6 +132,14 @@ public class Profile {
 
     public void setCheckedEvents(Collection<Event> checkedEvents) {
         this.checkedEvents = checkedEvents;
+    }
+
+    public int getRewardPoints() {
+        return rewardPoints;
+    }
+
+    public void setRewardPoints(int rewardPoints) {
+        this.rewardPoints = rewardPoints;
     }
 }
 
