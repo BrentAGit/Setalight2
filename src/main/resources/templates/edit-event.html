@@ -30,6 +30,14 @@
     </div>
     <br>
     <div class="row">
+        <label class="col-2"  for="typeWanted"> gezocht:</label>
+        <select class="input col-2" id="typeWanted" name="typeWanted" th:value="${event.getTypeWanted()}" th:text="${event.getTypeWanted()}" th:selected="${event.getTypeWanted()}">
+            <option th:text="figurant"/>
+            <option th:text="publiek"/>
+        </select>
+    </div>
+    <br>
+    <div class="row">
         <label class="col-2" for="date"> datum:</label>
         <input class="input col-2" type="date" id="date" name="date" th:value="${event.getDateString()}">
     </div>

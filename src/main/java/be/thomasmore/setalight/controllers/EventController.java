@@ -142,6 +142,7 @@ public class EventController {
                                 @RequestParam String name,
                                 @RequestParam String description,
                                 @RequestParam Integer aantaldeelnemers,
+                                @RequestParam String typeWanted,
                                 @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date date,
                                 @RequestParam String startTime,
                                 @RequestParam String endTime,
@@ -160,6 +161,7 @@ public class EventController {
             event.setName(name);
             event.setAantaldeelnemers(aantaldeelnemers);
             event.setDescription(description);
+            event.setTypeWanted(typeWanted);
             event.setDatum(date);
             event.setStartTime(LocalTime.parse(startTime));
             event.setEndTime(LocalTime.parse(endTime));
