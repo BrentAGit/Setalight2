@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Setalight</title>
@@ -22,15 +22,12 @@
         <p>maximun aantal deelnermers:</p>
         <p th:text="${event.getAantaldeelnemers()}"></p>
     </div>
-
-</div>
-<form th:action="@{|/event/events/${event.getId()}|}" method="post">
-    <div class="event">
-<!--        Add here event details-->
-
-        <p th:text="${event.getName()}">name</p>
+    <div sec:authorize="isAuthenticated()">
+    <form th:action="@{|/event/events/${event.getId()}|}" method="post">
+        <input type="submit" id="going" name="going" th:value="'I am going!'">
+    </form>
     </div>
-    <input type="submit" id="going" name="going" th:value="'I am going!'">
-</form>
+</div>
+
 </body>
 </html>
