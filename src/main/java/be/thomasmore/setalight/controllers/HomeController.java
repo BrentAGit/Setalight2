@@ -1,8 +1,10 @@
 package be.thomasmore.setalight.controllers;
 
 import be.thomasmore.setalight.models.Event;
+import be.thomasmore.setalight.models.Profile;
 import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
+import be.thomasmore.setalight.repositories.ProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,9 @@ public class HomeController {
 
     @Autowired
     private EventRepository eventRepository;
+
+    @Autowired
+    private ProfileRepository profileRepository;
 
     @GetMapping("/")
     public String home(Principal principal, Model model) {
@@ -60,7 +65,16 @@ public class HomeController {
     }
 
     public void addRewards(User user){
+        Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
+        Profile profile = new Profile();
+        if (profileFromDb.isPresent()) profile = profileFromDb.get();
         Calendar calendar = Calendar.getInstance();
         List<Event> eventFromDb = eventRepository.findAllByUsersAndDateBefore(user, calendar.getTime());
+        for (Event event:eventFromDb) {
+            if (!profile.getCheckedEvents().contains(event)){
+                profile.getCheckedEvents().add(event);
+            }
+        }
+        profileRepository.save(profile);
     }
 }
