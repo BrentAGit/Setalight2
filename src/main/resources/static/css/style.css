@@ -59,3 +59,21 @@ btn-primary:link{
 .data {
     color:#ec7969;
 }
+
+.filterButtons {
+    position: absolute;
+    padding-left: 65%;
+}
+
+.filterButtons a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.filterButtons li {
+    list-style: none;
+}
+
+.filterButtons a:hover {
+    color: #EC7969;
+}
