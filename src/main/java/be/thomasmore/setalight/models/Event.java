@@ -144,7 +144,7 @@ public class Event {
     }
 
     public String getDateString(){
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         return format.format(datum);
     }
 
