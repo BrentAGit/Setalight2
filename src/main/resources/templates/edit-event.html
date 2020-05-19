@@ -26,7 +26,31 @@
     </div>
     <div>
         <label for="date"> datum:</label>
-        <input class="input" type="text" id="date" name="date" th:value="${event.getDateString()}">
+        <input class="input" type="date" id="date" name="date" th:value="${event.getDateString()}">
+    </div>
+    <div>
+        <label for="startTime"> begin tijd:</label>
+        <input class="input" type="time" id="startTime" name="startTime" th:value="${event.getStartTime()}"  >
+    </div>
+    <div>
+        <label for="endTime"> eind tijd:</label>
+        <input class="input" type="time" id="endTime" name="endTime" th:value="${event.getEndTime()}"  >
+    </div>
+    <div>
+        <label for="city"> stad/gemeente:</label>
+        <input class="input" type="text" id="city" name="city" th:value="${event.getCity()}">
+    </div>
+    <div>
+        <label for="postcode"> postcode:</label>
+        <input class="input" type="text" id="postcode" name="postcode" th:value="${event.getPostcode()}">
+    </div>
+    <div>
+        <label for="street"> straatnaam:</label>
+        <input class="input" type="text" id="street" name="street" th:value="${event.getStreet()}">
+    </div>
+    <div>
+        <label for="houseNumber"> huisnummer:</label>
+        <input class="input" type="text" id="houseNumber" name="houseNumber" th:value="${event.getHousenumber()}">
     </div>
     <div class="buttons">
         <input class="btn btn-primary" type="submit" value="Save" >

@@ -102,7 +102,6 @@ public class EventController {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
                 name, description, aantaldeelnemers
         ));
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Event event = new Event();
         event.setName(name);
         event.setAantaldeelnemers(aantaldeelnemers);
@@ -138,6 +137,13 @@ public class EventController {
                                 @RequestParam String name,
                                 @RequestParam String description,
                                 @RequestParam Integer aantaldeelnemers,
+                                @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date date,
+                                @RequestParam String startTime,
+                                @RequestParam String endTime,
+                                @RequestParam String city,
+                                @RequestParam String postcode,
+                                @RequestParam String street,
+                                @RequestParam String houseNumber,
                                 Principal principal,
                                 Model model) {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
@@ -149,6 +155,13 @@ public class EventController {
             event.setName(name);
             event.setAantaldeelnemers(aantaldeelnemers);
             event.setDescription(description);
+            event.setDatum(date);
+            event.setStartTime(LocalTime.parse(startTime));
+            event.setEndTime(LocalTime.parse(endTime));
+            event.setCity(city);
+            event.setPostcode(postcode);
+            event.setStreet(street);
+            event.setHousenumber(houseNumber);
             eventRepository.save(event);
         }
         addUser(principal, model);
