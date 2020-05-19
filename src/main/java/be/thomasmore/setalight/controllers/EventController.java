@@ -94,6 +94,10 @@ public class EventController {
                               @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date date,
                               @RequestParam String startTime,
                               @RequestParam String endTime,
+                              @RequestParam String city,
+                              @RequestParam String postcode,
+                              @RequestParam String street,
+                              @RequestParam String houseNumber,
                               Model model) throws ParseException {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
                 name, description, aantaldeelnemers
@@ -106,6 +110,10 @@ public class EventController {
         event.setDatum(date);
         event.setStartTime(LocalTime.parse(startTime));
         event.setEndTime(LocalTime.parse(endTime));
+        event.setCity(city);
+        event.setPostcode(postcode);
+        event.setStreet(street);
+        event.setHousenumber(houseNumber);
         event.setControle(false);
         eventRepository.save(event);
 

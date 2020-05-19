@@ -25,7 +25,11 @@
             <label for="endTime">eind tijd :</label>
             <p id="endTime" th:text="${event.getEndTime()}"></p>
         </div>
-
+    </div>
+    <div>
+        <p>adres:</p>
+        <p th:text="${event.getAdres1()}"></p>
+        <p th:text="${event.getAdres2()}"></p>
     </div>
     <div>
         maximun aantal deelnermers:

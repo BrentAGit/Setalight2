@@ -138,4 +138,13 @@ public class Event {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(datum);
     }
+
+    public String getAdres1(){
+        return String.format(" stad : %s %s ",getCity(),getPostcode() );
+
+    }
+    public String getAdres2(){
+        return String.format(" straat : %s %s  ",getStreet(),getHousenumber() );
+
+    }
 }
