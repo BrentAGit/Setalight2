@@ -12,10 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -89,17 +91,23 @@ public class EventController {
                               @RequestParam String description,
                               @RequestParam Integer aantaldeelnemers,
                               @RequestParam String date,
+                              @RequestParam String startTime,
+                              @RequestParam String endTime,
                               Model model) throws ParseException {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
                 name, description, aantaldeelnemers
         ));
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new SimpleDateFormat("HH:mm");
+
 
         Event event = new Event();
         event.setName(name);
         event.setAantaldeelnemers(aantaldeelnemers);
         event.setDescription(description);
         event.setDatum(format.parse(date));
+        event.setStartTime(LocalTime.parse(startTime));
+        event.setEndTime(LocalTime.parse(endTime));
         event.setControle(false);
         eventRepository.save(event);
 
