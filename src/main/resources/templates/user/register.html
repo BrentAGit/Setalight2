@@ -22,6 +22,7 @@
         function checkPassword(form) {
             password1 = form.password.value;
             password2 = form.rePassword.value;
+            username = form.username.value;
             let noPassword = document.getElementById("noPassword");
             let noConfirmPassword = document.getElementById("noConfirmPassword");
             let noMatch = document.getElementById("noMatch");
@@ -40,6 +41,8 @@
                 noPassword.style.display = "none";
                 noConfirmPassword.style.display = "none";
                 noMatch.style.display = "inline-block";
+                return false;
+            } else if (username === "" && password1 === "" && password2 === "") {
                 return false;
             } else {
                 noPassword.style.display = "none";

@@ -62,13 +62,13 @@ public class UserController {
     @PostMapping("/register")
     public String registered(@RequestParam String username,
                              @RequestParam String password,
-                             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate,
-                             @RequestParam String email,
-                             @RequestParam String hairColor,
-                             @RequestParam MultipartFile profilePicture,
-                             @RequestParam MultipartFile fullPicture,
-                             @RequestParam Double length ,
-                             @RequestParam String nationalInsuranceNumber,
+                             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate,
+                             @RequestParam(required = false) String email,
+                             @RequestParam(required = false) String hairColor,
+                             @RequestParam(required = false) MultipartFile profilePicture,
+                             @RequestParam(required = false) MultipartFile fullPicture,
+                             @RequestParam(required = false) Double length ,
+                             @RequestParam(required = false) String nationalInsuranceNumber,
                              Model model) {
         logger.info(String.format("username= %s -- password= %s\n",
                 username, password));
