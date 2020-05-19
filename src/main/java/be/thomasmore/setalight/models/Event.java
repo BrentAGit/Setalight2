@@ -5,6 +5,7 @@ import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Date;
@@ -67,7 +68,9 @@ public class Event {
         this.amountOfParticipants = amountOfParticipants;
     }
 
-    public String getPostcode() { return postcode; }
+    public String getPostcode() {
+        return postcode;
+    }
 
     public void setPostcode(String postcode) {
         this.postcode = postcode;
@@ -79,6 +82,8 @@ public class Event {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -97,6 +102,8 @@ public class Event {
 
     public void setHousenumber(String housenumber) {
         this.housenumber = housenumber;
+    }
+
     public void setAddress(String address) {
         this.address = address;
     }
@@ -149,16 +156,16 @@ public class Event {
         this.typeWanted = typeWanted;
     }
 
-    public String getDateString(){
+    public String getDateString() {
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         return format.format(datum);
     }
 
-    public String getAdres(){
-        return String.format(" stad : %s %s ",getCity(),getPostcode() );
+    public String getAdres() {
+        return String.format(" stad : %s %s ", getCity(), getPostcode());
     }
 
-    public Integer countUsers(){
+    public Integer countUsers() {
         return getUsers().size();
     }
 }

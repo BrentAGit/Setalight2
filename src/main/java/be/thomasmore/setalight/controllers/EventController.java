@@ -80,7 +80,7 @@ public class EventController {
         Event event = new Event();
         if (eventFromDb.isPresent()) event = eventFromDb.get();
         if (userFromDB.isPresent()) user = userFromDB.get();
-        if (!event.getUsers().contains(user)){
+        if (!event.getUsers().contains(user)) {
             event.getUsers().add(user);
         }
 
@@ -92,10 +92,8 @@ public class EventController {
     public String createEvent(@RequestParam String name,
                               @RequestParam String description,
                               @RequestParam Integer amountOfParticipants,
-                              @RequestParam String date,
-                              @RequestParam Integer aantaldeelnemers,
                               @RequestParam String typeWanted,
-                              @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date date,
+                              @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
                               @RequestParam String startTime,
                               @RequestParam String endTime,
                               @RequestParam String city,
@@ -111,15 +109,14 @@ public class EventController {
         event.setAmountOfParticipants(amountOfParticipants);
         event.setDescription(description);
         event.setTypeWanted(typeWanted);
-        event.setDatum(date);
+        event.setDate(date);
         event.setStartTime(LocalTime.parse(startTime));
         event.setEndTime(LocalTime.parse(endTime));
         event.setCity(city);
         event.setPostcode(postcode);
         event.setStreet(street);
         event.setHousenumber(houseNumber);
-        event.setControle(false);
-        event.setDate(format.parse(date));
+        event.setControl(false);
         event.setControl(false);
         eventRepository.save(event);
 
@@ -144,9 +141,8 @@ public class EventController {
                                 @RequestParam String name,
                                 @RequestParam String description,
                                 @RequestParam Integer amountOfParticipants,
-                                @RequestParam Integer aantaldeelnemers,
                                 @RequestParam String typeWanted,
-                                @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date date,
+                                @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
                                 @RequestParam String startTime,
                                 @RequestParam String endTime,
                                 @RequestParam String city,
@@ -165,7 +161,7 @@ public class EventController {
             event.setAmountOfParticipants(amountOfParticipants);
             event.setDescription(description);
             event.setTypeWanted(typeWanted);
-            event.setDatum(date);
+            event.setDate(date);
             event.setStartTime(LocalTime.parse(startTime));
             event.setEndTime(LocalTime.parse(endTime));
             event.setCity(city);

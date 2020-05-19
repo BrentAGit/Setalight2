@@ -33,14 +33,12 @@ public class HomeController {
     @Autowired
     private EventRepository eventRepository;
 
-    @GetMapping({"/", "/{filter}"})
-    public String home(@PathVariable(required = false) String filter,
-                       Principal principal, Model model) {
     @Autowired
     private ProfileRepository profileRepository;
 
-    @GetMapping("/")
-    public String home(Principal principal, Model model) {
+    @GetMapping({"/", "/{filter}"})
+    public String home(@PathVariable(required = false) String filter,
+                       Principal principal, Model model) {
         String loggedInName = principal != null ? principal.getName() : "nobody";
         User user = new User();
         if (!loggedInName.contains("nobody") || !loggedInName.isEmpty()) {
