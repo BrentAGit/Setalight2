@@ -82,7 +82,10 @@ public class EventController {
         Event event = new Event();
         if (eventFromDb.isPresent()) event = eventFromDb.get();
         if (userFromDB.isPresent()) user = userFromDB.get();
-        event.getUsers().add(user);
+        if (!event.getUsers().contains(user)){
+            event.getUsers().add(user);
+        }
+
         eventRepository.save(event);
         return "redirect:/";
     }
