@@ -20,8 +20,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
 
 @Controller
@@ -82,7 +80,7 @@ public class EventController {
         Event event = new Event();
         if (eventFromDb.isPresent()) event = eventFromDb.get();
         if (userFromDB.isPresent()) user = userFromDB.get();
-        if (!event.getUsers().contains(user)){
+        if (!event.getUsers().contains(user)) {
             event.getUsers().add(user);
         }
 
@@ -93,9 +91,9 @@ public class EventController {
     @PostMapping({"event"})
     public String createEvent(@RequestParam String name,
                               @RequestParam String description,
-                              @RequestParam Integer aantaldeelnemers,
+                              @RequestParam Integer amountOfParticipants,
                               @RequestParam String typeWanted,
-                              @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date date,
+                              @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
                               @RequestParam String startTime,
                               @RequestParam String endTime,
                               @RequestParam String city,
@@ -104,21 +102,22 @@ public class EventController {
                               @RequestParam String houseNumber,
                               Model model) throws ParseException {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
-                name, description, aantaldeelnemers
+                name, description, amountOfParticipants
         ));
         Event event = new Event();
         event.setName(name);
-        event.setAantaldeelnemers(aantaldeelnemers);
+        event.setAmountOfParticipants(amountOfParticipants);
         event.setDescription(description);
         event.setTypeWanted(typeWanted);
-        event.setDatum(date);
+        event.setDate(date);
         event.setStartTime(LocalTime.parse(startTime));
         event.setEndTime(LocalTime.parse(endTime));
         event.setCity(city);
         event.setPostcode(postcode);
         event.setStreet(street);
         event.setHousenumber(houseNumber);
-        event.setControle(false);
+        event.setControl(false);
+        event.setControl(false);
         eventRepository.save(event);
 
 
@@ -141,9 +140,9 @@ public class EventController {
     public String editPostEvent(@PathVariable(required = false) int eventId,
                                 @RequestParam String name,
                                 @RequestParam String description,
-                                @RequestParam Integer aantaldeelnemers,
+                                @RequestParam Integer amountOfParticipants,
                                 @RequestParam String typeWanted,
-                                @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date date,
+                                @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
                                 @RequestParam String startTime,
                                 @RequestParam String endTime,
                                 @RequestParam String city,
@@ -153,16 +152,16 @@ public class EventController {
                                 Principal principal,
                                 Model model) {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
-                name, description, aantaldeelnemers
+                name, description, amountOfParticipants
         ));
         Optional<Event> eventDromDB = eventRepository.findById(eventId);
         if (eventDromDB.isPresent()) {
             Event event = eventDromDB.get();
             event.setName(name);
-            event.setAantaldeelnemers(aantaldeelnemers);
+            event.setAmountOfParticipants(amountOfParticipants);
             event.setDescription(description);
             event.setTypeWanted(typeWanted);
-            event.setDatum(date);
+            event.setDate(date);
             event.setStartTime(LocalTime.parse(startTime));
             event.setEndTime(LocalTime.parse(endTime));
             event.setCity(city);

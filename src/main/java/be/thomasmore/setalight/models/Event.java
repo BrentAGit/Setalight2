@@ -2,7 +2,6 @@ package be.thomasmore.setalight.models;
 
 import javax.persistence.*;
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.SimpleDateFormat;
@@ -20,6 +19,10 @@ public class Event {
     private Integer id;
     private String name;
     private String description;
+    private int amountOfParticipants;
+    private String address;
+    private Date date;
+    private boolean control;
     private int aantaldeelnemers;
     private String postcode;
     private String city;
@@ -57,15 +60,17 @@ public class Event {
         this.description = description;
     }
 
-    public int getAantaldeelnemers() {
-        return aantaldeelnemers;
+    public int getAmountOfParticipants() {
+        return amountOfParticipants;
     }
 
-    public void setAantaldeelnemers(int aantaldeelnemers) {
-        this.aantaldeelnemers = aantaldeelnemers;
+    public void setAmountOfParticipants(int amountOfParticipants) {
+        this.amountOfParticipants = amountOfParticipants;
     }
 
-    public String getPostcode() { return postcode; }
+    public String getPostcode() {
+        return postcode;
+    }
 
     public void setPostcode(String postcode) {
         this.postcode = postcode;
@@ -77,6 +82,10 @@ public class Event {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public String getStreet() {
@@ -95,12 +104,16 @@ public class Event {
         this.housenumber = housenumber;
     }
 
-    public Date getDatum() {
-        return datum;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setDatum(Date datum) {
-        this.datum = datum;
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public LocalTime getStartTime() {
@@ -119,12 +132,12 @@ public class Event {
         this.endTime = endTime;
     }
 
-    public boolean isControle() {
-        return controle;
+    public boolean isControl() {
+        return control;
     }
 
-    public void setControle(boolean controle) {
-        this.controle = controle;
+    public void setControl(boolean control) {
+        this.control = control;
     }
 
     public Collection<User> getUsers() {
@@ -143,20 +156,16 @@ public class Event {
         this.typeWanted = typeWanted;
     }
 
-    public String getDateString(){
+    public String getDateString() {
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         return format.format(datum);
     }
 
-    public String getAdres1(){
-        return String.format(" stad : %s %s ",getCity(),getPostcode() );
-
+    public String getAdres() {
+        return String.format(" stad : %s %s ", getCity(), getPostcode());
     }
-    public String getAdres2(){
-        return String.format(" straat : %s %s  ",getStreet(),getHousenumber() );
 
-    }
-    public Integer countUsers(){
+    public Integer countUsers() {
         return getUsers().size();
     }
 }
