@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:value="${application}">Setalight</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!--    add here personal CSS-->
+</head>
+<body>
+<div th:replace="fragments/header">Header</div>
+<br>
+<div th:each="event : ${events}">
+    <a th:text="${event.getName()}" th:href="${'/event/edit-event/' + event.getId()}"  href="/edit-event/eventId"></a>
+</div>
+<br>
+
+</body>
+</html>
