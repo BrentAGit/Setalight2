@@ -78,7 +78,7 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("USER");
         profile.setUserId(user);
-        if (!(birthDate == null && email.isEmpty() && hairColor.isEmpty() && profilePicture.isEmpty() && fullPicture.isEmpty() && length.isNaN() && nationalInsuranceNumber.isEmpty())) {
+        if (!(birthDate == null && email.isEmpty() && hairColor.isEmpty() && profilePicture.isEmpty() && fullPicture.isEmpty() && length == null && nationalInsuranceNumber.isEmpty())) {
             profile.setBirthDate(birthDate);
             profile.setEmail(email);
             profile.setHairColor(hairColor);
