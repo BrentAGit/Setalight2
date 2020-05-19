@@ -20,8 +20,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
 
 @Controller
@@ -93,6 +91,8 @@ public class EventController {
     @PostMapping({"event"})
     public String createEvent(@RequestParam String name,
                               @RequestParam String description,
+                              @RequestParam Integer amountOfParticipants,
+                              @RequestParam String date,
                               @RequestParam Integer aantaldeelnemers,
                               @RequestParam String typeWanted,
                               @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date date,
@@ -104,11 +104,11 @@ public class EventController {
                               @RequestParam String houseNumber,
                               Model model) throws ParseException {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
-                name, description, aantaldeelnemers
+                name, description, amountOfParticipants
         ));
         Event event = new Event();
         event.setName(name);
-        event.setAantaldeelnemers(aantaldeelnemers);
+        event.setAmountOfParticipants(amountOfParticipants);
         event.setDescription(description);
         event.setTypeWanted(typeWanted);
         event.setDatum(date);
@@ -119,6 +119,8 @@ public class EventController {
         event.setStreet(street);
         event.setHousenumber(houseNumber);
         event.setControle(false);
+        event.setDate(format.parse(date));
+        event.setControl(false);
         eventRepository.save(event);
 
 
@@ -141,6 +143,7 @@ public class EventController {
     public String editPostEvent(@PathVariable(required = false) int eventId,
                                 @RequestParam String name,
                                 @RequestParam String description,
+                                @RequestParam Integer amountOfParticipants,
                                 @RequestParam Integer aantaldeelnemers,
                                 @RequestParam String typeWanted,
                                 @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date date,
@@ -153,13 +156,13 @@ public class EventController {
                                 Principal principal,
                                 Model model) {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
-                name, description, aantaldeelnemers
+                name, description, amountOfParticipants
         ));
         Optional<Event> eventDromDB = eventRepository.findById(eventId);
         if (eventDromDB.isPresent()) {
             Event event = eventDromDB.get();
             event.setName(name);
-            event.setAantaldeelnemers(aantaldeelnemers);
+            event.setAmountOfParticipants(amountOfParticipants);
             event.setDescription(description);
             event.setTypeWanted(typeWanted);
             event.setDatum(date);

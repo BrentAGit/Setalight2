@@ -14,13 +14,13 @@ import java.util.Optional;
 
 public interface EventRepository extends CrudRepository<Event, Integer> {
 
-    List<Event> findAllByControle(boolean controle);
+    List<Event> findAllByControl(boolean control);
 
     Optional<Event> findById(int id);
 
-    List<Event> findAllByUsersAndDatumBefore(User user, Date date);
+    List<Event> findAllByUsersAndDateBefore(User user, Date date);
 
-    @Query("select e from Event e where e.datum >= :currentDate")
+    @Query("select e from Event e where e.date >= :currentDate")
     List<Event> findAllByDateAfter(
             @Param("currentDate") Date currentDate);
 
@@ -29,4 +29,5 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
     @Query("select e from Event e where e.datum >= :currentDate ")
     List<Event> findAllByDateAfterAndUsers(
             @Param("currentDate") Date currentDate);
+    List<Event> findAllByUsersAndDateAfter(User user, Date date);
 }

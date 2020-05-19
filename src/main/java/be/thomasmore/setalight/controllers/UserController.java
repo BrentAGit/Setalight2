@@ -26,8 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -64,11 +62,11 @@ public class UserController {
     @PostMapping("/register")
     public String registered(@RequestParam String username,
                              @RequestParam String password,
-                             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthdate,
+                             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate,
                              @RequestParam String email,
-                             @RequestParam String haircolor,
-                             @RequestParam MultipartFile profilepicture,
-                             @RequestParam MultipartFile fullpicture,
+                             @RequestParam String hairColor,
+                             @RequestParam MultipartFile profilePicture,
+                             @RequestParam MultipartFile fullPicture,
                              @RequestParam Double length ,
                              @RequestParam String nationalInsuranceNumber,
                              Model model) {
@@ -80,16 +78,16 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("USER");
         profile.setUserId(user);
-        profile.setBirthdate(birthdate);
+        profile.setBirthDate(birthDate);
         profile.setEmail(email);
-        profile.setHaircolor(haircolor);
+        profile.setHairColor(hairColor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-        fileUpload(profile, profilepicture, 0);
-        fileUpload(profile, fullpicture, 1);
+        fileUpload(profile, profilePicture, 0);
+        fileUpload(profile, fullPicture, 1);
         userRepository.save(user);
         profileRepository.save(profile);
-        autologin(username, password);
+        autoLogin(username, password);
         return "redirect:/";
     }
 
@@ -103,7 +101,7 @@ public class UserController {
         Profile profile = new Profile();
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
         Calendar calendar = Calendar.getInstance();
-        List<Event> eventsFromDb = eventRepository.findAllByUsersAndDatumAfter(user, calendar.getTime());
+        List<Event> eventsFromDb = eventRepository.findAllByUsersAndDateAfter(user, calendar.getTime());
         model.addAttribute("user", user);
         model.addAttribute("profile", profile);
         model.addAttribute("events", eventsFromDb);
@@ -141,9 +139,9 @@ public class UserController {
         Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
         Profile profile = new Profile();
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
-        profile.setBirthdate(birthdate);
+        profile.setBirthDate(birthdate);
         profile.setEmail(email);
-        profile.setHaircolor(haircolor);
+        profile.setHairColor(haircolor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
         fileUpload(profile, profilepicture, 0);
@@ -154,7 +152,7 @@ public class UserController {
         return "redirect:/user/profilepage/" + userId;
     }
 
-    private void autologin(String userName, String password) {
+    private void autoLogin(String userName, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
         try {
             Authentication auth = authenticationManager.authenticate(token);
@@ -168,7 +166,7 @@ public class UserController {
 
     private void fileUpload(Profile profile, MultipartFile picture, int cindOfPicture) {
         String name = picture.getOriginalFilename();
-        if(!name.equals(profile.getFullpicture())){
+        if(!name.equals(profile.getFullPicture())){
             File imageFileDir= new File(uploadImagesDirString);
             if(!imageFileDir.exists()){
                 imageFileDir.mkdirs();
@@ -178,10 +176,10 @@ public class UserController {
                 picture.transferTo(imageFile);
                 switch (cindOfPicture){
                     case 0:
-                        profile.setProfilepicture("/" + name);
+                        profile.setProfilePicture("/" + name);
                         break;
                     case 1:
-                        profile.setFullpicture("/" + name);
+                        profile.setFullPicture("/" + name);
                         break;
                 }
             } catch (IOException e) {

@@ -18,25 +18,14 @@ Algemene gegevens
         <p>Naam</p>
         <p th:text="${user.getUsername()}">username</p>
     </li>
-    <li th:text="${profile.getBirthdate()}">Geboortedatum</li>
+    <li th:text="${profile.getBirthDate()}">Geboortedatum</li>
     <li th:text="${profile.getEmail()}"></li>
-    <li><img th:src="${profile.getProfilepicture()}"></li>
-    <li><img th:src="${profile.getFullpicture()}"></li>
-    <li th:text="${profile.getBirthdate()}"></li>
+    <li><img th:src="${profile.getProfilePicture()}"></li>
+    <li><img th:src="${profile.getFullPicture()}"></li>
+    <li th:text="${profile.getBirthDate()}"></li>
     <li th:each="user: ${profile.getFriends()}">
         <a th:href="|/profilepage/${user.getId()}|" th:text="${user.getUsername()}"></a>
     </li>
-    <div class="container">
-        <div class="card-columns">
-            <div th:each="event : ${events}" class="card text-dark">
-                <h3 th:text="${event.getName()}">eventName</h3>
-                <p th:text="${event.getDescription()}">description</p>
-                <p th:text="${event.getDateString()}">datum</p>
-                <p th:text="'begin tijd ' + ${event.getStartTime()}">startTate</p>
-                <p th:text="'eind tijd ' + ${event.getEndTime()}">endTime</p>
-            </div>
-        </div>
-    </div>
     <!--<li>Leeftijd</li>
     <li>Geboortedatum</li>
     <li>Geslacht</li>
@@ -60,5 +49,17 @@ Contactgegevens
     <li>Mobielnr.</li>
     <li>E-mailadres</li>-->
 </ul>
+Events
+<div class="container">
+    <div class="card-columns">
+        <div th:each="event : ${events}" class="card text-dark">
+            <h3 th:text="${event.getName()}">eventName</h3>
+            <p th:text="${event.getDescription()}">description</p>
+            <p th:text="${event.getDateString()}">datum</p>
+            <p th:text="'begin tijd ' + ${event.getStartTime()}">startTate</p>
+            <p th:text="'eind tijd ' + ${event.getEndTime()}">endTime</p>
+        </div>
+    </div>
+</div>
 </body>
 </html>
