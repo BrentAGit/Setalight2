@@ -40,12 +40,12 @@
         <br>
         <div class="row">
             <label class="col-2" for="profilePicture">profielfoto: </label>
-            <input class="col-4 input" type="file" name="profilePicture" id="profilePicture" th:value="${profile.getProfilePicture()}">
+            <input class="col-4 file-input" type="file" name="profilePicture" id="profilePicture" th:value="${profile.getProfilePicture()}">
         </div>
         <br>
         <div class="row">
             <label class="col-2" for="fullPicture">volledig lichaam foto: </label>
-            <input class="col-4 input" type="file" name="fullPicture" id="fullPicture" th:value="${profile.getFullPicture()}">
+            <input class="col-4 file-input" type="file" name="fullPicture" id="fullPicture" th:value="${profile.getFullPicture()}">
         </div>
         <br>
         <input class="btn btn-primary" type="submit" name="save" id="save" value="Save">
