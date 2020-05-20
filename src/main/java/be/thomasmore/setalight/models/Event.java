@@ -153,7 +153,11 @@ public class Event {
 
     public String getDateString() {
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        return format.format(date);
+        return format.format(getDate());
+    }
+    public String getDateStringEvent() {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(getDate());
     }
 
     public String getCityAndPostcode() {
