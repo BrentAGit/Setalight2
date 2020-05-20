@@ -50,8 +50,9 @@ public class EventController {
         logger.info(String.format("logged in: %s",
                 loggedInName));
         Date date = java.sql.Date.valueOf(LocalDate.now());
+        Optional<User> user =userRepository.findUserByUsername(loggedInName);
         model.addAttribute("application", this.application);
-        model.addAttribute("events", eventRepository.findAllByDateAfter(date));
+        model.addAttribute("events", eventRepository.findAllByDateAfterAndUsers(date,user.get()));
         addUser(principal, model);
         return "events";
     }
@@ -97,10 +98,14 @@ public class EventController {
                               @RequestParam String postcode,
                               @RequestParam String street,
                               @RequestParam String houseNumber,
+                              Principal principal,
                               Model model) throws ParseException {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
                 name, description, amountOfParticipants
         ));
+        Optional<User> userFromDB = userRepository.findUserByUsername(principal.getName());
+        User user = new User();
+        if (userFromDB.isPresent()){user = userFromDB.get();}
         Event event = new Event();
         event.setName(name);
         event.setAmountOfParticipants(amountOfParticipants);
@@ -113,7 +118,7 @@ public class EventController {
         event.setPostcode(postcode);
         event.setStreet(street);
         event.setHouseNumber(houseNumber);
-        event.setControl(false);
+        event.setCreatedBy(user);
         event.setControl(false);
         eventRepository.save(event);
 

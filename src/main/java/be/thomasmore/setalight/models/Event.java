@@ -26,11 +26,21 @@ public class Event {
     private LocalTime startTime;
     private LocalTime endTime;
     private String typeWanted;
+    @ManyToOne
+    private User createdBy;
     @ManyToMany
     private Collection<User> users;
 
     public Integer getId() {
         return id;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 
     public void setId(Integer id) {

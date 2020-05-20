@@ -26,8 +26,10 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
 
     List<Event> findAllByDateBetween(Date firstDate, Date secondDate);
 
-    @Query("select e from Event e where e.date >= :currentDate ")
+    @Query("select e from Event e where e.date >= :currentDate and e.createdBy = :user ")
     List<Event> findAllByDateAfterAndUsers(
-            @Param("currentDate") Date currentDate);
+            @Param("currentDate") Date currentDate,
+            @Param("user") User user);
+
     List<Event> findAllByUsersAndDateAfter(User user, Date date);
 }
