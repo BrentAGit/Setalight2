@@ -22,6 +22,7 @@
         function checkPassword(form) {
             password1 = form.password.value;
             password2 = form.rePassword.value;
+            username = form.username.value;
             let noPassword = document.getElementById("noPassword");
             let noConfirmPassword = document.getElementById("noConfirmPassword");
             let noMatch = document.getElementById("noMatch");
@@ -41,6 +42,8 @@
                 noConfirmPassword.style.display = "none";
                 noMatch.style.display = "inline-block";
                 return false;
+            } else if (username === "" && password1 === "" && password2 === "") {
+                return false;
             } else {
                 noPassword.style.display = "none";
                 noConfirmPassword.style.display = "none";
@@ -58,14 +61,14 @@
             REGISTER
         </h1>
         <label for="username">Enter your username:</label>
-        <input class="m-lg-1 input" type="text" name="username" id="username"><br>
+        <input class="m-lg-1 input" type="text" name="username" id="username" required><br>
         <label for="password">Enter your password:</label>
-        <input class="m-lg-1 input" type="password" name="password" id="password">
+        <input class="m-lg-1 input" type="password" name="password" id="password" required>
         <p style="display: none" id="noPassword" class="fault">
             You didn't enter a password
         </p>
         <br><label for="rePassword">Re type your password</label>
-        <input class="m-lg-1 input" type="password" id="rePassword" name="rePassword">
+        <input class="m-lg-1 input" type="password" id="rePassword" name="rePassword" required>
         <p style="display: none" id="noConfirmPassword" class="fault">
             you din't confirm your password
         </p>
@@ -79,9 +82,9 @@
         <label for="hairColor">Haarkleur:</label>
         <input class="m-lg-1 input" type="text" name="hairColor" id="hairColor"><br>
         <label for="profilePicture">Profiel foto:</label>
-        <input class="m-lg-1" type="file" name="profilePicture" id="profilePicture"><br>
+        <input class="file-input m-lg-1" type="file" name="profilePicture" id="profilePicture"><br>
         <label for="fullPicture">Volledige foto:</label>
-        <input class="m-lg-1" type="file" name="fullPicture" id="fullPicture"><br>
+        <input class="file-input m-lg-1" type="file" name="fullPicture" id="fullPicture"><br>
         <label for="length">Lengte in Meter:</label>
         <input class="m-lg-1 input" type="number" name="length" id="length" step="0.01"><br>
         <label for="nationalInsuranceNumber">Rijksregisternummer:</label>

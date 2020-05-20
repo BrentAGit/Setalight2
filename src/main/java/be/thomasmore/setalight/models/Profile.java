@@ -23,7 +23,7 @@ public class Profile {
     private double length;
     private int rewardPoints;
     @ManyToMany
-    private Collection<User> friends;
+    private Collection<Profile> friends;
     private String height;
     @OneToOne(fetch = FetchType.LAZY)
     private User userId;
@@ -121,11 +121,11 @@ public class Profile {
         this.length = length;
     }
 
-    public Collection<User> getFriends() {
+    public Collection<Profile> getFriends() {
         return friends;
     }
 
-    public void setFriends(Collection<User> friends) {
+    public void setFriends(Collection<Profile> friends) {
         this.friends = friends;
     }
 
@@ -145,4 +145,3 @@ public class Profile {
         this.rewardPoints = rewardPoints;
     }
 }
-

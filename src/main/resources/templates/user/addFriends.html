@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" src="/img/Logo.png">
+    <meta charset="UTF-8">
+    <title>Vrienden toevoegen</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+<div th:replace="fragments/header"></div>
+<form th:action="@{|/user/addFreinds/${currentProfile.getUserId().getId()}|}" method="post">
+    <ul>
+        <li th:each="profile :${friends}">
+            <p th:if="${currentProfile}!=${profile}" th:text="${profile.getUserId().getUsername()}"></p>
+            <input name="user" id="user" type="sumbit" th:value="${profile.getUserId().getId()}">
+        </li>
+    </ul>
+</form>
+</body>
+</html>

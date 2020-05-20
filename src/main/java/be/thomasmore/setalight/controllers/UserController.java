@@ -25,10 +25,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 @Controller
 @RequestMapping("/user")
@@ -62,13 +61,13 @@ public class UserController {
     @PostMapping("/register")
     public String registered(@RequestParam String username,
                              @RequestParam String password,
-                             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate,
-                             @RequestParam String email,
-                             @RequestParam String hairColor,
-                             @RequestParam MultipartFile profilePicture,
-                             @RequestParam MultipartFile fullPicture,
-                             @RequestParam Double length ,
-                             @RequestParam String nationalInsuranceNumber,
+                             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate,
+                             @RequestParam(required = false) String email,
+                             @RequestParam(required = false) String hairColor,
+                             @RequestParam(required = false) MultipartFile profilePicture,
+                             @RequestParam(required = false) MultipartFile fullPicture,
+                             @RequestParam(required = false) Double length,
+                             @RequestParam(required = false) String nationalInsuranceNumber,
                              Model model) {
         logger.info(String.format("username= %s -- password= %s\n",
                 username, password));
@@ -78,13 +77,15 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("USER");
         profile.setUserId(user);
-        profile.setBirthDate(birthDate);
-        profile.setEmail(email);
-        profile.setHairColor(hairColor);
-        profile.setLength(length);
-        profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-        fileUpload(profile, profilePicture, 0);
-        fileUpload(profile, fullPicture, 1);
+        if (!(birthDate == null && email.isEmpty() && hairColor.isEmpty() && profilePicture.isEmpty() && fullPicture.isEmpty() && length == null && nationalInsuranceNumber.isEmpty())) {
+            profile.setBirthDate(birthDate);
+            profile.setEmail(email);
+            profile.setHairColor(hairColor);
+            profile.setLength(length);
+            profile.setNationalInsuranceNumber(nationalInsuranceNumber);
+            fileUpload(profile, profilePicture, 0);
+            fileUpload(profile, fullPicture, 1);
+        }
         userRepository.save(user);
         profileRepository.save(profile);
         autoLogin(username, password);
@@ -121,6 +122,40 @@ public class UserController {
         model.addAttribute("profile", profile);
         return "user/edit-profile";
     }
+    @GetMapping("/addFriends/{userId}")
+    public String addFriendsPage(@PathVariable int userId,
+                                Model model){
+        Profile profile = getProfile(userId);
+        Collection<Profile> profiles= profileRepository.findAllByFriendsNotIn(profile.getFriends());
+        model.addAttribute("friends",profiles);
+        model.addAttribute("currentProfile",profile);
+        return "/user/addFriends";
+    }
+
+    private Profile getProfile(int userId) {
+        Optional<User> userFromDb=userRepository.findUserById(userId);
+        User user= new User();
+        if(userFromDb.isPresent()){
+            user= userFromDb.get();
+        }
+        Optional<Profile> profileFromDb=profileRepository.findByUserId(user);
+        Profile profile= new Profile();
+        if(profileFromDb.isPresent()){
+            profile= profileFromDb.get();
+        }
+        return profile;
+    }
+
+    @PostMapping("/addFriends/{userId}")
+    public String addFriends(@PathVariable int userId,
+                             @RequestParam int user,
+                             Model model){
+        Profile currentProfile=getProfile(userId);
+        Profile friendProfile=getProfile(user);
+        currentProfile.getFriends().add(friendProfile);
+        profileRepository.save(currentProfile);
+        return "redirect:/user/addFreinds/"+userId;
+    }
 
     @PostMapping("/edit-profile/{userId}")
     public String editedProfile(@PathVariable int userId,
@@ -130,7 +165,7 @@ public class UserController {
                                 @RequestParam String haircolor,
                                 @RequestParam MultipartFile profilepicture,
                                 @RequestParam MultipartFile fullpicture,
-                                @RequestParam Double length ,
+                                @RequestParam Double length,
                                 @RequestParam String nationalInsuranceNumber,
                                 Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
@@ -166,15 +201,15 @@ public class UserController {
 
     private void fileUpload(Profile profile, MultipartFile picture, int cindOfPicture) {
         String name = picture.getOriginalFilename();
-        if(!name.equals(profile.getFullPicture())){
-            File imageFileDir= new File(uploadImagesDirString);
-            if(!imageFileDir.exists()){
+        if (!name.equals(profile.getFullPicture())) {
+            File imageFileDir = new File(uploadImagesDirString);
+            if (!imageFileDir.exists()) {
                 imageFileDir.mkdirs();
             }
-            File imageFile= new File(uploadImagesDirString, name);
+            File imageFile = new File(uploadImagesDirString, name);
             try {
                 picture.transferTo(imageFile);
-                switch (cindOfPicture){
+                switch (cindOfPicture) {
                     case 0:
                         profile.setProfilePicture("/" + name);
                         break;

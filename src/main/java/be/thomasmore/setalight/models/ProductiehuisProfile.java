@@ -18,7 +18,7 @@ public class ProductiehuisProfile {
     String companyNumber;
     String nameOwner;
     String logo;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     User userId;
 
     public Integer getId() {

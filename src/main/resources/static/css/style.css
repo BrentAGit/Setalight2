@@ -68,6 +68,18 @@ btn-primary:link{
     color: #ffffff;
     box-shadow: none;
 }
+.file-input::-webkit-file-upload-button{
+    background-color: #EC7969;
+    border: 2px solid #EC7969;
+    color: #000000;
+    border-radius: 0px;
+}
+.file-input::-webkit-file-upload-button:hover {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: #EC7969;
+    border: 2px solid;
+    color: #EC7969;
+}
 .login-link-text{
     font-size: small;
     display: inline;
