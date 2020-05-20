@@ -9,15 +9,15 @@ public class ProductiehuisProfile {
             initialValue = 1, allocationSize = 1)
     @Id
     Integer id;
-    String description;
-    String province;
-    String city;
-    String postalCode;
-    String street;
-    String houseNumber;
-    String companyNumber;
-    String nameOwner;
-    String logo;
+    private String description;
+    private String province;
+    private String city;
+    private String postalCode;
+    private String street;
+    private String houseNumber;
+    private String companyNumber;
+    private String nameOwner;
+    private String logo;
     @OneToOne(fetch = FetchType.LAZY)
     User userId;
 
