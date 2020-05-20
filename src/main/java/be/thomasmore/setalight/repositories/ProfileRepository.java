@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface ProfileRepository extends CrudRepository<Profile, Integer> {
 
     Optional<Profile> findByUserId(User user);
-    Collection<Profile> findAllByFriendsNotIn(Collection<Profile> friends);
+
 }

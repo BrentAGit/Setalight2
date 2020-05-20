@@ -8,18 +8,21 @@
     <title>User login</title>
 </head>
 <body>
-<div class="row">
-    <div class="offset-lg-2 col-lg-8">
-        <form th:action="@{/login}" method="post">
-            <h1 class="text-center">
-                Login
-            </h1>
-            <label for="username">Enter your username here:</label>
-            <input class="input" type="text" id="username" name="username" size="60"><br>
-            <label for="password">Enter your password here:</label>
-            <input class="input" type="password" id="password" name="password" size="60"><br>
-            <input class="btn btn-primary" type="submit" id="login" name="login" value="Login">
-        </form>
+<div class="container">
+    <div class="row">
+        <div class="offset-lg-2 col-lg-8">
+            <form th:action="@{/login}" method="post">
+                <h1 class="text-center">
+                    Login
+                </h1>
+                <label for="username">Enter your username here:</label>
+                <input class="input" type="text" id="username" name="username" size="60"><br>
+                <label for="password">Enter your password here:</label>
+                <input class="input" type="password" id="password" name="password" size="60"><br>
+                <input class="btn btn-primary" type="submit" id="login" name="login" value="Login">
+                <p class="login-link-text">Heb je nog geen account?<a class="login-link" th:href="|/user/register|">klik hier</a></p>
+            </form>
+        </div>
     </div>
 </div>
 </body>

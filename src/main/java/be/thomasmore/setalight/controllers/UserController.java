@@ -122,39 +122,33 @@ public class UserController {
         model.addAttribute("profile", profile);
         return "user/edit-profile";
     }
+
     @GetMapping("/addFriends/{userId}")
     public String addFriendsPage(@PathVariable int userId,
                                 Model model){
         Profile profile = getProfile(userId);
-        Collection<Profile> profiles= profileRepository.findAllByFriendsNotIn(profile.getFriends());
-        model.addAttribute("friends",profiles);
+        Iterable<Profile> profiles = profileRepository.findAll();
+        ArrayList<Profile> noFriends = new ArrayList<>();
+        for (Profile friendProfile : profiles) {
+            if (!profile.getFriends().contains(friendProfile)) {
+                noFriends.add(friendProfile);
+            }
+        }
+        model.addAttribute("friends",noFriends);
         model.addAttribute("currentProfile",profile);
+        model.addAttribute("user", profile.getUserId());
         return "/user/addFriends";
     }
 
-    private Profile getProfile(int userId) {
-        Optional<User> userFromDb=userRepository.findUserById(userId);
-        User user= new User();
-        if(userFromDb.isPresent()){
-            user= userFromDb.get();
-        }
-        Optional<Profile> profileFromDb=profileRepository.findByUserId(user);
-        Profile profile= new Profile();
-        if(profileFromDb.isPresent()){
-            profile= profileFromDb.get();
-        }
-        return profile;
-    }
-
-    @PostMapping("/addFriends/{userId}")
+    @PostMapping("/addFriends/{userId}/{user}")
     public String addFriends(@PathVariable int userId,
-                             @RequestParam int user,
+                             @PathVariable int user,
                              Model model){
         Profile currentProfile=getProfile(userId);
         Profile friendProfile=getProfile(user);
         currentProfile.getFriends().add(friendProfile);
         profileRepository.save(currentProfile);
-        return "redirect:/user/addFreinds/"+userId;
+        return "redirect:/user/addFriends/"+userId;
     }
 
     @PostMapping("/edit-profile/{userId}")
@@ -219,6 +213,20 @@ public class UserController {
                 e.printStackTrace();
             }
         }
+    }
+
+    private Profile getProfile(int userId) {
+        Optional<User> userFromDb=userRepository.findUserById(userId);
+        User user= new User();
+        if(userFromDb.isPresent()){
+            user= userFromDb.get();
+        }
+        Optional<Profile> profileFromDb=profileRepository.findByUserId(user);
+        Profile profile= new Profile();
+        if(profileFromDb.isPresent()){
+            profile= profileFromDb.get();
+        }
+        return profile;
     }
 
 }

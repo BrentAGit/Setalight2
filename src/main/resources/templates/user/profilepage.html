@@ -37,10 +37,13 @@
     </div>
     <div class="row">
         <ul>
-        <li th:each="user: ${profile.getFriends()}">
-            <a th:href="|/profilepage/${user.getId()}|" th:text="${user.getUsername()()}"></a>
-        </li>
+            <li th:each="user: ${profile.getFriends()}">
+                <a th:href="|/user/profilepage/${user.getUserId().getId()}|" th:text="${user.getUserId().getUsername()}"></a>
+            </li>
         </ul>
+        <div th:if="${user.getId()} == ${profile.getUserId().getId()}" class="col-2">
+            <a th:href="'/user/addFriends/' + ${profile.getUserId().getId()}" href="/">Voeg vrienden toe</a>
+        </div>
     </div>
 
 </div>

@@ -127,6 +127,10 @@ public class Profile {
         return friends;
     }
 
+    public ArrayList<Profile> getArrayFriends() {
+        return new ArrayList<>(this.friends);
+    }
+
     public void setFriends(Collection<Profile> friends) {
         this.friends = friends;
     }
