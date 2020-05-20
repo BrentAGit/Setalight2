@@ -14,6 +14,8 @@
     <form th:action="@{|/admin/verify/${user.getId()}|}" method="post">
 
         <p th:text="${user.getUsername()}"></p>
+        <p th:text="${profile.getDescription()}"></p>$
+        <p th:text="${profile.getNameOwner()}"></p>
         <input class="btn btn-primary" type="submit" id="submit" name="submit" value="verify">
         <a class="btn-primary btn" href="/admin/verifyproductiehuis">Cancel</a>
     </form>

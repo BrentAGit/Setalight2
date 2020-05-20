@@ -1,6 +1,8 @@
 package be.thomasmore.setalight.controllers;
 
+import be.thomasmore.setalight.models.ProductiehuisProfile;
 import be.thomasmore.setalight.models.User;
+import be.thomasmore.setalight.repositories.ProductiehuisProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +32,9 @@ public class AdminController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ProductiehuisProfileRepository productiehuisProfileRepository;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -67,7 +72,13 @@ public class AdminController {
     @GetMapping({"/verify/{userId}"})
     public String verifySpecificProductiehuis(@PathVariable int userId, Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
-        model.addAttribute("user", userFromDb.get());
+        User user = new User();
+        if (userFromDb.isPresent()) user = userFromDb.get();
+        Optional<ProductiehuisProfile> profileFromDb = productiehuisProfileRepository.findByUserId(user);
+        ProductiehuisProfile profile = new ProductiehuisProfile();
+        if (profileFromDb.isPresent()) profile = profileFromDb.get();
+        model.addAttribute("profile", profile);
+        model.addAttribute("user", user);
         return "admin/verify";
     }
 
