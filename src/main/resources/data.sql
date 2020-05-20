@@ -28,8 +28,8 @@ insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTI
 insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
     VALUES(nextval('EVENT_SEQ'),3,50,true,'2020-06-17','pilot sitcom publiek nodig','15:00','Sitcom','12:00', '1000', 'brussel', 'stadsstraat', '60','publiek');
 
-insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner)
-    values (nextval('productiehuis_Profile_seq'), 'Mickey mouse woont hier', 'Walt Disney');
+insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID)
+    values (nextval('productiehuis_Profile_seq'), 'Mickey mouse woont hier', 'Walt Disney', 4);
 
 insert into EVENT_USERS(EVENT_ID, USERS_ID)
     values(1, 1);
