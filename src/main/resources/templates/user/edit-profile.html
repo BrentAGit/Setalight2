@@ -13,14 +13,42 @@
 <div class="container">
     <p>Algemene gegevens</p>
     <form th:action="@{|/user/edit-profile/${user.getId()}|}" method="post">
-        <input type="date" name="birthDate" id="birthDate" th:value="${profile.getBirthDateStringProfile()()}"><br>
-        <input type="text" name="email" id="email" th:value="${profile.getEmail()}"><br>
-        <input type="text" name="hairColor" id="hairColor" th:value="${profile.getHairColor()}"><br>
-        <input type="file" name="profilePicture" id="profilePicture" th:value="${profile.getProfilePicture()}"><br>
-        <input type="file" name="fullPicture" id="fullPicture" th:value="${profile.getFullPicture()}"><br>
-        <input type="number" name="length" id="length" step="0.01" th:value="${profile.getLength()}"><br>
-        <input type="text" name="nationalInsuranceNumber" id="nationalInsuranceNumber" th:value="${profile.getNationalInsuranceNumber()}"><br>
-        <input type="submit" name="save" id="save" value="Save">
+        <div class="row">
+            <label class="col-2" for="email">mailadres: </label>
+            <input class="col-4 input"  type="text" name="email" id="email" th:value="${profile.getEmail()}">
+        </div>
+        <br>
+        <div class="row">
+            <label class="col-2" for="birthDate">geboorte datum: </label>
+            <input class="col-2 input" type="date" name="birthDate" id="birthDate" th:value="${profile.getBirthDateStringProfile()}">
+        </div>
+        <br>
+        <div class="row">
+            <label class="col-2" for="hairColor">haarkleur: </label>
+            <input class="col-2 input" type="text" name="hairColor" id="hairColor" th:value="${profile.getHairColor()}">
+        </div>
+        <br>
+        <div class="row">
+            <label class="col-2" for="length">hoe groot ben je?(m): </label>
+            <input class="col-2 input" type="number" name="length" id="length" step="0.01" th:value="${profile.getLength()}">
+        </div>
+        <br>
+        <div class="row">
+            <label class="col-2" for="nationalInsuranceNumber">rijksregisternummer: </label>
+            <input class="col-2 input" type="text" name="nationalInsuranceNumber" id="nationalInsuranceNumber" th:value="${profile.getNationalInsuranceNumber()}">
+        </div>
+        <br>
+        <div class="row">
+            <label class="col-2" for="profilePicture">profielfoto: </label>
+            <input class="col-4 input" type="file" name="profilePicture" id="profilePicture" th:value="${profile.getProfilePicture()}">
+        </div>
+        <br>
+        <div class="row">
+            <label class="col-2" for="fullPicture">volledig lichaam foto: </label>
+            <input class="col-4 input" type="file" name="fullPicture" id="fullPicture" th:value="${profile.getFullPicture()}">
+        </div>
+        <br>
+        <input class="btn btn-primary" type="submit" name="save" id="save" value="Save">
     <p>Contactgegevens</p>
     <table>
         <!--<tr>
