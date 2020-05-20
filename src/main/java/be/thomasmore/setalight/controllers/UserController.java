@@ -160,7 +160,7 @@ public class UserController {
     @PostMapping("/edit-profile/{userId}")
     public String editedProfile(@PathVariable int userId,
                                 @RequestParam String username,
-                                @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthdate,
+                                @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate,
                                 @RequestParam String email,
                                 @RequestParam String haircolor,
                                 @RequestParam MultipartFile profilepicture,
@@ -174,7 +174,7 @@ public class UserController {
         Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
         Profile profile = new Profile();
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
-        profile.setBirthDate(birthdate);
+        profile.setBirthDate(birthDate);
         profile.setEmail(email);
         profile.setHairColor(haircolor);
         profile.setLength(length);

@@ -9,13 +9,11 @@
 </head>
 <body>
 <div th:replace="fragments/header">Header</div>
-<p>Algemene gegevens</p>
-<form th:action="@{|/user/edit-profile/${user.getId()}|}" method="post">
-    <table style="width: 100%">
-        <tr>
-            <td>Naam:<input type="text" name="username" id="username" th:value="${user.getUsername()}"></td>
-        </tr>
-        <input type="date" name="birthDate" id="birthDate" th:value="${profile.getBirthDate()}"><br>
+<br>
+<div class="container">
+    <p>Algemene gegevens</p>
+    <form th:action="@{|/user/edit-profile/${user.getId()}|}" method="post">
+        <input type="date" name="birthDate" id="birthDate" th:value="${profile.getBirthDateStringProfile()()}"><br>
         <input type="text" name="email" id="email" th:value="${profile.getEmail()}"><br>
         <input type="text" name="hairColor" id="hairColor" th:value="${profile.getHairColor()}"><br>
         <input type="file" name="profilePicture" id="profilePicture" th:value="${profile.getProfilePicture()}"><br>
@@ -23,37 +21,6 @@
         <input type="number" name="length" id="length" step="0.01" th:value="${profile.getLength()}"><br>
         <input type="text" name="nationalInsuranceNumber" id="nationalInsuranceNumber" th:value="${profile.getNationalInsuranceNumber()}"><br>
         <input type="submit" name="save" id="save" value="Save">
-        <!--<tr>
-            <td>Leeftijd:<input type="number" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Geboortedatum: <input type="date" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Geslacht: <input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Beroep/studie: <input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Afkomst: <input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Etniciteit: <input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Gesproken Talen: <input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Gesproken dialecten: <input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Eigen vervoer: <input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Autorijbewijs:<input type="text" name="" id=""></td>
-        </tr>-->
-    </table>
     <p>Contactgegevens</p>
     <table>
         <!--<tr>
@@ -83,5 +50,6 @@
     </table>
 <!--    <input type="submit" id="submit" name="submit" value="Save">-->
 </form>
+</div>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package be.thomasmore.setalight.models;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -143,5 +145,14 @@ public class Profile {
 
     public void setRewardPoints(int rewardPoints) {
         this.rewardPoints = rewardPoints;
+    }
+
+    public String getBirthDateString(){
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        return format.format(getBirthDate());
+    }
+    public String getBirthDateStringProfile(){
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(getBirthDate());
     }
 }

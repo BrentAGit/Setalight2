@@ -11,46 +11,43 @@
 <body>
 <div th:replace="fragments/header">Header</div>
 <br>
-<a th:href="'/user/edit-profile/' + ${user.getId()}" href="/">edit</a>
-Algemene gegevens
-<ul>
-    <li>
-        <p>Naam</p>
-        <p th:text="${user.getUsername()}">username</p>
-    </li>
-    <li th:text="${profile.getBirthDate()}">Geboortedatum</li>
-    <li th:text="${profile.getEmail()}"></li>
-    <li><img th:src="${profile.getProfilePicture()}"></li>
-    <li><img th:src="${profile.getFullPicture()}"></li>
-    <li th:text="${profile.getBirthDate()}"></li>
-    <li th:each="user: ${profile.getFriends()}">
-        <a th:href="|/profilepage/${user.getId()}|" th:text="${user.getUsername()}"></a>
-    </li>
-    <!--<li>Leeftijd</li>
-    <li>Geboortedatum</li>
-    <li>Geslacht</li>
-    <li>Beroep/studie</li>
-    <li>Afkomst</li>
-    <li>Etniciteit</li>
-    <li>Gesproken Talen</li>
-    <li>Gesproken dialecten</li>
-    <li>Eigen vervoer</li>
-    <li>Autorijbewijs</li>-->
-
-</ul>
-Contactgegevens
-<ul>
-    <!--<li>Straat + nr.</li>
-    <li>Postcode</li>
-    <li>Gemeente</li>
-    <li>Provincie</li>
-    <li>Land</li>
-    <li>Telefoonnr.</li>
-    <li>Mobielnr.</li>
-    <li>E-mailadres</li>-->
-</ul>
-Events
 <div class="container">
+
+    <h3>Mijn profiel</h3>
+    <br>
+    <a th:href="'/user/edit-profile/' + ${user.getId()}" href="/">edit</a>
+    <br>
+    <div class="row">
+        <p class="col-2">Naam:</p>
+        <p class="col-2" th:text="${user.getUsername()}"></p>
+    </div>
+    <div class="row">
+        <p class="col-2">geboorte datum:</p>
+        <p class="col-2" th:text="${profile.getBirthDateString()}"></p>
+    </div>
+    <div class="row">
+        <p class="col-2">Naam:</p>
+        <p class="col-2" th:text="${profile.getEmail()}"></p>
+    </div>
+    <div class="row">
+        <img th:src="${profile.getProfilePicture()}">
+    </div>
+    <div class="row">
+        <img th:src="${profile.getFullPicture()}">
+    </div>
+    <div class="row">
+        <ul>
+        <li th:each="user: ${profile.getFriends()}">
+            <a th:href="|/profilepage/${user.getId()}|" th:text="${user.getUsername()}"></a>
+        </li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="container">
+    <h3>Mijn events</h3>
+    <br>
     <div class="card-columns">
         <div th:each="event : ${events}" class="card text-dark">
             <h3 th:text="${event.getName()}">eventName</h3>
