@@ -95,9 +95,9 @@ public class AdminController {
         return "redirect:/admin/verifyproductiehuis";
     }
 
-    @GetMapping({"/testAdmin"})
-    public String testAdmin(Model model) {
-        return "admin/testAdmin";
+    @GetMapping("/create-reward")
+    public String createReward(Model model) {
+        return "admin/createReward";
     }
 
     private void autoLogin(String username, String password) {
