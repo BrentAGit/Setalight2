@@ -2,9 +2,11 @@ package be.thomasmore.setalight.controllers;
 
 import be.thomasmore.setalight.models.Event;
 import be.thomasmore.setalight.models.Profile;
+import be.thomasmore.setalight.models.Reward;
 import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.ProfileRepository;
+import be.thomasmore.setalight.repositories.RewardRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.Entity;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -46,6 +49,9 @@ public class UserController {
 
     @Autowired
     private ProfileRepository profileRepository;
+
+    @Autowired
+    private RewardRepository rewardRepository;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -101,11 +107,19 @@ public class UserController {
         Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
         Profile profile = new Profile();
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
+        ArrayList<Reward> rewardsFromDb = (ArrayList<Reward>) rewardRepository.findAll();
+        ArrayList<Reward> rewards = new ArrayList<>();
+        for (Reward reward : rewardsFromDb) {
+            if (!profile.getBoughtRewards().contains(reward)) {
+                rewards.add(reward);
+            }
+        }
         Calendar calendar = Calendar.getInstance();
         List<Event> eventsFromDb = eventRepository.findAllByUsersAndDateAfter(user, calendar.getTime());
         model.addAttribute("user", user);
         model.addAttribute("profile", profile);
         model.addAttribute("events", eventsFromDb);
+        model.addAttribute("rewards", rewards);
         return "user/profilepage";
     }
 
@@ -125,7 +139,7 @@ public class UserController {
 
     @GetMapping("/addFriends/{userId}")
     public String addFriendsPage(@PathVariable int userId,
-                                Model model){
+                                 Model model) {
         Profile profile = getProfile(userId);
         Iterable<Profile> profiles = profileRepository.findAll();
         ArrayList<Profile> noFriends = new ArrayList<>();
@@ -134,8 +148,8 @@ public class UserController {
                 noFriends.add(friendProfile);
             }
         }
-        model.addAttribute("friends",noFriends);
-        model.addAttribute("currentProfile",profile);
+        model.addAttribute("friends", noFriends);
+        model.addAttribute("currentProfile", profile);
         model.addAttribute("user", profile.getUserId());
         return "/user/addFriends";
     }
@@ -143,12 +157,12 @@ public class UserController {
     @PostMapping("/addFriends/{userId}/{user}")
     public String addFriends(@PathVariable int userId,
                              @PathVariable int user,
-                             Model model){
-        Profile currentProfile=getProfile(userId);
-        Profile friendProfile=getProfile(user);
+                             Model model) {
+        Profile currentProfile = getProfile(userId);
+        Profile friendProfile = getProfile(user);
         currentProfile.getFriends().add(friendProfile);
         profileRepository.save(currentProfile);
-        return "redirect:/user/addFriends/"+userId;
+        return "redirect:/user/addFriends/" + userId;
     }
 
     @PostMapping("/edit-profile/{userId}")
@@ -216,15 +230,15 @@ public class UserController {
     }
 
     private Profile getProfile(int userId) {
-        Optional<User> userFromDb=userRepository.findUserById(userId);
-        User user= new User();
-        if(userFromDb.isPresent()){
-            user= userFromDb.get();
+        Optional<User> userFromDb = userRepository.findUserById(userId);
+        User user = new User();
+        if (userFromDb.isPresent()) {
+            user = userFromDb.get();
         }
-        Optional<Profile> profileFromDb=profileRepository.findByUserId(user);
-        Profile profile= new Profile();
-        if(profileFromDb.isPresent()){
-            profile= profileFromDb.get();
+        Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
+        Profile profile = new Profile();
+        if (profileFromDb.isPresent()) {
+            profile = profileFromDb.get();
         }
         return profile;
     }
