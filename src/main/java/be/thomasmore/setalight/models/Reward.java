@@ -2,6 +2,7 @@ package be.thomasmore.setalight.models;
 
 import javax.persistence.*;
 
+@Entity
 public class Reward {
 
     @Id

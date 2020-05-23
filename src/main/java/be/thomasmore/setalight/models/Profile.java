@@ -31,6 +31,8 @@ public class Profile {
     private User userId;
     @OneToMany
     private Collection<Event> checkedEvents = new ArrayList<Event>();
+    @OneToMany
+    private Collection<Reward> boughtRewards = new ArrayList<>();
 
     public Profile() {
     }
@@ -151,12 +153,21 @@ public class Profile {
         this.rewardPoints = rewardPoints;
     }
 
-    public String getBirthDateString(){
+    public String getBirthDateString() {
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         return format.format(getBirthDate());
     }
-    public String getBirthDateStringProfile(){
+
+    public String getBirthDateStringProfile() {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(getBirthDate());
+    }
+
+    public Collection<Reward> getBoughtRewards() {
+        return boughtRewards;
+    }
+
+    public void setBoughtRewards(Collection<Reward> boughtRewards) {
+        this.boughtRewards = boughtRewards;
     }
 }
