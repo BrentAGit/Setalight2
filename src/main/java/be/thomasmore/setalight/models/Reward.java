@@ -7,6 +7,7 @@ public class Reward {
     @Id
     private Integer id;
     private String name;
+    private String picture;
     private int points;
 
     public Reward() {
@@ -27,6 +28,14 @@ public class Reward {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public int getPoints() {
