@@ -193,6 +193,20 @@ public class UserController {
         return "redirect:/user/profilepage/" + userId;
     }
 
+    @PostMapping("/buy-rewards/{userId}/{rewardId}")
+    private String buyRewards(@PathVariable int userId,
+                              @PathVariable int rewardId) {
+        Profile profile = getProfile(userId);
+        Optional<Reward> rewardFromDb = rewardRepository.findById(rewardId);
+        Reward reward = new Reward();
+        if (rewardFromDb.isPresent()) reward = rewardFromDb.get();
+        profile.setRewardPoints(profile.getRewardPoints() - reward.getPoints());
+        profile.getBoughtRewards().add(reward);
+        profileRepository.save(profile);
+        rewardRepository.save(reward);
+        return "redirect:/user/profilepage/" + userId;
+    }
+
     private void autoLogin(String userName, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
         try {
