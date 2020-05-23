@@ -73,11 +73,16 @@
     </div>
     <div class="card-columns">
         <div th:each="reward : ${rewards}" class="card text-dark border-dark">
-            <img class="card-img-top" th:src="${reward.getPicture()}" alt="Reward">
-            <div class="card-body">
-                <h3 th:text="${reward.getName()}"></h3>
-                <p th:text="'price: ' + ${reward.getPoints()} + ' points'"></p>
-            </div>
+            <form th:action="@{|/user/buy-rewards/${profile.getUserId().getId()}/${reward.getId()}}" method="post">
+                <img class="card-img-top" th:src="${reward.getPicture()}" alt="Reward">
+                <div class="card-body">
+                    <h3 th:text="${reward.getName()}"></h3>
+                    <p th:text="'price: ' + ${reward.getPoints()} + ' points'"></p>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" value="buy">
+                </div>
+            </form>
         </div>
     </div>
 </div>
