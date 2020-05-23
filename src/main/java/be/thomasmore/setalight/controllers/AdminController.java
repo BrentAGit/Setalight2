@@ -1,8 +1,10 @@
 package be.thomasmore.setalight.controllers;
 
 import be.thomasmore.setalight.models.ProductiehuisProfile;
+import be.thomasmore.setalight.models.Reward;
 import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.ProductiehuisProfileRepository;
+import be.thomasmore.setalight.repositories.RewardRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +39,9 @@ public class AdminController {
     private ProductiehuisProfileRepository productiehuisProfileRepository;
 
     @Autowired
+    private RewardRepository rewardRepository;
+
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @GetMapping("/productiehuis/register")
@@ -47,8 +52,8 @@ public class AdminController {
 
     @PostMapping("/productiehuis-register")
     public String registerFormProductiehuis(@RequestParam String username,
-                                          @RequestParam String password,
-                                          Model model) {
+                                            @RequestParam String password,
+                                            Model model) {
         logger.info(String.format("username= %s -- password= %s\n",
                 username, password));
         User admin = new User();
@@ -86,7 +91,7 @@ public class AdminController {
     public String verifyProductiehuis(@PathVariable int userId) {
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
-        if (userFromDb.isPresent()){
+        if (userFromDb.isPresent()) {
             user = userFromDb.get();
         }
         user.setVerified(true);
@@ -98,6 +103,16 @@ public class AdminController {
     @GetMapping("/create-reward")
     public String createReward(Model model) {
         return "admin/createReward";
+    }
+
+    @PostMapping("/create-reward")
+    public String rewardCreated(@RequestParam String name,
+                                @RequestParam int points) {
+        Reward reward = new Reward();
+        reward.setName(name);
+        reward.setPoints(points);
+        rewardRepository.save(reward);
+        return "redirect:/";
     }
 
     private void autoLogin(String username, String password) {

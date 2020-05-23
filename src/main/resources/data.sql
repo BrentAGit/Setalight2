@@ -37,4 +37,4 @@ insert into EVENT_USERS(EVENT_ID, USERS_ID)
     values(1, 2);
 
 insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(1, 'Macbook Pro 2018', '/img/MacBook-Pro-2018.jpg', 800);
+    values(nextval('reward_seq'), 'Macbook Pro 2018', '/img/MacBook-Pro-2018.jpg', 800);

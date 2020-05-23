@@ -5,6 +5,9 @@ import javax.persistence.*;
 @Entity
 public class Reward {
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reward_generator")
+    @SequenceGenerator(name = "reward_generator", sequenceName = "reward_seq",
+            initialValue = 1, allocationSize = 1)
     @Id
     private Integer id;
     private String name;
