@@ -30,10 +30,3 @@ function checkPassword(form) {
         return true;
     }
 }
-
-function checkPoints(form, Window) {
-    let userPoints = Window.getElementById("points");
-    let rewardPoints = Window.getElementById("reward-points");
-    console.log(userPoints);
-    console.log(rewardPoints);
-}

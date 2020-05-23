@@ -6,7 +6,6 @@
     <title th:value="${application}">Setalight</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <script src="js/script.js"></script>
 </head>
 <body>
 <div th:replace="fragments/header">Header</div>
@@ -73,13 +72,13 @@
     </div>
     <div class="card-columns">
         <div th:each="reward : ${rewards}" class="card text-dark border-dark">
-            <form th:action="@{|/user/buy-rewards/${profile.getUserId().getId()}/${reward.getId()}}" method="post" onsubmit="return checkPoints(this, Window)">
+            <form th:action="@{|/user/buy-rewards/${profile.getUserId().getId()}/${reward.getId()}}" method="post">
                 <img class="card-img-top" th:src="${reward.getPicture()}" alt="Reward">
                 <div class="card-body">
                     <h3 th:text="${reward.getName()}"></h3>
                     <p th:text="'price: ' + ${reward.getPoints()} + ' points'" id="reward-points"></p>
                 </div>
-                <div class="card-footer">
+                <div th:if="${profile.getRewardPoints()} > ${reward.getPoints()}" class="card-footer">
                     <input type="submit" value="buy">
                 </div>
             </form>
