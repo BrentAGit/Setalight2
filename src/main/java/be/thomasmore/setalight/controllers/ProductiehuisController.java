@@ -1,6 +1,8 @@
 package be.thomasmore.setalight.controllers;
 
+import be.thomasmore.setalight.models.Event;
 import be.thomasmore.setalight.models.User;
+import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +33,9 @@ public class ProductiehuisController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -70,6 +75,8 @@ public class ProductiehuisController {
     public String homepageProductiehuis(Principal principal, Model model) {
         User user = addUser(principal);
         model.addAttribute("user",user);
+            Collection<Event> events=eventRepository.findAllByCreatedBy(user);
+            model.addAttribute("events",events);
         return "productiehuis/homepage";
     }
 
