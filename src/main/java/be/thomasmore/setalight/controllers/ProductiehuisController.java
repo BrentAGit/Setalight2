@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Collection;
 import java.util.Optional;
 
 @Controller
@@ -44,7 +45,8 @@ public class ProductiehuisController {
 
     @GetMapping("/registerProductiehuis")
     public String registerProductiehuis(Principal principal, Model model) {
-        addUser(principal, model);
+        User user = addUser(principal);
+        model.addAttribute("user",user);
         return "productiehuis/registerProductiehuis";
     }
 
@@ -66,7 +68,8 @@ public class ProductiehuisController {
 
     @GetMapping("/")
     public String homepageProductiehuis(Principal principal, Model model) {
-        addUser(principal, model);
+        User user = addUser(principal);
+        model.addAttribute("user",user);
         return "productiehuis/homepage";
     }
 
@@ -82,7 +85,7 @@ public class ProductiehuisController {
         }
     }
 
-    private void addUser(Principal principal, Model model) {
+    private User addUser(Principal principal) {
         String loggedInName = principal != null ? principal.getName() : "nobody";
         User user = new User();
         if (!loggedInName.contains("nobody") || !loggedInName.isEmpty()) {
@@ -91,6 +94,6 @@ public class ProductiehuisController {
                 user = userFromDb.get();
             }
         }
-        model.addAttribute("user", user);
+        return user;
     }
 }
