@@ -87,7 +87,7 @@ public class HomeController {
     }
 
     @GetMapping("/denied")
-    public String accedDenied() {
+    public String accesDenied() {
         return "redirect:/";
     }
 
