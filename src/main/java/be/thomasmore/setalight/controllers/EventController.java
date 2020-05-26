@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 import java.text.ParseException;
@@ -151,6 +152,7 @@ public class EventController {
                                 @RequestParam String postcode,
                                 @RequestParam String street,
                                 @RequestParam String houseNumber,
+                                @RequestParam MultipartFile picture,
                                 Principal principal,
                                 Model model) {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",

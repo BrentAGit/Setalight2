@@ -26,6 +26,7 @@ public class Event {
     private LocalTime startTime;
     private LocalTime endTime;
     private String typeWanted;
+    private String picture;
     @ManyToOne
     private User createdBy;
     @ManyToMany

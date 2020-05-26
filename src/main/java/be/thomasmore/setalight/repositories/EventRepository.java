@@ -33,5 +33,5 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
 
     List<Event> findAllByUsersAndDateAfter(User user, Date date);
 
-    Collection<Event> findAllByCreatedBy(User user);
+    List<Event> findAllByCreatedBy(User user);
 }
