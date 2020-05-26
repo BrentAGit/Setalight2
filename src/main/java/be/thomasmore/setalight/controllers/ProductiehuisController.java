@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -51,7 +52,7 @@ public class ProductiehuisController {
     @GetMapping("/registerProductiehuis")
     public String registerProductiehuis(Principal principal, Model model) {
         User user = addUser(principal);
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "productiehuis/registerProductiehuis";
     }
 
@@ -74,9 +75,13 @@ public class ProductiehuisController {
     @GetMapping("/")
     public String homepageProductiehuis(Principal principal, Model model) {
         User user = addUser(principal);
-        model.addAttribute("user",user);
-            Collection<Event> events=eventRepository.findAllByCreatedBy(user);
-            model.addAttribute("events",events);
+        model.addAttribute("user", user);
+        logger.info(String.format("name=%s",
+                user.getUsername()));
+        if (user.getUsername() != null) {
+            List<Event> events = eventRepository.findAllByCreatedBy(user);
+            model.addAttribute("events", events);
+        }
         return "productiehuis/homepage";
     }
 
