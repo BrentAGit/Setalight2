@@ -21,14 +21,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/user/register", "/logout").permitAll()
-//                .antMatchers("/user/**").authenticated()
-                .antMatchers("user/profilpage/**", "user/edit-profile/**").hasAuthority("USER")
+                .antMatchers("user/profilpage/**", "user/edit-profile/**").hasAnyAuthority("USER", "PRODUCTIEHUIS")
                 .antMatchers("/event/events/**").permitAll()
                 .antMatchers("/event/event", "/event/events", "/event/edit-event/**").hasAnyAuthority("ADMIN", "PRODUCTIEHUIS")
-//                .antMatchers("/productiehuis/**").hasAuthority("PRODUCTIEHUIS")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/productiehuis/**").hasAnyAuthority("PRODUCTIEHUIS")
                 .anyRequest().permitAll().and().formLogin();
         http.csrf().ignoringAntMatchers("/h2-console/**").and().headers().frameOptions().sameOrigin();
+        http.formLogin().loginPage("/productiehuis/login").defaultSuccessUrl("/productiehuis/");
         http.formLogin().loginPage("/login");
         http.logout().logoutUrl("/logout").logoutSuccessUrl("/");
     }
