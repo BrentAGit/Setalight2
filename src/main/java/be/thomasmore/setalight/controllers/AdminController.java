@@ -45,21 +45,6 @@ public class AdminController {
         return "admin/productiehuis-register";
     }
 
-    @PostMapping("/productiehuis-register")
-    public String registerFormProductiehuis(@RequestParam String username,
-                                          @RequestParam String password,
-                                          Model model) {
-        logger.info(String.format("username= %s -- password= %s\n",
-                username, password));
-        User admin = new User();
-        admin.setUsername(username);
-        admin.setPassword(passwordEncoder.encode(password));
-        admin.setRole("PRODUCTIEHUIS");
-        admin.setVerified(false);
-        userRepository.save(admin);
-        autoLogin(username, password);
-        return "redirect:/";
-    }
 
     @GetMapping({"/verifyproductiehuis"})
     public String findUnverifiedProductiehuis(Principal principal, Model model) {

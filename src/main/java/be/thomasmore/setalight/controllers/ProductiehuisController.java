@@ -1,6 +1,8 @@
 package be.thomasmore.setalight.controllers;
 
+import be.thomasmore.setalight.models.ProductiehuisProfile;
 import be.thomasmore.setalight.models.User;
+import be.thomasmore.setalight.repositories.ProductiehuisProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +36,9 @@ public class ProductiehuisController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private ProductiehuisProfileRepository productiehuisProfileRepository;
+
     @GetMapping("/page/{ID}")
     public String profilePage(@PathVariable int ID, Model model) {
         Optional<User> userFromDb = userRepository.findById(ID);
@@ -51,15 +56,38 @@ public class ProductiehuisController {
     @PostMapping("/registerProductiehuis")
     public String registeredProductiehuis(@RequestParam String username,
                                           @RequestParam String password,
+                                          @RequestParam String nameCompany,
+                                          @RequestParam String description,
+                                          @RequestParam String nameOwner,
+                                          @RequestParam String companyNumber,
+                                          @RequestParam String province,
+                                          @RequestParam String city,
+                                          @RequestParam String street,
+                                          @RequestParam String postalcode,
+                                          @RequestParam String houseNumber,
                                           Model model) {
         logger.info(String.format("username= %s -- password= %s\n",
                 username, password));
         User user = new User();
+        ProductiehuisProfile productiehuisProfile = new ProductiehuisProfile();
+
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("PRODUCTIEHUIS");
         user.setVerified(false);
+        productiehuisProfile.setUserId(user);
+        productiehuisProfile.setNameCompany(nameCompany);
+        productiehuisProfile.setDescription(description);
+        productiehuisProfile.setNameOwner(nameOwner);
+        productiehuisProfile.setCompanyNumber(companyNumber);
+        productiehuisProfile.setProvince(province);
+        productiehuisProfile.setCity(city);
+        productiehuisProfile.setStreet(street);
+        productiehuisProfile.setPostalCode(postalcode);
+        productiehuisProfile.setHouseNumber(houseNumber);
+
         userRepository.save(user);
+        productiehuisProfileRepository.save(productiehuisProfile);
         autoLogin(username, password);
         return "redirect:/";
     }
