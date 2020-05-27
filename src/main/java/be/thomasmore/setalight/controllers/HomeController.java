@@ -86,6 +86,11 @@ public class HomeController {
         return "logout";
     }
 
+    @GetMapping("/denied")
+    public String accesDenied() {
+        return "denied";
+    }
+
     public void addRewards(User user){
         Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
         Profile profile = new Profile();
