@@ -9,6 +9,7 @@ public class ProductiehuisProfile {
             initialValue = 1, allocationSize = 1)
     @Id
     Integer id;
+    private String nameCompany;
     private String description;
     private String province;
     private String city;
@@ -35,6 +36,14 @@ public class ProductiehuisProfile {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getNameCompany() {
+        return nameCompany;
+    }
+
+    public void setNameCompany(String nameCompany) {
+        this.nameCompany = nameCompany;
     }
 
     public String getProvince() {
