@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="/img/Logo.png" type="image/gif" sizes="16x16">
-    <title>register productiehuis</title>
+    <title>profiel productiehuis</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
@@ -48,6 +48,10 @@
     <div class="row">
         <p class="col-2">Postcode:</p>
         <p class="col-2" th:text="${productiehuisProfile.getPostalCode()}"></p>
+    </div>
+    <div class="row">
+        <p class="col-2">Huisnummber:</p>
+        <p class="col-2" th:text="${productiehuisProfile.getHouseNumber()}"></p>
     </div>
 
 </div>
