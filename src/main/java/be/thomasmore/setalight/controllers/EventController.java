@@ -7,6 +7,7 @@ import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +35,9 @@ public class EventController {
     private EventRepository eventRepository;
     @Autowired
     private UserRepository userRepository;
+
+    @Value("${upload.images.dir}")
+    private String uploadImagesDirString;
 
     @GetMapping("/event")
     public String home(Principal principal, Model model) {
@@ -101,6 +105,7 @@ public class EventController {
                               @RequestParam String postcode,
                               @RequestParam String street,
                               @RequestParam String houseNumber,
+                              @RequestParam MultipartFile picture,
                               Principal principal,
                               Model model) throws ParseException {
         logger.info(String.format("new name=%s -- new date=%S -- new artists=%d\n",
@@ -123,6 +128,21 @@ public class EventController {
         event.setHouseNumber(houseNumber);
         event.setCreatedBy(user);
         event.setControl(false);
+        String pictureName = picture.getOriginalFilename();
+        if (!pictureName.equals(event.getPicture())) {
+            File imageFileDir = new File(uploadImagesDirString);
+            if (!imageFileDir.exists()) {
+                imageFileDir.mkdirs();
+            }
+            File imageFile = new File(uploadImagesDirString, pictureName);
+            try {
+                picture.transferTo(imageFile);
+                event.setPicture("/" + pictureName);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         eventRepository.save(event);
 
 
@@ -174,28 +194,21 @@ public class EventController {
             event.setPostcode(postcode);
             event.setStreet(street);
             event.setHouseNumber(houseNumber);
-            String name = picture.getOriginalFilename();
-            if (!name.equals(event.)) {
+            String pictureName = picture.getOriginalFilename();
+            if (!pictureName.equals(event.getPicture())) {
                 File imageFileDir = new File(uploadImagesDirString);
                 if (!imageFileDir.exists()) {
                     imageFileDir.mkdirs();
                 }
-                File imageFile = new File(uploadImagesDirString, name);
+                File imageFile = new File(uploadImagesDirString, pictureName);
                 try {
                     picture.transferTo(imageFile);
-                    switch (cindOfPicture) {
-                        case 0:
-                            profile.setProfilePicture("/" + name);
-                            break;
-                        case 1:
-                            profile.setFullPicture("/" + name);
-                            break;
-                    }
+                    event.setPicture("/" + pictureName);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-        }
             eventRepository.save(event);
         }
         addUser(principal, model);

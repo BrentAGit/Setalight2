@@ -25,6 +25,10 @@
     </div>
     <br>
     <div class="row">
+        <label for="picture">afbeelding:</label>
+        <input class="file-input" type="file" id="picture" name="picture">
+    </div>
+    <div class="row">
         <label class="col-2" for="amountOfParticipants"> aantal deelnemers:</label>
         <input class="input col-2" type="number" id="amountOfParticipants" name="amountOfParticipants" th:value="${event.getAmountOfParticipants()}">
     </div>
