@@ -9,40 +9,47 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-<div class="offset-lg-3 col-lg-6">
-    <form th:action="@{/productiehuis/registerProductiehuis}" method="post">
-        <h1>
-            REGISTER
-        </h1>
-        <label for="username">gebruikersnaam:</label>
-        <input class="m-lg-1 input" type="text" name="username" id="username" ><br>
-        <label for="password">wachtwoord:</label>
-        <input class="m-lg-1 input" type="password" name="password" id="password" ><br>
-        <label for="nameCompany">naam bedrijf:</label>
-        <input class="m-lg-1 input" type="text" name="nameCompany" id="nameCompany" ><br>
-        <label for="description">beschrijving bedrijf:</label>
-        <input class="m-lg-1 input" type="text" name="description" id="description" ><br>
-        <label for="nameOwner">Naam eigenaar:</label>
-        <input class="m-lg-1 input" type="text" name="nameOwner" id="nameOwner" ><br>
-        <label for="companyNumber">BTW-nummer:</label>
-        <input class="m-lg-1 input" type="text" name="companyNumber" id="companyNumber" ><br><br>
-        <h5>Locatie:</h5>
-        <label for="province">provincie :</label>
-        <input class="m-lg-1 input" type="text" name="province" id="province" ><br>
-        <label for="city">provincie :</label>
-        <input class="m-lg-1 input" type="text" name="city" id="city" ><br>
-        <label for="street">straatnaam :</label>
-        <input class="m-lg-1 input" type="text" name="street" id="street" ><br>
-        <label for="postalcode">postcode:</label>
-        <input class="m-lg-1 input" type="text" name="postalcode" id="postalcode" ><br>
-        <label for="houseNumber">huisnummer:</label>
-        <input class="m-lg-1 input" type="text" name="houseNumber" id="houseNumber" ><br>
+<div class="container">
+    <h3>Mijn profiel</h3>
+    <br>
+    <div class="row">
+        <p class="col-2">gebruikersnaam:</p>
+        <p class="col-2" th:text="${user.getUsername()}"></p>
+    </div>
+    <div class="row">
+        <p class="col-2">Naam bedrijf:</p>
+        <p class="col-2" th:text="${productiehuisProfile.getNameCompany()}"></p>
+    </div>
+    <div class="row">
+        <p class="col-2">beschrijving:</p>
+        <p class="col-2" th:text="${productiehuisProfile.getDescription()}"></p>
+    </div>
+    <div class="row">
+        <p class="col-2">Naam eigenaar:</p>
+        <p class="col-2" th:text="${productiehuisProfile.getNameOwner()}"></p>
+    </div>
+    <div class="row">
+        <p class="col-2">TW-nummber:</p>
+        <p class="col-2" th:text="${productiehuisProfile.getCompanyNumber()}"></p>
+    </div>
+    <h5>Locatie:</h5>
+    <div class="row">
+        <p class="col-2">Procincie:</p>
+        <p class="col-2" th:text="${productiehuisProfile.getProvince()}"></p>
+    </div>
+    <div class="row">
+        <p class="col-2">Stad:</p>
+        <p class="col-2" th:text="${productiehuisProfile.getCity()}"></p>
+    </div>
+    <div class="row">
+        <p class="col-2">Straatnaam:</p>
+        <p class="col-2" th:text="${productiehuisProfile.getStreet()}"></p>
+    </div>
+    <div class="row">
+        <p class="col-2">Postcode:</p>
+        <p class="col-2" th:text="${productiehuisProfile.getPostalCode()}"></p>
+    </div>
 
-
-
-        <input  class="btn btn-primary" type="submit" name="register" id="register" value="Register">
-        <p class="login-link-text">Heb je al een account?<a class="login-link" th:href="|/login|">klik hier</a></p>
-    </form>
 </div>
 </body>
 </html>

@@ -99,7 +99,7 @@ public class ProductiehuisController {
     }
 
 
-    @GetMapping("/profilepageProductihuis/{userId}")
+    @GetMapping("/profilepageProductiehuis/{userId}")
         public String profilepageProductihuis(@PathVariable int userId, Model model){
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
@@ -109,9 +109,9 @@ public class ProductiehuisController {
         if (ProductiehuisProfileFromDb.isPresent()) ProductiehuisProfile = ProductiehuisProfileFromDb.get();
 
         model.addAttribute("user", user);
-        model.addAttribute("ProductiehuisProfile", ProductiehuisProfile);
+        model.addAttribute("productiehuisProfile", ProductiehuisProfile);
 
-        return "productihuis/profilepageProductihuis";
+        return "productiehuis/profilepageProductiehuis";
     }
 
     private void autoLogin(String userName, String password) {
