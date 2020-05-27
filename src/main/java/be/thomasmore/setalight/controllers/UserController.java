@@ -83,8 +83,8 @@ public class UserController {
             profile.setHairColor(hairColor);
             profile.setLength(length);
             profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-            fileUpload(profile, profilePicture, 0);
-            fileUpload(profile, fullPicture, 1);
+            profile.setProfilePicture(fileUpload(profile, profilePicture));
+            profile.setFullPicture(fileUpload(profile, fullPicture));
         }
         userRepository.save(user);
         profileRepository.save(profile);
@@ -172,8 +172,8 @@ public class UserController {
         profile.setHairColor(hairColor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-        fileUpload(profile, profilePicture, 0);
-        fileUpload(profile, fullPicture, 1);
+        profile.setProfilePicture(fileUpload(profile, profilePicture));
+        profile.setFullPicture(fileUpload(profile, fullPicture));
         profileRepository.save(profile);
         userRepository.save(user);
         return "redirect:/user/profilepage/" + userId;
@@ -191,9 +191,8 @@ public class UserController {
         }
     }
 
-    private void fileUpload(Profile profile, MultipartFile picture, int cindOfPicture) {
+    private String fileUpload(Profile profile, MultipartFile picture) {
         String name = picture.getOriginalFilename();
-        if (!name.equals(profile.getFullPicture())) {
         File imageFileDir = new File(uploadImagesDirString);
         if (!imageFileDir.exists()) {
             imageFileDir.mkdirs();
@@ -201,19 +200,16 @@ public class UserController {
         File imageFile = new File(uploadImagesDirString, name);
         try {
             picture.transferTo(imageFile);
-            switch (cindOfPicture) {
-                case 0:
-                    profile.setProfilePicture("/" + name);
-                    break;
-                case 1:
-                    profile.setFullPicture("/" + name);
-                    break;
-            }
+
+            return "/" + name;
+
+
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
     }
-}
+
 
     private Profile getProfile(int userId) {
         Optional<User> userFromDb=userRepository.findUserById(userId);
