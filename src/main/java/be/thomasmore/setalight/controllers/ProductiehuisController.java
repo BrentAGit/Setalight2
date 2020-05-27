@@ -52,7 +52,7 @@ public class ProductiehuisController {
     @GetMapping("/registerProductiehuis")
     public String registerProductiehuis(Principal principal, Model model) {
         User user = addUser(principal);
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "productiehuis/registerProductiehuis";
     }
 
