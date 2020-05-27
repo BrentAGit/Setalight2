@@ -4,6 +4,7 @@ import be.thomasmore.setalight.models.ProductiehuisProfile;
 import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.ProductiehuisProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
+import be.thomasmore.setalight.utilities.AddUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +64,9 @@ public class AdminController {
 
     @GetMapping({"/verifyproductiehuis"})
     public String findUnverifiedProductiehuis(Principal principal, Model model) {
-        addUser(principal, model);
+        AddUser addUser =new AddUser();
+        User user = addUser.addUser(principal);
+        model.addAttribute("user",user);
         model.addAttribute("productiehuizenNotV", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", false));
         model.addAttribute("productiehuizenV", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", true));
         return "admin/verifyproductiehuis";

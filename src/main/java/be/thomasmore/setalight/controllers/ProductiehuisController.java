@@ -4,6 +4,7 @@ import be.thomasmore.setalight.models.Event;
 import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
+import be.thomasmore.setalight.utilities.AddUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,8 @@ public class ProductiehuisController {
 
     @GetMapping("/registerProductiehuis")
     public String registerProductiehuis(Principal principal, Model model) {
-        User user = addUser(principal);
+        AddUser addUser=new AddUser();
+        User user = addUser.addUser(principal);
         model.addAttribute("user", user);
         return "productiehuis/registerProductiehuis";
     }
@@ -74,7 +76,8 @@ public class ProductiehuisController {
 
     @GetMapping("/")
     public String homepageProductiehuis(Principal principal, Model model) {
-        User user = addUser(principal);
+        AddUser addUser=new AddUser();
+        User user = addUser.addUser(principal);
         model.addAttribute("user", user);
         logger.info(String.format("name=%s",
                 user.getUsername()));
@@ -97,15 +100,5 @@ public class ProductiehuisController {
         }
     }
 
-    private User addUser(Principal principal) {
-        String loggedInName = principal != null ? principal.getName() : "nobody";
-        User user = new User();
-        if (!loggedInName.contains("nobody") || !loggedInName.isEmpty()) {
-            Optional<User> userFromDb = userRepository.findUserByUsername(loggedInName);
-            if (userFromDb.isPresent()) {
-                user = userFromDb.get();
-            }
-        }
-        return user;
-    }
+
 }

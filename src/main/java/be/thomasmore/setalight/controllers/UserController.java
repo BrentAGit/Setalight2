@@ -6,6 +6,7 @@ import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.ProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
+import be.thomasmore.setalight.utilities.FileUploader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +51,7 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Value("${upload.images.dir}")
-    private String uploadImagesDirString;
+
 
     @GetMapping("/register")
     public String registerUser(Model model) {
@@ -83,8 +83,9 @@ public class UserController {
             profile.setHairColor(hairColor);
             profile.setLength(length);
             profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-            profile.setProfilePicture(fileUpload(profile, profilePicture));
-            profile.setFullPicture(fileUpload(profile, fullPicture));
+            FileUploader fileUploader= new FileUploader();
+            profile.setProfilePicture(fileUploader.fileUpload(profile, profilePicture));
+            profile.setFullPicture(fileUploader.fileUpload(profile, fullPicture));
         }
         userRepository.save(user);
         profileRepository.save(profile);
@@ -172,8 +173,9 @@ public class UserController {
         profile.setHairColor(hairColor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-        profile.setProfilePicture(fileUpload(profile, profilePicture));
-        profile.setFullPicture(fileUpload(profile, fullPicture));
+        FileUploader fileUploader=new FileUploader();
+        profile.setProfilePicture(fileUploader.fileUpload(profile, profilePicture));
+        profile.setFullPicture(fileUploader.fileUpload(profile, fullPicture));
         profileRepository.save(profile);
         userRepository.save(user);
         return "redirect:/user/profilepage/" + userId;
@@ -190,26 +192,6 @@ public class UserController {
             e.printStackTrace();
         }
     }
-
-    private String fileUpload(Profile profile, MultipartFile picture) {
-        String name = picture.getOriginalFilename();
-        File imageFileDir = new File(uploadImagesDirString);
-        if (!imageFileDir.exists()) {
-            imageFileDir.mkdirs();
-        }
-        File imageFile = new File(uploadImagesDirString, name);
-        try {
-            picture.transferTo(imageFile);
-
-            return "/" + name;
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
 
     private Profile getProfile(int userId) {
         Optional<User> userFromDb=userRepository.findUserById(userId);
