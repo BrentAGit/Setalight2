@@ -29,8 +29,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/productiehuis/", "/productiehuis/registerProductiehuis").access("not (hasAnyAuthority('USER'))")
                 .antMatchers("/productiehuis/page/**").hasAnyAuthority("PRODUCTIEHUIS", "ADMIN")
-                .anyRequest().permitAll().and().formLogin().
-                and().exceptionHandling().accessDeniedPage("/denied");
+                .anyRequest().permitAll().and().formLogin()
+                .and().exceptionHandling().accessDeniedPage("/denied");
         http.csrf().ignoringAntMatchers("/h2-console/**").and().headers().frameOptions().sameOrigin();
 //        http.formLogin().loginPage("/productiehuis/login").defaultSuccessUrl("/productiehuis/");
         http.formLogin().loginPage("/login");
