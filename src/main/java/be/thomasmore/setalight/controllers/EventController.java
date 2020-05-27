@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -172,6 +174,28 @@ public class EventController {
             event.setPostcode(postcode);
             event.setStreet(street);
             event.setHouseNumber(houseNumber);
+            String name = picture.getOriginalFilename();
+            if (!name.equals(event.)) {
+                File imageFileDir = new File(uploadImagesDirString);
+                if (!imageFileDir.exists()) {
+                    imageFileDir.mkdirs();
+                }
+                File imageFile = new File(uploadImagesDirString, name);
+                try {
+                    picture.transferTo(imageFile);
+                    switch (cindOfPicture) {
+                        case 0:
+                            profile.setProfilePicture("/" + name);
+                            break;
+                        case 1:
+                            profile.setFullPicture("/" + name);
+                            break;
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
             eventRepository.save(event);
         }
         addUser(principal, model);

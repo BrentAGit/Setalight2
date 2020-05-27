@@ -194,26 +194,26 @@ public class UserController {
     private void fileUpload(Profile profile, MultipartFile picture, int cindOfPicture) {
         String name = picture.getOriginalFilename();
         if (!name.equals(profile.getFullPicture())) {
-            File imageFileDir = new File(uploadImagesDirString);
-            if (!imageFileDir.exists()) {
-                imageFileDir.mkdirs();
+        File imageFileDir = new File(uploadImagesDirString);
+        if (!imageFileDir.exists()) {
+            imageFileDir.mkdirs();
+        }
+        File imageFile = new File(uploadImagesDirString, name);
+        try {
+            picture.transferTo(imageFile);
+            switch (cindOfPicture) {
+                case 0:
+                    profile.setProfilePicture("/" + name);
+                    break;
+                case 1:
+                    profile.setFullPicture("/" + name);
+                    break;
             }
-            File imageFile = new File(uploadImagesDirString, name);
-            try {
-                picture.transferTo(imageFile);
-                switch (cindOfPicture) {
-                    case 0:
-                        profile.setProfilePicture("/" + name);
-                        break;
-                    case 1:
-                        profile.setFullPicture("/" + name);
-                        break;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+}
 
     private Profile getProfile(int userId) {
         Optional<User> userFromDb=userRepository.findUserById(userId);

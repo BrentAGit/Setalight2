@@ -161,6 +161,14 @@ public class Event {
         return format.format(getDate());
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
     public String getCityAndPostcode() {
         return String.format(" stad : %s %s ", getCity(), getPostcode());
     }
