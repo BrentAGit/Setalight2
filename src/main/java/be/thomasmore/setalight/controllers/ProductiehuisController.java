@@ -98,6 +98,22 @@ public class ProductiehuisController {
         return "productiehuis/homepage";
     }
 
+
+    @GetMapping("/profilepageProductihuis/{userId}")
+        public String profilepageProductihuis(@PathVariable int userId, Model model){
+        Optional<User> userFromDb = userRepository.findById(userId);
+        User user = new User();
+        if (userFromDb.isPresent()) user = userFromDb.get();
+        Optional<ProductiehuisProfile> ProductiehuisProfileFromDb = productiehuisProfileRepository.findByUserId(user);
+        ProductiehuisProfile ProductiehuisProfile = new ProductiehuisProfile();
+        if (ProductiehuisProfileFromDb.isPresent()) ProductiehuisProfile = ProductiehuisProfileFromDb.get();
+
+        model.addAttribute("user", user);
+        model.addAttribute("ProductiehuisProfile", ProductiehuisProfile);
+
+        return "productihuis/profilepageProductihuis";
+    }
+
     private void autoLogin(String userName, String password) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
         try {
