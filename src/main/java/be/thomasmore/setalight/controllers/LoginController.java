@@ -91,7 +91,7 @@ public class LoginController {
         return "redirect:/";
     }
 
-    @GetMapping("/registerProductiehuis")
+    @GetMapping("/productiehuis/registerProductiehuis")
     public String registerProductiehuis(Principal principal, Model model) {
         AddUser addUser=new AddUser();
         User user = addUser.addUser(principal, userRepository);
@@ -99,7 +99,7 @@ public class LoginController {
         return "productiehuis/registerProductiehuis";
     }
 
-    @PostMapping("/registerProductiehuis")
+    @PostMapping("/productiehuis/registerProductiehuis")
     public String registeredProductiehuis(@RequestParam String username,
                                           @RequestParam String password,
                                           @RequestParam String nameCompany,
