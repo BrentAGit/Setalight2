@@ -14,6 +14,8 @@
     <br>
     <h3>Mijn profiel</h3>
     <br>
+    <a class="menu-link" th:href="'/productiehuis/edit-profilepage/' + ${user.getId()}" href="/">edit</a>
+    <br>
     <div class="row">
         <p class="col-2">gebruikersnaam:</p>
         <p class="col-2" th:text="${user.getUsername()}"></p>

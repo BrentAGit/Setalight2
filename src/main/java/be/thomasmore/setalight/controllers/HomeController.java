@@ -48,7 +48,7 @@ public class HomeController {
                 if (user.getRole().contains("USER")) {
                     this.addRewards(user);
                 }else if (user.getRole().contains("PRODUCTIEHUIS")){
-                    return "redirect:productiehuis/homepage";
+
                 }
             }
         }
