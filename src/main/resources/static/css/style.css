@@ -111,7 +111,9 @@ btn-primary:link{
 .filterButtons a:hover {
     color: #EC7969;
 }
-.calender {
+
+ /*CSS for small Calender */
+.small-calender {
     width: 25em;
     height: 31em;
     border: 1px solid #c9c9c9;
@@ -200,7 +202,6 @@ tbody tr {
 
 tbody td{
     width: 14%;
-    border-radius: 50%;
     cursor: pointer;
     -webkit-transition:all 0.2s ease-in;
     transition:all 0.2s ease-in;
@@ -222,7 +223,7 @@ tbody td:active {
     background-color: #e66b6b;
     color: #fff;
     font-family: serif;
-    border-radius: 50%;
+
 }
 
 #disabled {
@@ -235,7 +236,7 @@ tbody td:active {
     color: #c9c9c9;
 }
 table {
-    border-spacing: 2px;
+    border-spacing: 100px;
 }
 .clearfix:before,
 .clearfix:after {
@@ -246,10 +247,7 @@ table {
 .clearfix:after {
     clear: both;
 }
-/**
- * For IE 6/7 only
- * Include this rule to trigger hasLayout and contain floats.
- */
+
 .clearfix {
     *zoom: 1;
 }
@@ -259,6 +257,19 @@ a, a:hover {
 .img-responsive {
     max-width: 100%;
     height: auto;
+}
+/*CSS for large calendar*/
+.large-calender {
+    width: 1000px;
+    height: 500px;
+    border: 1px solid #c9c9c9;
+    box-shadow: 0 0 5px #c9c9c9;
+    text-align: center;
+    margin: 4em auto;
+    position: relative;
+    font-size: 100%;
+    line-height: 1.5;
+    background-color: white;
 }
 .card{
     background-color: #3c3f41;

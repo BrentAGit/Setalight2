@@ -3,20 +3,99 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Kalender</title>
+    <title th:value="${application}">Setalight</title>
     <head>
         <meta charset="UTF-8">
         <title th:value="${application}">Setalight</title>
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/css/style.css">
-        <link rel="" href="">
+        <script src="js/Calender-script.js"></script>
         <!--    add here personal CSS-->
     </head>
 <body>
 <div th:replace="fragments/header">Header</div>
 <br>
-<div class="container">
-    <div class="">
+<div class="container-fluid">
+
+    <div class="large-calender">
+        <div id="header" class="clearfix">
+            <a href="/calender">calender</a>
+            <div class="pre-button"><</div>
+            <div class="head-info">
+                <div class="head-day"></div>
+                <div class="head-month"></div>
+            </div>
+            <div class="next-button">></div>
+        </div>
+        <table id="calendar">
+            <thead>
+            <tr>
+                <th>Ma</th>
+                <th>Di</th>
+                <th>Wo</th>
+                <th>Do</th>
+                <th>vr</th>
+                <th>za</th>
+                <th>zo</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
 
     </div>
 </div>
