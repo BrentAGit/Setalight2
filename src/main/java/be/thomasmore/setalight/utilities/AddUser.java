@@ -8,9 +8,8 @@ import java.security.Principal;
 import java.util.Optional;
 
 public class AddUser {
-    @Autowired
-    private UserRepository userRepository;
-    public User addUser(Principal principal) {
+
+    public User addUser(Principal principal, UserRepository userRepository) {
         String loggedInName = principal != null ? principal.getName() : "nobody";
         User user = new User();
         if (!loggedInName.contains("nobody") || !loggedInName.isEmpty()) {

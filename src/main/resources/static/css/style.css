@@ -111,3 +111,7 @@ btn-primary:link{
 .filterButtons a:hover {
     color: #EC7969;
 }
+.card{
+    background-color: #3c3f41;
+    color: #ffffff;
+}

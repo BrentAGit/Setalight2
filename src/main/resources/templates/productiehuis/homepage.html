@@ -13,7 +13,7 @@
 <br>
 <div class="container">
     <div class="card-columns">
-        <div sec:authorize="hasAnyAuthority('PRODUCTIEHUIS')" th:each="event : ${events}" class="card text-dark">
+        <div sec:authorize="hasAnyAuthority('PRODUCTIEHUIS')" th:each="event : ${events}" class="card p-2">
             <h3 th:text="${event.getName()}">eventName</h3>
             <p th:text="${event.getDescription()}">description</p>
             <p th:text="${event.getDateString()}">datum</p>

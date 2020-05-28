@@ -53,7 +53,7 @@ public class ProductiehuisController {
     @GetMapping("/registerProductiehuis")
     public String registerProductiehuis(Principal principal, Model model) {
         AddUser addUser=new AddUser();
-        User user = addUser.addUser(principal);
+        User user = addUser.addUser(principal,userRepository);
         model.addAttribute("user", user);
         return "productiehuis/registerProductiehuis";
     }
@@ -77,7 +77,7 @@ public class ProductiehuisController {
     @GetMapping("/")
     public String homepageProductiehuis(Principal principal, Model model) {
         AddUser addUser=new AddUser();
-        User user = addUser.addUser(principal);
+        User user = addUser.addUser(principal,userRepository);
         model.addAttribute("user", user);
         logger.info(String.format("name=%s",
                 user.getUsername()));
