@@ -1,8 +1,10 @@
 package be.thomasmore.setalight.controllers;
 
 import be.thomasmore.setalight.models.Event;
+import be.thomasmore.setalight.models.ProductiehuisProfile;
 import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
+import be.thomasmore.setalight.repositories.ProductiehuisProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +33,8 @@ public class EventController {
     private EventRepository eventRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ProductiehuisProfileRepository productiehuisProfileRepository;
 
     @GetMapping("/event")
     public String home(Principal principal, Model model) {
@@ -64,7 +68,14 @@ public class EventController {
         Optional<Event> eventFromDb = eventRepository.findById(eventsId);
         Event event = new Event();
         if (eventFromDb.isPresent()) event = eventFromDb.get();
+        User productiehuis = event.getCreatedBy();
+        ProductiehuisProfile productiehuisProfile = new ProductiehuisProfile();
+        Optional<ProductiehuisProfile> productiehuisProfileFromDB = productiehuisProfileRepository.findByUserId(productiehuis);
+        if(productiehuisProfileFromDB.isPresent())productiehuisProfile = productiehuisProfileFromDB.get();
+
         model.addAttribute("event", event);
+        model.addAttribute("productiehuisProfile" ,productiehuisProfile);
+        model.addAttribute("productihuis",productiehuis);
         addUser(principal, model);
         return "userEvent";
     }

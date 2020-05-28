@@ -32,4 +32,8 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
             @Param("user") User user);
 
     List<Event> findAllByUsersAndDateAfter(User user, Date date);
+
+
+    @Query("select e from Event e where e.createdBy = :user ")
+    Optional<User> findCreatedBy( @Param("user") User user);
 }
