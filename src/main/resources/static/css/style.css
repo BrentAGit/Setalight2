@@ -111,3 +111,13 @@ btn-primary:link{
 .filterButtons a:hover {
     color: #EC7969;
 }
+.calender {
+    width: 25em;
+    height: 31em;
+    border: 1px solid #c9c9c9;
+    box-shadow: 0 0 5px #c9c9c9;
+    text-align: center;
+    margin: 4em auto;
+    position: relative;
+
+}
