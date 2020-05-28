@@ -80,9 +80,9 @@ public class AdminController {
         User user = new User();
         if (userFromDb.isPresent()) user = userFromDb.get();
         Optional<ProductiehuisProfile> profileFromDb = productiehuisProfileRepository.findByUserId(user);
-        ProductiehuisProfile profile = new ProductiehuisProfile();
-        if (profileFromDb.isPresent()) profile = profileFromDb.get();
-        model.addAttribute("profile", profile);
+        ProductiehuisProfile productiehuisProfile = new ProductiehuisProfile();
+        if (profileFromDb.isPresent()) productiehuisProfile = profileFromDb.get();
+        model.addAttribute("productiehuisProfile", productiehuisProfile);
         model.addAttribute("user", user);
         return "admin/verify";
     }

@@ -13,9 +13,47 @@
     <div class="container">
     <form th:action="@{|/admin/verify/${user.getId()}|}" method="post">
 
-        <p th:text="${user.getUsername()}"></p>
-        <p th:text="${profile.getDescription()}"></p>
-        <p th:text="${profile.getNameOwner()}"></p>
+        <div class="row">
+            <p class="col-2">gebruikersnaam:</p>
+            <p class="col-2" th:text="${user.getUsername()}"></p>
+        </div>
+        <div class="row">
+            <p class="col-2">Naam bedrijf:</p>
+            <p class="col-2" th:text="${productiehuisProfile.getNameCompany()}"></p>
+        </div>
+        <div class="row">
+            <p class="col-2">beschrijving:</p>
+            <p class="col-2" th:text="${productiehuisProfile.getDescription()}"></p>
+        </div>
+        <div class="row">
+            <p class="col-2">Naam eigenaar:</p>
+            <p class="col-2" th:text="${productiehuisProfile.getNameOwner()}"></p>
+        </div>
+        <div class="row">
+            <p class="col-2">BTW-nummber:</p>
+            <p class="col-2" th:text="${productiehuisProfile.getCompanyNumber()}"></p>
+        </div>
+        <h5>Locatie:</h5>
+        <div class="row">
+            <p class="col-2">Procincie:</p>
+            <p class="col-2" th:text="${productiehuisProfile.getProvince()}"></p>
+        </div>
+        <div class="row">
+            <p class="col-2">Stad:</p>
+            <p class="col-2" th:text="${productiehuisProfile.getCity()}"></p>
+        </div>
+        <div class="row">
+            <p class="col-2">Straatnaam:</p>
+            <p class="col-2" th:text="${productiehuisProfile.getStreet()}"></p>
+        </div>
+        <div class="row">
+            <p class="col-2">Postcode:</p>
+            <p class="col-2" th:text="${productiehuisProfile.getPostalCode()}"></p>
+        </div>
+        <div class="row">
+            <p class="col-2">Huisnummber:</p>
+            <p class="col-2" th:text="${productiehuisProfile.getHouseNumber()}"></p>
+        </div>
         <input class="btn btn-primary" type="submit" id="submit" name="submit" value="verify">
         <a class="btn-primary btn" href="/admin/verifyproductiehuis">Cancel</a>
     </form>
