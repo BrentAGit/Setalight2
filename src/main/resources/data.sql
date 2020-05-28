@@ -43,6 +43,10 @@ insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTI
     VALUES(nextval('EVENT_SEQ'),4,50, true,'2020-07-20','figuranten nodig vor restaurant scene','15:00','Bar Fight','13:00', '2000', 'Antwerpen', 'caféstraat', '10','figurant');
 insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
     VALUES(nextval('EVENT_SEQ'),3,50,true,'2020-06-17','pilot sitcom publiek nodig','15:00','Sitcom','12:00', '1000', 'brussel', 'stadsstraat', '60','publiek');
+insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
+    VALUES(nextval('EVENT_SEQ'),4,50, true,'2020-07-25','figuranten nodig ','15:00','thuis','13:00', '2000', 'Antwerpen', 'caféstraat', '10','figurant');
+insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
+    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-07-28','figuranten nodig ','15:00','familie','13:00', '2000', 'Antwerpen', 'caféstraat', '10','figurant');
 
 insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number)
     values (nextval('productiehuis_Profile_seq'), 'Mickey mouse woont hier', 'Walt Disney', 4,'Disney','BE 0123.456.789','Brussel','Brussel','disneystraat','1000','121');
