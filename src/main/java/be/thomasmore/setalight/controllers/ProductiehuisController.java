@@ -2,8 +2,10 @@ package be.thomasmore.setalight.controllers;
 
 import be.thomasmore.setalight.models.ProductiehuisProfile;
 import be.thomasmore.setalight.models.User;
+import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.ProductiehuisProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
+import be.thomasmore.setalight.utilities.AddUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,9 @@ public class ProductiehuisController {
     private UserRepository userRepository;
 
     @Autowired
+    private EventRepository eventRepository;
+
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
@@ -49,7 +54,9 @@ public class ProductiehuisController {
 
     @GetMapping("/registerProductiehuis")
     public String registerProductiehuis(Principal principal, Model model) {
-        addUser(principal, model);
+        AddUser addUser=new AddUser();
+        User user = addUser.addUser(principal,userRepository);
+        model.addAttribute("user", user);
         return "productiehuis/registerProductiehuis";
     }
 
@@ -69,32 +76,26 @@ public class ProductiehuisController {
         logger.info(String.format("username= %s -- password= %s\n",
                 username, password));
         User user = new User();
-        ProductiehuisProfile productiehuisProfile = new ProductiehuisProfile();
-
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("PRODUCTIEHUIS");
         user.setVerified(false);
-        productiehuisProfile.setUserId(user);
-        productiehuisProfile.setNameCompany(nameCompany);
-        productiehuisProfile.setDescription(description);
-        productiehuisProfile.setNameOwner(nameOwner);
-        productiehuisProfile.setCompanyNumber(companyNumber);
-        productiehuisProfile.setProvince(province);
-        productiehuisProfile.setCity(city);
-        productiehuisProfile.setStreet(street);
-        productiehuisProfile.setPostalCode(postalcode);
-        productiehuisProfile.setHouseNumber(houseNumber);
-
         userRepository.save(user);
-        productiehuisProfileRepository.save(productiehuisProfile);
         autoLogin(username, password);
         return "redirect:/";
     }
 
     @GetMapping("/")
     public String homepageProductiehuis(Principal principal, Model model) {
-        addUser(principal, model);
+        AddUser addUser=new AddUser();
+        User user = addUser.addUser(principal,userRepository);
+        model.addAttribute("user", user);
+        logger.info(String.format("name=%s",
+                user.getUsername()));
+        if (user.getUsername() != null) {
+            List<Event> events = eventRepository.findAllByCreatedBy(user);
+            model.addAttribute("events", events);
+        }
         return "productiehuis/homepage";
     }
 
@@ -174,15 +175,5 @@ public class ProductiehuisController {
         }
     }
 
-    private void addUser(Principal principal, Model model) {
-        String loggedInName = principal != null ? principal.getName() : "nobody";
-        User user = new User();
-        if (!loggedInName.contains("nobody") || !loggedInName.isEmpty()) {
-            Optional<User> userFromDb = userRepository.findUserByUsername(loggedInName);
-            if (userFromDb.isPresent()) {
-                user = userFromDb.get();
-            }
-        }
-        model.addAttribute("user", user);
-    }
+
 }

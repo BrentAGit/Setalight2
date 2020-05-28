@@ -260,3 +260,7 @@ a, a:hover {
     max-width: 100%;
     height: auto;
 }
+.card{
+    background-color: #3c3f41;
+    color: #ffffff;
+}

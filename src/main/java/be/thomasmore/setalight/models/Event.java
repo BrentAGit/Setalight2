@@ -26,6 +26,7 @@ public class Event {
     private LocalTime startTime;
     private LocalTime endTime;
     private String typeWanted;
+    private String picture;
     @ManyToOne
     private User createdBy;
     @ManyToMany
@@ -158,6 +159,14 @@ public class Event {
     public String getDateStringEvent() {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(getDate());
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public String getCityAndPostcode() {

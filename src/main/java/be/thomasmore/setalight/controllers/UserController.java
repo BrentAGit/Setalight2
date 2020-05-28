@@ -8,6 +8,7 @@ import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.ProfileRepository;
 import be.thomasmore.setalight.repositories.RewardRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
+import be.thomasmore.setalight.utilities.FileUploader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +57,7 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Value("${upload.images.dir}")
-    private String uploadImagesDirString;
+
 
     @GetMapping("/register")
     public String registerUser(Model model) {
@@ -89,8 +89,9 @@ public class UserController {
             profile.setHairColor(hairColor);
             profile.setLength(length);
             profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-            fileUpload(profile, profilePicture, 0);
-            fileUpload(profile, fullPicture, 1);
+            FileUploader fileUploader= new FileUploader();
+            profile.setProfilePicture(fileUploader.fileUpload(profile, profilePicture));
+            profile.setFullPicture(fileUploader.fileUpload(profile, fullPicture));
         }
         userRepository.save(user);
         profileRepository.save(profile);
@@ -186,8 +187,9 @@ public class UserController {
         profile.setHairColor(hairColor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-        fileUpload(profile, profilePicture, 0);
-        fileUpload(profile, fullPicture, 1);
+        FileUploader fileUploader=new FileUploader();
+        profile.setProfilePicture(fileUploader.fileUpload(profile, profilePicture));
+        profile.setFullPicture(fileUploader.fileUpload(profile, fullPicture));
         profileRepository.save(profile);
         userRepository.save(user);
         return "redirect:/user/profilepage/" + userId;
@@ -216,30 +218,6 @@ public class UserController {
             sc.setAuthentication(auth);
         } catch (AuthenticationException e) {
             e.printStackTrace();
-        }
-    }
-
-    private void fileUpload(Profile profile, MultipartFile picture, int cindOfPicture) {
-        String name = picture.getOriginalFilename();
-        if (!name.equals(profile.getFullPicture())) {
-            File imageFileDir = new File(uploadImagesDirString);
-            if (!imageFileDir.exists()) {
-                imageFileDir.mkdirs();
-            }
-            File imageFile = new File(uploadImagesDirString, name);
-            try {
-                picture.transferTo(imageFile);
-                switch (cindOfPicture) {
-                    case 0:
-                        profile.setProfilePicture("/" + name);
-                        break;
-                    case 1:
-                        profile.setFullPicture("/" + name);
-                        break;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 

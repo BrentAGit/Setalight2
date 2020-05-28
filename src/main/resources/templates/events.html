@@ -18,6 +18,7 @@
             <h3 th:text="${event.getName()}">eventName</h3>
             <p th:text="${event.getDescription()}">description</p>
             <p th:text="${event.getDateString()}">datum</p>
+            <img th:src="${event.getPicture()}">
             <div class="card-footer">
                 <a th:href="'/event/events/' + ${event.getId()}" class="btn btn-danger" href="/">Details?</a>
             </div>
