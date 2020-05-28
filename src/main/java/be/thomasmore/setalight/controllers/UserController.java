@@ -38,11 +38,6 @@ import java.text.SimpleDateFormat;
 @RequestMapping("/user")
 public class UserController {
 
-    private Logger logger = LoggerFactory.getLogger(UserController.class);
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @Autowired
     private UserRepository userRepository;
 
@@ -55,52 +50,8 @@ public class UserController {
     @Autowired
     private RewardRepository rewardRepository;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
     @Value("${upload.images.dir}")
     private String uploadImagesDirString = "${upload.images.dir}";
-
-    @GetMapping("/register")
-    public String registerUser(Model model) {
-        return "user/register";
-    }
-
-    @PostMapping("/register")
-    public String registered(@RequestParam String username,
-                             @RequestParam String password,
-                             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate,
-                             @RequestParam(required = false) String email,
-                             @RequestParam(required = false) String hairColor,
-                             @RequestParam(required = false) MultipartFile profilePicture,
-                             @RequestParam(required = false) MultipartFile fullPicture,
-                             @RequestParam(required = false) Double length,
-                             @RequestParam(required = false) String nationalInsuranceNumber,
-                             Model model) {
-        logger.info(String.format("username= %s -- password= %s\n",
-                username, password));
-        User user = new User();
-        Profile profile = new Profile();
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
-        user.setRole("USER");
-        profile.setUserId(user);
-        if (!(birthDate == null && email.isEmpty() && hairColor.isEmpty() && profilePicture.isEmpty() && fullPicture.isEmpty() && length == null && nationalInsuranceNumber.isEmpty())) {
-            profile.setBirthDate(birthDate);
-            profile.setEmail(email);
-            profile.setHairColor(hairColor);
-            profile.setLength(length);
-            profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-            FileUploader fileUploader= new FileUploader();
-            profile.setProfilePicture(fileUploader.fileUpload(profilePicture, uploadImagesDirString));
-            profile.setFullPicture(fileUploader.fileUpload(fullPicture, uploadImagesDirString));
-        }
-        userRepository.save(user);
-        profileRepository.save(profile);
-        AutoLogin autoLogin = new AutoLogin();
-        autoLogin.autoLogin(username, password, authenticationManager);
-        return "redirect:/";
-    }
 
     @GetMapping("/profilepage/{userId}")
     public String profile(@PathVariable int userId,
