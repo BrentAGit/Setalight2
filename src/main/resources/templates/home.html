@@ -16,7 +16,7 @@
         <div class="col-2 filterButtons">
             <ul>
                 <li th:each="filter : ${filterButtons}">
-                    <a th:text="${filter}" th:href="'/' + ${filter}" href="/filter"></a>
+                    <a th:text="${filter}" th:href="'/filter/' + ${filter}" href="/filter"></a>
                 </li>
             </ul>
         </div>

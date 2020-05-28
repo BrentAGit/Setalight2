@@ -36,7 +36,7 @@ public class HomeController {
     @Autowired
     private ProfileRepository profileRepository;
 
-    @GetMapping({"/", "/{filter}"})
+    @GetMapping({"/", "/filter/{filter}"})
     public String home(@PathVariable(required = false) String filter,
                        Principal principal, Model model) {
         String loggedInName = principal != null ? principal.getName() : "nobody";
