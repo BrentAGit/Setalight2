@@ -112,6 +112,39 @@ public class ProductiehuisController {
 
         return "productiehuis/edit-profilepage";
     }
+    @PostMapping("/edit-profilepage/{userId}")
+    public String editProfilepageProductie(@PathVariable int userId,
+                                          @RequestParam String nameCompany,
+                                          @RequestParam String description,
+                                          @RequestParam String nameOwner,
+                                          @RequestParam String companyNumber,
+                                          @RequestParam String province,
+                                          @RequestParam String city,
+                                          @RequestParam String street,
+                                          @RequestParam String postalcode,
+                                          @RequestParam String houseNumber,
+                                          Model model) {
+        Optional<User> userFromDb = userRepository.findById(userId);
+        User user = new User();
+        if (userFromDb.isPresent()) user = userFromDb.get();
+        Optional<ProductiehuisProfile> productieProfileFromDb = productiehuisProfileRepository.findByUserId(user);
+        ProductiehuisProfile productiehuisProfile = new ProductiehuisProfile();
+        if (productieProfileFromDb.isPresent()) productiehuisProfile = productieProfileFromDb.get();
+
+        productiehuisProfile.setNameCompany(nameCompany);
+        productiehuisProfile.setDescription(description);
+        productiehuisProfile.setNameOwner(nameOwner);
+        productiehuisProfile.setCompanyNumber(companyNumber);
+        productiehuisProfile.setProvince(province);
+        productiehuisProfile.setCity(city);
+        productiehuisProfile.setStreet(street);
+        productiehuisProfile.setPostalCode(postalcode);
+        productiehuisProfile.setHouseNumber(houseNumber);
+
+        userRepository.save(user);
+        productiehuisProfileRepository.save(productiehuisProfile);
+        return "redirect:/productiehuis/profilepageProductiehuis/" + userId;
+    }
 
 
     @GetMapping("/profilepageProductiehuis/{userId}")
