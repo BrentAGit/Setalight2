@@ -47,7 +47,7 @@ public class HomeController {
                 user = userFromDb.get();
                 if (user.getRole().contains("USER")) {
                     this.addRewards(user);
-                }else if (user.getRole().contains("PRODUCTIEHUIS")){
+                } else if (user.getRole().contains("PRODUCTIEHUIS")) {
 
                 }
             }
@@ -68,19 +68,20 @@ public class HomeController {
                     model.addAttribute("events", eventRepository.findAllByDateBetween(calendar.getTime(), secondDate.getTime()));
                     break;
             }
-        }
-        else model.addAttribute("events", eventRepository.findAllByDateAfter(calendar.getTime()));
+        } else model.addAttribute("events", eventRepository.findAllByDateAfter(calendar.getTime()));
         logger.info(String.format("logged in: %s",
                 loggedInName));
-        model.addAttribute("filterButtons", new String[] {"all", "week", "month"});
+        model.addAttribute("filterButtons", new String[]{"all", "week", "month"});
         model.addAttribute("user", user);
         model.addAttribute("application", this.application);
         return "home";
     }
+
     @GetMapping({"/calender"})
     public String calender(Model model) {
         return "calender";
     }
+
     @GetMapping({"/login"})
     public String login(Model model) {
         return "login";
@@ -96,14 +97,14 @@ public class HomeController {
         return "denied";
     }
 
-    public void addRewards(User user){
+    public void addRewards(User user) {
         Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
         Profile profile = new Profile();
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
         Calendar calendar = Calendar.getInstance();
         List<Event> eventFromDb = eventRepository.findAllByUsersAndDateBefore(user, calendar.getTime());
-        for (Event event:eventFromDb) {
-            if (!profile.getCheckedEvents().contains(event)){
+        for (Event event : eventFromDb) {
+            if (!profile.getCheckedEvents().contains(event)) {
                 profile.getCheckedEvents().add(event);
                 profile.setRewardPoints(profile.getRewardPoints() + 20);
             }
