@@ -1,5 +1,6 @@
 package be.thomasmore.setalight.controllers;
 
+import be.thomasmore.setalight.models.Event;
 import be.thomasmore.setalight.models.ProductiehuisProfile;
 import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
@@ -21,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
