@@ -8,12 +8,13 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+
 public class AutoLogin {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+//    @Autowired
+//    private AuthenticationManager authenticationManager;
 
-    public void autoLogin(String userName, String password) {
+    public void autoLogin(String userName, String password, AuthenticationManager authenticationManager) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
         try {
             Authentication auth = authenticationManager.authenticate(token);

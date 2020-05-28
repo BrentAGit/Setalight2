@@ -47,9 +47,9 @@ public class AdminController {
 
     @GetMapping({"/verifyproductiehuis"})
     public String findUnverifiedProductiehuis(Principal principal, Model model) {
-        AddUser addUser =new AddUser();
-        User user = addUser.addUser(principal,userRepository);
-        model.addAttribute("user",user);
+        AddUser addUser = new AddUser();
+        User user = addUser.addUser(principal, userRepository);
+        model.addAttribute("user", user);
         model.addAttribute("productiehuizenNotV", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", false));
         model.addAttribute("productiehuizenV", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", true));
         return "admin/verifyproductiehuis";
