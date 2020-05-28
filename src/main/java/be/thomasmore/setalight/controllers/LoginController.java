@@ -4,6 +4,7 @@ import be.thomasmore.setalight.models.Profile;
 import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.ProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
+import be.thomasmore.setalight.utilities.AddUser;
 import be.thomasmore.setalight.utilities.AutoLogin;
 import be.thomasmore.setalight.utilities.FileUploader;
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
 import java.util.Date;
 
 @Controller
@@ -84,6 +86,40 @@ public class LoginController {
         }
         userRepository.save(user);
         profileRepository.save(profile);
+        AutoLogin autoLogin = new AutoLogin();
+        autoLogin.autoLogin(username, password, authenticationManager);
+        return "redirect:/";
+    }
+
+    @GetMapping("/registerProductiehuis")
+    public String registerProductiehuis(Principal principal, Model model) {
+        AddUser addUser=new AddUser();
+        User user = addUser.addUser(principal, userRepository);
+        model.addAttribute("user", user);
+        return "productiehuis/registerProductiehuis";
+    }
+
+    @PostMapping("/registerProductiehuis")
+    public String registeredProductiehuis(@RequestParam String username,
+                                          @RequestParam String password,
+                                          @RequestParam String nameCompany,
+                                          @RequestParam String description,
+                                          @RequestParam String nameOwner,
+                                          @RequestParam String companyNumber,
+                                          @RequestParam String province,
+                                          @RequestParam String city,
+                                          @RequestParam String street,
+                                          @RequestParam String postalCode,
+                                          @RequestParam String houseNumber,
+                                          Model model) {
+        logger.info(String.format("username= %s -- password= %s\n",
+                username, password));
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setRole("PRODUCTIEHUIS");
+        user.setVerified(false);
+        userRepository.save(user);
         AutoLogin autoLogin = new AutoLogin();
         autoLogin.autoLogin(username, password, authenticationManager);
         return "redirect:/";
