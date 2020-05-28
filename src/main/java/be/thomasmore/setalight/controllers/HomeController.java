@@ -82,11 +82,6 @@ public class HomeController {
         return "calender";
     }
 
-    @GetMapping({"/login"})
-    public String login(Model model) {
-        return "login";
-    }
-
     @GetMapping({"/logout"})
     public String logout(Model model) {
         return "logout";

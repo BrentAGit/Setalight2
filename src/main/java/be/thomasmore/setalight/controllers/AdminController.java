@@ -95,5 +95,4 @@ public class AdminController {
         rewardRepository.save(reward);
         return "redirect:/";
     }
-
 }
