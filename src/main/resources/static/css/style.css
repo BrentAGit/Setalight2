@@ -152,3 +152,39 @@ btn-primary:link{
     float: right;
     margin-right: 0.5em;
 }
+.head-info {
+    float: left;
+    width: 16em;
+}
+
+.head-day {
+    margin-top: 30px;
+    font-size: 8em;
+    line-height: 1;
+    color: #fff;
+}
+
+.head-month {
+    margin-top: 20px;
+    font-size: 2em;
+    line-height: 1;
+    color: #fff;
+}
+.head-info {
+    float: left;
+    width: 16em;
+}
+
+.head-day {
+    margin-top: 30px;
+    font-size: 8em;
+    line-height: 1;
+    color: #fff;
+}
+
+.head-month {
+    margin-top: 20px;
+    font-size: 2em;
+    line-height: 1;
+    color: #fff;
+}
