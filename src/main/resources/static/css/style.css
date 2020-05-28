@@ -111,3 +111,152 @@ btn-primary:link{
 .filterButtons a:hover {
     color: #EC7969;
 }
+.calender {
+    width: 25em;
+    height: 31em;
+    border: 1px solid #c9c9c9;
+    box-shadow: 0 0 5px #c9c9c9;
+    text-align: center;
+    margin: 4em auto;
+    position: relative;
+    font-size: 100%;
+    line-height: 1.5;
+    background-color:white ;
+
+}
+#header {
+    font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    height: 14em;
+    background-color: #3c3f41;
+    margin-bottom: 1em;
+}
+.pre-button, .next-button {
+    margin-top: 2em;
+    font-size: 3em;
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+    cursor: pointer;
+    width: 1em;
+    height: 1em;
+    line-height: 1em;
+    color: #EC7969;
+    border-radius: 50%;
+}
+.pre-button:hover, .next-button:hover {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+.pre-button:active,.next-button:active{
+    -webkit-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
+}
+.pre-button {
+    float: left;
+    margin-left: 0.5em;
+}
+
+.next-button {
+    float: right;
+
+}
+.head-info {
+    float: left;
+    width: 16em;
+}
+
+.head-day {
+    margin-top: 30px;
+    font-size: 8em;
+    line-height: 1;
+    color: #fff;
+}
+
+.head-month {
+    margin-top: 20px;
+    font-size: 2em;
+    line-height: 1;
+    color: #fff;
+}
+#calendar {
+    width: 90%;
+    margin: 0 auto;
+}
+
+#calendar tr {
+    height: 2em;
+    line-height: 2em;
+}
+thead tr {
+    color: #e66b6b;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+tbody tr {
+    color: #252a25;
+}
+
+tbody td{
+    width: 14%;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition:all 0.2s ease-in;
+    transition:all 0.2s ease-in;
+}
+
+tbody td:hover, .selected {
+    color: #fff;
+    background-color: #2a3246;
+    border: none;
+}
+
+tbody td:active {
+    -webkit-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
+}
+
+#today {
+    background-color: #e66b6b;
+    color: #fff;
+    font-family: serif;
+    border-radius: 50%;
+}
+
+#disabled {
+    cursor: default;
+    background: #fff;
+}
+
+#disabled:hover {
+    background: #fff;
+    color: #c9c9c9;
+}
+table {
+    border-spacing: 2px;
+}
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.clearfix {
+    *zoom: 1;
+}
+a, a:hover {
+    text-decoration: none;
+}
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+}

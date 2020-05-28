@@ -77,7 +77,10 @@ public class HomeController {
         model.addAttribute("application", this.application);
         return "home";
     }
-
+    @GetMapping({"/calender"})
+    public String calender(Model model) {
+        return "calender";
+    }
     @GetMapping({"/login"})
     public String login(Model model) {
         return "login";
