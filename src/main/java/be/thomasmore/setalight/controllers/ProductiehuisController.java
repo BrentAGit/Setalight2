@@ -7,6 +7,7 @@ import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.ProductiehuisProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import be.thomasmore.setalight.utilities.AddUser;
+import be.thomasmore.setalight.utilities.AutoLogin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,7 +84,8 @@ public class ProductiehuisController {
         user.setRole("PRODUCTIEHUIS");
         user.setVerified(false);
         userRepository.save(user);
-        autoLogin(username, password);
+        AutoLogin autoLogin = new AutoLogin();
+        autoLogin.autoLogin(username, password);
         return "redirect:/";
     }
 
@@ -164,18 +166,4 @@ public class ProductiehuisController {
 
         return "productiehuis/profilepageProductiehuis";
     }
-
-    private void autoLogin(String userName, String password) {
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
-        try {
-            Authentication auth = authenticationManager.authenticate(token);
-            logger.info("authentication: " + auth.isAuthenticated());
-            SecurityContext sc = SecurityContextHolder.getContext();
-            sc.setAuthentication(auth);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }

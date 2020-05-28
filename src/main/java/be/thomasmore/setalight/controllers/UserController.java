@@ -8,6 +8,7 @@ import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.ProfileRepository;
 import be.thomasmore.setalight.repositories.RewardRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
+import be.thomasmore.setalight.utilities.AutoLogin;
 import be.thomasmore.setalight.utilities.FileUploader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -95,7 +96,8 @@ public class UserController {
         }
         userRepository.save(user);
         profileRepository.save(profile);
-        autoLogin(username, password);
+        AutoLogin autoLogin = new AutoLogin();
+        autoLogin.autoLogin(username, password);
         return "redirect:/";
     }
 
@@ -207,18 +209,6 @@ public class UserController {
         profileRepository.save(profile);
         rewardRepository.save(reward);
         return "redirect:/user/profilepage/" + userId;
-    }
-
-    private void autoLogin(String userName, String password) {
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
-        try {
-            Authentication auth = authenticationManager.authenticate(token);
-            logger.info("authentication: " + auth.isAuthenticated());
-            SecurityContext sc = SecurityContextHolder.getContext();
-            sc.setAuthentication(auth);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        }
     }
 
     private Profile getProfile(int userId) {

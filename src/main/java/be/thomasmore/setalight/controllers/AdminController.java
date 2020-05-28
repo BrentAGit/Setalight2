@@ -45,28 +45,6 @@ public class AdminController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @GetMapping("/productiehuis/register")
-    public String registerPageProductiehuis(Principal principal, Model model) {
-        addUser(principal, model);
-        return "admin/productiehuis-register";
-    }
-
-    @PostMapping("/productiehuis-register")
-    public String registerFormProductiehuis(@RequestParam String username,
-                                            @RequestParam String password,
-                                            Model model) {
-        logger.info(String.format("username= %s -- password= %s\n",
-                username, password));
-        User admin = new User();
-        admin.setUsername(username);
-        admin.setPassword(passwordEncoder.encode(password));
-        admin.setRole("PRODUCTIEHUIS");
-        admin.setVerified(false);
-        userRepository.save(admin);
-        autoLogin(username, password);
-        return "redirect:/";
-    }
-
     @GetMapping({"/verifyproductiehuis"})
     public String findUnverifiedProductiehuis(Principal principal, Model model) {
         AddUser addUser =new AddUser();
@@ -116,18 +94,6 @@ public class AdminController {
         reward.setPoints(points);
         rewardRepository.save(reward);
         return "redirect:/";
-    }
-
-    private void autoLogin(String username, String password) {
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
-        try {
-            Authentication auth = authenticationManager.authenticate(token);
-            logger.info("authentication: " + auth.isAuthenticated());
-            SecurityContext sc = SecurityContextHolder.getContext();
-            sc.setAuthentication(auth);
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-        }
     }
 
     private void addUser(Principal principal, Model model) {
