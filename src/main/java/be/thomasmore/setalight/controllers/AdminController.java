@@ -96,16 +96,4 @@ public class AdminController {
         return "redirect:/";
     }
 
-    private void addUser(Principal principal, Model model) {
-        String loggedInName = principal != null ? principal.getName() : "nobody";
-        User user = new User();
-        if (!loggedInName.contains("nobody") || !loggedInName.isEmpty()) {
-            Optional<User> userFromDb = userRepository.findUserByUsername(loggedInName);
-            if (userFromDb.isPresent()) {
-                user = userFromDb.get();
-            }
-        }
-        model.addAttribute("user", user);
-    }
-
 }
