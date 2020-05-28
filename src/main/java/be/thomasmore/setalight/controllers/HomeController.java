@@ -47,6 +47,8 @@ public class HomeController {
                 user = userFromDb.get();
                 if (user.getRole().contains("USER")) {
                     this.addRewards(user);
+                }else if (user.getRole().contains("PRODUCTIEHUIS")){
+                    return "redirect:productiehuis/homepage";
                 }
             }
         }
