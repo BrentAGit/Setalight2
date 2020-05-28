@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', function(){
     var today = new Date(),
         year = today.getFullYear(),
         month = today.getMonth(),
-        monthTag =["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+        monthTag =["Jan","Feb","Maa","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nov","Dec"],
         day = today.getDate(),
         days = document.getElementsByTagName('td'),
         selectedDay,
         setDate,
         daysLen = days.length;
-// options should like '2014-01-01'
+
     function Calendar(selector, options) {
         this.options = options;
         this.draw();
@@ -40,12 +40,12 @@ document.addEventListener('DOMContentLoaded', function(){
     };
 
     Calendar.prototype.drawDays = function() {
-        var startDay = new Date(year, month, 1).getDay(),
-//      下面表示这个月总共有几天
+        var startDay = new Date(year, month, 0).getDay(),
+
             nDays = new Date(year, month + 1, 0).getDate(),
 
             n = startDay;
-//      清除原来的样式和日期
+
         for(var k = 0; k <42; k++) {
             days[k].innerHTML = '';
             days[k].id = '';
