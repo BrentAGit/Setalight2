@@ -58,7 +58,8 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-
+    @Value("${upload.images.dir}")
+    private String uploadImagesDirString = "${upload.images.dir}";
 
     @GetMapping("/register")
     public String registerUser(Model model) {
@@ -91,13 +92,13 @@ public class UserController {
             profile.setLength(length);
             profile.setNationalInsuranceNumber(nationalInsuranceNumber);
             FileUploader fileUploader= new FileUploader();
-            profile.setProfilePicture(fileUploader.fileUpload(profile, profilePicture));
-            profile.setFullPicture(fileUploader.fileUpload(profile, fullPicture));
+            profile.setProfilePicture(fileUploader.fileUpload(profilePicture, uploadImagesDirString));
+            profile.setFullPicture(fileUploader.fileUpload(fullPicture, uploadImagesDirString));
         }
         userRepository.save(user);
         profileRepository.save(profile);
         AutoLogin autoLogin = new AutoLogin();
-        autoLogin.autoLogin(username, password);
+        autoLogin.autoLogin(username, password, authenticationManager);
         return "redirect:/";
     }
 
@@ -190,8 +191,8 @@ public class UserController {
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
         FileUploader fileUploader=new FileUploader();
-        profile.setProfilePicture(fileUploader.fileUpload(profile, profilePicture));
-        profile.setFullPicture(fileUploader.fileUpload(profile, fullPicture));
+        profile.setProfilePicture(fileUploader.fileUpload(profilePicture, uploadImagesDirString));
+        profile.setFullPicture(fileUploader.fileUpload(fullPicture, uploadImagesDirString));
         profileRepository.save(profile);
         userRepository.save(user);
         return "redirect:/user/profilepage/" + userId;

@@ -53,7 +53,7 @@
         <h3>Mijn events</h3>
     </div>
     <div class="card-columns">
-        <div th:each="event : ${events}" class="card text-dark">
+        <div th:each="event : ${events}" class="card p-2">
             <h3 th:text="${event.getName()}">eventName</h3>
             <p th:text="${event.getDescription()}">description</p>
             <p th:text="${event.getDateString()}">datum</p>
@@ -71,7 +71,7 @@
         <p th:text="${profile.getRewardPoints()}" id="points">points</p>
     </div>
     <div class="card-columns">
-        <div th:each="reward : ${rewards}" class="card text-dark border-dark">
+        <div th:each="reward : ${rewards}" class="card p-2 border-dark">
             <form th:action="@{|/user/buy-rewards/${profile.getUserId().getId()}/${reward.getId()}}" method="post">
                 <img class="card-img-top" th:src="${reward.getPicture()}" alt="Reward">
                 <div class="card-body">

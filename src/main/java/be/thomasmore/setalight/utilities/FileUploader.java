@@ -8,9 +8,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class FileUploader {
-    @Value("${upload.images.dir}")
-    private String uploadImagesDirString;
-    public String fileUpload(Profile profile, MultipartFile picture) {
+
+//    @Value("${upload.images.dir}")
+//    private String uploadImagesDirString = "${upload.images.dir}";
+
+    public String fileUpload(MultipartFile picture, String uploadImagesDirString) {
         String name = picture.getOriginalFilename();
         File imageFileDir = new File(uploadImagesDirString);
         if (!imageFileDir.exists()) {

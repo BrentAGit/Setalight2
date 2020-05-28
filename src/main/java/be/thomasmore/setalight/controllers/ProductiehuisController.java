@@ -58,7 +58,7 @@ public class ProductiehuisController {
     @GetMapping("/registerProductiehuis")
     public String registerProductiehuis(Principal principal, Model model) {
         AddUser addUser=new AddUser();
-        User user = addUser.addUser(principal,userRepository);
+        User user = addUser.addUser(principal, userRepository);
         model.addAttribute("user", user);
         return "productiehuis/registerProductiehuis";
     }
@@ -85,14 +85,14 @@ public class ProductiehuisController {
         user.setVerified(false);
         userRepository.save(user);
         AutoLogin autoLogin = new AutoLogin();
-        autoLogin.autoLogin(username, password);
+        autoLogin.autoLogin(username, password, authenticationManager);
         return "redirect:/";
     }
 
     @GetMapping("/")
     public String homepageProductiehuis(Principal principal, Model model) {
         AddUser addUser=new AddUser();
-        User user = addUser.addUser(principal,userRepository);
+        User user = addUser.addUser(principal, userRepository);
         model.addAttribute("user", user);
         logger.info(String.format("name=%s",
                 user.getUsername()));
