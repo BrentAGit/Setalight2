@@ -9,10 +9,8 @@
 </head>
 <body>
 <div th:replace="fragments/header">Header</div>
-
-<div class="col-6">
-
 <div class="container">
+<div class="col-6">
     <div>
         <h2 th:text="${event.getName()}">name </h2>
     </div>
@@ -53,46 +51,47 @@
         <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'I am going!'">
     </form>
     </div>
-</div>
+
 
     <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" >
         <a class="btn btn-primary"  th:href="${'/event/edit-event/' + event.getId()}"  href="/edit-event/eventId">edit event</a>
     </div>
-</div>
-<div class="col-6">
-    <br>
-    <div class="row">
-        <p class="col-2">Naam bedrijf:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getNameCompany()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">beschrijving:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getDescription()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">Naam eigenaar:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getNameOwner()}"></p>
-    </div>
-    <h5>Locatie:</h5>
-    <div class="row">
-        <p class="col-2">Procincie:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getProvince()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">Stad:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getCity()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">Straatnaam:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getStreet()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">Postcode:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getPostalCode()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">Huisnummber:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getHouseNumber()}"></p>
+
+        <h4>Productiehuis informatie</h4>
+        <br>
+        <div class="row">
+            <p>Naam bedrijf : </p>
+            <p th:text="${productiehuisProfile.getNameCompany()}"></p>
+        </div>
+        <div class="row">
+            <p>beschrijving : </p>
+            <p  th:text="${productiehuisProfile.getDescription()}"></p>
+        </div>
+        <div class="row">
+            <p >Naam eigenaar : </p>
+            <p  th:text="${productiehuisProfile.getNameOwner()}"></p>
+        </div>
+        <h5>Locatie:</h5>
+        <div class="row">
+            <p >Procincie : </p>
+            <p  th:text="${productiehuisProfile.getProvince()}"></p>
+        </div>
+        <div class="row">
+            <p >Stad : </p>
+            <p  th:text="${productiehuisProfile.getCity()}"></p>
+        </div>
+        <div class="row">
+            <p >Straatnaam : </p>
+            <p  th:text="${productiehuisProfile.getStreet()}"></p>
+        </div>
+        <div class="row">
+            <p >Postcode : </p>
+            <p  th:text="${productiehuisProfile.getPostalCode()}"></p>
+        </div>
+        <div class="row">
+            <p >Huisnummber : </p>
+            <p  th:text="${productiehuisProfile.getHouseNumber()}"></p>
+        </div>
     </div>
 </div>
 
