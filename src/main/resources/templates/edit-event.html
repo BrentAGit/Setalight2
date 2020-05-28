@@ -13,7 +13,7 @@
 <br>
 
 <div class="container">
-<form th:action="@{|/event/edit-event/${event.id}|}" th:method="post">
+<form th:action="@{|/event/edit-event/${event.id}|}" th:method="post" enctype="multipart/form-data>
     <div class="row">
         <label class="col-2" for="name"> Name event:</label>
         <input class="input col-2" type="text" id="name" name="name" th:value="${event.getName()}">

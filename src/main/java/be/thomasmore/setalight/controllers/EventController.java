@@ -6,6 +6,7 @@ import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.ProductiehuisProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
+import be.thomasmore.setalight.utilities.FileUploader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,21 +140,8 @@ public class EventController {
         event.setHouseNumber(houseNumber);
         event.setCreatedBy(user);
         event.setControl(false);
-        String pictureName = picture.getOriginalFilename();
-        if (!pictureName.equals(event.getPicture())) {
-            File imageFileDir = new File(uploadImagesDirString);
-            if (!imageFileDir.exists()) {
-                imageFileDir.mkdirs();
-            }
-            File imageFile = new File(uploadImagesDirString, pictureName);
-            try {
-                picture.transferTo(imageFile);
-                event.setPicture("/" + pictureName);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        FileUploader fileUploader = new FileUploader();
+        event.setPicture(fileUploader.fileUpload(picture,uploadImagesDirString));
         eventRepository.save(event);
 
 
