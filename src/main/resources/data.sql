@@ -38,19 +38,33 @@ INSERT INTO PROFILE (ID, USER_ID_ID, LENGTH, EMAIL, BIRTH_DATE, PROFILE_PICTURE,
     VALUES (nextval('PROFILE_SEQ'), 11, 1.85, 'r0803085@student.thomasmore.be', '1997-02-15', '/img/profilepicture.png', '/img/fullpicture.png', 1);
 
 insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER, TYPE_WANTED)
-    VALUES(nextval('EVENT_SEQ'),4,100,true,'2020-05-22','publiek gezocht voor nieuwe show','15:00','Quarantaine Time','14:00', '2800', 'Mechelen', 'Zandpoortvest', '60','publiek');--,'Zandpoortvest 60, 2800 Mechelen'
+    VALUES(nextval('EVENT_SEQ'),4,100,true,'2020-06-22','publiek gezocht voor nieuwe show','15:00','Quarantaine Time','14:00', '2800', 'Mechelen', 'Zandpoortvest', '60','publiek');
 insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
     VALUES(nextval('EVENT_SEQ'),4,50, true,'2020-07-20','figuranten nodig vor restaurant scene','15:00','Bar Fight','13:00', '2000', 'Antwerpen', 'caféstraat', '10','figurant');
 insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
     VALUES(nextval('EVENT_SEQ'),3,50,true,'2020-06-17','pilot sitcom publiek nodig','15:00','Sitcom','12:00', '1000', 'brussel', 'stadsstraat', '60','publiek');
 
-insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID)
-    values (nextval('productiehuis_Profile_seq'), 'Mickey mouse woont hier', 'Walt Disney', 4);
+insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number)
+    values (nextval('productiehuis_Profile_seq'), 'Mickey mouse woont hier', 'Walt Disney', 4,'Disney','BE 0123.456.789','Brussel','Brussel','disneystraat','1000','121');
+insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number)
+    values (nextval('productiehuis_Profile_seq'), 'vlaamse tv', 'VRT eigenaar', 3,'VRT television','BE 0123.456.789','Brussel','Brussel','vrtstraat','1000','121');
 
 insert into EVENT_USERS(EVENT_ID, USERS_ID)
-    values(1, 1);
+    values(1,6);
 insert into EVENT_USERS(EVENT_ID, USERS_ID)
     values(1, 2);
+insert into EVENT_USERS(EVENT_ID, USERS_ID)
+    values(1, 7);
+insert into EVENT_USERS(EVENT_ID, USERS_ID)
+    values(1, 8);
+insert into EVENT_USERS(EVENT_ID, USERS_ID)
+    values(2, 6);
+insert into EVENT_USERS(EVENT_ID, USERS_ID)
+    values(2, 9);
+insert into EVENT_USERS(EVENT_ID, USERS_ID)
+    values(2, 10);
+insert into EVENT_USERS(EVENT_ID, USERS_ID)
+    values(3, 11);
 
 insert into REWARD(ID, NAME, PICTURE, POINTS)
     values(nextval('reward_seq'), 'Macbook Pro 2018', '/img/MacBook-Pro-2018.jpg', 800);
