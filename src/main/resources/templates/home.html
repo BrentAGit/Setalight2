@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title th:value="${application}">Setalight</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <script src="js/Calender-script.js"></script>
-<!--    add here personal CSS-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
+    <script th:src="@{js/Calender-script.js}" src="js/Calender-script.js"></script>
+    <!--    add here personal CSS-->
 </head>
 <body>
 <div th:replace="fragments/header">Header</div>
@@ -35,9 +35,9 @@
         </div>
     </div>
 
-        <div class="small-calender">
+    <div class="small-calender">
         <div id="header" class="clearfix">
-                <a href="/calender">calender</a>
+            <a href="/calender">calender</a>
             <div class="pre-button"><</div>
             <div class="head-info">
                 <div class="head-day"></div>
