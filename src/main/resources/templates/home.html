@@ -122,7 +122,7 @@
     /*<![CDATA[*/
     let events = /*[[${events}]]*/ 'default'
     /*]]>*/
-    window.onload = function () {
+    document.addEventListener('DOMContentLoaded', function () {
         let header = document.getElementById("head-info");
         let body = document.getElementById("body");
         let pre = document.getElementsByClassName("pre-button");
@@ -134,7 +134,7 @@
             updateEvents(events, header, body)
         });
         updateEvents(events, header, body);
-    }
+    });
 
     const updateEvents = function (events, header, body) {
         let monthYear = header.children[1].innerHTML;
