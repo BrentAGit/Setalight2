@@ -6,6 +6,7 @@ import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.ProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
+import be.thomasmore.setalight.utilities.AddUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +79,11 @@ public class HomeController {
     }
 
     @GetMapping({"/calender"})
-    public String calender(Model model) {
+    public String calender(Principal principal, Model model) {
+        AddUser addUser = new AddUser();
+        Calendar calendar = Calendar.getInstance();
+        model.addAttribute("user", addUser.addUser(principal, userRepository));
+        model.addAttribute("events", eventRepository.findAllByDateAfter(calendar.getTime()));
         return "calender";
     }
 
