@@ -12,6 +12,14 @@
         let events = /*[[${events}]]*/ 'default'
         /*]]>*/
         window.onload = function () {
+            updateEvents();
+            let pre = document.getElementsByClassName("pre-button");
+            let next = document.getElementsByClassName("next-button");
+            pre[0].addEventListener("click", updateEvents);
+            next[0].addEventListener("click", updateEvents);
+        }
+
+        const updateEvents = function () {
             let header = document.getElementById("head-info");
             let body = document.getElementById("body");
             let monthYear = header.children[1].innerHTML;
