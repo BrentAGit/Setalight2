@@ -19,7 +19,7 @@
             let year = monthYear.split("-")[1].replace(/\s+/g, '');
             let today = header.children[0];
             console.log(events[0]);
-            console.log(month);
+            // console.log(year);
             switch (month) {
                 case "Jan":
                     month = "01";
@@ -58,13 +58,15 @@
                     month = "12";
                     break;
             }
-            console.log(month);
-            /*for (let children of body.children) {
+            // console.log(month);
+            for (let children of body.children) {
                 for (let child of children.children) {
-                    // console.log(child);
-                    let childDate = "";
+                    if (child.innerHTML.length !== 0) {
+                        let childDate = year + "-" + month + "-" + child.innerHTML;
+                        console.log(childDate);
+                    }
                 }
-            }*/
+            }
         }
     </script>
     <!--    add here personal CSS-->
