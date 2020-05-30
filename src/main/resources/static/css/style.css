@@ -109,9 +109,29 @@ btn-primary:link {
     color: #ec7969;
 }
 
+/*CSS for small Calender */
+.small-calender {
+    width: 25em;
+    height: 31em;
+    border: 1px solid #c9c9c9;
+    box-shadow: 0 0 5px #c9c9c9;
+    text-align: center;
+    position: absolute;
+    margin-left: 75%;
+    font-size: 100%;
+    line-height: 1.5;
+    background-color: white;
+
+}
+
+.event-cards {
+    margin-left: 11em;
+}
+
 .filterButtons {
     position: absolute;
     padding-left: 65%;
+    padding-top: 30%;
 }
 
 .filterButtons a {
@@ -125,21 +145,6 @@ btn-primary:link {
 
 .filterButtons a:hover {
     color: #EC7969;
-}
-
-/*CSS for small Calender */
-.small-calender {
-    width: 25em;
-    height: 31em;
-    border: 1px solid #c9c9c9;
-    box-shadow: 0 0 5px #c9c9c9;
-    text-align: center;
-    margin: 4em auto;
-    position: relative;
-    font-size: 100%;
-    line-height: 1.5;
-    background-color: white;
-
 }
 
 #header {
