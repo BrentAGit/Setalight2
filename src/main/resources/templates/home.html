@@ -7,6 +7,11 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
     <script th:src="@{js/Calender-script.js}" src="js/Calender-script.js"></script>
+    <script>
+        const eventDates = function (events) {
+            console.log(events)
+        }
+    </script>
     <!--    add here personal CSS-->
 </head>
 <body>
@@ -116,5 +121,11 @@
         </table>
     </div>
 </div>
+<script th:inline="javascript">
+/*<![CDATA[*/
+    let events = /*[[${events}]]*/ 'default'
+    eventDates(events);
+/*]]>*/
+</script>
 </body>
 </html>
