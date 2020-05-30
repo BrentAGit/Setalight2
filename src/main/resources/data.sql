@@ -56,6 +56,9 @@ insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTI
     VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-08-28','figuranten gezocht voor scene thuis ','18:30','Thuis','16:45', '2000', 'Antwerpen', 'breendestraat', '57 A','figurant');
 insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
     VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-07-28','publiek gezocht voor premiere Katchoe ','20:45','Katchoe','19:00', '2000', 'Brussel', 'denkelstraat', '5','publiek');
+insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
+    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-05-31','publiek gezocht voor premiere Katchoe ','20:45','Katchoe','19:00', '2000', 'Brussel', 'denkelstraat', '5','publiek');
+
 
 insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number)
     values (nextval('productiehuis_Profile_seq'), 'Mickey mouse woont hier', 'Walt Disney', 4,'Disney','BE 0123.456.789','Brussel','Brussel','disneystraat','1000','121');
