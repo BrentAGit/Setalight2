@@ -7,79 +7,6 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
     <script th:src="@{js/Calender-script.js}" src="js/Calender-script.js"></script>
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        let events = /*[[${events}]]*/ 'default'
-        /*]]>*/
-        window.onload = function () {
-            updateEvents();
-            let pre = document.getElementsByClassName("pre-button");
-            let next = document.getElementsByClassName("next-button");
-            pre[0].addEventListener("click", updateEvents);
-            next[0].addEventListener("click", updateEvents);
-        }
-
-        const updateEvents = function () {
-            let header = document.getElementById("head-info");
-            let body = document.getElementById("body");
-            let monthYear = header.children[1].innerHTML;
-            let month = monthYear.split("-")[0].replace(/\s+/g, '');
-            let year = monthYear.split("-")[1].replace(/\s+/g, '');
-            let today = header.children[0];
-            console.log(events[0]);
-            switch (month) {
-                case "Jan":
-                    month = "01";
-                    break;
-                case "Feb":
-                    month = "02";
-                    break;
-                case "Maa":
-                    month = "03";
-                    break;
-                case "Apr":
-                    month = "04";
-                    break;
-                case "Mei":
-                    month = "05";
-                    break;
-                case "Jun":
-                    month = "06";
-                    break;
-                case "Jul":
-                    month = "07";
-                    break;
-                case "Aug":
-                    month = "08";
-                    break;
-                case "Sep":
-                    month = "09";
-                    break;
-                case "Okt":
-                    month = "10";
-                    break;
-                case "Nov":
-                    month = "11";
-                    break;
-                case "Dec":
-                    month = "12";
-                    break;
-            }
-            for (let children of body.children) {
-                for (let child of children.children) {
-                    if (child.innerHTML.length !== 0) {
-                        let childDate = year + "-" + month + "-" + child.innerHTML;
-                        for (let event of events) {
-                            let eventDate = event.date.split("T")[0];
-                            if (eventDate === childDate) {
-                                child.className = "eventDay"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <!--    add here personal CSS-->
 </head>
 <body>
@@ -190,7 +117,79 @@
     </div>
 </div>
 <script th:inline="javascript">
-
+    /*<![CDATA[*/
+    let events = /*[[${events}]]*/ 'default'
+    /*]]>*/
+    window.onload = function () {
+        let header = document.getElementById("head-info");
+        let body = document.getElementById("body");
+        updateEvents(events, header, body);
+        let pre = document.getElementsByClassName("pre-button");
+        let next = document.getElementsByClassName("next-button");
+        pre[0].addEventListener("click", () => {
+            updateEvents(events, header, body)
+        });
+        next[0].addEventListener("click", () => {
+            updateEvents(events, header, body)
+        });
+    }
+    const updateEvents = function (events, header, body) {
+        let monthYear = header.children[1].innerHTML;
+        let month = monthYear.split("-")[0].replace(/\s+/g, '');
+        let year = monthYear.split("-")[1].replace(/\s+/g, '');
+        let today = header.children[0];
+        switch (month) {
+            case "Jan":
+                month = "01";
+                break;
+            case "Feb":
+                month = "02";
+                break;
+            case "Maa":
+                month = "03";
+                break;
+            case "Apr":
+                month = "04";
+                break;
+            case "Mei":
+                month = "05";
+                break;
+            case "Jun":
+                month = "06";
+                break;
+            case "Jul":
+                month = "07";
+                break;
+            case "Aug":
+                month = "08";
+                break;
+            case "Sep":
+                month = "09";
+                break;
+            case "Okt":
+                month = "10";
+                break;
+            case "Nov":
+                month = "11";
+                break;
+            case "Dec":
+                month = "12";
+                break;
+        }
+        for (let children of body.children) {
+            for (let child of children.children) {
+                if (child.innerHTML.length !== 0) {
+                    let childDate = year + "-" + month + "-" + child.innerHTML;
+                    for (let event of events) {
+                        let eventDate = event.date.split("T")[0];
+                        if (eventDate === childDate) {
+                            child.className = "eventDay"
+                        }
+                    }
+                }
+            }
+        }
+    }
 </script>
 </body>
 </html>
