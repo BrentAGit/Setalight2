@@ -5,93 +5,108 @@ zwart:#000000
 grijs:#3c3f41
 transparent:rgba(0,0,0,0)
 */
-body{
+body {
     /*background-color: rgb(35, 35, 35);*/
     background-image: url("/img/nsplsh_31494e3957795170353641_mv2_d_5472_3648_s_4_2.jpg");
     background-size: cover;
     color: #ffffff;
 
 }
-h1{
+
+h1 {
     color: #EC7969;
 }
 
-.menu-link{
+.menu-link {
     color: #ffffff;
-    background-color: transparent ;
+    background-color: transparent;
     border: 0;
 }
 
-.menu-link:hover{
+.menu-link:hover {
     color: #EC7969;
     text-decoration: none;
 }
-.menu-link:active{
+
+.menu-link:active {
     color: #EC7969;
     text-decoration: none;
 }
-.input{
+
+.input {
     background-color: #3c3f41;
     border-radius: 5px;
-    color:#ffffff;
+    color: #ffffff;
 }
-.input:focus{
+
+.input:focus {
     color: #EC7969;
 }
-.btn-primary{
+
+.btn-primary {
     background-color: #EC7969;
     border: 2px solid #EC7969;
     color: #000000;
     border-radius: 0px;
 }
-.btn-primary:hover{
-    background-color: rgba(0,0,0,0);
+
+.btn-primary:hover {
+    background-color: rgba(0, 0, 0, 0);
     border-color: #EC7969;
     border: 2px solid;
     color: #EC7969;
 }
-.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
-    background-color: rgba(0,0,0,0);
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+    background-color: rgba(0, 0, 0, 0);
     border-color: #EC7969;
     color: #EC7969;
     box-shadow: none;
 }
-btn-primary:link{
-    background-color: rgba(0,0,0,0);
+
+btn-primary:link {
+    background-color: rgba(0, 0, 0, 0);
     border-color: #EC7969;
     color: #EC7969;
     box-shadow: none;
 }
-.btn-primary:focus{
+
+.btn-primary:focus {
     background-color: #EC7969;
     border-color: #EC7969;
     color: #ffffff;
     box-shadow: none;
 }
-.file-input::-webkit-file-upload-button{
+
+.file-input::-webkit-file-upload-button {
     background-color: #EC7969;
     border: 2px solid #EC7969;
     color: #000000;
     border-radius: 0px;
 }
+
 .file-input::-webkit-file-upload-button:hover {
     background-color: rgba(0, 0, 0, 0);
     border-color: #EC7969;
     border: 2px solid;
     color: #EC7969;
 }
-.login-link-text{
+
+.login-link-text {
     font-size: small;
     display: inline;
 }
-.login-link{
+
+.login-link {
     color: #ec7969;
 }
-.login-link:hover{
+
+.login-link:hover {
     color: #ffffff;
 }
+
 .data {
-    color:#ec7969;
+    color: #ec7969;
 }
 
 .filterButtons {
@@ -112,7 +127,7 @@ btn-primary:link{
     color: #EC7969;
 }
 
- /*CSS for small Calender */
+/*CSS for small Calender */
 .small-calender {
     width: 25em;
     height: 31em;
@@ -123,15 +138,17 @@ btn-primary:link{
     position: relative;
     font-size: 100%;
     line-height: 1.5;
-    background-color:white ;
+    background-color: white;
 
 }
+
 #header {
     font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     height: 14em;
     background-color: #3c3f41;
     margin-bottom: 1em;
 }
+
 .pre-button, .next-button {
     margin-top: 2em;
     font-size: 3em;
@@ -144,16 +161,19 @@ btn-primary:link{
     color: #EC7969;
     border-radius: 50%;
 }
+
 .pre-button:hover, .next-button:hover {
     -webkit-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
 }
-.pre-button:active,.next-button:active{
+
+.pre-button:active, .next-button:active {
     -webkit-transform: scale(0.7);
     -ms-transform: scale(0.7);
     transform: scale(0.7);
 }
+
 .pre-button {
     float: left;
     margin-left: 0.5em;
@@ -163,6 +183,7 @@ btn-primary:link{
     float: right;
 
 }
+
 .head-info {
     float: left;
     width: 16em;
@@ -181,6 +202,7 @@ btn-primary:link{
     line-height: 1;
     color: #fff;
 }
+
 #calendar {
     width: 90%;
     margin: 0 auto;
@@ -190,6 +212,7 @@ btn-primary:link{
     height: 2em;
     line-height: 2em;
 }
+
 thead tr {
     color: #e66b6b;
     font-weight: 700;
@@ -200,11 +223,11 @@ tbody tr {
     color: #252a25;
 }
 
-tbody td{
+tbody td {
     width: 14%;
     cursor: pointer;
-    -webkit-transition:all 0.2s ease-in;
-    transition:all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
 }
 
 tbody td:hover, .selected {
@@ -235,9 +258,11 @@ tbody td:active {
     background: #fff;
     color: #c9c9c9;
 }
+
 table {
     border-spacing: 100px;
 }
+
 .clearfix:before,
 .clearfix:after {
     content: " "; /* 1 */
@@ -251,13 +276,16 @@ table {
 .clearfix {
     *zoom: 1;
 }
+
 a, a:hover {
     text-decoration: none;
 }
+
 .img-responsive {
     max-width: 100%;
     height: auto;
 }
+
 /*CSS for large calendar*/
 .large-calender {
     width: 1000px;
@@ -271,7 +299,12 @@ a, a:hover {
     line-height: 1.5;
     background-color: white;
 }
-.card{
+
+.card {
     background-color: #3c3f41;
     color: #ffffff;
+}
+
+.eventDay {
+    background-color: red;
 }
