@@ -7,9 +7,23 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
     <script th:src="@{js/Calender-script.js}" src="js/Calender-script.js"></script>
-    <script>
-        const eventDates = function (events) {
-            console.log(events)
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        let events = /*[[${events}]]*/ 'default'
+        /*]]>*/
+        window.onload = function () {
+            let header = document.getElementById("head-info");
+            let body = document.getElementById("body");
+            let monthYear = header.children[1];
+            let today = header.children[0];
+            console.log(events[0]);
+            console.log(monthYear.innerHTML);
+            for (let children of body.children) {
+                for (let child of children.children) {
+                    // console.log(child);
+                    let childDate = "";
+                }
+            }
         }
     </script>
     <!--    add here personal CSS-->
@@ -44,7 +58,7 @@
         <div id="header" class="clearfix">
             <a href="/calender">calender</a>
             <div class="pre-button"><</div>
-            <div class="head-info">
+            <div class="head-info" id="head-info">
                 <div class="head-day"></div>
                 <div class="head-month"></div>
             </div>
@@ -62,7 +76,7 @@
                 <th>zo</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="body">
             <tr>
                 <td></td>
                 <td></td>
@@ -122,10 +136,7 @@
     </div>
 </div>
 <script th:inline="javascript">
-/*<![CDATA[*/
-    let events = /*[[${events}]]*/ 'default'
-    eventDates(events);
-/*]]>*/
+
 </script>
 </body>
 </html>
