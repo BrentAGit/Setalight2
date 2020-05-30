@@ -106,7 +106,7 @@ public class UserController {
         model.addAttribute("friends", noFriends);
         model.addAttribute("currentProfile", profile);
         model.addAttribute("user", profile.getUserId());
-        return "/user/addFriends";
+        return "user/addFriends";
     }
 
     @PostMapping("/addFriends/{userId}/{user}")
