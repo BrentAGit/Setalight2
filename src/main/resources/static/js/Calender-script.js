@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     var today = new Date(),
         year = today.getFullYear(),
         month = today.getMonth(),

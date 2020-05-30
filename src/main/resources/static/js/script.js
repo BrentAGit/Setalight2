@@ -30,3 +30,4 @@ function checkPassword(form) {
         return true;
     }
 }
+
