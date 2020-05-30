@@ -14,16 +14,57 @@
         window.onload = function () {
             let header = document.getElementById("head-info");
             let body = document.getElementById("body");
-            let monthYear = header.children[1];
+            let monthYear = header.children[1].innerHTML;
+            let month = monthYear.split("-")[0].replace(/\s+/g, '');
+            let year = monthYear.split("-")[1].replace(/\s+/g, '');
             let today = header.children[0];
             console.log(events[0]);
-            console.log(monthYear.innerHTML);
-            for (let children of body.children) {
+            console.log(month);
+            switch (month) {
+                case "Jan":
+                    month = "01";
+                    break;
+                case "Feb":
+                    month = "02";
+                    break;
+                case "Maa":
+                    month = "03";
+                    break;
+                case "Apr":
+                    month = "04";
+                    break;
+                case "Mei":
+                    month = "05";
+                    break;
+                case "Jun":
+                    month = "06";
+                    break;
+                case "Jul":
+                    month = "07";
+                    break;
+                case "Aug":
+                    month = "08";
+                    break;
+                case "Sep":
+                    month = "09";
+                    break;
+                case "Okt":
+                    month = "10";
+                    break;
+                case "Nov":
+                    month = "11";
+                    break;
+                case "Dec":
+                    month = "12";
+                    break;
+            }
+            console.log(month);
+            /*for (let children of body.children) {
                 for (let child of children.children) {
                     // console.log(child);
                     let childDate = "";
                 }
-            }
+            }*/
         }
     </script>
     <!--    add here personal CSS-->
