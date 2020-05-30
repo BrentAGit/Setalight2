@@ -117,7 +117,7 @@ btn-primary:link {
     box-shadow: 0 0 5px #c9c9c9;
     text-align: center;
     position: absolute;
-    margin-left: 75%;
+    margin: auto auto auto 75%;
     font-size: 100%;
     line-height: 1.5;
     background-color: white;
