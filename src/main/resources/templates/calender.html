@@ -166,14 +166,35 @@
                     for (let event of events) {
                         let eventDate = event.date.split("T")[0];
                         if (eventDate === childDate) {
-                            child.className = "eventDay";
+                            child.className = "eventDay " + event.id;
 
-                            child.addEventListener("mousemove", event => {
+                            const ttBox = document.createElement("div");
+
+// set style
+                            ttBox.id = "eventToolTip " + event.id;
+                            ttBox.style.visibility = "hidden"; // make it hidden till mouse over
+                            ttBox.style.position = "fixed";
+                            ttBox.style.top = "1ex";
+                            ttBox.style.left = "1ex";
+                            ttBox.style.padding = "0.5em";
+                            ttBox.style.width = "30em";
+                            ttBox.style.borderRadius = "1em";
+                            ttBox.style.border = "solid thin gray";
+                            ttBox.style.backgroundColor = "lightgrey";
+
+// insert into DOM
+                            document.body.appendChild(ttBox);
+
+                            child.addEventListener("mouseover", event => {
                                 mouseOver(event);
-                            })
+                            });
+
+                            child.addEventListener("mouseout", event => {
+                                mouseOut(event);
+                            });
                             child.addEventListener("click", () => {
                                 location.assign("/event/events/" + event.id);
-                            })
+                            });
                         }
                     }
                 }
@@ -182,9 +203,28 @@
     }
 
     const mouseOver = function (event) {
-        var x = event.clientX,
-            y = event.clientY;
-        elt = event.path[0];
+        const boundBox = event.target.getBoundingClientRect();
+        const coordX = boundBox.left;
+        const coordY = boundBox.top;
+        let elt = event.path[0];
+        let ttBox = document.getElementById("eventToolTip " + elt.className.split(/\s+/g)[1]);
+
+        // adjust bubble position
+        ttBox.style.left = (coordX + 40).toString() + "px";
+        ttBox.style.top = (coordY + 40).toString() + "px";
+
+        // add bubble content. Can include image or link
+        ttBox.innerHTML = "some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing.";
+
+        // make bubble VISIBLE
+        ttBox.style.visibility = "visible";
+    }
+
+    const mouseOut = function (event) {
+        let elt = event.path[0];
+        let ttBox = document.getElementById("eventToolTip " + elt.className.split(/\s+/g)[1]);
+        ttBox.style.visibility = "hidden";
+        ttBox.innerHTML = "";
     }
 </script>
 </body>
