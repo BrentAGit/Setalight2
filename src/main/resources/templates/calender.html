@@ -98,95 +98,95 @@
         </table>
     </div>
 </div>
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        let events = /*[[${events}]]*/ 'default'
-        /*]]>*/
-        document.addEventListener('DOMContentLoaded', function () {
-            let header = document.getElementById("head-info");
-            let body = document.getElementById("body");
-            let pre = document.getElementsByClassName("pre-button");
-            let next = document.getElementsByClassName("next-button");
-            pre[0].addEventListener("click", () => {
-                updateEvents(events, header, body)
-            });
-            next[0].addEventListener("click", () => {
-                updateEvents(events, header, body)
-            });
-            updateEvents(events, header, body);
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let events = /*[[${events}]]*/ 'default'
+    /*]]>*/
+    document.addEventListener('DOMContentLoaded', function () {
+        let header = document.getElementById("head-info");
+        let body = document.getElementById("body");
+        let pre = document.getElementsByClassName("pre-button");
+        let next = document.getElementsByClassName("next-button");
+        pre[0].addEventListener("click", () => {
+            updateEvents(events, header, body)
         });
+        next[0].addEventListener("click", () => {
+            updateEvents(events, header, body)
+        });
+        updateEvents(events, header, body);
+    });
 
-        const updateEvents = function (events, header, body) {
-            let monthYear = header.children[1].innerHTML;
-            let monthU = monthYear.split("-")[0].replace(/\s+/g, '');
-            let yearU = monthYear.split("-")[1].replace(/\s+/g, '');
-            let today = header.children[0];
-            switch (monthU) {
-                case "Jan":
-                    monthU = "01";
-                    break;
-                case "Feb":
-                    monthU = "02";
-                    break;
-                case "Maa":
-                    monthU = "03";
-                    break;
-                case "Apr":
-                    monthU = "04";
-                    break;
-                case "Mei":
-                    monthU = "05";
-                    break;
-                case "Jun":
-                    monthU = "06";
-                    break;
-                case "Jul":
-                    monthU = "07";
-                    break;
-                case "Aug":
-                    monthU = "08";
-                    break;
-                case "Sep":
-                    monthU = "09";
-                    break;
-                case "Okt":
-                    monthU = "10";
-                    break;
-                case "Nov":
-                    monthU = "11";
-                    break;
-                case "Dec":
-                    monthU = "12";
-                    break;
-            }
-            for (let children of body.children) {
-                for (let child of children.children) {
-                    if (child.innerHTML.length !== 0) {
-                        let childDate = yearU + "-" + monthU + "-" + child.innerHTML;
-                        for (let event of events) {
-                            let eventDate = event.date.split("T")[0];
-                            if (eventDate === childDate) {
-                                child.className = "eventDay";
+    const updateEvents = function (events, header, body) {
+        let monthYear = header.children[1].innerHTML;
+        let monthU = monthYear.split("-")[0].replace(/\s+/g, '');
+        let yearU = monthYear.split("-")[1].replace(/\s+/g, '');
+        let today = header.children[0];
+        switch (monthU) {
+            case "Jan":
+                monthU = "01";
+                break;
+            case "Feb":
+                monthU = "02";
+                break;
+            case "Maa":
+                monthU = "03";
+                break;
+            case "Apr":
+                monthU = "04";
+                break;
+            case "Mei":
+                monthU = "05";
+                break;
+            case "Jun":
+                monthU = "06";
+                break;
+            case "Jul":
+                monthU = "07";
+                break;
+            case "Aug":
+                monthU = "08";
+                break;
+            case "Sep":
+                monthU = "09";
+                break;
+            case "Okt":
+                monthU = "10";
+                break;
+            case "Nov":
+                monthU = "11";
+                break;
+            case "Dec":
+                monthU = "12";
+                break;
+        }
+        for (let children of body.children) {
+            for (let child of children.children) {
+                if (child.innerHTML.length !== 0) {
+                    let childDate = yearU + "-" + monthU + "-" + child.innerHTML;
+                    for (let event of events) {
+                        let eventDate = event.date.split("T")[0];
+                        if (eventDate === childDate) {
+                            child.className = "eventDay";
 
-                                child.addEventListener("mousemove", event => {
-                                    mouseOver(event);
-                                })
-                                child.addEventListener("click", () => {
-                                    location.assign("/event/events/" + event.id);
-                                })
-                            }
+                            child.addEventListener("mousemove", event => {
+                                mouseOver(event);
+                            })
+                            child.addEventListener("click", () => {
+                                location.assign("/event/events/" + event.id);
+                            })
                         }
                     }
                 }
             }
         }
+    }
 
-        const mouseOver = function (event) {
-            var x = event.clientX,
-                y = event.clientY;
-            elt = event.path[0];
-        }
-    </script>
+    const mouseOver = function (event) {
+        var x = event.clientX,
+            y = event.clientY;
+        elt = event.path[0];
+    }
+</script>
 </body>
 </html>
 <!--
