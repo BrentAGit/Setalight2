@@ -214,7 +214,22 @@
         ttBox.style.top = (coordY + 40).toString() + "px";
 
         // add bubble content. Can include image or link
-        ttBox.innerHTML = "some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing some thing.";
+        let eventFromDb = {};
+        for (let obj of events) {
+            if (obj.id.toString() === elt.className.split(/\s+/g)[1]) {
+                eventFromDb = obj;
+            }
+        }
+        let h3 = document.createElement("h3");
+        h3.textContent = eventFromDb.name;
+        let pDescription = document.createElement("p");
+        pDescription.textContent = eventFromDb.description;
+        let pStart = document.createElement("p");
+        pStart.textContent = "start tijd: " +  eventFromDb.startTime;
+        let pEnd = document.createElement("p");
+        pEnd.textContent = "eind tijd: " +  eventFromDb.endTime;
+        ttBox.append(h3, pDescription, pStart, pEnd);
+        console.log(ttBox);
 
         // make bubble VISIBLE
         ttBox.style.visibility = "visible";
