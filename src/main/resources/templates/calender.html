@@ -170,7 +170,6 @@
 
                             const ttBox = document.createElement("div");
 
-// set style
                             ttBox.id = "eventToolTip " + event.id;
                             ttBox.style.visibility = "hidden"; // make it hidden till mouse over
                             ttBox.style.position = "fixed";
@@ -182,7 +181,6 @@
                             ttBox.style.border = "solid thin gray";
                             ttBox.style.backgroundColor = "lightgrey";
 
-// insert into DOM
                             document.body.appendChild(ttBox);
 
                             child.addEventListener("mouseover", event => {
@@ -209,7 +207,6 @@
         let elt = event.path[0];
         let ttBox = document.getElementById("eventToolTip " + elt.className.split(/\s+/g)[1]);
 
-        // adjust bubble position
         ttBox.style.left = (coordX + 40).toString() + "px";
         ttBox.style.top = (coordY + 40).toString() + "px";
 
@@ -229,9 +226,7 @@
         let pEnd = document.createElement("p");
         pEnd.textContent = "eind tijd: " +  eventFromDb.endTime;
         ttBox.append(h3, pDescription, pStart, pEnd);
-        console.log(ttBox);
 
-        // make bubble VISIBLE
         ttBox.style.visibility = "visible";
     }
 
@@ -244,6 +239,3 @@
 </script>
 </body>
 </html>
-<!--
-
--->
