@@ -23,7 +23,7 @@
                     <h3 th:text="${reward.getName()}"></h3>
                     <p th:text="'prijs: ' + ${reward.getPoints()} + ' punten'" id="reward-points"></p>
                 </div>
-                <div th:if="${profile.getRewardPoints()} > ${reward.getPoints()}" class="card-footer">
+                <div th:if="${profile.getRewardPoints()} >= ${reward.getPoints()}" class="card-footer">
                     <input type="submit" value="buy">
                 </div>
             </form>
