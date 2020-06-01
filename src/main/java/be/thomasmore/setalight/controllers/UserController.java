@@ -8,6 +8,7 @@ import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.ProfileRepository;
 import be.thomasmore.setalight.repositories.RewardRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
+import be.thomasmore.setalight.utilities.AddUser;
 import be.thomasmore.setalight.utilities.AutoLogin;
 import be.thomasmore.setalight.utilities.FileUploader;
 import org.slf4j.Logger;
@@ -30,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.Entity;
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -156,7 +158,7 @@ public class UserController {
     }
 
     @GetMapping("/rewards/{userId}")
-    public String rewards(@PathVariable int userId, Model model)
+    public String rewards(@PathVariable int userId, Model model, Principal principal)
     {
         Profile profile = getProfile(userId);
         ArrayList<Reward> rewardsFromDb = (ArrayList<Reward>) rewardRepository.findAll();
@@ -166,6 +168,8 @@ public class UserController {
                 rewards.add(reward);
             }
         }
+        AddUser adduser = new AddUser();
+        model.addAttribute("user", adduser.addUser(principal, userRepository));
         model.addAttribute("rewards", rewards);
         model.addAttribute("profile", profile);
         return "user/rewardPage";
