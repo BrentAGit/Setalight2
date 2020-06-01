@@ -98,6 +98,7 @@
         </table>
     </div>
 </div>
+<div id="event"></div>
 <script th:inline="javascript">
     /*<![CDATA[*/
     let events = /*[[${events}]]*/ 'default'
@@ -117,6 +118,7 @@
     });
 
     const updateEvents = function (events, header, body) {
+        document.getElementById("event").innerHTML = "";
         let monthYear = header.children[1].innerHTML;
         let monthU = monthYear.split("-")[0].replace(/\s+/g, '');
         let yearU = monthYear.split("-")[1].replace(/\s+/g, '');
@@ -181,7 +183,7 @@
                             ttBox.style.border = "solid thin gray";
                             ttBox.style.backgroundColor = "lightgrey";
 
-                            document.body.appendChild(ttBox);
+                            document.getElementById("event").append(ttBox);
 
                             child.addEventListener("mouseover", event => {
                                 mouseOver(event);
