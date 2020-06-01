@@ -152,7 +152,7 @@ public class UserController {
         profile.getBoughtRewards().add(reward);
         profileRepository.save(profile);
         rewardRepository.save(reward);
-        return "redirect:/user/profilepage/" + userId;
+        return "redirect:/user/rewards/" + userId;
     }
 
     @GetMapping("/rewards/{userId}")
