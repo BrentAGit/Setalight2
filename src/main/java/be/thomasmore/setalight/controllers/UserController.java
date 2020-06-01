@@ -8,6 +8,7 @@ import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.ProfileRepository;
 import be.thomasmore.setalight.repositories.RewardRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
+import be.thomasmore.setalight.utilities.AddUser;
 import be.thomasmore.setalight.utilities.AutoLogin;
 import be.thomasmore.setalight.utilities.FileUploader;
 import org.slf4j.Logger;
@@ -30,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.Entity;
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -62,19 +64,11 @@ public class UserController {
         Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
         Profile profile = new Profile();
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
-        ArrayList<Reward> rewardsFromDb = (ArrayList<Reward>) rewardRepository.findAll();
-        ArrayList<Reward> rewards = new ArrayList<>();
-        for (Reward reward : rewardsFromDb) {
-            if (!profile.getBoughtRewards().contains(reward)) {
-                rewards.add(reward);
-            }
-        }
         Calendar calendar = Calendar.getInstance();
         List<Event> eventsFromDb = eventRepository.findAllByUsersAndDateAfter(user, calendar.getTime());
         model.addAttribute("user", user);
         model.addAttribute("profile", profile);
         model.addAttribute("events", eventsFromDb);
-        model.addAttribute("rewards", rewards);
         return "user/profilepage";
     }
 
@@ -160,7 +154,25 @@ public class UserController {
         profile.getBoughtRewards().add(reward);
         profileRepository.save(profile);
         rewardRepository.save(reward);
-        return "redirect:/user/profilepage/" + userId;
+        return "redirect:/user/rewards/" + userId;
+    }
+
+    @GetMapping("/rewards/{userId}")
+    public String rewards(@PathVariable int userId, Model model, Principal principal)
+    {
+        Profile profile = getProfile(userId);
+        ArrayList<Reward> rewardsFromDb = (ArrayList<Reward>) rewardRepository.findAll();
+        ArrayList<Reward> rewards = new ArrayList<>();
+        for (Reward reward : rewardsFromDb) {
+            if (!profile.getBoughtRewards().contains(reward)) {
+                rewards.add(reward);
+            }
+        }
+        AddUser adduser = new AddUser();
+        model.addAttribute("user", adduser.addUser(principal, userRepository));
+        model.addAttribute("rewards", rewards);
+        model.addAttribute("profile", profile);
+        return "user/rewardPage";
     }
 
     private Profile getProfile(int userId) {

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rewards</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
+</head>
+<body>
+<div th:replace="fragments/header">Header</div>
+<div class="container rewards">
+    <div class="row">
+        <div class="col-1">
+            <h3>Rewards</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p th:text="'Totaal aantal punten: ' + ${profile.getRewardPoints()}" id="points">punten</p>
+        </div>
+    </div>
+    <div class="card-columns">
+        <div th:each="reward : ${rewards}" class="card p-2 border-dark">
+            <form th:action="@{|/user/buy-rewards/${profile.getUserId().getId()}/${reward.getId()}}" method="post">
+                <img class="card-img-top" th:src="${reward.getPicture()}" alt="Reward">
+                <div class="card-body">
+                    <h3 th:text="${reward.getName()}"></h3>
+                    <p th:text="'prijs: ' + ${reward.getPoints()} + ' punten'" id="reward-points"></p>
+                </div>
+                <div th:if="${profile.getRewardPoints()} >= ${reward.getPoints()}" class="card-footer">
+                    <input type="submit" value="buy">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

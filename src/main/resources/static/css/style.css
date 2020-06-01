@@ -315,3 +315,7 @@ a, a:hover {
 .eventDay {
     background-color: red;
 }
+
+.rewards .row .col-1 h3 , .rewards .row .col-12 p{
+    margin-top:10px;
+}
