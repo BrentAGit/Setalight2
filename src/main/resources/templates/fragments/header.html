@@ -44,7 +44,9 @@
         <div sec:authorize="hasAnyAuthority('ADMIN')" class="col-1">
             <a class="menu-link" href="/admin/verifyproductiehuis">productiehuizen</a>
         </div>
-
+        <div sec:authorize="hasAnyAuthority('ADMIN' , 'USER')" class="col-1">
+            <a class="menu-link" href="/" th:href="'/user/rewards/' + ${user.getId()}"> rewards </a>
+        </div>
 
         <!--            Add here extra stuff for when some one is logged in-->
     </div>
