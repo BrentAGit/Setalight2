@@ -8,12 +8,17 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
 </head>
 <body>
+<div th:replace="fragments/header">Header</div>
 <div class="container rewards">
     <div class="row">
-        <h3>Rewards</h3>
+        <div class="col-1">
+            <h3>Rewards</h3>
+        </div>
     </div>
     <div class="row">
-        <p th:text="'Totaal aantal punten: ' + ${profile.getRewardPoints()}" id="points">punten</p>
+        <div class="col-12">
+            <p th:text="'Totaal aantal punten: ' + ${profile.getRewardPoints()}" id="points">punten</p>
+        </div>
     </div>
     <div class="card-columns">
         <div th:each="reward : ${rewards}" class="card p-2 border-dark">
