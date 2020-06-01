@@ -62,19 +62,11 @@ public class UserController {
         Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
         Profile profile = new Profile();
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
-        ArrayList<Reward> rewardsFromDb = (ArrayList<Reward>) rewardRepository.findAll();
-        ArrayList<Reward> rewards = new ArrayList<>();
-        for (Reward reward : rewardsFromDb) {
-            if (!profile.getBoughtRewards().contains(reward)) {
-                rewards.add(reward);
-            }
-        }
         Calendar calendar = Calendar.getInstance();
         List<Event> eventsFromDb = eventRepository.findAllByUsersAndDateAfter(user, calendar.getTime());
         model.addAttribute("user", user);
         model.addAttribute("profile", profile);
         model.addAttribute("events", eventsFromDb);
-        model.addAttribute("rewards", rewards);
         return "user/profilepage";
     }
 
@@ -161,6 +153,22 @@ public class UserController {
         profileRepository.save(profile);
         rewardRepository.save(reward);
         return "redirect:/user/profilepage/" + userId;
+    }
+
+    @GetMapping("/rewards/{userId}")
+    public String rewards(@PathVariable int userId, Model model)
+    {
+        Profile profile = getProfile(userId);
+        ArrayList<Reward> rewardsFromDb = (ArrayList<Reward>) rewardRepository.findAll();
+        ArrayList<Reward> rewards = new ArrayList<>();
+        for (Reward reward : rewardsFromDb) {
+            if (!profile.getBoughtRewards().contains(reward)) {
+                rewards.add(reward);
+            }
+        }
+        model.addAttribute("rewards", rewards);
+        model.addAttribute("profile", profile);
+        return "user/rewardPage";
     }
 
     private Profile getProfile(int userId) {
