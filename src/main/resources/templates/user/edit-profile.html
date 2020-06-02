@@ -41,11 +41,13 @@
         <br>
         <div class="row">
             <label class="col-2" for="profilePicture">profielfoto: </label>
+            <img class="currentImage" th:src="${profile.getProfilePicture()}">
             <input class="col-4 file-input" type="file" name="profilePicture" id="profilePicture" th:value="${profile.getProfilePicture()}">
         </div>
         <br>
         <div class="row">
             <label class="col-2" for="fullPicture">volledig lichaam foto: </label>
+            <img class="currentImage" th:src="${profile.getFullPicture()}">
             <input class="col-4 file-input" type="file" name="fullPicture" id="fullPicture" th:value="${profile.getFullPicture()}">
         </div>
         <br>
