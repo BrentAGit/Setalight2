@@ -14,7 +14,7 @@
 <br>
 
 <div class="container">
-<form th:action="@{|/event/edit-event/${event.id}|}" th:method="post" enctype="multipart/form-data>
+<form th:action="@{|/event/edit-event/${event.id}|}" th:method="post" enctype="multipart/form-data">
     <div class="row">
         <label class="col-2" for="name"> Name event:</label>
         <input class="input col-2" type="text" id="name" name="name" th:value="${event.getName()}">
@@ -81,8 +81,7 @@
         <input class="btn btn-primary" type="submit" value="Save" >
         <a class="btn btn-primary" href="/" >cancel</a>
     </div>
-</form>
-
 </div>
+</form>
 </body>
 </html>
