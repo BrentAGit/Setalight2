@@ -17,11 +17,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
@@ -50,8 +52,13 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/user/register")
-    public String registerUser(Model model) {
+    @GetMapping({"/user/register", "/user/register/error/{errorName}"})
+    public String registerUser(@PathVariable(required = false) String errorName, Model model) {
+        if (!(errorName == null)) {
+            model.addAttribute("userName", true);
+        } else {
+            model.addAttribute("userName", false);
+        }
         return "user/register";
     }
 
@@ -80,20 +87,31 @@ public class LoginController {
             profile.setHairColor(hairColor);
             profile.setLength(length);
             profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-            FileUploader fileUploader= new FileUploader();
+            FileUploader fileUploader = new FileUploader();
             profile.setProfilePicture(fileUploader.fileUpload(profilePicture, uploadImagesDirString));
             profile.setFullPicture(fileUploader.fileUpload(fullPicture, uploadImagesDirString));
         }
-        userRepository.save(user);
-        profileRepository.save(profile);
-        AutoLogin autoLogin = new AutoLogin();
-        autoLogin.autoLogin(username, password, authenticationManager);
+        ArrayList<User> users = (ArrayList<User>) userRepository.findAll();
+        boolean exists = false;
+        for (User userFromDb : users) {
+            if (userFromDb.getUsername().equals(user.getUsername())) {
+                exists = true;
+            }
+        }
+        if (!exists) {
+            userRepository.save(user);
+            profileRepository.save(profile);
+            AutoLogin autoLogin = new AutoLogin();
+            autoLogin.autoLogin(username, password, authenticationManager);
+        } else {
+            return "redirect:/user/register/error/name";
+        }
         return "redirect:/";
     }
 
     @GetMapping("/productiehuis/registerProductiehuis")
     public String registerProductiehuis(Principal principal, Model model) {
-        AddUser addUser=new AddUser();
+        AddUser addUser = new AddUser();
         User user = addUser.addUser(principal, userRepository);
         model.addAttribute("user", user);
         return "productiehuis/registerProductiehuis";

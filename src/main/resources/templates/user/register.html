@@ -7,7 +7,7 @@
     <title>register new user</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
-    <script th:src="@{js/script.js}" src="/js/script.js"></script>
+    <script th:src="@{/js/script.js}" src="/js/script.js"></script>
     <style>
         .container {
             margin-left: 50px;
@@ -33,6 +33,7 @@
         </h1>
         <label for="username">Gebruikersnaam:</label>
         <input class="m-lg-1 input" type="text" name="username" id="username" required><br>
+        <p th:if="${userName}">De gekozen gebruikersnaam is al in gebruik gelieve een andere te gebruiken</p><br th:if="${userName}">
         <label for="password">Wachtwoord:</label>
         <input class="m-lg-1 input" type="password" name="password" id="password" required>
         <p style="display: none" id="noPassword" class="fault">
