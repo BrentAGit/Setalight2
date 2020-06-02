@@ -25,6 +25,9 @@
     </style>
 </head>
 <body>
+<div class="offset-lg-2 col-lg-6">
+    <div th:replace="fragments/header"></div>
+</div>
 <div class="offset-lg-3 col-lg-6">
     <form th:action="@{/user/register}" method="post" enctype="multipart/form-data"
           onsubmit="return checkPassword(this)">
@@ -71,7 +74,8 @@
             <div class="col-4">
                 <div class="row">
                     <input class="m-lg-1 input" type="text" name="username" id="username" required><br>
-                    <p th:if="${userName}">De gekozen gebruikersnaam is al in gebruik gelieve een andere te gebruiken</p><br th:if="${userName}">
+                    <p th:if="${userName}">De gekozen gebruikersnaam is al in gebruik gelieve een andere te
+                        gebruiken</p><br th:if="${userName}">
                 </div>
                 <div class="row">
                     <input class="m-lg-1 input" type="password" name="password" id="password" required>
@@ -111,8 +115,10 @@
                 </div>
             </div>
         </div>
-        <input class="btn btn-primary m-lg-1" type="submit" name="register" id="register" value="Register">
-        <p class="login-link-text">Heb je al een account?<a class="login-link" th:href="|/login|">klik hier</a></p>
+        <div class="row">
+            <input class="btn btn-primary m-lg-1" type="submit" name="register" id="register" value="Register">
+            <p class="login-link-text">Heb je al een account?<a class="login-link" th:href="|/login|">klik hier</a></p>
+        </div>
     </form>
 </div>
 
