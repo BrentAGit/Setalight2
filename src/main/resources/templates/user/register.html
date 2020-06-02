@@ -28,39 +28,89 @@
 <div class="offset-lg-3 col-lg-6">
     <form th:action="@{/user/register}" method="post" enctype="multipart/form-data"
           onsubmit="return checkPassword(this)">
-        <h1>
-            REGISTER
-        </h1>
-        <label for="username">Gebruikersnaam:</label>
-        <input class="m-lg-1 input" type="text" name="username" id="username" required><br>
-        <p th:if="${userName}">De gekozen gebruikersnaam is al in gebruik gelieve een andere te gebruiken</p><br th:if="${userName}">
-        <label for="password">Wachtwoord:</label>
-        <input class="m-lg-1 input" type="password" name="password" id="password" required>
-        <p style="display: none" id="noPassword" class="fault">
-            You didn't enter a password
-        </p>
-        <br><label for="rePassword">Bevestig wachtwoord:</label>
-        <input class="m-lg-1 input" type="password" id="rePassword" name="rePassword" required>
-        <p style="display: none" id="noConfirmPassword" class="fault">
-            you din't confirm your password
-        </p>
-        <p style="display: none" id="noMatch" class="fault">
-            passwords don't match
-        </p>
-        <br><label for="birthDate">Geboortedatum:</label>
-        <input class="m-lg-1 input" type="date" name="birthDate" id="birthDate"><br>
-        <label for="email">Email:</label>
-        <input class="m-lg-1 input" type="text" name="email" id="email"><br>
-        <label for="hairColor">Haarkleur:</label>
-        <input class="m-lg-1 input" type="text" name="hairColor" id="hairColor"><br>
-        <label for="profilePicture">Profiel foto:</label>
-        <input class="file-input m-lg-1" type="file" name="profilePicture" id="profilePicture"><br>
-        <label for="fullPicture">Volledige foto:</label>
-        <input class="file-input m-lg-1" type="file" name="fullPicture" id="fullPicture"><br>
-        <label for="length">Lengte in Meter:</label>
-        <input class="m-lg-1 input" type="number" name="length" id="length" step="0.01"><br>
-        <label for="nationalInsuranceNumber">Rijksregisternummer:</label>
-        <input class="m-lg-1 input" type="text" name="nationalInsuranceNumber" id="nationalInsuranceNumber"><br>
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>
+                    REGISTER
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 input-label">
+                <div class="row">
+                    <label for="username">Gebruikersnaam:</label>
+                </div>
+                <div class="row">
+                    <label for="password">Wachtwoord:</label>
+                </div>
+                <div class="row">
+                    <label for="rePassword">Bevestig wachtwoord:</label>
+                </div>
+                <div class="row">
+                    <label for="birthDate">Geboortedatum:</label>
+                </div>
+                <div class="row">
+                    <label for="email">Email:</label>
+                </div>
+                <div class="row">
+                    <label for="hairColor">Haarkleur:</label>
+                </div>
+                <div class="row">
+                    <label for="profilePicture">Profiel foto:</label>
+                </div>
+                <div class="row">
+                    <label for="fullPicture">Volledige foto:</label>
+                </div>
+                <div class="row">
+                    <label for="length">Lengte in Meter:</label>
+                </div>
+                <div class="row">
+                    <label for="nationalInsuranceNumber">Rijksregisternummer:</label>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <input class="m-lg-1 input" type="text" name="username" id="username" required><br>
+                    <p th:if="${userName}">De gekozen gebruikersnaam is al in gebruik gelieve een andere te gebruiken</p><br th:if="${userName}">
+                </div>
+                <div class="row">
+                    <input class="m-lg-1 input" type="password" name="password" id="password" required>
+                    <p style="display: none" id="noPassword" class="fault">
+                        You didn't enter a password
+                    </p>
+                </div>
+                <div class="row">
+                    <input class="m-lg-1 input" type="password" id="rePassword" name="rePassword" required>
+                    <p style="display: none" id="noConfirmPassword" class="fault">
+                        you din't confirm your password
+                    </p>
+                    <p style="display: none" id="noMatch" class="fault">
+                        passwords don't match
+                    </p>
+                </div>
+                <div class="row">
+                    <input class="m-lg-1 input" type="date" name="birthDate" id="birthDate">
+                </div>
+                <div class="row">
+                    <input class="m-lg-1 input" type="text" name="email" id="email">
+                </div>
+                <div class="row">
+                    <input class="m-lg-1 input" type="text" name="hairColor" id="hairColor">
+                </div>
+                <div class="row">
+                    <input class="file-input m-lg-1" type="file" name="profilePicture" id="profilePicture">
+                </div>
+                <div class="row">
+                    <input class="file-input m-lg-1" type="file" name="fullPicture" id="fullPicture">
+                </div>
+                <div class="row">
+                    <input class="m-lg-1 input" type="number" name="length" id="length" step="0.01">
+                </div>
+                <div class="row">
+                    <input class="m-lg-1 input" type="text" name="nationalInsuranceNumber" id="nationalInsuranceNumber">
+                </div>
+            </div>
+        </div>
         <input class="btn btn-primary m-lg-1" type="submit" name="register" id="register" value="Register">
         <p class="login-link-text">Heb je al een account?<a class="login-link" th:href="|/login|">klik hier</a></p>
     </form>
