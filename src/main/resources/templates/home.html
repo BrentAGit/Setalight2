@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
     <script th:inline="javascript" type="text/javascript" th:src="@{/js/Calender-script.js}" src="/js/Calender-script.js"></script>
+
+
+
     <!--    add here personal CSS-->
 </head>
 <body>
@@ -122,7 +125,7 @@
     /*<![CDATA[*/
     let events = /*[[${events}]]*/ 'default'
     /*]]>*/
-    document.addEventListener('DOMContentLoaded', function () {
+    window.addEventListener("DOMContentLoaded", () => {
         let header = document.getElementById("head-info");
         let body = document.getElementById("body");
         let pre = document.getElementsByClassName("pre-button");
@@ -136,7 +139,10 @@
         updateEvents(events, header, body);
     });
 
+
+
     const updateEvents = function (events, header, body) {
+        document.getElementById("event").innerHTML = "";
         let monthYear = header.children[1].innerHTML;
         let monthU = monthYear.split("-")[0].replace(/\s+/g, '');
         let yearU = monthYear.split("-")[1].replace(/\s+/g, '');
@@ -186,16 +192,85 @@
                     for (let event of events) {
                         let eventDate = event.date.split("T")[0];
                         if (eventDate === childDate) {
-                            child.className = "eventDay"
+                            child.className = "eventDay " + event.id;
+                            const ttBox = document.createElement("div");
+                            ttBox.id = "eventToolTip " + event.id;
+                            ttBox.style.visibility = "hidden"; // make it hidden till mouse over
+                            ttBox.style.position = "fixed";
+                            ttBox.style.top = "1ex";
+                            ttBox.style.left = "1ex";
+                            ttBox.style.padding = "0.5em";
+                            ttBox.style.width = "30em";
+                            ttBox.style.borderRadius = "1em";
+                            ttBox.style.border = "solid thin gray";
+                            ttBox.style.backgroundColor = "lightgrey";
+                            document.getElementById("event").append(ttBox);
+                            child.addEventListener("mouseover", event => {
+                                mouseOver(event);
+                            });
+                            child.addEventListener("mouseout", event => {
+                                mouseOut(event);
+                            });
                             child.addEventListener("click", () => {
                                 location.assign("/event/events/" + event.id);
-                            })
+                            });
                         }
                     }
                 }
             }
         }
     }
+
+    const mouseOver = function (event) {
+        const boundBox = event.target.getBoundingClientRect();
+        const coordX = boundBox.left;
+        const coordY = boundBox.top;
+        let elt = event.path[0];
+        let ttBox = document.getElementById("eventToolTip " + elt.className.split(/\s+/g)[1]);
+        ttBox.style.left = (coordX + 40).toString() + "px";
+        ttBox.style.top = (coordY + 40).toString() + "px";
+        let eventFromDb = findEvent(events, elt);
+        let h3 = document.createElement("h3");
+        h3.textContent = eventFromDb.name;
+        let pDescription = document.createElement("p");
+        pDescription.textContent = eventFromDb.description;
+        let pStart = document.createElement("p");
+        pStart.textContent = "start tijd: " +  eventFromDb.startTime;
+        let pEnd = document.createElement("p");
+        pEnd.textContent = "eind tijd: " +  eventFromDb.endTime;
+        ttBox.append(h3, pDescription, pStart, pEnd);
+        if (ttBox.children.length > 4) {
+            ttBox.innerHTML = "";
+            let h3 = document.createElement("h3");
+            h3.textContent = eventFromDb.name;
+            let pDescription = document.createElement("p");
+            pDescription.textContent = eventFromDb.description;
+            let pStart = document.createElement("p");
+            pStart.textContent = "start tijd: " +  eventFromDb.startTime;
+            let pEnd = document.createElement("p");
+            pEnd.textContent = "eind tijd: " +  eventFromDb.endTime;
+            ttBox.append(h3, pDescription, pStart, pEnd);
+        }
+        ttBox.style.visibility = "visible";
+
+    }
+
+    const mouseOut = function (event) {
+        let elt = event.path[0];
+        let ttBox = document.getElementById("eventToolTip " + elt.className.split(/\s+/g)[1]);
+        ttBox.style.visibility = "hidden";
+        ttBox.innerHTML = "";
+    }
+
+    const findEvent = function (events, elt) {
+
+        for (let obj of events) {
+            if (obj.id.toString() === elt.className.split(/\s+/g)[1]) {
+                return obj;
+            }
+        }
+    }
 </script>
+<div id="event"></div>
 </body>
 </html>
