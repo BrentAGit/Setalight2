@@ -6,99 +6,400 @@
     <title>weekCalendar</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<div th:replace="fragments/header"></div>
 <div class="container">
     <div class="row">
-        //extra data
+        <div class="col-4">
+
+        </div>
+        <div class="col-1" id="pre">
+            <button class="button"><p>vorige week</p></button>
+        </div>
+        <div class="col-1" id="today"></div>
+        <div class="col-1" id="next">
+            <button class="button"><p>volgende week</p></button>
+        </div>
+        <div class="col-4"></div>
     </div>
-    <div class="row">
-        <div class="col">
+    <div class="row week-calender">
+        <div class="col-12">
             <div class="row">
-                <p>week of month</p>
+                <div class="col-md">
+                    <p>week of month</p>
+                </div>
+                <div class="col-md">
+                    <p>Maa</p>
+                </div>
+                <div class="col-md">
+                    <p>Din</p>
+                </div>
+                <div class="col-md">
+                    <p>Woe</p>
+                </div>
+                <div class="col-md">
+                    <p>Don</p>
+                </div>
+                <div class="col-md">
+                    <p>Vrij</p>
+                </div>
+                <div class="col-md">
+                    <p>Zat</p>
+                </div>
+                <div class="col-md">
+                    <p>Zon</p>
+                </div>
+
             </div>
-            <div class="row">
-                <p>9:00</p>
-            </div>
-            <div class="row">
-                <p>10:00</p>
-            </div>
-            <div class="row">
-                <p>11:00</p>
-            </div>
-            <div class="row">
-                <p>12:00</p>
-            </div>
-            <div class="row">
-                <p>13:00</p>
-            </div>
-            <div class="row">
-                <p>14:00</p>
-            </div>
-            <div class="row">
-                <p>15:00</p>
-            </div>
-            <div class="row">
-                <P>16:00</P>
-            </div>
-            <div class="row">
-                <p>17:00</p>
-            </div>
-            <div class="row">
-                <p>18:00</p>
-            </div>
-            <div class="row">
-                <p>19:00</p>
-            </div>
-            <div class="row">
-                <p>20:00</p>
-            </div>
-            <div class="row">
-                <p>21:00</p>
-            </div>
-            <div class="row">
-                <p>22:00</p>
-            </div>
-            <div class="row">
-                <p>23:00</p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="row">
-                <p>Maa</p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="row">
-                <p>Din</p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="row">
-                <p>Woe</p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="row">
-                <p>Don</p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="row">
-                <p>Vrij</p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="row">
-                <p>Zat</p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="row">
-                <p>Zon</p>
+            <div id="events">
+                <div class="row 9">
+                    <div class="col-md">
+                        <p>9:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 10">
+                    <div class="col-md">
+                        <p>10:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 11">
+                    <div class="col-md">
+                        <p>11:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 12">
+                    <div class="col-md">
+                        <p>12:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 13">
+                    <div class="col-md">
+                        <p>13:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 14">
+                    <div class="col-md">
+                        <p>14:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 15">
+                    <div class="col-md">
+                        <p>15:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 16">
+                    <div class="col-md">
+                        <p>16:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 17">
+                    <div class="col-md">
+                        <p>17:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 18">
+                    <div class="col-md">
+                        <p>18:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 19">
+                    <div class="col-md">
+                        <p>19:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 20">
+                    <div class="col-md">
+                        <p>20:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 21">
+                    <div class="col-md">
+                        <p>21:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 22">
+                    <div class="col-md">
+                        <p>22:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 23">
+                    <div class="col-md">
+                        <p>23:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
+                <div class="row 24">
+                    <div class="col-md">
+                        <p>24:00</p>
+                    </div>
+                    <div class="col-md maa"></div>
+                    <div class="col-md din"></div>
+                    <div class="col-md woe"></div>
+                    <div class="col-md don"></div>
+                    <div class="col-md vrij"></div>
+                    <div class="col-md zat"></div>
+                    <div class="col-md zon"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </body>
 </html>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let events = /*[[${events}]]*/ 'default';
+    let givenDay = /*[[${day}]]*/ 'default';
+    let givenMonth = /*[[${month}]]*/ 'default';
+    /*]]>*/
+    let today = new Date();
+    let longMonths = [
+        1,
+        3,
+        5,
+        7,
+        8,
+        10,
+        12
+    ];
+    if (givenMonth !== null && givenDay !== null) {
+        today.setDate(parseInt(givenDay));
+        today.setMonth(parseInt(givenMonth) - 1);
+    }
+    let home = new Date();
+    let date = home.getDate() + '/' + (home.getMonth() + 1) + '/' + home.getFullYear()
+    let currentDay;
+    if (today.getDay() === 0) {
+        currentDay = 7;
+    } else currentDay = today.getDay();
+    window.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("pre").addEventListener("click", () => {
+            clearEvents();
+            pre(givenMonth, givenDay);
+        });
+        document.getElementById("next").addEventListener("click", () => {
+            clearEvents();
+            next(givenMonth, givenDay);
+        })
+        let todayHTML = document.getElementById("today");
+        todayHTML.innerHTML = '<button class="button">' + date + '</button>';
+        todayHTML.addEventListener("click", () => {
+            location.assign("/week-calendar/" + (home.getMonth() + 1) + "/" + home.getDay());
+        })
+        for (let i = 1; i <= 7; i++) {
+            let dayDate = new Date();
+            if (i < currentDay) {
+                dayDate.setDate(today.getDate() - (currentDay - i));
+                dayDate.setMonth(today.getMonth());
+                addEvents(dayDate);
+            } else if (i === currentDay) {
+                dayDate = today;
+                addEvents(dayDate);
+            } else if (i > currentDay) {
+                dayDate.setDate(today.getDate() + (i - currentDay));
+                dayDate.setMonth(today.getMonth());
+                addEvents(dayDate);
+            }
+        }
+    })
+
+    const getCurrentDay = function (day) {
+        switch (day) {
+            case 1:
+                return "maa";
+            case 2:
+                return "din";
+            case 3:
+                return "woe";
+            case 4:
+                return "don";
+            case 5:
+                return "vrij";
+            case 6:
+                return "zat";
+            case 7:
+                return "zon";
+        }
+    }
+
+    const addEvents = function (dayDate) {
+        let month;
+        if (dayDate.getMonth() < 10) {
+            month = "0" + (dayDate.getMonth() + 1)
+        } else month = (dayDate.getMonth() + 1);
+        let eventDate = dayDate.getFullYear() + "-" + (month) + "-" + dayDate.getDate();
+        let event;
+        for (let obj of events) {
+            if (obj.date.split("T")[0] === eventDate) {
+                event = obj;
+                let startTime = event.startTime.split(":")[0];
+                let endTime = event.endTime.split(":")[0];
+                for (let i = startTime; i <= endTime; i++) {
+                    let day = document.getElementsByClassName("row " + i).item(0);
+                    for (let child of day.children) {
+                        if (child.className === "col-md " + getCurrentDay(dayDate.getDay())) {
+                            child.className = child.className + " eventDay";
+                            child.innerHTML = event.name;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    const clearEvents = function () {
+        let div = document.getElementById("events");
+        for (let children of div.children) {
+            for (let i = 0; i < children.children.length; i++) {
+                if (i !== 0) {
+                    children.children[i].innerHTML = "";
+                }
+            }
+        }
+    }
+
+    const pre = function (givinMonth, givinDay) {
+        if ((givinDay - 7) <= 0) {
+            givinDay = 31 + (givinDay - 7);
+            givinMonth--;
+            location.assign("/week-calendar/" + givinMonth + "/" + givinDay);
+        } else location.assign("/week-calendar/" + givinMonth + "/" + (givinDay - 7));
+    }
+
+    const next = function (givinMonth, givinDay) {
+        if (longMonths.includes(givinMonth)) {
+            if ((givinDay + 7) > 31) {
+                givinMonth++;
+                givinDay = (givinDay + 7) - 31;
+                location.assign("/week-calendar/" + givinMonth + "/" + givinDay);
+            } else {
+                givinDay = givinDay + 7;
+                location.assign("/week-calendar/" + givinMonth + "/" + givinDay);
+            }
+        } else if (givinMonth !== 2) {
+            if ((givinDay + 7) > 30) {
+                givinMonth++;
+                givinDay = (givinDay + 7) - 30;
+                location.assign("/week-calendar/" + givinMonth + "/" + givinDay);
+            } else {
+                givinDay = givinDay + 7;
+                location.assign("/week-calendar/" + givinMonth + "/" + givinDay);
+            }
+        } else {
+            if ((givinDay + 7) > 28) {
+                givinMonth++;
+                givinDay = (givinDay + 7) - 28;
+                location.assign("/week-calendar/" + givinMonth + "/" + givinDay);
+            } else {
+                givinDay = givinDay + 7;
+                location.assign("/week-calendar/" + givinMonth + "/" + givinDay);
+            }
+        }
+    }
+</script>

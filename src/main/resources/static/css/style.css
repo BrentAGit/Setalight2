@@ -130,13 +130,6 @@ btn-primary:link {
     margin-left: 11em;
 }
 
-.filterButtons {
-    position: absolute;
-    margin-left: 60%;
-    margin-top: 30%;
-    margin-right: 0;
-}
-
 .filterButtons a {
     color: #ffffff;
     text-decoration: none;
@@ -339,7 +332,7 @@ a, a:hover {
 }
 
 @media only screen and (max-width:576px) {
-    
+
 }
 
 @media only screen and (max-width:768px){
@@ -354,4 +347,23 @@ a, a:hover {
 
 @media only screen and (max-width:1200px){
 
+}
+
+.week-calender {
+    background: #4d4d4d;
+}
+
+.button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit
+}
+
+.container-fluid {
+    margin-left: 200px;
+    width: 89.5%;
 }

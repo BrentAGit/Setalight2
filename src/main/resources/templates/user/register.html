@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
     <script th:src="@{/js/script.js}" src="/js/script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         .container {
             margin-left: 50px;
@@ -39,7 +40,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-2 input-label">
+            <div class="col-md-4 input-label">
                 <div class="row">
                     <label for="username">Gebruikersnaam:</label>
                 </div>
@@ -71,9 +72,9 @@
                     <label for="nationalInsuranceNumber">Rijksregisternummer:</label>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-4">
                 <div class="row">
-                    <input class="m-lg-1 input" type="text" name="username" id="username" required><br>
+                    <input class="m-lg-1 input" type="text" name="username" id="username" required>
                     <p th:if="${userName}">De gekozen gebruikersnaam is al in gebruik gelieve een andere te
                         gebruiken</p><br th:if="${userName}">
                 </div>
@@ -116,8 +117,10 @@
             </div>
         </div>
         <div class="row">
-            <input class="btn btn-primary m-lg-1" type="submit" name="register" id="register" value="Register">
-            <p class="login-link-text">Heb je al een account?<a class="login-link" th:href="|/login|">klik hier</a></p>
+            <div class="col-6">
+                <input class="btn btn-primary m-lg-1" type="submit" name="register" id="register" value="Register">
+                <p class="login-link-text">Heb je al een account?<a class="login-link" th:href="|/login|">klik hier</a></p>
+            </div>
         </div>
     </form>
 </div>

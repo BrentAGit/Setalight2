@@ -16,7 +16,6 @@
     <!--    add here personal CSS-->
 </head>
 <body>
-
 <div th:replace="fragments/header">Header</div>
 <br>
 <div class="container">
@@ -153,6 +152,7 @@
     });
 
 
+
     const updateEvents = function (events, header, body) {
         document.getElementById("event").innerHTML = "";
         let monthYear = header.children[1].innerHTML;
@@ -250,18 +250,17 @@
         pStart.textContent = "start tijd: " + eventFromDb.startTime;
         let pEnd = document.createElement("p");
         pEnd.textContent = "eind tijd: " + eventFromDb.endTime;
-        ttBox.append(h3, pDescription, pStart, pEnd);
-        if (ttBox.children.length > 4) {
-            ttBox.innerHTML = "";
-            let h3 = document.createElement("h3");
-            h3.textContent = eventFromDb.name;
-            let pDescription = document.createElement("p");
-            pDescription.textContent = eventFromDb.description;
-            let pStart = document.createElement("p");
-            pStart.textContent = "start tijd: " + eventFromDb.startTime;
-            let pEnd = document.createElement("p");
-            pEnd.textContent = "eind tijd: " + eventFromDb.endTime;
-            ttBox.append(h3, pDescription, pStart, pEnd);
+        let div = document.createElement("div");
+        div.append(h3, pDescription, pStart, pEnd)
+        ttBox.append(div);
+        for (let i = 0; i < ttBox.children.length; i++) {
+            let currentChild = ttBox.children[i];
+            let nextChild = ttBox.children[i + 1];
+            if (nextChild !== undefined){
+                if (currentChild.innerHTML === nextChild.innerHTML) {
+                    ttBox.removeChild(nextChild);
+                }
+            }
         }
         ttBox.style.visibility = "visible";
 

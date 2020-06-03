@@ -27,11 +27,6 @@
         <div sec:authorize="isAuthenticated()" class="col-1">
             <a class="menu-link" href="/">Home</a>
         </div>
-        <div sec:authorize="isAuthenticated()" class="col-1">
-            <form class="menu-link" th:action="@{/logout}" method="post">
-                <input class="menu-link" type="submit" id="logout" name="logout" value="Logout">
-            </form>
-        </div>
         <div sec:authorize="hasAnyAuthority('USER')" class="col-1">
             <a class="user menu-link" th:text="|${user.getUsername()}|" th:href="'/user/profilepage/' + ${user.getId()}" href="/">Profiel</a>
         </div>
@@ -41,11 +36,19 @@
         <div sec:authorize="hasAnyAuthority('PRODUCTIEHUIS')" class="col-1">
             <a class="menu-link" href="/event/event">New_Event</a>
         </div>
-        <div sec:authorize="hasAnyAuthority('ADMIN')" class="col-1">
+        <div sec:authorize="hasAnyAuthority('ADMIN')" class="col-2">
             <a class="menu-link" href="/admin/verifyproductiehuis">productiehuizen</a>
         </div>
         <div sec:authorize="hasAnyAuthority('ADMIN' , 'USER')" class="col-1">
             <a class="menu-link" href="/" th:href="'/user/rewards/' + ${user.getId()}"> rewards </a>
+        </div>
+        <div sec:authorize="hasAuthority('USER')" class="col-1">
+            <a class="menu-link" href="/week-calendar">Caleder</a>
+        </div>
+        <div sec:authorize="isAuthenticated()" class="col-1">
+            <form class="menu-link" th:action="@{/logout}" method="post">
+                <input class="menu-link" type="submit" id="logout" name="logout" value="Logout">
+            </form>
         </div>
 
         <!--            Add here extra stuff for when some one is logged in-->
