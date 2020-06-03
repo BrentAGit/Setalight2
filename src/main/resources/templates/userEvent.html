@@ -11,32 +11,29 @@
 <body>
 <div th:replace="fragments/header">Header</div>
 <div class="container">
-<div class="col-6">
-    <div>
-        <h2 th:text="${event.getName()}">name </h2>
-    </div>
-    <div>
-        <p th:text="${event.getDescription()}"></p>
-    </div>
-    <div>
-        <p th:text="'gezocht :' +${event.getTypeWanted()}"></p>
-    </div>
-
-    <div>
-        <p th:text="${event.getDateString()}"></p>
-        <div>
-            <label for="startTime">begin tijd :</label>
-            <p id="startTime" th:text="${event.getStartTime()}"></p>
-        </div>
-        <div>
-            <label for="endTime">eind tijd :</label>
-            <p id="endTime" th:text="${event.getEndTime()}"></p>
-        </div>
-    </div>
-    <div>
-        <p>adres:</p>
-        <p th:text="${event.getCityAndPostcode()}"></p>
-        <p th:text="${event.getStreetAndNumber()}"></p>
+        <div class="card-columns">
+            <div class="card p-2 ">
+                <h3 th:text="${event.getName()}">eventName</h3>
+                <p th:text="${event.getDescription()}">description</p>
+                <p th:text="${event.getDateString()}">datum</p>
+                <p th:text="'gezocht: ' +${event.getTypeWanted()}"></p>
+                <p th:text="'begin tijd: ' + ${event.getStartTime()}">startTate</p>
+                <p th:text="'eind tijd: ' + ${event.getEndTime()}">endTime</p>
+                <p>maximun aantal deelnermers:</p>
+                <p th:text="${event.getAmountOfParticipants()}"></p>
+                <p>adres:</p>
+                <p th:text="${event.getCityAndPostcode()}"></p>
+                <p th:text="${event.getStreetAndNumber()}"></p>
+            </div>
+            <div class="card p-2 ">
+                <h3 th:text="${productiehuisProfile.getNameCompany()}"></h3>
+                <p  th:text="${productiehuisProfile.getDescription()}"></p>
+                <p  th:text="'Naam eigenaar: ' +${productiehuisProfile.getNameOwner()}"></p>
+                <h5>Locatie:</h5>
+                <p  th:text="${productiehuisProfile.getCityAndPostcode()}"></p>
+                <p  th:text="${productiehuisProfile.getStreetAndNumber()}"></p>
+                <p >Stad : </p>
+            </div>
     </div>
     <div>
         maximun aantal deelnermers:
@@ -52,8 +49,6 @@
         <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'I am going!'">
     </form>
     </div>
-
-
     <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" >
         <a class="btn btn-primary"  th:href="${'/event/edit-event/' + event.getId()}"  href="/edit-event/eventId">edit event</a>
     </div>
@@ -72,28 +67,9 @@
             <p >Naam eigenaar : </p>
             <p  th:text="${productiehuisProfile.getNameOwner()}"></p>
         </div>
-        <h5>Locatie:</h5>
-        <div class="row">
-            <p >Provincie : </p>
-            <p  th:text="${productiehuisProfile.getProvince()}"></p>
+
         </div>
-        <div class="row">
-            <p >Stad : </p>
-            <p  th:text="${productiehuisProfile.getCity()}"></p>
-        </div>
-        <div class="row">
-            <p >Straatnaam : </p>
-            <p  th:text="${productiehuisProfile.getStreet()}"></p>
-        </div>
-        <div class="row">
-            <p >Postcode : </p>
-            <p  th:text="${productiehuisProfile.getPostalCode()}"></p>
-        </div>
-        <div class="row">
-            <p >Huisnummber : </p>
-            <p  th:text="${productiehuisProfile.getHouseNumber()}"></p>
-        </div>
-    </div>
+
 </div>
 
 </body>
