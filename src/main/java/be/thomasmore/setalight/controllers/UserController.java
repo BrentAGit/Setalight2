@@ -175,7 +175,16 @@ public class UserController {
             }
         }
         AddUser adduser = new AddUser();
-        model.addAttribute("user", adduser.addUser(principal, userRepository));
+        User user = adduser.addUser(principal, userRepository);
+        model.addAttribute("user", user);
+
+        if (user == profile.getUserId()){
+            model.addAttribute("admin", false);
+        }
+        else{
+            model.addAttribute("admin", true);
+        }
+
         model.addAttribute("rewards", rewards);
         model.addAttribute("profile", profile);
         return "user/rewardPage";

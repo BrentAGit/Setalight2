@@ -15,13 +15,13 @@
             <h3>Rewards</h3>
         </div>
     </div>
-    <div class="row">
+    <div class="row" th:if="${!admin}">
         <div class="col-12">
             <p th:text="'Totaal aantal punten: ' + ${profile.getRewardPoints()}" id="points">punten</p>
         </div>
     </div>
     <div class="card-columns">
-        <div th:each="reward : ${rewards}" class="card p-2 border-dark">
+        <div th:each="reward : ${rewards}" class="card p-2 border-dark" th:if="${!admin}">
             <form th:action="@{|/user/buy-rewards/${profile.getUserId().getId()}/${reward.getId()}}" method="post">
                 <img class="card-img-top" th:src="${reward.getPicture()}" alt="Reward">
                 <div class="card-body">
@@ -32,6 +32,9 @@
                     <input type="submit" value="buy">
                 </div>
             </form>
+            <div th:if="${admin}">
+                <p>klgkgkgkgkmgfrkmpgfkkmp'gfepkmgdfskmp'bdfkm;</p>
+            </div>
         </div>
     </div>
 </div>
