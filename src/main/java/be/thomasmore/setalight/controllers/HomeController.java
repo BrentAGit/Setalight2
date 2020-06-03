@@ -92,9 +92,12 @@ public class HomeController {
     public String weekCalendar(@PathVariable int day,
                                @PathVariable int month,
                                Principal principal, Model model) {
+        AddUser addUser = new AddUser();
+        User user = addUser.addUser(principal, userRepository);
+        model.addAttribute("user", user);
         model.addAttribute("month", month);
         model.addAttribute("day", day);
-        model.addAttribute("events", eventRepository.findAll());
+        model.addAttribute("events", eventRepository.findAllByUsers(user));
         return "weekCalendar";
     }
 
