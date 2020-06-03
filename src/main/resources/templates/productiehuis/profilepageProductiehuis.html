@@ -14,48 +14,21 @@
     <br>
     <h3>Mijn profiel</h3>
     <br>
-    <a class="menu-link" th:href="'/productiehuis/edit-profilepage/' + ${user.getId()}" href="/">edit</a>
-    <br>
-    <div class="row">
-        <p class="col-2">gebruikersnaam:</p>
-        <p class="col-2" th:text="${user.getUsername()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">Naam bedrijf:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getNameCompany()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">beschrijving:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getDescription()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">Naam eigenaar:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getNameOwner()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">BTW-nummber:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getCompanyNumber()}"></p>
-    </div>
-    <h5>Locatie:</h5>
-    <div class="row">
-        <p class="col-2">Provincie:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getProvince()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">Stad:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getCity()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">Straatnaam:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getStreet()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">Postcode:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getPostalCode()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">Huisnummber:</p>
-        <p class="col-2" th:text="${productiehuisProfile.getHouseNumber()}"></p>
+    <div class="card-columns ">
+        <div class="card p-2">
+            <h3 th:text="${user.getUsername()}"></h3>
+            <h4 th:text="${productiehuisProfile.getNameCompany()}"></h4>
+            <p  th:text="${productiehuisProfile.getDescription()}"></p>
+            <p  th:text="'Naam eigenaar: ' +${productiehuisProfile.getNameOwner()}"></p>
+            <p  th:text="'BTW-nummer: ' +${productiehuisProfile.getCompanyNumber()}"></p>
+            <h5>Locatie:</h5>
+            <p  th:text="'Provincie: '+${productiehuisProfile.getProvince()}"></p>
+            <p  th:text="${productiehuisProfile.getCityAndPostcode()}"></p>
+            <p  th:text="${productiehuisProfile.getStreetAndNumber()}"></p>
+            <div class="card-footer" >
+                <a class="btn btn-primary" th:href="'/productiehuis/edit-profilepage/' + ${user.getId()}" href="/">edit</a>
+            </div>
+        </div>
     </div>
 
 </div>
