@@ -131,13 +131,6 @@ btn-primary:link {
     margin-left: 11em;
 }
 
-.filterButtons {
-    position: absolute;
-    margin-left: 60%;
-    margin-top: 30%;
-    margin-right: 0;
-}
-
 .filterButtons a {
     color: #ffffff;
     text-decoration: none;
@@ -351,4 +344,9 @@ a, a:hover {
     font: inherit;
     cursor: pointer;
     outline: inherit
+}
+
+.container-fluid {
+    margin-left: 200px;
+    width: 89.5%;
 }

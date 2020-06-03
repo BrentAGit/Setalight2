@@ -16,109 +16,122 @@
 <body>
 <div th:replace="fragments/header">Header</div>
 <br>
-<div class="small-calender">
-    <div id="header" class="clearfix">
-        <div class="pre-button"><</div>
-        <div class="head-info" id="head-info">
-            <div class="head-day"></div>
-            <div class="head-month"></div>
-        </div>
-        <div class="next-button">></div>
-    </div>
-    <table id="calendar">
-        <thead>
-        <tr>
-            <th>Ma</th>
-            <th>Di</th>
-            <th>Wo</th>
-            <th>Do</th>
-            <th>vr</th>
-            <th>za</th>
-            <th>zo</th>
-        </tr>
-        </thead>
-        <tbody id="body">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-2 filterButtons">
-            <ul>
-                <li th:each="filter : ${filterButtons}">
-                    <a th:text="${filter}" th:href="'/filter/' + ${filter}" href="/filter"></a>
-                </li>
-            </ul>
+        <div class="col">
+            <div class="card-columns">
+                <div th:each="event : ${events}" class="card p-2">
+                    <h3 th:text="${event.getName()}">eventName</h3>
+                    <p th:text="${event.getDescription()}">description</p>
+                    <p th:text="${event.getDateString()}">datum</p>
+                    <p th:text="'begin tijd ' + ${event.getStartTime()}">startTate</p>
+                    <p th:text="'eind tijd ' + ${event.getEndTime()}">endTime</p>
+                    <div class="card-footer">
+                        <a th:href="'/event/events/' + ${event.getId()}" class="btn btn-danger" href="/">going?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col filterButtons">
+            <div class="row">
+<!--                <div class="col-5"></div>-->
+                <div class="col">
+                    <div class="small-calender">
+                        <div id="header" class="clearfix">
+                            <div class="pre-button"><</div>
+                            <div class="head-info" id="head-info">
+                                <div class="head-day"></div>
+                                <div class="head-month"></div>
+                            </div>
+                            <div class="next-button">></div>
+                        </div>
+                        <table id="calendar">
+                            <thead>
+                            <tr>
+                                <th>Ma</th>
+                                <th>Di</th>
+                                <th>Wo</th>
+                                <th>Do</th>
+                                <th>vr</th>
+                                <th>za</th>
+                                <th>zo</th>
+                            </tr>
+                            </thead>
+                            <tbody id="body">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+<!--                <div class="col-5"></div>-->
+                <div class="col">
+                    <ul>
+                        <li th:each="filter : ${filterButtons}">
+                            <a th:text="${filter}" th:href="'/filter/' + ${filter}" href="/filter"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <div class="container event-cards">
-    <div class="card-columns">
-        <div th:each="event : ${events}" class="card p-2">
-            <h3 th:text="${event.getName()}">eventName</h3>
-            <p th:text="${event.getDescription()}">description</p>
-            <p th:text="${event.getDateString()}">datum</p>
-            <p th:text="'begin tijd ' + ${event.getStartTime()}">startTate</p>
-            <p th:text="'eind tijd ' + ${event.getEndTime()}">endTime</p>
-            <div class="card-footer">
-                <a th:href="'/event/events/' + ${event.getId()}" class="btn btn-danger" href="/">going?</a>
-            </div>
-        </div>
-    </div>
+
 </div>
 <script th:inline="javascript">
     /*<![CDATA[*/
