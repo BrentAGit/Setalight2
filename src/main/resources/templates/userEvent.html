@@ -15,14 +15,15 @@
         <div class="card-columns event-cards">
             <div class="card p-2 ">
                 <h3 th:text="${event.getName()}">eventName</h3>
+                <div th:if="${not #lists.isEmpty(event.picture)}">
+                    <img class="card-img-top" th:src="${event.getPicture()}" alt="Reward">
+                </div>
                 <p th:text="${event.getDescription()}">description</p>
                 <p th:text="${event.getDateString()}">datum</p>
                 <p th:text="'gezocht: ' +${event.getTypeWanted()}"></p>
                 <p th:text="'begin tijd: ' + ${event.getStartTime()}">startDate</p>
                 <p th:text="'eind tijd: ' + ${event.getEndTime()}">endTime</p>
                 <p th:text="'maximun aantal deelnermers: ' +${event.getAmountOfParticipants()}"></p>
-
-
                 <p th:text="'aantal deelnermers: '+${event.countUsers()}"></p>
                 <h3>adres</h3>
                 <p th:text="${event.getCityAndPostcode()}"></p>
