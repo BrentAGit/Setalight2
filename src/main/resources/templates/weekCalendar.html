@@ -244,25 +244,40 @@
     let events = /*[[${events}]]*/ 'default';
     let givenDay = /*[[${day}]]*/ 'default';
     /*]]>*/
+
+    Date.prototype.getWeekNumber = function () {
+        var d = new Date(Date.UTC(this.getFullYear(), this.getMonth(), this.getDate()));
+        var dayNum = d.getUTCDay() || 7;
+        d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+        var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+        return Math.ceil((((d - yearStart) / 86400000) + 1) / 7)
+    };
+
     let today = new Date();
+
     today.setDate(parseInt(givenDay));
+    console.log(today.getWeekNumber())
     let date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
     console.log(today);
     console.log(today.getDay())//day of week
     console.log(date);
+    let currentDay;
+    if (today.getDay() === 0) {
+        currentDay = 7;
+    } else currentDay = today.getDay();
     window.addEventListener("DOMContentLoaded", () => {
         let todayHTML = document.getElementById("today");
         todayHTML.innerHTML = date;
         for (let i = 1; i <= 7; i++) {
             let dayDate = new Date();
-            if (i < today.getDay()) {
-                dayDate.setDate(today.getDate() - (today.getDay() - i));
+            if (i < currentDay) {
+                dayDate.setDate(today.getDate() - (currentDay - i));
                 addEvents(dayDate);
-            } else if (i === today.getDay()) {
+            } else if (i === currentDay) {
                 dayDate = today;
                 addEvents(dayDate);
-            } else if (i > today.getDay()) {
-                dayDate.setDate(today.getDate() + (i - today.getDay()));
+            } else if (i > currentDay) {
+                dayDate.setDate(today.getDate() + (i - currentDay));
                 addEvents(dayDate);
             }
         }
