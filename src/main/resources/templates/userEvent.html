@@ -28,11 +28,12 @@
                 <p th:text="${event.getStreetAndNumber()}"></p>
             </div>
             <div class="card p-2 ">
-                <h2>Productiehuis informatie</h2>
+                <h2>Productiehuis informatie:</h2>
                 <h3 th:text="${productiehuisProfile.getNameCompany()}"></h3>
                 <p  th:text="${productiehuisProfile.getDescription()}"></p>
                 <p  th:text="'Naam eigenaar: ' +${productiehuisProfile.getNameOwner()}"></p>
                 <h5>Locatie:</h5>
+                <p  th:text="'Provincie: '+${productiehuisProfile.getProvince()}"></p>
                 <p  th:text="${productiehuisProfile.getCityAndPostcode()}"></p>
                 <p  th:text="${productiehuisProfile.getStreetAndNumber()}"></p>
 
