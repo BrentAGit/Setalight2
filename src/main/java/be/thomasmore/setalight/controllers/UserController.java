@@ -57,10 +57,17 @@ public class UserController {
 
     @GetMapping("/profilepage/{userId}")
     public String profile(@PathVariable int userId,
+                          Principal principal,
                           Model model) {
+        String loggedInName = principal != null ? principal.getName() : "nobody";
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
         if (userFromDb.isPresent()) user = userFromDb.get();
+        if (loggedInName.contains("nobody") || user.getUsername().contains(loggedInName)) {
+            model.addAttribute("canEdit", false);
+        } else {
+            model.addAttribute("canEdit", true);
+        }
         Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
         Profile profile = new Profile();
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
@@ -135,7 +142,7 @@ public class UserController {
         profile.setHairColor(hairColor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-        FileUploader fileUploader=new FileUploader();
+        FileUploader fileUploader = new FileUploader();
         profile.setProfilePicture(fileUploader.fileUpload(profilePicture, uploadImagesDirString));
         profile.setFullPicture(fileUploader.fileUpload(fullPicture, uploadImagesDirString));
         profileRepository.save(profile);
@@ -158,8 +165,7 @@ public class UserController {
     }
 
     @GetMapping("/rewards/{userId}")
-    public String rewards(@PathVariable int userId, Model model, Principal principal)
-    {
+    public String rewards(@PathVariable int userId, Model model, Principal principal) {
         Profile profile = getProfile(userId);
         ArrayList<Reward> rewardsFromDb = (ArrayList<Reward>) rewardRepository.findAll();
         ArrayList<Reward> rewards = new ArrayList<>();
