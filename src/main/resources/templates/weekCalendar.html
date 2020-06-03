@@ -335,16 +335,14 @@
         for (let obj of events) {
             if (obj.date.split("T")[0] === eventDate) {
                 event = obj;
-            }
-        }
-        if (event !== undefined) {
-            let startTime = event.startTime.split(":")[0];
-            let endTime = event.endTime.split(":")[0];
-            for (let i = startTime; i <= endTime; i++) {
-                let day = document.getElementsByClassName("row " + i).item(0);
-                for (let child of day.children) {
-                    if (child.className === "col " + getCurrentDay(dayDate.getDay())) {
-                        child.innerHTML = event.name;
+                let startTime = event.startTime.split(":")[0];
+                let endTime = event.endTime.split(":")[0];
+                for (let i = startTime; i <= endTime; i++) {
+                    let day = document.getElementsByClassName("row " + i).item(0);
+                    for (let child of day.children) {
+                        if (child.className === "col " + getCurrentDay(dayDate.getDay())) {
+                            child.innerHTML = event.name;
+                        }
                     }
                 }
             }
