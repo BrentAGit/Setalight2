@@ -63,7 +63,7 @@ public class UserController {
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
         if (userFromDb.isPresent()) user = userFromDb.get();
-        if (loggedInName.contains("nobody") || user.getUsername().contains(loggedInName)) {
+        if (loggedInName.contains("nobody") || !user.getUsername().contains(loggedInName)) {
             model.addAttribute("canEdit", false);
         } else {
             model.addAttribute("canEdit", true);

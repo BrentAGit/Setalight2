@@ -15,7 +15,7 @@
 
     <h3>Mijn profiel</h3>
     <br>
-    <a class="menu-link" th:href="'/user/edit-profile/' + ${user.getId()}" href="/">edit</a>
+    <a th:if="${canEdit}" class="menu-link" th:href="'/user/edit-profile/' + ${user.getId()}" href="/">edit</a>
     <br>
     <div class="row">
         <p class="col-2">Naam:</p>
@@ -42,8 +42,10 @@
                    th:text="${user.getUserId().getUsername()}"></a>
             </li>
         </ul>
-        <div th:if="${user.getId()} == ${profile.getUserId().getId()}" class="col-2">
-            <a th:href="'/user/addFriends/' + ${profile.getUserId().getId()}" href="/">Voeg vrienden toe</a>
+        <div th:if="${canEdit}">
+            <div th:if="${user.getId()} == ${profile.getUserId().getId()}" class="col-2">
+                <a th:href="'/user/addFriends/' + ${profile.getUserId().getId()}" href="/">Voeg vrienden toe</a>
+            </div>
         </div>
     </div>
 
