@@ -10,9 +10,16 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-11">
-            //extra data
+        <div class="col-1">
+            <p>vorige week</p>
         </div>
+        <div class="col-1">
+            vandaag
+        </div>
+        <div class="col-1">
+            volgende week
+        </div>
+        <div class="col-8"></div>
         <div class="col-1" id="today"></div>
     </div>
     <div class="row week-calender">
@@ -250,7 +257,7 @@
     let today = new Date();
 
     today.setDate(parseInt(givenDay));
-    today.setMonth(parseInt(givenMonth));
+    today.setMonth(parseInt(givenMonth) - 1);
     let date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
     console.log(today);
     console.log(today.getDay())//day of week
@@ -272,10 +279,11 @@
                 addEvents(dayDate);
             } else if (i > currentDay) {
                 dayDate.setDate(today.getDate() + (i - currentDay));
+                console.log(dayDate);
                 addEvents(dayDate);
             }
         }
-        clearEvents();
+        // clearEvents();
     })
 
     const getCurrentDay = function (day) {
@@ -302,6 +310,7 @@
         if (dayDate.getMonth() < 10) {
             month = "0" + (dayDate.getMonth() + 1)
         } else month = (dayDate.getMonth() + 1);
+        console.log(month);
         let eventDate = dayDate.getFullYear() + "-" + (month) + "-" + dayDate.getDate();
         let event;
         for (let obj of events) {
