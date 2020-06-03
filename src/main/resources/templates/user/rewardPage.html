@@ -21,8 +21,8 @@
         </div>
     </div>
     <div class="card-columns">
-        <div th:each="reward : ${rewards}" class="card p-2 border-dark" th:if="${!admin}">
-            <form th:action="@{|/user/buy-rewards/${profile.getUserId().getId()}/${reward.getId()}}" method="post">
+        <div th:each="reward : ${rewards}" class="card p-2 border-dark">
+            <form th:action="@{|/user/buy-rewards/${profile.getUserId().getId()}/${reward.getId()}}" method="post" th:if="${!admin}">
                 <img class="card-img-top" th:src="${reward.getPicture()}" alt="Reward">
                 <div class="card-body">
                     <h3 th:text="${reward.getName()}"></h3>
@@ -33,7 +33,11 @@
                 </div>
             </form>
             <div th:if="${admin}">
-                <p>klgkgkgkgkmgfrkmpgfkkmp'gfepkmgdfskmp'bdfkm;</p>
+                <img class="card-img-top" th:src="${reward.getPicture()}" alt="Reward">
+                <div class="card-body">
+                    <h3 th:text="${reward.getName()}"></h3>
+                    <p th:text="'prijs: ' + ${reward.getPoints()} + ' punten'" id="reward-points"></p>
+                </div>
             </div>
         </div>
     </div>
