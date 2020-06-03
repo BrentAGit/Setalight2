@@ -341,6 +341,7 @@
                     let day = document.getElementsByClassName("row " + i).item(0);
                     for (let child of day.children) {
                         if (child.className === "col " + getCurrentDay(dayDate.getDay())) {
+                            child.className = child.className + " eventDay";
                             child.innerHTML = event.name;
                         }
                     }
