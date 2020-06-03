@@ -2,121 +2,134 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/img/icon.png" type="image/gif" sizes="16x16">
     <meta charset="UTF-8">
     <title th:value="${application}">Setalight</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap-grid.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
-    <script th:inline="javascript" type="text/javascript" th:src="@{/js/Calender-script.js}" src="/js/Calender-script.js"></script>
-
+    <script th:inline="javascript" type="text/javascript" th:src="@{/js/Calender-script.js}"
+            src="/js/Calender-script.js"></script>
 
 
     <!--    add here personal CSS-->
 </head>
 <body>
+
 <div th:replace="fragments/header">Header</div>
 <br>
-<div class="small-calender">
-    <div id="header" class="clearfix">
-        <a href="/calender">calender</a>
-        <div class="pre-button"><</div>
-        <div class="head-info" id="head-info">
-            <div class="head-day"></div>
-            <div class="head-month"></div>
-        </div>
-        <div class="next-button">></div>
-    </div>
-    <table id="calendar">
-        <thead>
-        <tr>
-            <th>Ma</th>
-            <th>Di</th>
-            <th>Wo</th>
-            <th>Do</th>
-            <th>vr</th>
-            <th>za</th>
-            <th>zo</th>
-        </tr>
-        </thead>
-        <tbody id="body">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 <div class="container">
     <div class="row">
-        <div class="col-2 filterButtons">
-            <ul>
-                <li th:each="filter : ${filterButtons}">
-                    <a th:text="${filter}" th:href="'/filter/' + ${filter}" href="/filter"></a>
-                </li>
-            </ul>
+        <div class="col-lg-7">
+            <div class="card-columns">
+                <div th:each="event : ${events}" class="card p-2">
+                    <h3 th:text="${event.getName()}">eventName</h3>
+                    <p th:text="${event.getDescription()}">description</p>
+                    <p th:text="${event.getDateString()}">datum</p>
+                    <p th:text="'begin tijd ' + ${event.getStartTime()}">startTate</p>
+                    <p th:text="'eind tijd ' + ${event.getEndTime()}">endTime</p>
+                    <div class="card-footer">
+                        <a th:href="'/event/events/' + ${event.getId()}" class="btn btn-danger" href="/">going?</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<div class="container event-cards">
-    <div class="card-columns">
-        <div th:each="event : ${events}" class="card p-2">
-            <h3 th:text="${event.getName()}">eventName</h3>
-            <p th:text="${event.getDescription()}">description</p>
-            <p th:text="${event.getDateString()}">datum</p>
-            <p th:text="'begin tijd ' + ${event.getStartTime()}">startTate</p>
-            <p th:text="'eind tijd ' + ${event.getEndTime()}">endTime</p>
-            <div class="card-footer">
-                <a th:href="'/event/events/' + ${event.getId()}" class="btn btn-danger" href="/">going?</a>
+        <div class="col-12 order-md-5 col-lg-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="small-calender">
+                        <div id="header" class="clearfix">
+                            <a href="/calender">calender</a>
+                            <div class="pre-button"><</div>
+                            <div class="head-info" id="head-info">
+                                <div class="head-day"></div>
+                                <div class="head-month"></div>
+                            </div>
+                            <div class="next-button">></div>
+                        </div>
+                        <table id="calendar">
+                            <thead>
+                            <tr>
+                                <th>Ma</th>
+                                <th>Di</th>
+                                <th>Wo</th>
+                                <th>Do</th>
+                                <th>vr</th>
+                                <th>za</th>
+                                <th>zo</th>
+                            </tr>
+                            </thead>
+                            <tbody id="body">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12 filterButtons">
+                    <ul>
+                        <li th:each="filter : ${filterButtons}">
+                            <a th:text="${filter}" th:href="'/filter/' + ${filter}" href="/filter"></a>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>
@@ -138,7 +151,6 @@
         });
         updateEvents(events, header, body);
     });
-
 
 
     const updateEvents = function (events, header, body) {
@@ -235,9 +247,9 @@
         let pDescription = document.createElement("p");
         pDescription.textContent = eventFromDb.description;
         let pStart = document.createElement("p");
-        pStart.textContent = "start tijd: " +  eventFromDb.startTime;
+        pStart.textContent = "start tijd: " + eventFromDb.startTime;
         let pEnd = document.createElement("p");
-        pEnd.textContent = "eind tijd: " +  eventFromDb.endTime;
+        pEnd.textContent = "eind tijd: " + eventFromDb.endTime;
         ttBox.append(h3, pDescription, pStart, pEnd);
         if (ttBox.children.length > 4) {
             ttBox.innerHTML = "";
@@ -246,9 +258,9 @@
             let pDescription = document.createElement("p");
             pDescription.textContent = eventFromDb.description;
             let pStart = document.createElement("p");
-            pStart.textContent = "start tijd: " +  eventFromDb.startTime;
+            pStart.textContent = "start tijd: " + eventFromDb.startTime;
             let pEnd = document.createElement("p");
-            pEnd.textContent = "eind tijd: " +  eventFromDb.endTime;
+            pEnd.textContent = "eind tijd: " + eventFromDb.endTime;
             ttBox.append(h3, pDescription, pStart, pEnd);
         }
         ttBox.style.visibility = "visible";
