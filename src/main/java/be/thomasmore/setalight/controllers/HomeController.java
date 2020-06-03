@@ -87,6 +87,11 @@ public class HomeController {
         return "calender";
     }
 
+    @GetMapping({"/week-calendar"})
+    public String weekCalendar(Principal principal, Model model) {
+        return "weekCalendar";
+    }
+
     @GetMapping({"/logout"})
     public String logout(Model model) {
         return "logout";

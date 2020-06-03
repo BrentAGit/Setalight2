@@ -48,6 +48,8 @@ h1 {
     border: 2px solid #EC7969;
     color: #000000;
     border-radius: 0px;
+    /*margin-left: 0;*/
+    /*padding-left: 0;*/
 }
 
 .btn-primary:hover {
@@ -316,8 +318,8 @@ a, a:hover {
     background-color: red;
 }
 
-.rewards .row .col-1 h3 , .rewards .row .col-12 p{
-    margin-top:10px;
+.rewards .row .col-1 h3, .rewards .row .col-12 p {
+    margin-top: 10px;
 }
 
 .user{
@@ -327,6 +329,12 @@ a, a:hover {
 .productiehuis{
     color: #EC7969;
 }
-.currentImage{
+
+.currentImage {
     width: 50px;
+}
+
+.input-label .row {
+    padding-top: 3px;
+    padding-bottom: 3px;
 }

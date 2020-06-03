@@ -117,4 +117,11 @@ public class ProductiehuisProfile {
     public void setUserId(User userId) {
         this.userId = userId;
     }
+    public String getCityAndPostcode() {
+        return String.format(" stad : %s %s ", getCity(), getPostalCode());
+    }
+    public String getStreetAndNumber() {
+        return String.format(" straat : %s %s ", getStreet(), getHouseNumber());
+    }
+
 }

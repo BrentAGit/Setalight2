@@ -11,14 +11,37 @@
 <body>
 <div th:replace="fragments/header"></div>
 
-<ul>
-    <form th:action="@{|/user/addFriends/${currentProfile.getUserId().getId()}/${profile.getUserId().getId()}|}" method="post" th:each="profile :${friends}">
-        <li th:if="${currentProfile}!=${profile}">
-            <p th:text="${profile.getUserId().getUsername()}"></p>
-<!--            <input name="user" id="user" type="sumbit" th:value="${profile.getUserId().getId()}">-->
-            <input type="submit" value="Add friend">
-        </li>
-    </form>
-</ul>
+<div class="container">
+    <div class="card-columns">
+        <div th:each="profile :${friends}">
+            <form th:action="@{|/user/addFriends/${currentProfile.getUserId().getId()}/${profile.getUserId().getId()}|}"
+                  method="post">
+                <div class="card" th:if="${currentProfile}!=${profile}">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-12">
+                                <p th:text="${profile.getUserId().getUsername()}"></p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>Geboorte datum: </p>
+                                </div>
+                                <div class="col-6">
+                                    <p th:text="${profile.getBirthDateString()}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input class="btn btn-primary m-lg-1" type="submit" value="Add friend">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>
