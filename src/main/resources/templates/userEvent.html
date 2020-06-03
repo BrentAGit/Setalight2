@@ -10,8 +10,9 @@
 </head>
 <body>
 <div th:replace="fragments/header">Header</div>
-<div class="container">
-        <div class="card-columns">
+<br>
+<div class="container ">
+        <div class="card-columns event-cards">
             <div class="card p-2 ">
                 <h3 th:text="${event.getName()}">eventName</h3>
                 <p th:text="${event.getDescription()}">description</p>
@@ -26,6 +27,14 @@
                 <p>adres:</p>
                 <p th:text="${event.getCityAndPostcode()}"></p>
                 <p th:text="${event.getStreetAndNumber()}"></p>
+                <div sec:authorize="hasAnyAuthority('USER')" class="card-footer">
+                    <form th:action="@{|/event/events/${event.getId()}|}" method="post">
+                        <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'I am going!'">
+                    </form>
+                </div>
+                <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" class="card-footer" >
+                    <a class="btn btn-primary"  th:href="${'/event/edit-event/' + event.getId()}"  href="/edit-event/eventId">edit event</a>
+                </div>
             </div>
             <div class="card p-2 ">
                 <h2>Productiehuis informatie:</h2>
@@ -39,14 +48,8 @@
 
             </div>
     </div>
-    <div sec:authorize="hasAnyAuthority('USER')">
-    <form th:action="@{|/event/events/${event.getId()}|}" method="post">
-        <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'I am going!'">
-    </form>
-    </div>
-    <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" >
-        <a class="btn btn-primary"  th:href="${'/event/edit-event/' + event.getId()}"  href="/edit-event/eventId">edit event</a>
-    </div>
+
+
 
 </div>
 
