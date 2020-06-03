@@ -241,9 +241,11 @@
 </div>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    let events = /*[[${events}]]*/ 'default'
+    let events = /*[[${events}]]*/ 'default';
+    let givenDay = /*[[${day}]]*/ 'default';
     /*]]>*/
     let today = new Date();
+    today.setDate(parseInt(givenDay));
     let date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
     console.log(today);
     console.log(today.getDay())//day of week
@@ -252,46 +254,16 @@
         let todayHTML = document.getElementById("today");
         todayHTML.innerHTML = date;
         for (let i = 1; i <= 7; i++) {
-            let day;
             let dayDate = new Date();
-            let eventDate;
             if (i < today.getDay()) {
-                day = document.getElementById(getCurrentDay(i));
                 dayDate.setDate(today.getDate() - (today.getDay() - i));
-                console.log(day);
-                console.log(dayDate)
+                addEvents(dayDate);
             } else if (i === today.getDay()) {
                 dayDate = today;
-                let month;
-                if (dayDate.getMonth() < 10) {
-                    month = "0" + (dayDate.getMonth() + 1)
-                } else month = (dayDate.getMonth() + 1);
-                eventDate = dayDate.getFullYear() + "-" + (month) + "-" + 22;
-                let event;
-                for (let obj of events) {
-                    if (obj.date.split("T")[0] === eventDate) {
-                        event = obj;
-                    }
-                }
-                console.log(event);
-                day = document.getElementsByClassName("row " + event.startTime.split(":")[0]).item(0);
-                console.log(day);
-                /*for (let hour of day.children) {
-                    if (hour.className.split(/\s+/g)[1] === event.startTime.split(":")[0]) {
-                        hour.innerHTML = event;
-                    }
-                    console.log(hour);
-                }*/
-                console.log(event.startTime);
-                console.log(event.endTime);
-                // console.log(eventDate);
-                // console.log(day)
-                // console.log(dayDate);
+                addEvents(dayDate);
             } else if (i > today.getDay()) {
-                day = document.getElementById(getCurrentDay(i));
-                console.log(day)
                 dayDate.setDate(today.getDate() + (i - today.getDay()));
-                console.log(dayDate);
+                addEvents(dayDate);
             }
         }
     })
@@ -312,6 +284,37 @@
                 return "zat";
             case 7:
                 return "zon";
+        }
+    }
+
+    const addEvents = function (dayDate) {
+        let month;
+        if (dayDate.getMonth() < 10) {
+            month = "0" + (dayDate.getMonth() + 1)
+        } else month = (dayDate.getMonth() + 1);
+        let eventDate = dayDate.getFullYear() + "-" + (month) + "-" + dayDate.getDate();
+        let event;
+        for (let obj of events) {
+            if (obj.date.split("T")[0] === eventDate) {
+                event = obj;
+            }
+        }
+        if (event !== undefined) {
+            console.log(event);
+            let day = document.getElementsByClassName("row " + event.startTime.split(":")[0]).item(0);
+            for (let child of day.children) {
+                if (child.className === "col " + getCurrentDay(dayDate.getDay())) {
+                    console.log(child);
+                    child.innerHTML = event.name;
+                }
+            }
+            day = document.getElementsByClassName("row " + event.endTime.split(":")[0]).item(0);
+            for (let child of day.children) {
+                if (child.className === "col " + getCurrentDay(dayDate.getDay())) {
+                    console.log(child);
+                    child.innerHTML = event.name;
+                }
+            }
         }
     }
 </script>
