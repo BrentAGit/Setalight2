@@ -10,7 +10,10 @@
 <body>
 <div class="container">
     <div class="row">
-        //extra data
+        <div class="col-11">
+            //extra data
+        </div>
+        <div class="col-1" id="today"></div>
     </div>
     <div class="row week-calender">
         <div class="col">
@@ -215,5 +218,19 @@
         </div>
     </div>
 </div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let events = /*[[${events}]]*/ 'default'
+    /*]]>*/
+    let today = new Date();
+    let date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
+    console.log(today);
+    console.log(today.getDay())//day of week
+    console.log(date);
+    window.addEventListener("DOMContentLoaded", () => {
+        let todayHTML = document.getElementById("today");
+        todayHTML.innerHTML = date;
+    })
+</script>
 </body>
 </html>
