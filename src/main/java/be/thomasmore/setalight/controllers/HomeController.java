@@ -79,15 +79,6 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping({"/calender"})
-    public String calender(Principal principal, Model model) {
-        AddUser addUser = new AddUser();
-        Calendar calendar = Calendar.getInstance();
-        model.addAttribute("user", addUser.addUser(principal, userRepository));
-        model.addAttribute("events", eventRepository.findAllByDateAfter(calendar.getTime()));
-        return "calender";
-    }
-
     @GetMapping({"/week-calendar", "/week-calendar/{month}/{day}"})
     public String weekCalendar(@PathVariable(required = false) Integer day,
                                @PathVariable(required = false) Integer month,
