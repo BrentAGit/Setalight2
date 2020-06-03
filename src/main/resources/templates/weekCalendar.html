@@ -8,17 +8,18 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
 </head>
 <body>
+<div th:replace="fragments/header"></div>
 <div class="container">
     <div class="row">
         <div class="col-4">
 
         </div>
         <div class="col-1" id="pre">
-            <p>vorige week</p>
+            <button class="button"><p>vorige week</p></button>
         </div>
         <div class="col-1" id="today"></div>
         <div class="col-1" id="next">
-            volgende week
+            <button class="button"><p>volgende week</p></button>
         </div>
         <div class="col-4"></div>
     </div>
@@ -266,10 +267,8 @@
     ];
     today.setDate(parseInt(givenDay));
     today.setMonth(parseInt(givenMonth) - 1);
-    let date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
-    // console.log(today);
-    // console.log(today.getDay())//day of week
-    // console.log(date);
+    let home = new Date();
+    let date = home.getDate() + '/' + (home.getMonth() + 1) + '/' + home.getFullYear()
     let currentDay;
     if (today.getDay() === 0) {
         currentDay = 7;
@@ -284,26 +283,25 @@
             next(givenMonth, givenDay);
         })
         let todayHTML = document.getElementById("today");
-        todayHTML.innerHTML = date;
+        todayHTML.innerHTML = '<button class="button">' + date + '</button>';
+        todayHTML.addEventListener("click", () => {
+            location.assign("/week-calendar/" + (home.getMonth() + 1) + "/" + home.getDay());
+        })
         for (let i = 1; i <= 7; i++) {
             let dayDate = new Date();
             if (i < currentDay) {
                 dayDate.setDate(today.getDate() - (currentDay - i));
                 dayDate.setMonth(today.getMonth());
-                // console.log(dayDate.getMonth());
                 addEvents(dayDate);
             } else if (i === currentDay) {
                 dayDate = today;
-                // console.log(dayDate.getMonth());
                 addEvents(dayDate);
             } else if (i > currentDay) {
                 dayDate.setDate(today.getDate() + (i - currentDay));
                 dayDate.setMonth(today.getMonth());
-                // console.log(dayDate.getMonth());
                 addEvents(dayDate);
             }
         }
-        // clearEvents();
     })
 
     const getCurrentDay = function (day) {
@@ -330,7 +328,6 @@
         if (dayDate.getMonth() < 10) {
             month = "0" + (dayDate.getMonth() + 1)
         } else month = (dayDate.getMonth() + 1);
-        // console.log(month);
         let eventDate = dayDate.getFullYear() + "-" + (month) + "-" + dayDate.getDate();
         let event;
         for (let obj of events) {
@@ -339,18 +336,15 @@
             }
         }
         if (event !== undefined) {
-            // console.log(event);
             let day = document.getElementsByClassName("row " + event.startTime.split(":")[0]).item(0);
             for (let child of day.children) {
                 if (child.className === "col " + getCurrentDay(dayDate.getDay())) {
-                    // console.log(child);
                     child.innerHTML = event.name;
                 }
             }
             day = document.getElementsByClassName("row " + event.endTime.split(":")[0]).item(0);
             for (let child of day.children) {
                 if (child.className === "col " + getCurrentDay(dayDate.getDay())) {
-                    // console.log(child);
                     child.innerHTML = event.name;
                 }
             }
