@@ -233,6 +233,7 @@
         for (let i = 1; i <= 7; i++) {
             let day;
             let dayDate = new Date();
+            let eventDate;
             if (i < today.getDay()) {
                 day = document.getElementById(getCurrentDay(i));
                 dayDate.setDate(today.getDate() - (today.getDay() - i));
@@ -241,8 +242,22 @@
             } else if (i === today.getDay()) {
                 day = document.getElementById(getCurrentDay(i));
                 dayDate = today;
-                console.log(day)
-                console.log(dayDate);
+                let month;
+                if (dayDate.getMonth() < 10) {
+                    month = "0" + (dayDate.getMonth() + 1)
+                } else month = (dayDate.getMonth() + 1);
+                eventDate = dayDate.getFullYear() + "-" + (month) + "-" + 22;
+                let event;
+                for (let obj of events) {
+                    if (obj.date.split("T")[0] === eventDate) {
+                        event = obj;
+                    }
+                }
+                console.log(event.startTime);
+                console.log(event.endTime);
+                // console.log(eventDate);
+                // console.log(day)
+                // console.log(dayDate);
             } else if (i > today.getDay()) {
                 day = document.getElementById(getCurrentDay(i));
                 console.log(day)
