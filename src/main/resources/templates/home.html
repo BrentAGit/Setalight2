@@ -241,12 +241,9 @@
         ttBox.append(div);
         for (let i = 0; i < ttBox.children.length; i++) {
             let currentChild = ttBox.children[i];
-            console.log(currentChild.innerHTML);
             let nextChild = ttBox.children[i + 1];
             if (nextChild !== undefined){
-                console.log("nect");
                 if (currentChild.innerHTML === nextChild.innerHTML) {
-                    console.log("gelijk");
                     ttBox.removeChild(nextChild);
                 }
             }
