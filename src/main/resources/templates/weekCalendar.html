@@ -249,6 +249,8 @@
         </div>
     </div>
 </div>
+</body>
+</html>
 <script th:inline="javascript">
     /*<![CDATA[*/
     let events = /*[[${events}]]*/ 'default';
@@ -336,16 +338,14 @@
             }
         }
         if (event !== undefined) {
-            let day = document.getElementsByClassName("row " + event.startTime.split(":")[0]).item(0);
-            for (let child of day.children) {
-                if (child.className === "col " + getCurrentDay(dayDate.getDay())) {
-                    child.innerHTML = event.name;
-                }
-            }
-            day = document.getElementsByClassName("row " + event.endTime.split(":")[0]).item(0);
-            for (let child of day.children) {
-                if (child.className === "col " + getCurrentDay(dayDate.getDay())) {
-                    child.innerHTML = event.name;
+            let startTime = event.startTime.split(":")[0];
+            let endTime = event.endTime.split(":")[0];
+            for (let i = startTime; i <= endTime; i++) {
+                let day = document.getElementsByClassName("row " + i).item(0);
+                for (let child of day.children) {
+                    if (child.className === "col " + getCurrentDay(dayDate.getDay())) {
+                        child.innerHTML = event.name;
+                    }
                 }
             }
         }
@@ -404,5 +404,3 @@
         }
     }
 </script>
-</body>
-</html>
