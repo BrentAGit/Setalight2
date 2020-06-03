@@ -82,7 +82,10 @@ public class AdminController {
     }
 
     @GetMapping("/create-reward")
-    public String createReward(Model model) {
+    public String createReward(Principal principal , Model model) {
+        AddUser addUser = new AddUser();
+        User user = addUser.addUser(principal, userRepository);
+        model.addAttribute("user", user);
         return "admin/createReward";
     }
 

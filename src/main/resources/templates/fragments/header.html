@@ -37,10 +37,10 @@
             <a class="menu-link" href="/event/event">New_Event</a>
         </div>
         <div sec:authorize="hasAnyAuthority('ADMIN')" class="col-2">
-            <a class="menu-link" href="/admin/verifyproductiehuis">productiehuizen</a>
+            <a class="menu-link" href="/admin/verifyproductiehuis">Productiehuizen</a>
         </div>
         <div sec:authorize="hasAnyAuthority('ADMIN' , 'USER')" class="col-1">
-            <a class="menu-link" href="/" th:href="'/user/rewards/' + ${user.getId()}"> rewards </a>
+            <a class="menu-link" href="/" th:href="'/user/rewards/' + ${user.getId()}"> Rewards </a>
         </div>
         <div sec:authorize="hasAuthority('USER')" class="col-1">
             <a class="menu-link" href="/week-calendar">Kalender</a>
