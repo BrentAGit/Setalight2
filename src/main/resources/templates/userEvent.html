@@ -21,29 +21,23 @@
                 <p th:text="'eind tijd: ' + ${event.getEndTime()}">endTime</p>
                 <p>maximun aantal deelnermers:</p>
                 <p th:text="${event.getAmountOfParticipants()}"></p>
+                <p>aantal deelnermers:</p>
+                <p th:text="${event.countUsers()}"></p>
                 <p>adres:</p>
                 <p th:text="${event.getCityAndPostcode()}"></p>
                 <p th:text="${event.getStreetAndNumber()}"></p>
             </div>
             <div class="card p-2 ">
+                <h2>Productiehuis informatie</h2>
                 <h3 th:text="${productiehuisProfile.getNameCompany()}"></h3>
                 <p  th:text="${productiehuisProfile.getDescription()}"></p>
                 <p  th:text="'Naam eigenaar: ' +${productiehuisProfile.getNameOwner()}"></p>
                 <h5>Locatie:</h5>
                 <p  th:text="${productiehuisProfile.getCityAndPostcode()}"></p>
                 <p  th:text="${productiehuisProfile.getStreetAndNumber()}"></p>
-                <p >Stad : </p>
+
             </div>
     </div>
-    <div>
-        maximun aantal deelnermers:
-        <p th:text="${event.getAmountOfParticipants()}"></p>
-    </div>
-    <div>
-        aantal deelnermers:
-        <p th:text="${event.countUsers()}"></p>
-    </div>
-
     <div sec:authorize="hasAnyAuthority('USER')">
     <form th:action="@{|/event/events/${event.getId()}|}" method="post">
         <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'I am going!'">
@@ -53,24 +47,8 @@
         <a class="btn btn-primary"  th:href="${'/event/edit-event/' + event.getId()}"  href="/edit-event/eventId">edit event</a>
     </div>
 
-        <h4>Productiehuis informatie</h4>
-        <br>
-        <div class="row">
-            <p>Naam bedrijf : </p>
-            <p th:text="${productiehuisProfile.getNameCompany()}"></p>
-        </div>
-        <div class="row">
-            <p>beschrijving : </p>
-            <p  th:text="${productiehuisProfile.getDescription()}"></p>
-        </div>
-        <div class="row">
-            <p >Naam eigenaar : </p>
-            <p  th:text="${productiehuisProfile.getNameOwner()}"></p>
-        </div>
-
-        </div>
-
 </div>
+
 
 </body>
 </html>
