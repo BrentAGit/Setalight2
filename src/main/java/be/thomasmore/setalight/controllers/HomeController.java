@@ -88,16 +88,22 @@ public class HomeController {
         return "calender";
     }
 
-    @GetMapping({"/week-calendar/{month}/{day}"})
-    public String weekCalendar(@PathVariable int day,
-                               @PathVariable int month,
+    @GetMapping({"/week-calendar", "/week-calendar/{month}/{day}"})
+    public String weekCalendar(@PathVariable(required = false) Integer day,
+                               @PathVariable(required = false) Integer month,
                                Principal principal, Model model) {
         AddUser addUser = new AddUser();
         User user = addUser.addUser(principal, userRepository);
-        model.addAttribute("user", user);
-        model.addAttribute("month", month);
-        model.addAttribute("day", day);
-        model.addAttribute("events", eventRepository.findAllByUsers(user));
+        if (user.getUsername() != null) {
+            model.addAttribute("user", user);
+            model.addAttribute("events", eventRepository.findAllByUsers(user));
+        } else {
+            model.addAttribute("events", eventRepository.findAll());
+        }
+        if (day != null && month != null) {
+            model.addAttribute("month", month);
+            model.addAttribute("day", day);
+        }
         return "weekCalendar";
     }
 

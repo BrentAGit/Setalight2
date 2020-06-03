@@ -267,8 +267,10 @@
         10,
         12
     ];
-    today.setDate(parseInt(givenDay));
-    today.setMonth(parseInt(givenMonth) - 1);
+    if (givenMonth !== null && givenDay !== null) {
+        today.setDate(parseInt(givenDay));
+        today.setMonth(parseInt(givenMonth) - 1);
+    }
     let home = new Date();
     let date = home.getDate() + '/' + (home.getMonth() + 1) + '/' + home.getFullYear()
     let currentDay;
