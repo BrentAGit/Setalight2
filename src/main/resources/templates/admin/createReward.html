@@ -9,18 +9,38 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
 </head>
 <body>
-<div th:replace="fragments/header">Header</div>
+<div class="container">
+    <div th:replace="fragments/header"></div>
+</div>
 <div class="container">
     <form th:action="@{/admin/create-reward}" method="post">
         <div class="row">
-            <input type="text" name="name" id="name">
+            <div class="col-2">
+                <div class="row">
+                    <label for="name">Reward Naam</label>
+                </div>
+                <div class="row">
+                    <label for="points">Aantal Punten</label>
+                </div>
+                <div class="row">
+                    <label for="picture">Foto Reward</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="row">
+                    <input type="number" name="points" id="points" step="1">
+                </div>
+                <div class="row">
+                    <input type="file" name="picture" id="picture">
+                </div>
+            </div>
         </div>
         <div class="row">
-            <input type="number" name="points" id="points" step="1">
-        </div>
-        <div class="row">
-            <div class="col-12 text-center">
-                <input type="submit" value="save">
+            <div class="col-6">
+                <input type="submit" value="save" class="btn btn-primary m-lg-1">
             </div>
         </div>
     </form>
