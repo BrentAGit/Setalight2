@@ -43,7 +43,7 @@
             <a class="menu-link" href="/" th:href="'/user/rewards/' + ${user.getId()}"> rewards </a>
         </div>
         <div sec:authorize="hasAuthority('USER')" class="col-1">
-            <a class="menu-link" href="/week-calendar">Caleder</a>
+            <a class="menu-link" href="/week-calendar">Kalender</a>
         </div>
         <div sec:authorize="isAuthenticated()" class="col-1">
             <form class="menu-link" th:action="@{/logout}" method="post">
