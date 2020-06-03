@@ -7,9 +7,11 @@ import be.thomasmore.setalight.repositories.ProductiehuisProfileRepository;
 import be.thomasmore.setalight.repositories.RewardRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import be.thomasmore.setalight.utilities.AddUser;
+import be.thomasmore.setalight.utilities.FileUploader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 import java.util.Optional;
@@ -44,6 +47,9 @@ public class AdminController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Value("${upload.images.dir}")
+    private String uploadImagesDirString = "${upload.images.dir}";
 
     @GetMapping({"/verifyproductiehuis"})
     public String findUnverifiedProductiehuis(Principal principal, Model model) {
@@ -91,11 +97,16 @@ public class AdminController {
 
     @PostMapping("/create-reward")
     public String rewardCreated(@RequestParam String name,
-                                @RequestParam int points) {
+                                @RequestParam int points,
+                                @RequestParam MultipartFile picture, Principal principal) {
+        AddUser addUser = new AddUser();
+        User user = addUser.addUser(principal, userRepository);
         Reward reward = new Reward();
         reward.setName(name);
         reward.setPoints(points);
+        FileUploader fileUploader = new FileUploader();
+        reward.setPicture(fileUploader.fileUpload(picture, uploadImagesDirString));
         rewardRepository.save(reward);
-        return "redirect:/";
+        return "redirect:/user/reward/" + user.getId();
     }
 }

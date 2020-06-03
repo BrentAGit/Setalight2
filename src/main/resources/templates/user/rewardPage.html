@@ -16,7 +16,7 @@
         </div>
         <div class="col-10 reward-line"></div>
         <div class="col-1" th:if="${admin}">
-            <p class="btn btn-danger">Reward Toevoegen</p>
+            <a href="/admin/create-reward" class="btn btn-danger">Reward Toevoegen</a>
         </div>
     </div>
     <div class="row" th:if="${!admin}">
