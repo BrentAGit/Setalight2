@@ -10,6 +10,7 @@ import be.thomasmore.setalight.utilities.AddUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -87,10 +88,12 @@ public class HomeController {
         return "calender";
     }
 
-    @GetMapping({"/week-calendar/{day}"})
+    @GetMapping({"/week-calendar/{month}/{day}"})
     public String weekCalendar(@PathVariable int day,
+                               @PathVariable int month,
                                Principal principal, Model model) {
-        model.addAttribute("month", day);
+        model.addAttribute("month", month);
+        model.addAttribute("day", day);
         model.addAttribute("events", eventRepository.findAll());
         return "weekCalendar";
     }
