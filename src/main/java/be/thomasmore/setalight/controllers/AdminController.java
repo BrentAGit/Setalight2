@@ -107,6 +107,6 @@ public class AdminController {
         FileUploader fileUploader = new FileUploader();
         reward.setPicture(fileUploader.fileUpload(picture, uploadImagesDirString));
         rewardRepository.save(reward);
-        return "redirect:/user/reward/" + user.getId();
+        return "redirect:/user/rewards/" + user.getId();
     }
 }
