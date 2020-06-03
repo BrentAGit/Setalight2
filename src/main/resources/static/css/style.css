@@ -367,3 +367,7 @@ a, a:hover {
     margin-left: 200px;
     width: 89.5%;
 }
+
+.reward-line {
+    max-width: 80%;
+}
