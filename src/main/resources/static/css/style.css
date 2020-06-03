@@ -339,6 +339,10 @@ a, a:hover {
     padding-bottom: 3px;
 }
 
+.week-calender {
+    background: #4d4d4d;
+}
+
 .button {
     background: none;
     color: inherit;

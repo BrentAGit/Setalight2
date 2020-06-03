@@ -373,7 +373,6 @@
 
     const next = function (givinMonth, givinDay) {
         if (longMonths.includes(givinMonth)) {
-            console.log("long month");
             if ((givinDay + 7) > 31) {
                 givinMonth++;
                 givinDay = (givinDay + 7) - 31;
@@ -391,7 +390,6 @@
                 givinDay = givinDay + 7;
                 location.assign("/week-calendar/" + givinMonth + "/" + givinDay);
             }
-            console.log("short month");
         } else {
             if ((givinDay + 7) > 28) {
                 givinMonth++;
@@ -401,7 +399,6 @@
                 givinDay = givinDay + 7;
                 location.assign("/week-calendar/" + givinMonth + "/" + givinDay);
             }
-            console.log("feb");
         }
     }
 </script>
