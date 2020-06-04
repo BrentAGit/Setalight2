@@ -40,6 +40,8 @@ import java.text.SimpleDateFormat;
 @RequestMapping("/user")
 public class UserController {
 
+    private Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserRepository userRepository;
 
@@ -126,8 +128,8 @@ public class UserController {
                                 @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthDate,
                                 @RequestParam String email,
                                 @RequestParam String hairColor,
-                                @RequestParam MultipartFile profilePicture,
-                                @RequestParam MultipartFile fullPicture,
+                                @RequestParam(required = false) MultipartFile profilePicture,
+                                @RequestParam(required = false) MultipartFile fullPicture,
                                 @RequestParam Double length,
                                 @RequestParam String nationalInsuranceNumber,
                                 Model model) {
@@ -137,14 +139,18 @@ public class UserController {
         Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
         Profile profile = new Profile();
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
+        FileUploader fileUploader = new FileUploader();
+        if (!profilePicture.isEmpty()) {
+            profile.setProfilePicture(fileUploader.fileUpload(profilePicture, uploadImagesDirString));
+        }
+        if (!fullPicture.isEmpty()) {
+            profile.setFullPicture(fileUploader.fileUpload(fullPicture, uploadImagesDirString));
+        }
         profile.setBirthDate(birthDate);
         profile.setEmail(email);
         profile.setHairColor(hairColor);
         profile.setLength(length);
         profile.setNationalInsuranceNumber(nationalInsuranceNumber);
-        FileUploader fileUploader = new FileUploader();
-        profile.setProfilePicture(fileUploader.fileUpload(profilePicture, uploadImagesDirString));
-        profile.setFullPicture(fileUploader.fileUpload(fullPicture, uploadImagesDirString));
         profileRepository.save(profile);
         userRepository.save(user);
         return "redirect:/user/profilepage/" + userId;
