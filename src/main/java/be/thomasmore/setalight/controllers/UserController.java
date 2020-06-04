@@ -64,6 +64,8 @@ public class UserController {
         String loggedInName = principal != null ? principal.getName() : "nobody";
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
+        AddUser addUser = new AddUser();
+        User loggedInUser = addUser.addUser(principal, userRepository);
         if (userFromDb.isPresent()) user = userFromDb.get();
         if (loggedInName.contains("nobody") || !user.getUsername().contains(loggedInName)) {
             model.addAttribute("canEdit", false);
@@ -75,7 +77,8 @@ public class UserController {
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
         Calendar calendar = Calendar.getInstance();
         List<Event> eventsFromDb = eventRepository.findAllByUsersAndDateAfter(user, calendar.getTime());
-        model.addAttribute("user", user);
+        model.addAttribute("profileuser", user);
+        model.addAttribute("user", loggedInUser);
         model.addAttribute("profile", profile);
         model.addAttribute("events", eventsFromDb);
         return "user/profilepage";
