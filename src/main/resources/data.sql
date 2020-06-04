@@ -99,10 +99,18 @@ insert into EVENT_USERS(EVENT_ID, USERS_ID)
 insert into REWARD(ID, NAME, PICTURE, POINTS)
     values(nextval('reward_seq'), 'Macbook Pro 2018', '/img/MacBook-Pro-2018.jpg', 800);
 insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(nextval('reward_seq'), 'Goodiebag Setalight', '/img/goodiebag.png', 100);
+    values(nextval('reward_seq'), 'Goodiebag Setalight', '/img/goodiebag.png', 80);
 insert into REWARD(ID, NAME, PICTURE, POINTS)
     values(nextval('reward_seq'), 'IPhone 10', '/img/IPhone10.jpg', 700);
 insert into REWARD(ID, NAME, PICTURE, POINTS)
     values(nextval('reward_seq'), 'Couponcode Coolblue -15%', '/img/Logo-coolblue.jpg', 200);
 insert into REWARD(ID, NAME, PICTURE, POINTS)
     values(nextval('reward_seq'), 'e-bike', '/img/ebike.jpg', 1200);
+insert into REWARD(ID, NAME, PICTURE, POINTS)
+    values(nextval('reward_seq'), 'Cannon SX540', '/img/Cannon.jpg', 280);
+insert into REWARD(ID, NAME, PICTURE, POINTS)
+    values(nextval('reward_seq'), 'Een dag Walibi (2 Personen)', '/img/Walibi.jpg', 150);
+insert into REWARD(ID, NAME, PICTURE, POINTS)
+    values(nextval('reward_seq'), 'Waardebon Kinepolis 20 EUR', '/img/Kinepolis.jpg', 30);
+insert into REWARD(ID, NAME, PICTURE, POINTS)
+    values(nextval('reward_seq'), 'Bluetooth Speaker T&G', '/img/Speaker.jpg', 300);
