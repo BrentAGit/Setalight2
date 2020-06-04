@@ -109,8 +109,10 @@ insert into REWARD(ID, NAME, PICTURE, POINTS)
 insert into REWARD(ID, NAME, PICTURE, POINTS)
     values(nextval('reward_seq'), 'Cannon SX540', '/img/Cannon.jpg', 280);
 insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(nextval('reward_seq'), 'Een dag Walibi (2 Personen)', '/img/Walibi.jpg', 150);
+    values(nextval('reward_seq'), 'Een dag Walibi (2 Personen)', '/img/Walibi.jpg', 200);
 insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(nextval('reward_seq'), 'Waardebon Kinepolis 20 EUR', '/img/Kinepolis.jpg', 30);
+    values(nextval('reward_seq'), 'Waardebon Kinepolis 20 EUR', '/img/Kinepolis.jpg', 60);
 insert into REWARD(ID, NAME, PICTURE, POINTS)
     values(nextval('reward_seq'), 'Bluetooth Speaker T&G', '/img/Speaker.jpg', 300);
+insert into REWARD(ID, NAME, PICTURE, POINTS)
+    values(nextval('reward_seq'), 'Headset Logitec Pro', '/img/Headset.png', 260);
