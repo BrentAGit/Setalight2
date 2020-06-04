@@ -41,25 +41,25 @@ INSERT INTO PROFILE (ID, USER_ID_ID, LENGTH, EMAIL, BIRTH_DATE, PROFILE_PICTURE,
     VALUES (nextval('PROFILE_SEQ'), 11, 1.85, 'r0803085@student.thomasmore.be', '1997-02-15', '/img/profilepicture.png', '/img/fullpicture.png', 1);
 
 insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER, TYPE_WANTED, PICTURE, REWARD_CODE)
-    VALUES(nextval('EVENT_SEQ'),4,100,true,'2020-05-22','publiek gezocht voor nieuwe show','15:00','Quarantaine Time','14:00', '2800', 'Mechelen', 'Zandpoortvest', '60','publiek','/img/Thuis_logo.png','E12345');
-insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
-    VALUES(nextval('EVENT_SEQ'),4,50, true,'2020-07-20','figuranten nodig vor restaurant scene','15:00','Bar Fight','13:00', '2000', 'Antwerpen', 'caféstraat', '10','figurant');
-insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
-    VALUES(nextval('EVENT_SEQ'),3,50,true,'2020-06-17','pilot sitcom publiek nodig','15:00','Sitcom','12:00', '1000', 'Brussel', 'stadsstraat', '60','publiek');
-insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED, PICTURE)
-    VALUES(nextval('EVENT_SEQ'),4,50, true,'2020-07-25','figuranten nodig ','15:00','Thuis','13:00', '2000', 'Antwerpen', 'caféstraat', '10','figurant','/img/Thuis_logo.png');
-insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED, PICTURE)
-    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-07-28','figuranten nodig ','15:00','Familie','13:00', '2000', 'Antwerpen', 'caféstraat', '10','figurant','/img/FamilieLogo.jpg');
-insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
-    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-08-11','publiek nodig ','18:45','De slimste mens','16:00', '2000', 'Antwerpen', 'bosstraat', '17','publiek');
-insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED, PICTURE)
-    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-08-28','figuranten gezocht voor scene thuis ','18:30','Thuis','16:45', '2000', 'Antwerpen', 'breendestraat', '57 A','figurant','/img/Thuis_logo.png');
-insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
-    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-07-28','publiek gezocht voor premiere Katchoe ','20:45','Katchoe','19:00', '2000', 'Brussel', 'denkelstraat', '5','publiek');
-insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED, PICTURE)
-    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-07-28','figuranten gezocht voor nieuwe voorstelling','20:45','Famillie','19:00', '2000', 'Brussel', 'denkelstraat', '5','figurant','/img/FamilieLogo.jpg');
-insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
-    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-05-31','publiek gezocht voor premiere Katchoe ','20:45','Katchoe','19:00', '2000', 'Brussel', 'denkelstraat', '5','publiek');
+    VALUES(nextval('EVENT_SEQ'),4,100,true,'2020-05-22','publiek gezocht voor nieuwe show','15:00','Quarantaine Time','14:00', '2800', 'Mechelen', 'Zandpoortvest', '60','publiek','/img/Thuis_logo.png','D12345');
+insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED, REWARD_CODE)
+    VALUES(nextval('EVENT_SEQ'),4,50, true,'2020-07-20','figuranten nodig vor restaurant scene','15:00','Bar Fight','13:00', '2000', 'Antwerpen', 'caféstraat', '10','figurant','D12346');
+insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED, REWARD_CODE)
+    VALUES(nextval('EVENT_SEQ'),3,50,true,'2020-06-17','pilot sitcom publiek nodig','15:00','Sitcom','12:00', '1000', 'Brussel', 'stadsstraat', '60','publiek','V12345');
+insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED, PICTURE, REWARD_CODE)
+    VALUES(nextval('EVENT_SEQ'),4,50, true,'2020-07-25','figuranten nodig ','15:00','Thuis','13:00', '2000', 'Antwerpen', 'caféstraat', '10','figurant','/img/Thuis_logo.png','D12347');
+insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED, PICTURE, REWARD_CODE)
+    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-07-28','figuranten nodig ','15:00','Familie','13:00', '2000', 'Antwerpen', 'caféstraat', '10','figurant','/img/FamilieLogo.jpg','V12346');
+insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED, REWARD_CODE)
+    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-08-11','publiek nodig ','18:45','De slimste mens','16:00', '2000', 'Antwerpen', 'bosstraat', '17','publiek','V12347');
+insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED, PICTURE, REWARD_CODE)
+    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-08-28','figuranten gezocht voor scene thuis ','18:30','Thuis','16:45', '2000', 'Antwerpen', 'breendestraat', '57 A','figurant','/img/Thuis_logo.png','V12348');
+insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED, REWARD_CODE)
+    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-07-28','publiek gezocht voor premiere Katchoe ','20:45','Katchoe','19:00', '2000', 'Brussel', 'denkelstraat', '5','publiek','V12349');
+insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED, PICTURE, REWARD_CODE)
+    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-07-28','figuranten gezocht voor nieuwe voorstelling','20:45','Famillie','19:00', '2000', 'Brussel', 'denkelstraat', '5','figurant','/img/FamilieLogo.jpg','V12349');
+insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED, REWARD_CODE)
+    VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-05-31','publiek gezocht voor premiere Katchoe ','20:45','Katchoe','19:00', '2000', 'Brussel', 'denkelstraat', '5','publiek','V12350');
 
 
 insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number)

@@ -24,6 +24,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -140,12 +141,27 @@ public class EventController {
         event.setHouseNumber(houseNumber);
         event.setCreatedBy(user);
         event.setControl(false);
+        event.setRewardCode(createEventCode(user));
         FileUploader fileUploader = new FileUploader();
         event.setPicture(fileUploader.fileUpload(picture,uploadImagesDirString));
         eventRepository.save(event);
 
-
         return "redirect:/";
+    }
+
+    public String createEventCode(User user){
+        char first =user.getUsername().charAt(0);
+
+        int random = (int)(Math.random() * 99999 + 1);
+        String rewardcode = String.valueOf(first) + random;
+        List<Event> eventsFromDB = eventRepository.findAllByCreatedBy(user);
+        for (Event event : eventsFromDB){
+            if(event.getRewardCode().equals(rewardcode)){
+                random++;
+                rewardcode = String.valueOf(first) + random;
+            }
+        }
+        return rewardcode;
     }
 
     @GetMapping({"/edit-event/{eventId}"})

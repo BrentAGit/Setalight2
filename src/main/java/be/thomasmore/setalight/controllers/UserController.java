@@ -207,10 +207,7 @@ public class UserController {
                                      @RequestParam String rewardcode) {
         AddUser adduser = new AddUser();
         User user = adduser.addUser(principal, userRepository);
-        Profile profile = getProfile(user.getId());
-
         addRewards(user,rewardcode);
-
 
         return "redirect:/user/rewards/" + user.getId();
     }
