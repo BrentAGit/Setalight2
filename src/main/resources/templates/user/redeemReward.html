@@ -11,15 +11,14 @@
 <body>
 <div class="container">
     <div th:replace="fragments/header"></div>
-</div>
-<div class="container">
+    <br>
     <form th:action="@{|/user/redeemRewards|}" method="post">
         <div>
             <label for="rewardcode">vul code van event in</label>
-            <input name="rewardcode" id="rewardcode">
+            <input class="input" name="rewardcode" id="rewardcode">
         </div>
         <div>
-            <input type="submit" value="save" class="btn btn-primary m-lg-1">
+            <input type="submit" value="punten toevoegen" class="btn btn-primary m-lg-1">
         </div>
     </form>
 
