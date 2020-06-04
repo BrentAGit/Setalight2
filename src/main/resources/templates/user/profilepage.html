@@ -16,6 +16,12 @@
         <div class="col-4">
             <h3>Mijn profiel</h3>
         </div>
+        <div class="col-5">
+
+        </div>
+        <div class="col-1">
+            <img height="100" th:src="${profile.getProfilePicture()}">
+        </div>
     </div>
     <div class="row">
         <div class="col-1">
@@ -23,25 +29,30 @@
         </div>
     </div>
     <div class="row">
-        <p class="col-2">Naam:</p>
-        <p class="col-2" th:text="${user.getUsername()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">geboorte datum:</p>
-        <p class="col-2" th:text="${profile.getBirthDateString()}"></p>
-    </div>
-    <div class="row">
-        <p class="col-2">email:</p>
-        <p class="col-2" th:text="${profile.getEmail()}"></p>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <img th:src="${profile.getProfilePicture()}">
+        <div class="col-2">
+            <div class="row">
+                <p>Naam:</p>
+            </div>
+            <div class="row">
+                <p>geboorte datum:</p>
+            </div>
+            <div class="row">
+                <p>email:</p>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <img th:src="${profile.getFullPicture()}">
+        <div class="col-2">
+            <div class="row">
+                <p th:text="${user.getUsername()}"></p>
+            </div>
+            <div class="row">
+                <p th:text="${profile.getBirthDateString()}"></p>
+            </div>
+            <div class="row">
+                <p th:text="${profile.getEmail()}"></p>
+            </div>
+        </div>
+        <div class="offset-1 col-6">
+            <img height="200" th:src="${profile.getFullPicture()}">
         </div>
     </div>
     <div class="row">
