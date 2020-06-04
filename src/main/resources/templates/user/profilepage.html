@@ -29,24 +29,24 @@
     <div class="row">
         <div class="col-2">
             <div class="row">
-                <p>Naam:</p>
+                <p class="col-12">Naam:</p>
             </div>
             <div class="row">
-                <p>geboorte datum:</p>
+                <p class="col-12">geboorte datum:</p>
             </div>
             <div class="row">
-                <p>email:</p>
+                <p class="col-12">email:</p>
             </div>
         </div>
         <div class="col-2">
             <div class="row">
-                <p th:text="${user.getUsername()}"></p>
+                <p class="col-12" th:text="${user.getUsername()}"></p>
             </div>
             <div class="row">
-                <p th:text="${profile.getBirthDateString()}"></p>
+                <p class="col-12" th:text="${profile.getBirthDateString()}"></p>
             </div>
             <div class="row">
-                <p th:text="${profile.getEmail()}"></p>
+                <p class="col-12" th:text="${profile.getEmail()}"></p>
             </div>
         </div>
         <div class="offset-1 col-6">
