@@ -24,6 +24,10 @@ INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
     VALUES (nextval('USER_SEQ'), 'VTM', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS');--paswoord:
 INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
     VALUES (nextval('USER_SEQ'), 'Canvas', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS');--paswoord:password
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'woestijnvis', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS'); --password:password
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'regionaletv', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS');--password:password
 
 INSERT INTO PROFILE (ID, USER_ID_ID, LENGTH, EMAIL, BIRTH_DATE, PROFILE_PICTURE, FULL_PICTURE, REWARD_POINTS)
     VALUES (nextval('PROFILE_SEQ'), 2, 1.8, 'r0803085@student.thomasmore.be', '2001-06-23', '/img/profilepicture.png', '/img/fullpicture.png', 1000);
@@ -75,9 +79,10 @@ insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_
     values (nextval('productiehuis_Profile_seq'), 'vlaamse televisie', 'VTM', 12,'VTM televisie','BE 0123.456.789','Brussel','Brussel','VTMstraat','1000','121', false);
 insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number, VERIFIED)
     values (nextval('productiehuis_Profile_seq'), '24/7 vlaamse programmas', 'Canvas', 13,'Canvas','BE 0123.456.789','Brussel','Brussel','Canvasstraat','1000','121', true);
--- insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number, VERIFIED)
---     values (nextval('productiehuis_Profile_seq'), 'regionale televisie', 'provintie Antwerpen', 14,'regionale Antwerpse tv','BE 0123.456.789','Antwerpen','Antwerpen','Rijfstraat','2018','2', true);
-
+insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number, VERIFIED)
+    values (nextval('productiehuis_Profile_seq'), 'interessante satiren', 'provintie Antwerpen', 14,'Woenstijnvis','BE 0123.456.789','Antwerpen','Antwerpen','Rijfstraat','2018','2', true);
+insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number, VERIFIED)
+    values (nextval('productiehuis_Profile_seq'), 'regionale televisie', 'provintie Antwerpen', 15,'Regionale omroep','BE 0123.456.789','Antwerpen','Antwerpen','Paardenmarkt','2000','9', true);
 
 insert into EVENT_USERS(EVENT_ID, USERS_ID)
     values(1,6);
