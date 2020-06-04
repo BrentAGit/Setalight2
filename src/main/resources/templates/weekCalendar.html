@@ -303,17 +303,19 @@
                 dayDate.setDate(today.getDate() - (currentDay - i));
                 dayDate.setMonth(today.getMonth());
                 dates.children[i].innerText = dates.children[i].innerText + " " + dayDate.getDate() + "/" + (dayDate.getMonth() + 1);
+                colorCurrentDay(HTMLEvents, currentDay);
                 addEvents(dayDate);
             } else if (i === currentDay) {
                 dayDate = today;
                 dates.children[i].innerText = dates.children[i].innerText + " " + dayDate.getDate() + "/" + (dayDate.getMonth() + 1);
                 dates.children[i].className = dates.children[i].className + " current-day"
-                colorCurrentDay(HTMLEvents, dayDate);
+                colorCurrentDay(HTMLEvents, currentDay);
                 addEvents(dayDate);
             } else if (i > currentDay) {
                 dayDate.setDate(today.getDate() + (i - currentDay));
                 dayDate.setMonth(today.getMonth());
                 dates.children[i].innerText = dates.children[i].innerText + " " + dayDate.getDate() + "/" + (dayDate.getMonth() + 1);
+                colorCurrentDay(HTMLEvents, currentDay);
                 addEvents(dayDate);
             }
         }
@@ -413,11 +415,11 @@
         }
     }
 
-    const colorCurrentDay = function (HTMLEvents, dayDate) {
+    const colorCurrentDay = function (HTMLEvents, currentDay) {
         for (let children of HTMLEvents.children){
             for (let child of children.children) {
                 let className = child.className.split(/\s+/g)[3];
-                if (className !== undefined && getCurrentDay(dayDate.getDate()) === className) {
+                if (className !== undefined && getCurrentDay(currentDay) === className) {
                     child.className = child.className + " current-day"
                 }
             }
