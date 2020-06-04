@@ -16,14 +16,16 @@
         <div class="col-4">
             <h3>Mijn profiel</h3>
         </div>
-        <div class="col-4"></div>
-        <div class="col-4">
+        <div class="offset-4 col-6">
+
+        </div>
+        <div class="offset-6 col-6">
             <img height="150" class="profilepicture" th:src="${profile.getProfilePicture()}">
         </div>
     </div>
     <div class="row">
         <div class="col-1">
-            <a th:if="${canEdit}" class="menu-link" th:href="'/user/edit-profile/' + ${user.getId()}" href="/">edit</a>
+
         </div>
     </div>
     <div class="row">
@@ -38,6 +40,7 @@
                 <p class="col-12">email:</p>
             </div>
         </div>
+
         <div class="col-2">
             <div class="row">
                 <p class="col-12" th:text="${profile.getUserId().getUsername()}"></p>
@@ -48,10 +51,17 @@
             <div class="row">
                 <p class="col-12" th:text="${profile.getEmail()}"></p>
             </div>
+
         </div>
-        <div class="offset-1 col-6">
-            <img height="200" th:src="${profile.getFullPicture()}">
+        <div class="row">
+            <div class="col-12">
+            <a th:if="${canEdit}" class="btn btn-primary" th:href="'/user/edit-profile/' + ${user.getId()}" href="/">edit</a>
+            </div>
         </div>
+        <div class="offset-2 col-6">
+            <img height="300" th:src="${profile.getFullPicture()}">
+        </div>
+
     </div>
     <div class="row">
         <div class="col-12">

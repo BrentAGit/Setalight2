@@ -379,4 +379,5 @@ a, a:hover {
 .profilepicture {
     border: 5px outset black;
     border-radius: 50%;
+    margin: 10px;
 }
