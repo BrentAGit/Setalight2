@@ -40,8 +40,8 @@ INSERT INTO PROFILE (ID, USER_ID_ID, LENGTH, EMAIL, BIRTH_DATE, PROFILE_PICTURE,
 INSERT INTO PROFILE (ID, USER_ID_ID, LENGTH, EMAIL, BIRTH_DATE, PROFILE_PICTURE, FULL_PICTURE, REWARD_POINTS)
     VALUES (nextval('PROFILE_SEQ'), 11, 1.85, 'r0803085@student.thomasmore.be', '1997-02-15', '/img/profilepicture.png', '/img/fullpicture.png', 1);
 
-insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER, TYPE_WANTED, PICTURE)
-    VALUES(nextval('EVENT_SEQ'),4,100,true,'2020-06-22','publiek gezocht voor nieuwe show','15:00','Quarantaine Time','14:00', '2800', 'Mechelen', 'Zandpoortvest', '60','publiek','/img/Thuis_logo.png');
+insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER, TYPE_WANTED, PICTURE, REWARD_CODE)
+    VALUES(nextval('EVENT_SEQ'),4,100,true,'2020-05-22','publiek gezocht voor nieuwe show','15:00','Quarantaine Time','14:00', '2800', 'Mechelen', 'Zandpoortvest', '60','publiek','/img/Thuis_logo.png','E12345');
 insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)
     VALUES(nextval('EVENT_SEQ'),4,50, true,'2020-07-20','figuranten nodig vor restaurant scene','15:00','Bar Fight','13:00', '2000', 'Antwerpen', 'caféstraat', '10','figurant');
 insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTION,END_TIME,NAME,START_TIME, POSTCODE, CITY, STREET, HOUSE_NUMBER,TYPE_WANTED)

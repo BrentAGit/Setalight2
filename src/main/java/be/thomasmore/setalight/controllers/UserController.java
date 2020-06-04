@@ -190,6 +190,47 @@ public class UserController {
         return "user/rewardPage";
     }
 
+    @GetMapping("/redeemReward")
+    public String redeemRewards(Model model, Principal principal) {
+
+        AddUser adduser = new AddUser();
+        User user = adduser.addUser(principal, userRepository);
+        model.addAttribute("user", user);
+        Profile profile = getProfile(user.getId());
+
+
+        model.addAttribute("profile", profile);
+        return "user/redeemReward";
+    }
+    @PostMapping("/redeemRewards")
+    private String redeemRewardsPost(Principal principal,
+                                     @RequestParam String rewardcode) {
+        AddUser adduser = new AddUser();
+        User user = adduser.addUser(principal, userRepository);
+        Profile profile = getProfile(user.getId());
+
+        addRewards(user,rewardcode);
+
+
+        return "redirect:/user/rewards/" + user.getId();
+    }
+
+    public void addRewards(User user, String code) {
+        Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
+        Profile profile = new Profile();
+        if (profileFromDb.isPresent()) profile = profileFromDb.get();
+        Calendar calendar = Calendar.getInstance();
+        List<Event> eventFromDb = eventRepository.findAllByUsersAndDateBefore(user, calendar.getTime());
+
+        for (Event event : eventFromDb) {
+            if (!profile.getCheckedEvents().contains(event) && event.getRewardCode().equals(code)) {
+                profile.getCheckedEvents().add(event);
+                profile.setRewardPoints(profile.getRewardPoints() + 20);
+            }
+        }
+        profileRepository.save(profile);
+    }
+
     private Profile getProfile(int userId) {
         Optional<User> userFromDb = userRepository.findUserById(userId);
         User user = new User();

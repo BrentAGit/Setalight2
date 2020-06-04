@@ -48,7 +48,6 @@ public class HomeController {
             if (userFromDb.isPresent()) {
                 user = userFromDb.get();
                 if (user.getRole().contains("USER")) {
-                    this.addRewards(user);
                 } else if (user.getRole().contains("PRODUCTIEHUIS")) {
                     return "redirect:/productiehuis/";
                 }
@@ -108,18 +107,5 @@ public class HomeController {
         return "denied";
     }
 
-    public void addRewards(User user) {
-        Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
-        Profile profile = new Profile();
-        if (profileFromDb.isPresent()) profile = profileFromDb.get();
-        Calendar calendar = Calendar.getInstance();
-        List<Event> eventFromDb = eventRepository.findAllByUsersAndDateBefore(user, calendar.getTime());
-        for (Event event : eventFromDb) {
-            if (!profile.getCheckedEvents().contains(event)) {
-                profile.getCheckedEvents().add(event);
-                profile.setRewardPoints(profile.getRewardPoints() + 20);
-            }
-        }
-        profileRepository.save(profile);
-    }
+
 }

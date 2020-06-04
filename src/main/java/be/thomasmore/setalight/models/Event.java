@@ -26,6 +26,7 @@ public class Event {
     private LocalTime startTime;
     private LocalTime endTime;
     private String typeWanted;
+    private String rewardCode;
     private String picture;
     @ManyToOne
     private User createdBy;
@@ -150,6 +151,14 @@ public class Event {
 
     public void setTypeWanted(String typeWanted) {
         this.typeWanted = typeWanted;
+    }
+
+    public String getRewardCode() {
+        return rewardCode;
+    }
+
+    public void setRewardCode(String rewardCode) {
+        this.rewardCode = rewardCode;
     }
 
     public String getDateString() {
