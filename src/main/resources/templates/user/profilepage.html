@@ -65,7 +65,7 @@
             </div>
             <div th:if="${canEdit}" class="row">
                 <div th:if="${user.getId()} == ${profile.getUserId().getId()}" class="col-5">
-                    <a th:href="'/user/addFriends/' + ${profile.getUserId().getId()}" href="/">Voeg vrienden toe</a>
+                    <a class="btn btn-primary" th:href="'/user/addFriends/' + ${profile.getUserId().getId()}" href="/">Voeg vrienden toe</a>
                 </div>
             </div>
         </div>
