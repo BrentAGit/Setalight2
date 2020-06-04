@@ -376,3 +376,9 @@ a, a:hover {
 .current-day {
     background: #717171;
 }
+.profilepicture {
+    border: 5px outset black;
+    border-radius: 50%;
+    width: 50%;
+    height: 75%;
+}
