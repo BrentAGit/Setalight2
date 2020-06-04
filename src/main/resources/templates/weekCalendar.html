@@ -28,7 +28,7 @@
         <div class="col-12">
             <div class="row" id="dates">
                 <div class="col-md border border-dark">
-                    <p>week of month</p>
+                    <p id="month"></p>
                 </div>
                 <div class="col-md border border-dark maa">
                     <p>Maa</p>
@@ -282,6 +282,7 @@
         currentDay = 7;
     } else currentDay = today.getDay();
     window.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("month").innerHTML = getMonth(today);
         document.getElementById("pre").addEventListener("click", () => {
             clearEvents();
             pre(givenMonth, givenDay);
@@ -423,6 +424,35 @@
                     child.className = child.className + " current-day"
                 }
             }
+        }
+    }
+
+    const getMonth = function (today) {
+        switch (today.getMonth() + 1) {
+            case 1:
+                return "januari";
+            case 2:
+                return "februari";
+            case 3:
+                return "maart";
+            case 4:
+                return "april";
+            case 5:
+                return "mei";
+            case 6:
+                return "juni";
+            case 7:
+                return "juli";
+            case 8:
+                return "augustus";
+            case 9:
+                return "september";
+            case 10:
+                return "oktober";
+            case 11:
+                return "november";
+            case 12:
+                return "december";
         }
     }
 </script>
