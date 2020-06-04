@@ -315,11 +315,11 @@ a, a:hover {
     margin-top: 10px;
 }
 
-.user{
+.user {
     color: #ffffff;
 }
 
-.productiehuis{
+.productiehuis {
     color: #EC7969;
 }
 
@@ -332,21 +332,21 @@ a, a:hover {
     padding-bottom: 3px;
 }
 
-@media only screen and (max-width:576px) {
+@media only screen and (max-width: 576px) {
 
 }
 
-@media only screen and (max-width:768px){
+@media only screen and (max-width: 768px) {
 
 }
 
-@media only screen and (max-width:992px){
-    body{
+@media only screen and (max-width: 992px) {
+    body {
         background: rgb(35, 35, 35);
     }
 }
 
-@media only screen and (max-width:1200px){
+@media only screen and (max-width: 1200px) {
 
 }
 
@@ -376,10 +376,15 @@ a, a:hover {
 .current-day {
     background: #717171;
 }
+
 .profilepicture {
     border: 5px outset black;
     border-radius: 50%;
     margin: 10px;
+}
+
+.fullpicture {
+    border-radius: 20px;
 }
 
 .friends {
