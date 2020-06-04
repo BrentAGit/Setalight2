@@ -56,8 +56,8 @@ public class AdminController {
         AddUser addUser = new AddUser();
         User user = addUser.addUser(principal, userRepository);
         model.addAttribute("user", user);
-        model.addAttribute("productiehuizenNotV", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", false));
-        model.addAttribute("productiehuizenV", userRepository.findUserByRoleAndVerified("PRODUCTIEHUIS", true));
+        model.addAttribute("productiehuizenNotV", productiehuisProfileRepository.findAllByVerified(false));
+        model.addAttribute("productiehuizenV", productiehuisProfileRepository.findAllByVerified(true));
         return "admin/verifyproductiehuis";
     }
 
@@ -81,7 +81,11 @@ public class AdminController {
         if (userFromDb.isPresent()) {
             user = userFromDb.get();
         }
-        user.setVerified(true);
+        ProductiehuisProfile profile = new ProductiehuisProfile();
+        Optional<ProductiehuisProfile> profileFromDb = productiehuisProfileRepository.findByUserId(user);
+        if (profileFromDb.isPresent()) profile = profileFromDb.get();
+        profile.setVerified(true);
+        productiehuisProfileRepository.save(profile);
         userRepository.save(user);
 
         return "redirect:/admin/verifyproductiehuis";

@@ -16,13 +16,13 @@
             <div class="col-3">
                 <p class="data">geverifieerded productiehuizen</p>
                 <div th:each="productiehuis:${productiehuizenV}">
-                    <a class="menu-link" th:href="'/admin/verify/'+${productiehuis.getId()}" th:text="'- '+ ${productiehuis.getUsername()}" href="/"></a>
+                    <a class="menu-link" th:href="'/admin/verify/'+${productiehuis.getUserId().getId()}" th:text="'- '+ ${productiehuis.getUserId().getUsername()}" href="/"></a>
             </div>
             </div>
             <div class="col-3">
                 <p class="data">non-geverifieerded productiehuizen</p>
                 <div th:each="productiehuis:${productiehuizenNotV}">
-                    <a class="menu-link" th:href="'/admin/verify/'+${productiehuis.getId()}" th:text="'- '+ ${productiehuis.getUsername()}" href="/"></a>
+                    <a class="menu-link" th:href="'/admin/verify/'+${productiehuis.getUserId().getId()}" th:text="'- '+ ${productiehuis.getUserId().getUsername()}" href="/"></a>
                 </div>
             </div>
         </div>

@@ -18,16 +18,6 @@ public class User {
     @ManyToMany
     private Collection<Event> experience;
 
-    private boolean verified;
-
-    public boolean isVerified() {
-        return verified;
-    }
-
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
-
     public User() {
     }
 

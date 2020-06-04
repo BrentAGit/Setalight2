@@ -1,7 +1,9 @@
 package be.thomasmore.setalight.controllers;
 
+import be.thomasmore.setalight.models.ProductiehuisProfile;
 import be.thomasmore.setalight.models.Profile;
 import be.thomasmore.setalight.models.User;
+import be.thomasmore.setalight.repositories.ProductiehuisProfileRepository;
 import be.thomasmore.setalight.repositories.ProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import be.thomasmore.setalight.utilities.AddUser;
@@ -43,6 +45,9 @@ public class LoginController {
 
     @Autowired
     private ProfileRepository profileRepository;
+
+    @Autowired
+    private ProductiehuisProfileRepository productiehuisProfileRepository;
 
     @Value("${upload.images.dir}")
     private String uploadImagesDirString = "${upload.images.dir}";
@@ -136,8 +141,20 @@ public class LoginController {
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("PRODUCTIEHUIS");
-        user.setVerified(false);
+        ProductiehuisProfile profile = new ProductiehuisProfile();
+        profile.setCity(city);
+        profile.setCompanyNumber(companyNumber);
+        profile.setDescription(description);
+        profile.setHouseNumber(houseNumber);
+        profile.setNameCompany(nameCompany);
+        profile.setNameOwner(nameOwner);
+        profile.setPostalCode(postalCode);
+        profile.setProvince(province);
+        profile.setStreet(street);
+        profile.setUserId(user);
+        profile.setVerified(false);
         userRepository.save(user);
+        productiehuisProfileRepository.save(profile);
         AutoLogin autoLogin = new AutoLogin();
         autoLogin.autoLogin(username, password, authenticationManager);
         return "redirect:/";

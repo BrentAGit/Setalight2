@@ -131,8 +131,9 @@ btn-primary:link {
 }
 
 .filterButtons a {
-    color: #2d2323;
+    color: #ffffff;
     text-decoration: none;
+    margin: 5px;
 }
 
 .filterButtons li {
