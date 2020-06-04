@@ -27,6 +27,7 @@
     <br>
     <div class="row">
         <label class="col-2" for="picture">afbeelding:</label>
+        <img class="currentImage" th:src="${event.getPicture()}">
         <input class="col-2 file-input" type="file" id="picture" name="picture">
     </div>
     <div class="row">

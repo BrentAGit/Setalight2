@@ -18,6 +18,9 @@
         <div class="col-1" th:if="${admin}">
             <a href="/admin/create-reward" class="btn btn-danger">Reward Toevoegen</a>
         </div>
+        <div class="col-1" th:if="${!admin}">
+            <a href="/user/redeemReward" class="btn btn-danger">punten</a>
+        </div>
     </div>
     <div class="row" th:if="${!admin}">
         <div class="col-12">
