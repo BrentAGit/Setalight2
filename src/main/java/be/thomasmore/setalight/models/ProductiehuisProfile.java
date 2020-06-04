@@ -19,6 +19,7 @@ public class ProductiehuisProfile {
     private String companyNumber;
     private String nameOwner;
     private String logo;
+    private boolean verified;
     @OneToOne(fetch = FetchType.LAZY)
     User userId;
 
@@ -117,9 +118,19 @@ public class ProductiehuisProfile {
     public void setUserId(User userId) {
         this.userId = userId;
     }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
     public String getCityAndPostcode() {
         return String.format(" stad: %s %s ", getCity(), getPostalCode());
     }
+
     public String getStreetAndNumber() {
         return String.format(" straat: %s %s ", getStreet(), getHouseNumber());
     }

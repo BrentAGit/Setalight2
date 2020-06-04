@@ -1,29 +1,29 @@
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE, VERIFIED)
-    VALUES (nextval('USER_SEQ'), 'admin', '$2a$10$9MIX8kYPkuB7uE/H5nHF8.KG6.YdjBA/voOnjSZnZDxLXL/2BIerS', 'ADMIN', false);--paswoord:admin
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE, VERIFIED)
-    VALUES (nextval('USER_SEQ'), 'marie', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER', false);--paswoord:password
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE, VERIFIED)
-    VALUES (nextval('USER_SEQ'), 'VRT', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS', true);--paswoord:password
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE, VERIFIED)
-    VALUES (nextval('USER_SEQ'), 'disney', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS', false);--paswoord:password
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE, VERIFIED)
-    VALUES (nextval('USER_SEQ'), 'newproduction', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS', false);--paswoord:password
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE, VERIFIED)
-    VALUES (nextval('USER_SEQ'), 'jan', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER', false);--paswoord:password
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE, VERIFIED)
-    VALUES (nextval('USER_SEQ'), 'tom', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER', false);--paswoord:password
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE, VERIFIED)
-    VALUES (nextval('USER_SEQ'), 'tim', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER', false);--paswoord:password
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE, VERIFIED)
-    VALUES (nextval('USER_SEQ'), 'jos', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER', false);--paswoord:password
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE, VERIFIED)
-    VALUES (nextval('USER_SEQ'), 'bert', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER', false);--paswoord:password
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE, VERIFIED)
-    VALUES (nextval('USER_SEQ'), 'karel', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER', false);--paswoord:password
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE, VERIFIED)
-    VALUES (nextval('USER_SEQ'), 'VTM', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS', true);--paswoord:
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE, VERIFIED)
-    VALUES (nextval('USER_SEQ'), 'Canvas', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS', true);--paswoord:password
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'admin', '$2a$10$9MIX8kYPkuB7uE/H5nHF8.KG6.YdjBA/voOnjSZnZDxLXL/2BIerS', 'ADMIN');--paswoord:admin
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'marie', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER');--paswoord:password
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'VRT', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS');--paswoord:password
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'disney', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS');--paswoord:password
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'newproduction', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS');--paswoord:password
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'jan', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER');--paswoord:password
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'tom', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER');--paswoord:password
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'tim', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER');--paswoord:password
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'jos', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER');--paswoord:password
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'bert', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER');--paswoord:password
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'karel', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER');--paswoord:password
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'VTM', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS');--paswoord:
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
+    VALUES (nextval('USER_SEQ'), 'Canvas', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS');--paswoord:password
 
 INSERT INTO PROFILE (ID, USER_ID_ID, LENGTH, EMAIL, BIRTH_DATE, PROFILE_PICTURE, FULL_PICTURE, REWARD_POINTS)
     VALUES (nextval('PROFILE_SEQ'), 2, 1.8, 'r0803085@student.thomasmore.be', '2001-06-23', '/img/profilepicture.png', '/img/fullpicture.png', 1000);
@@ -62,14 +62,16 @@ insert into event(ID,CREATED_BY_ID,AMOUNT_OF_PARTICIPANTS,CONTROL,DATE,DESCRIPTI
     VALUES(nextval('EVENT_SEQ'),3,50, true,'2020-05-31','publiek gezocht voor premiere Katchoe ','20:45','Katchoe','19:00', '2000', 'Brussel', 'denkelstraat', '5','publiek');
 
 
-insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number)
-    values (nextval('productiehuis_Profile_seq'), 'Mickey mouse woont hier', 'Walt Disney', 4,'Disney','BE 0123.456.789','Brussel','Brussel','disneystraat','1000','121');
-insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number)
-    values (nextval('productiehuis_Profile_seq'), 'vlaamse tv', 'VRT eigenaar', 3,'VRT television','BE 0123.456.789','Brussel','Brussel','vrtstraat','1000','121');
-insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number)
-    values (nextval('productiehuis_Profile_seq'), 'vlaamse televisie', 'VTM', 12,'VTM televisie','BE 0123.456.789','Brussel','Brussel','VTMstraat','1000','121');
-insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number)
-    values (nextval('productiehuis_Profile_seq'), '24/7 vlaamse programmas', 'Canvas', 13,'Canvas','BE 0123.456.789','Brussel','Brussel','Canvasstraat','1000','121');
+insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number, VERIFIED)
+    values (nextval('productiehuis_Profile_seq'), 'Mickey mouse woont hier', 'Walt Disney', 4,'Disney','BE 0123.456.789','Brussel','Brussel','disneystraat','1000','121', false);
+insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number, VERIFIED)
+    values (nextval('productiehuis_Profile_seq'), 'vlaamse tv', 'VRT eigenaar', 3,'VRT television','BE 0123.456.789','Brussel','Brussel','vrtstraat','1000','121', false);
+insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number, VERIFIED)
+    values (nextval('productiehuis_Profile_seq'), 'vlaamse televisie', 'VTM', 12,'VTM televisie','BE 0123.456.789','Brussel','Brussel','VTMstraat','1000','121', false);
+insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number, VERIFIED)
+    values (nextval('productiehuis_Profile_seq'), '24/7 vlaamse programmas', 'Canvas', 13,'Canvas','BE 0123.456.789','Brussel','Brussel','Canvasstraat','1000','121', true);
+-- insert into PRODUCTIEHUIS_PROFILE (ID, description, name_owner, USER_ID_ID,name_company,company_number,province,city,street,postal_code,house_number, VERIFIED)
+--     values (nextval('productiehuis_Profile_seq'), 'regionale televisie', 'provintie Antwerpen', 14,'regionale Antwerpse tv','BE 0123.456.789','Antwerpen','Antwerpen','Rijfstraat','2018','2', true);
 
 
 insert into EVENT_USERS(EVENT_ID, USERS_ID)
