@@ -380,3 +380,11 @@ a, a:hover {
     border: 5px outset black;
     border-radius: 50%;
 }
+
+.friends {
+    color: white;
+}
+
+.friends:hover {
+    color: #EC7969;
+}
