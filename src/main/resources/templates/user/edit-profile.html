@@ -13,7 +13,7 @@
 <br>
 <div class="container">
     <p>Algemene gegevens</p>
-    <form th:action="@{|/user/edit-profile/${user.getId()}|}" method="post">
+    <form th:action="@{|/user/edit-profile/${user.getId()}|}" method="post" enctype="multipart/form-data">
         <div class="row">
             <label class="col-2" for="email">mailadres: </label>
             <input class="col-4 input"  type="text" name="email" id="email" th:value="${profile.getEmail()}">
@@ -52,34 +52,7 @@
         </div>
         <br>
         <input class="btn btn-primary" type="submit" name="save" id="save" value="Save">
-    <p>Contactgegevens</p>
-    <table>
-        <!--<tr>
-            <td>Straat + nr.<input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Postcode<input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Gemeente<input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Provincie<input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Land<input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Telefoonnr.<input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>Mobielnr.<input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-            <td>E-mailadres<input type="text" name="" id=""></td>
-        </tr>-->
-    </table>
-<!--    <input type="submit" id="submit" name="submit" value="Save">-->
+
 </form>
 </div>
 </body>
