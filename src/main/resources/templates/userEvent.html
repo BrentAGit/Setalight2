@@ -30,7 +30,7 @@
                 <p th:text="${event.getStreetAndNumber()}"></p>
                 <div sec:authorize="hasAnyAuthority('USER')" class="card-footer">
                     <form th:action="@{|/event/events/${event.getId()}|}" method="post">
-                        <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'I am going!'">
+                        <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'Ik kom!'">
                     </form>
                 </div>
                 <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" class="card-footer" >
