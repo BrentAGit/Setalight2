@@ -371,3 +371,7 @@ a, a:hover {
 .reward-line {
     max-width: 80%;
 }
+
+.current-day {
+    background: #717171;
+}

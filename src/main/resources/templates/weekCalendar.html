@@ -296,6 +296,7 @@
             location.assign("/week-calendar/" + (home.getMonth() + 1) + "/" + home.getDay());
         })
         let dates = document.getElementById("dates");
+        let HTMLEvents = document.getElementById("events");
         for (let i = 1; i <= 7; i++) {
             let dayDate = new Date();
             if (i < currentDay) {
@@ -307,6 +308,7 @@
                 dayDate = today;
                 dates.children[i].innerText = dates.children[i].innerText + " " + dayDate.getDate() + "/" + (dayDate.getMonth() + 1);
                 dates.children[i].className = dates.children[i].className + " current-day"
+                colorCurrentDay(HTMLEvents, dayDate);
                 addEvents(dayDate);
             } else if (i > currentDay) {
                 dayDate.setDate(today.getDate() + (i - currentDay));
@@ -407,6 +409,17 @@
             } else {
                 givinDay = givinDay + 7;
                 location.assign("/week-calendar/" + givinMonth + "/" + givinDay);
+            }
+        }
+    }
+
+    const colorCurrentDay = function (HTMLEvents, dayDate) {
+        for (let children of HTMLEvents.children){
+            for (let child of children.children) {
+                let className = child.className.split(/\s+/g)[3];
+                if (className !== undefined && getCurrentDay(dayDate.getDate()) === className) {
+                    child.className = child.className + " current-day"
+                }
             }
         }
     }
