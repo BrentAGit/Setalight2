@@ -44,8 +44,20 @@
                 <div class="card-body">
                     <h3 th:text="${reward.getName()}"></h3>
                     <p th:text="'prijs: ' + ${reward.getPoints()} + ' punten'" id="reward-points"></p>
-                    <p th:if="${reward.isActive()}">Reward is actief</p>
-                    <p th:unless="${reward.isActive()}">Reward is niet actief</p>
+                </div>
+                <div class="card-footer">
+                    <div th:if="${reward.isActive()}">
+                        <p>Reward is actief</p>
+                        <form th:action="/" method="post">
+                            <input type="submit" value="Verwijder">
+                        </form>
+                    </div>
+                    <div th:unless="${reward.isActive()}">
+                        <p>Reward is niet actief</p>
+                        <form th:action="/" method="post">
+                            <input type="submit" value="Maak Actief">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
