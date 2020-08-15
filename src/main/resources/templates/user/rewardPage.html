@@ -48,13 +48,13 @@
                 <div class="card-footer">
                     <div th:if="${reward.isActive()}">
                         <p>Reward is actief</p>
-                        <form th:action="/" method="post">
+                        <form th:action="@{|/admin/removereward/${reward.getId()}|}" method="post">
                             <input type="submit" value="Verwijder">
                         </form>
                     </div>
                     <div th:unless="${reward.isActive()}">
                         <p>Reward is niet actief</p>
-                        <form th:action="/" method="post">
+                        <form th:action="@{|/admin/activatereward/${reward.getId()}|}" method="post">
                             <input type="submit" value="Maak Actief">
                         </form>
                     </div>

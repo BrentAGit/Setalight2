@@ -120,4 +120,11 @@ public class AdminController {
         User user = addUser.addUser(principal, userRepository);
         return "redirect:/user/rewards/" + user.getId();
     }
+
+    @PostMapping("/activatereward/{rewardId}")
+    public String activateReward(@PathVariable int rewardId, Principal principal){
+        AddUser addUser = new AddUser();
+        User user = addUser.addUser(principal, userRepository);
+        return "redirect:/user/rewards/" + user.getId();
+    }
 }
