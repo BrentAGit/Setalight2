@@ -142,7 +142,10 @@ public class ProductiehuisController {
     }
 
     @GetMapping("/aanwezigen/{eventId}")
-    public String aanwezigen(@PathVariable int eventId, Model model) {
+    public String aanwezigen(@PathVariable int eventId, Model model, Principal principal) {
+        AddUser addUser = new AddUser();
+        User user = addUser.addUser(principal, userRepository);
+        model.addAttribute("user", user);
         Optional<Event> eventFromDb = eventRepository.findById(eventId);
         Event event = new Event();
         if (eventFromDb.isPresent()){
@@ -150,8 +153,8 @@ public class ProductiehuisController {
         }
         Collection<User> users = event.getUsers();
         Collection<Profile> profiles = new ArrayList<>();
-        for (User user : users) {
-            Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
+        for (User u : users) {
+            Optional<Profile> profileFromDb = profileRepository.findByUserId(u);
             if (profileFromDb.isPresent()){
                profiles.add(profileFromDb.get());
             }
