@@ -13,6 +13,7 @@ public class Reward {
     private String name;
     private String picture;
     private int points;
+    private boolean active;
 
     public Reward() {
     }
@@ -48,5 +49,13 @@ public class Reward {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
