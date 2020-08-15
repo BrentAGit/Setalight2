@@ -2,9 +2,11 @@ package be.thomasmore.setalight.controllers;
 
 import be.thomasmore.setalight.models.Event;
 import be.thomasmore.setalight.models.ProductiehuisProfile;
+import be.thomasmore.setalight.models.Profile;
 import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.ProductiehuisProfileRepository;
+import be.thomasmore.setalight.repositories.ProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import be.thomasmore.setalight.utilities.AddUser;
 import be.thomasmore.setalight.utilities.AutoLogin;
@@ -23,6 +25,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +51,9 @@ public class ProductiehuisController {
     @Autowired
     private ProductiehuisProfileRepository productiehuisProfileRepository;
 
+    @Autowired
+    private ProfileRepository profileRepository;
+
     @GetMapping("/page/{ID}")
     public String profilePage(@PathVariable int ID, Model model) {
         Optional<User> userFromDb = userRepository.findById(ID);
@@ -57,7 +64,7 @@ public class ProductiehuisController {
 
     @GetMapping("/")
     public String homepageProductiehuis(Principal principal, Model model) {
-        AddUser addUser=new AddUser();
+        AddUser addUser = new AddUser();
         User user = addUser.addUser(principal, userRepository);
         model.addAttribute("user", user);
         logger.info(String.format("name=%s",
@@ -70,7 +77,7 @@ public class ProductiehuisController {
     }
 
     @GetMapping("/edit-profilepage/{userId}")
-    public String editProfilepage(@PathVariable int userId, Model model){
+    public String editProfilepage(@PathVariable int userId, Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
         if (userFromDb.isPresent()) user = userFromDb.get();
@@ -83,18 +90,19 @@ public class ProductiehuisController {
 
         return "productiehuis/edit-profilepage";
     }
+
     @PostMapping("/edit-profilepage/{userId}")
     public String editProfilepageProductie(@PathVariable int userId,
-                                          @RequestParam String nameCompany,
-                                          @RequestParam String description,
-                                          @RequestParam String nameOwner,
-                                          @RequestParam String companyNumber,
-                                          @RequestParam String province,
-                                          @RequestParam String city,
-                                          @RequestParam String street,
-                                          @RequestParam String postalcode,
-                                          @RequestParam String houseNumber,
-                                          Model model) {
+                                           @RequestParam String nameCompany,
+                                           @RequestParam String description,
+                                           @RequestParam String nameOwner,
+                                           @RequestParam String companyNumber,
+                                           @RequestParam String province,
+                                           @RequestParam String city,
+                                           @RequestParam String street,
+                                           @RequestParam String postalcode,
+                                           @RequestParam String houseNumber,
+                                           Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
         if (userFromDb.isPresent()) user = userFromDb.get();
@@ -119,7 +127,7 @@ public class ProductiehuisController {
 
 
     @GetMapping("/profilepageProductiehuis/{userId}")
-        public String profilepageProductihuis(@PathVariable int userId, Model model){
+    public String profilepageProductihuis(@PathVariable int userId, Model model) {
         Optional<User> userFromDb = userRepository.findById(userId);
         User user = new User();
         if (userFromDb.isPresent()) user = userFromDb.get();
@@ -134,7 +142,21 @@ public class ProductiehuisController {
     }
 
     @GetMapping("/aanwezigen/{eventId}")
-        public String aanwezigen(@PathVariable int eventId, Model model){
+    public String aanwezigen(@PathVariable int eventId, Model model) {
+        Optional<Event> eventFromDb = eventRepository.findById(eventId);
+        Event event = new Event();
+        if (eventFromDb.isPresent()){
+            event = eventFromDb.get();
+        }
+        Collection<User> users = event.getUsers();
+        Collection<Profile> profiles = new ArrayList<>();
+        for (User user : users) {
+            Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
+            if (profileFromDb.isPresent()){
+               profiles.add(profileFromDb.get());
+            }
+        }
+        model.addAttribute("profiles", profiles);
         return "productiehuis/whoIsGoingPage";
     }
 }

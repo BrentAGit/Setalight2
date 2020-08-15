@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="icon" href="/img/icon.png" type="image/gif" sizes="16x16">
+    <title>Who is going?</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
 </head>
 <body>
+<div th:replace="fragments/header"></div>
 
+<div class="container">
+    <div class="card-columns">
+        <div th:each="profile :${friends}">
+            <form th:action="@{|/user/addFriends/${currentProfile.getUserId().getId()}/${profile.getUserId().getId()}|}"
+                  method="post">
+                <div class="card" th:if="${currentProfile}!=${profile}">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-12">
+                                <p th:text="${profile.getUserId().getUsername()}"></p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>Geboorte datum: </p>
+                                </div>
+                                <div class="col-6">
+                                    <p th:text="${profile.getBirthDateString()}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input class="btn btn-primary m-lg-1" type="submit" value="Add friend">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
