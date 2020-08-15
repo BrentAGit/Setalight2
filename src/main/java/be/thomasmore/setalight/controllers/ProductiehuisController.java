@@ -132,4 +132,9 @@ public class ProductiehuisController {
 
         return "productiehuis/profilepageProductiehuis";
     }
+
+    @GetMapping("/aanwezigen/{eventId}")
+        public String aanwezigen(@PathVariable int eventId, Model model){
+        return "productiehuis/whoIsGoingPage";
+    }
 }

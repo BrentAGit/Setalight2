@@ -36,6 +36,7 @@
                 <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" class="card-footer" >
                     <p th:text="'reward code: '+${event.getRewardCode()}"></p>
                     <a class="btn btn-primary"  th:href="${'/event/edit-event/' + event.getId()}"  href="/edit-event/eventId">edit event</a>
+                    <a class="btn btn-primary"  th:href="${'/productiehuis/aanwezigen/' + event.getId()}"  href="/edit-event/eventId">Lijst aanwezigen</a>
                 </div>
             </div>
             <div class="card p-2 ">
