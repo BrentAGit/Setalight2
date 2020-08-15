@@ -118,6 +118,13 @@ public class AdminController {
     public String removeReward(@PathVariable int rewardId, Principal principal){
         AddUser addUser = new AddUser();
         User user = addUser.addUser(principal, userRepository);
+        Optional<Reward> rewardFromDb = rewardRepository.findById(rewardId);
+        Reward reward = null;
+        if (rewardFromDb.isPresent()){
+            reward = rewardFromDb.get();
+        }
+        reward.setActive(false);
+        rewardRepository.save(reward);
         return "redirect:/user/rewards/" + user.getId();
     }
 
@@ -125,6 +132,13 @@ public class AdminController {
     public String activateReward(@PathVariable int rewardId, Principal principal){
         AddUser addUser = new AddUser();
         User user = addUser.addUser(principal, userRepository);
+        Optional<Reward> rewardFromDb = rewardRepository.findById(rewardId);
+        Reward reward = null;
+        if (rewardFromDb.isPresent()){
+            reward = rewardFromDb.get();
+        }
+        reward.setActive(true);
+        rewardRepository.save(reward);
         return "redirect:/user/rewards/" + user.getId();
     }
 }
