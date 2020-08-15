@@ -101,23 +101,23 @@ insert into EVENT_USERS(EVENT_ID, USERS_ID)
 insert into EVENT_USERS(EVENT_ID, USERS_ID)
     values(3, 11);
 
-insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(nextval('reward_seq'), 'Macbook Pro 2018', '/img/MacBook-Pro-2018.jpg', 800);
-insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(nextval('reward_seq'), 'Goodiebag Setalight', '/img/goodiebag.png', 80);
-insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(nextval('reward_seq'), 'IPhone 10', '/img/IPhone10.jpg', 700);
-insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(nextval('reward_seq'), 'Couponcode Coolblue -15%', '/img/Logo-coolblue.jpg', 200);
-insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(nextval('reward_seq'), 'e-bike', '/img/ebike.jpg', 1200);
-insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(nextval('reward_seq'), 'Cannon SX540', '/img/Cannon.jpg', 280);
-insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(nextval('reward_seq'), 'Een dag Walibi (2 Personen)', '/img/Walibi.jpg', 200);
-insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(nextval('reward_seq'), 'Waardebon Kinepolis 20 EUR', '/img/Kinepolis.jpg', 60);
-insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(nextval('reward_seq'), 'Bluetooth Speaker T&G', '/img/Speaker.jpg', 300);
-insert into REWARD(ID, NAME, PICTURE, POINTS)
-    values(nextval('reward_seq'), 'Headset Logitec Pro', '/img/Headset.png', 260);
+insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
+    values(nextval('reward_seq'), 'Macbook Pro 2018', '/img/MacBook-Pro-2018.jpg', 800, true);
+insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
+    values(nextval('reward_seq'), 'Goodiebag Setalight', '/img/goodiebag.png', 80, true);
+insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
+    values(nextval('reward_seq'), 'IPhone 10', '/img/IPhone10.jpg', 700, true);
+insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
+    values(nextval('reward_seq'), 'Couponcode Coolblue -15%', '/img/Logo-coolblue.jpg', 200, true);
+insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
+    values(nextval('reward_seq'), 'e-bike', '/img/ebike.jpg', 1200, true);
+insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
+    values(nextval('reward_seq'), 'Cannon SX540', '/img/Cannon.jpg', 280, true);
+insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
+    values(nextval('reward_seq'), 'Een dag Walibi (2 Personen)', '/img/Walibi.jpg', 200, true);
+insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
+    values(nextval('reward_seq'), 'Waardebon Kinepolis 20 EUR', '/img/Kinepolis.jpg', 60, true);
+insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
+    values(nextval('reward_seq'), 'Bluetooth Speaker T&G', '/img/Speaker.jpg', 300, true);
+insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
+    values(nextval('reward_seq'), 'Headset Logitec Pro', '/img/Headset.png', 260, true);
