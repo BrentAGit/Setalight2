@@ -110,7 +110,7 @@ insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
 insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
     values(nextval('reward_seq'), 'Couponcode Coolblue -15%', '/img/Logo-coolblue.jpg', 200, true);
 insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
-    values(nextval('reward_seq'), 'e-bike', '/img/ebike.jpg', 1200, true);
+    values(nextval('reward_seq'), 'e-bike', '/img/ebike.jpg', 1200, false);
 insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)
     values(nextval('reward_seq'), 'Cannon SX540', '/img/Cannon.jpg', 280, true);
 insert into REWARD(ID, NAME, PICTURE, POINTS, ACTIVE)

@@ -44,6 +44,8 @@
                 <div class="card-body">
                     <h3 th:text="${reward.getName()}"></h3>
                     <p th:text="'prijs: ' + ${reward.getPoints()} + ' punten'" id="reward-points"></p>
+                    <p th:if="${reward.isActive()}">Reward is actief</p>
+                    <p th:unless="${reward.isActive()}">Reward is niet actief</p>
                 </div>
             </div>
         </div>
