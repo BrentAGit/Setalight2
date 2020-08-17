@@ -221,6 +221,28 @@ public class UserController {
         return "redirect:/user/rewards/" + user.getId();
     }
 
+    @GetMapping("/usersGoing/{eventId}")
+    private String usersGoing(Model model, Principal principal, @PathVariable int eventId){
+        AddUser addUser = new AddUser();
+        User user = addUser.addUser(principal, userRepository);
+        model.addAttribute("user", user);
+        Optional<Event> eventFromDb = eventRepository.findById(eventId);
+        Event event = new Event();
+        if (eventFromDb.isPresent()){
+            event = eventFromDb.get();
+        }
+        Collection<User> users = event.getUsers();
+        Collection<Profile> profiles = new ArrayList<>();
+        for (User u : users) {
+            Optional<Profile> profileFromDb = profileRepository.findByUserId(u);
+            if (profileFromDb.isPresent()){
+                profiles.add(profileFromDb.get());
+            }
+        }
+        model.addAttribute("profiles", profiles);
+        return "user/UsersGoing";
+    }
+
     public void addRewards(User user, String code) {
         Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
         Profile profile = new Profile();
