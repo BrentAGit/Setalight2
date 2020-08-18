@@ -77,6 +77,8 @@ public class UserController {
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
         Calendar calendar = Calendar.getInstance();
         List<Event> eventsFromDb = eventRepository.findAllByUsersAndDateAfter(user, calendar.getTime());
+        List<Event> eventsBeforeDateFromDb = eventRepository.findAllByUsersAndDateBefore(user, calendar.getTime());
+        model.addAttribute("eventsBeforeDate", eventsBeforeDateFromDb);
         model.addAttribute("profileuser", user);
         model.addAttribute("user", loggedInUser);
         model.addAttribute("profile", profile);

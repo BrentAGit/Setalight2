@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="/img/icon.png" type="image/gif" sizes="16x16">
-    <title>Who is going?</title>
+    <title>Users Going:</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
 </head>
@@ -12,6 +12,11 @@
 <div th:replace="fragments/header"></div>
 
 <div class="container">
+    <div class="row">
+        <div class="col-12 pt-5">
+            <h1>Users going:</h1>
+        </div>
+    </div>
     <div class="card-columns">
         <div class="card" th:each="profile :${profiles}">
             <div class="card-header">
