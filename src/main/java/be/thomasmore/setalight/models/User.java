@@ -15,9 +15,6 @@ public class User {
     private String password;
     private String role;
 
-    @ManyToMany
-    private Collection<Event> experience;
-
     public User() {
     }
 
@@ -51,13 +48,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Collection<Event> getExperience() {
-        return experience;
-    }
-
-    public void setExperience(Collection<Event> experience) {
-        this.experience = experience;
     }
 }
