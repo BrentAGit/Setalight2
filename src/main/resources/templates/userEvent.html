@@ -12,55 +12,46 @@
 <div th:replace="fragments/header">Header</div>
 <br>
 <div class="container ">
-    <div class="card-columns event-cards">
-        <div class="card p-2 ">
-            <h3 th:text="${event.getName()}">eventName</h3>
-            <div th:if="${not #lists.isEmpty(event.picture)}">
-                <img class="card-img-top" th:src="${event.getPicture()}" alt="Reward">
-            </div>
-            <p th:text="${event.getDescription()}">description</p>
-            <p th:text="${event.getDateString()}">datum</p>
-            <p th:text="'gezocht: ' +${event.getTypeWanted()}"></p>
-            <p th:text="'begin tijd: ' + ${event.getStartTime()}">startDate</p>
-            <p th:text="'eind tijd: ' + ${event.getEndTime()}">endTime</p>
-            <p th:text="'maximun aantal deelnermers: ' +${event.getAmountOfParticipants()}"></p>
-            <p th:text="'aantal deelnermers: '+${event.countUsers()}"></p>
-            <h3>adres</h3>
-            <p th:text="${event.getCityAndPostcode()}"></p>
-            <p th:text="${event.getStreetAndNumber()}"></p>
-            <div sec:authorize="hasAnyAuthority('USER')" class="card-footer">
-                <div class="row">
-                    <div class="col-5">
-                        <form th:action="@{|/event/events/${event.getId()}|}" method="post">
-                            <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'Ik kom!'">
-                        </form>
-                    </div>
-                    <div class="col-7">
-                        <a href="/" th:href="'/user/usersGoing/'+${event.getId()}" class="btn btn-primary">Wie gaat
-                            er</a>
-                    </div>
+        <div class="card-columns event-cards">
+            <div class="card p-2 ">
+                <h3 th:text="${event.getName()}">eventName</h3>
+                <div th:if="${not #lists.isEmpty(event.picture)}">
+                    <img class="card-img-top" th:src="${event.getPicture()}" alt="Reward">
+                </div>
+                <p th:text="${event.getDescription()}">description</p>
+                <p th:text="${event.getDateString()}">datum</p>
+                <p th:text="'gezocht: ' +${event.getTypeWanted()}"></p>
+                <p th:text="'begin tijd: ' + ${event.getStartTime()}">startDate</p>
+                <p th:text="'eind tijd: ' + ${event.getEndTime()}">endTime</p>
+                <p th:text="'maximun aantal deelnermers: ' +${event.getAmountOfParticipants()}"></p>
+                <p th:text="'aantal deelnermers: '+${event.countUsers()}"></p>
+                <h3>adres</h3>
+                <p th:text="${event.getCityAndPostcode()}"></p>
+                <p th:text="${event.getStreetAndNumber()}"></p>
+                <div sec:authorize="hasAnyAuthority('USER')" class="card-footer">
+                    <form th:action="@{|/event/events/${event.getId()}|}" method="post">
+                        <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'Ik kom!'">
+                    </form>
+                </div>
+                <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" class="card-footer" >
+                    <p th:text="'reward code: '+${event.getRewardCode()}"></p>
+                    <a class="btn btn-primary"  th:href="${'/event/edit-event/' + event.getId()}"  href="/edit-event/eventId">edit event</a>
+                    <a class="btn btn-primary"  th:href="${'/productiehuis/aanwezigen/' + event.getId()}"  href="/edit-event/eventId">Lijst aanwezigen</a>
                 </div>
             </div>
-            <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" class="card-footer">
-                <p th:text="'reward code: '+${event.getRewardCode()}"></p>
-                <a class="btn btn-primary" th:href="${'/event/edit-event/' + event.getId()}" href="/edit-event/eventId">edit
-                    event</a>
-                <a class="btn btn-primary" th:href="${'/productiehuis/aanwezigen/' + event.getId()}"
-                   href="/edit-event/eventId">Lijst aanwezigen</a>
-            </div>
-        </div>
-        <div class="card p-2 ">
-            <h2>Productiehuis informatie:</h2>
-            <h3 th:text="${productiehuisProfile.getNameCompany()}"></h3>
-            <p th:text="${productiehuisProfile.getDescription()}"></p>
-            <p th:text="'Naam eigenaar: ' +${productiehuisProfile.getNameOwner()}"></p>
-            <h5>Locatie:</h5>
-            <p th:text="'Provincie: '+${productiehuisProfile.getProvince()}"></p>
-            <p th:text="${productiehuisProfile.getCityAndPostcode()}"></p>
-            <p th:text="${productiehuisProfile.getStreetAndNumber()}"></p>
+            <div class="card p-2 ">
+                <h2>Productiehuis informatie:</h2>
+                <h3 th:text="${productiehuisProfile.getNameCompany()}"></h3>
+                <p  th:text="${productiehuisProfile.getDescription()}"></p>
+                <p  th:text="'Naam eigenaar: ' +${productiehuisProfile.getNameOwner()}"></p>
+                <h5>Locatie:</h5>
+                <p  th:text="'Provincie: '+${productiehuisProfile.getProvince()}"></p>
+                <p  th:text="${productiehuisProfile.getCityAndPostcode()}"></p>
+                <p  th:text="${productiehuisProfile.getStreetAndNumber()}"></p>
 
-        </div>
+            </div>
     </div>
+
 
 
 </div>
