@@ -18,6 +18,7 @@
             <div th:if="${not #lists.isEmpty(event.picture)}">
                 <img class="card-img-top" th:src="${event.getPicture()}" alt="Reward">
             </div>
+            <p th:if="${event.isCanceled()}" class="font-weight-bold">Dit event is gecanceled!</p>
             <p th:text="${event.getDescription()}">description</p>
             <p th:text="${event.getDateString()}">datum</p>
             <p th:text="'gezocht: ' +${event.getTypeWanted()}"></p>
