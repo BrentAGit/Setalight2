@@ -28,6 +28,7 @@ public class Event {
     private String typeWanted;
     private String rewardCode;
     private String picture;
+    private boolean canceled;
     @ManyToOne
     private User createdBy;
     @ManyToMany
@@ -185,8 +186,15 @@ public class Event {
         return String.format(" straat : %s %s ", getStreet(), getHouseNumber());
     }
 
-
     public Integer countUsers() {
         return getUsers().size();
+    }
+
+    public boolean isCanceled() {
+        return canceled;
+    }
+
+    public void setCanceled(boolean canceled) {
+        this.canceled = canceled;
     }
 }

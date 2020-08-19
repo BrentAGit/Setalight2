@@ -18,6 +18,7 @@
             <div th:if="${not #lists.isEmpty(event.picture)}">
                 <img class="card-img-top" th:src="${event.getPicture()}" alt="Reward">
             </div>
+            <p th:if="${event.isCanceled()}" class="font-weight-bold">Dit event is gecanceled!</p>
             <p th:text="${event.getDescription()}">description</p>
             <p th:text="${event.getDateString()}">datum</p>
             <p th:text="'gezocht: ' +${event.getTypeWanted()}"></p>
@@ -29,7 +30,10 @@
             <p th:text="${event.getCityAndPostcode()}"></p>
             <p th:text="${event.getStreetAndNumber()}"></p>
             <div sec:authorize="hasAnyAuthority('USER')" class="card-footer">
-                <div class="row">
+                <div th:if="${event.isCanceled()}">
+                    <p class="font-weight-bold">Dit event is canceled</p>
+                </div>
+                <div th:unless="${event.isCanceled()}" class="row">
                     <div class="col-5">
                         <form th:action="@{|/event/events/${event.getId()}|}" method="post">
                             <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'Ik kom!'">
@@ -42,11 +46,25 @@
                 </div>
             </div>
             <div sec:authorize="hasAnyAuthority('ADMIN', 'PRODUCTIEHUIS')" class="card-footer">
-                <p th:text="'reward code: '+${event.getRewardCode()}"></p>
-                <a class="btn btn-primary" th:href="${'/event/edit-event/' + event.getId()}" href="/edit-event/eventId">edit
-                    event</a>
-                <a class="btn btn-primary" th:href="${'/productiehuis/aanwezigen/' + event.getId()}"
-                   href="/edit-event/eventId">Lijst aanwezigen</a>
+                <div class="row">
+                    <div class="col-12">
+                        <p th:text="'reward code: '+${event.getRewardCode()}"></p>
+                    </div>
+                    <div class="col-12">
+                        <a class="btn btn-primary" th:href="${'/event/edit-event/' + event.getId()}"
+                           href="/edit-event/eventId">edit
+                            event</a>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <a class="btn btn-primary" th:href="${'/productiehuis/aanwezigen/' + event.getId()}"
+                           href="/edit-event/eventId">Lijst aanwezigen</a>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <form th:action="@{|/event/canceled/${event.getId()}|}" method="post">
+                            <input type="submit" class="btn btn-primary" value="Annuleer">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="card p-2 ">
