@@ -97,6 +97,20 @@
             <p th:text="'eind tijd ' + ${event.getEndTime()}">endTime</p>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <h3>Bezochte events</h3>
+        </div>
+    </div>
+    <div class="card-columns">
+        <div th:each="event : ${eventsBeforeDate}" class="card p-2">
+            <h3 th:text="${event.getName()}">eventName</h3>
+            <p th:text="${event.getDescription()}">description</p>
+            <p th:text="${event.getDateString()}">datum</p>
+            <p th:text="'begin tijd ' + ${event.getStartTime()}">startTate</p>
+            <p th:text="'eind tijd ' + ${event.getEndTime()}">endTime</p>
+        </div>
+    </div>
 </div>
 </body>
 </html>
