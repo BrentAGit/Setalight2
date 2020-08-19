@@ -46,14 +46,19 @@
                     <div class="col-12">
                         <p th:text="'reward code: '+${event.getRewardCode()}"></p>
                     </div>
-                    <div class="col-5">
+                    <div class="col-12">
                         <a class="btn btn-primary" th:href="${'/event/edit-event/' + event.getId()}"
                            href="/edit-event/eventId">edit
                             event</a>
                     </div>
-                    <div class="col-7">
+                    <div class="col-12 mt-2">
                         <a class="btn btn-primary" th:href="${'/productiehuis/aanwezigen/' + event.getId()}"
                            href="/edit-event/eventId">Lijst aanwezigen</a>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <form th:action="@{|/event/canceled/${event.getId()}|}" method="post">
+                            <input type="submit" class="btn btn-primary" value="Annuleer">
+                        </form>
                     </div>
                 </div>
             </div>
