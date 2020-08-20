@@ -39,4 +39,6 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
     Optional<User> findCreatedBy( @Param("user") User user);
 
     List<Event> findAllByCreatedBy(User user);
+
+    List<Event> findAllByCanceled(boolean canceled);
 }
