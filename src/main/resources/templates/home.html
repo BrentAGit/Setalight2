@@ -142,8 +142,12 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
     let events = /*[[${events}]]*/ 'default'
+    let popUpMessage = /*[[${PopUpMessage}]]*/ 'null'
     /*]]>*/
     window.addEventListener("DOMContentLoaded", () => {
+        if (popUpMessage!=='null'){
+            alert(popUpMessage);
+        }
         let header = document.getElementById("head-info");
         let body = document.getElementById("body");
         let pre = document.getElementsByClassName("pre-button");

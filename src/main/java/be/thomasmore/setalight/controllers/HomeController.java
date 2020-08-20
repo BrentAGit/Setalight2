@@ -52,7 +52,7 @@ public class HomeController {
                     for (Event event:eventRepository.findAllByCanceled(true)){
                         for (User u:event.getUsers()){
                             if (u.equals(user)){
-                                popUpMessage += event.getName() + "is geannuleerd.\n";
+                                popUpMessage += event.getName() + " is geannuleerd.\n";
                             }
                         }
                     }
