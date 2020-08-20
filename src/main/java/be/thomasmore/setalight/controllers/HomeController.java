@@ -48,6 +48,15 @@ public class HomeController {
             if (userFromDb.isPresent()) {
                 user = userFromDb.get();
                 if (user.getRole().contains("USER")) {
+                    String popUpMessage = "";
+                    for (Event event:eventRepository.findAllByCanceled(true)){
+                        for (User u:event.getUsers()){
+                            if (u.equals(user)){
+                                popUpMessage += event.getName() + "is geannuleerd.\n";
+                            }
+                        }
+                    }
+                    model.addAttribute("PopUpMessage", popUpMessage);
                 } else if (user.getRole().contains("PRODUCTIEHUIS")) {
                     return "redirect:/productiehuis/";
                 }
