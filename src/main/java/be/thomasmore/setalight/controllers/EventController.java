@@ -2,9 +2,11 @@ package be.thomasmore.setalight.controllers;
 
 import be.thomasmore.setalight.models.Event;
 import be.thomasmore.setalight.models.ProductiehuisProfile;
+import be.thomasmore.setalight.models.Profile;
 import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.ProductiehuisProfileRepository;
+import be.thomasmore.setalight.repositories.ProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
 import be.thomasmore.setalight.utilities.AddUser;
 import be.thomasmore.setalight.utilities.FileUploader;
@@ -42,6 +44,8 @@ public class EventController {
     private UserRepository userRepository;
     @Autowired
     private ProductiehuisProfileRepository productiehuisProfileRepository;
+    @Autowired
+    private ProfileRepository profileRepository;
 
     @Value("${upload.images.dir}")
     private String uploadImagesDirString;
@@ -250,6 +254,20 @@ public class EventController {
         event.setCanceled(true);
         eventRepository.save(event);
         return "redirect:/event/events/" + eventId;
+    }
+
+    @GetMapping("/invite/{eventId}")
+    public String invite(Model model, Principal principal, @PathVariable int eventId){
+        AddUser adduser = new AddUser();
+        User user = adduser.addUser(principal, userRepository);
+        Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
+        Profile profile = new Profile();
+        if (profileFromDb.isPresent()){
+            profile = profileFromDb.get();
+        }
+        model.addAttribute("friends", profile.getFriends());
+        model.addAttribute("user", user);
+        return "";
     }
 
     private void addUser(Principal principal, Model model) {

@@ -34,14 +34,17 @@
                     <p class="font-weight-bold">Dit event is canceled</p>
                 </div>
                 <div th:unless="${event.isCanceled()}" class="row">
-                    <div class="col-5">
+                    <div class="col-12 mt-1">
                         <form th:action="@{|/event/events/${event.getId()}|}" method="post">
                             <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'Ik kom!'">
                         </form>
                     </div>
-                    <div class="col-7">
+                    <div class="col-12 mt-1">
                         <a href="/" th:href="'/user/usersGoing/'+${event.getId()}" class="btn btn-primary">Wie gaat
                             er</a>
+                    </div>
+                    <div class="col-12 mt-1" th:if="${Going}">
+                        <a href="/" class="btn btn-primary">Vrienden uitnodigen</a>
                     </div>
                 </div>
             </div>
