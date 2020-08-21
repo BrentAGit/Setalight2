@@ -44,7 +44,7 @@
                             er</a>
                     </div>
                     <div class="col-12 mt-1" th:if="${Going}">
-                        <a href="/" class="btn btn-primary">Vrienden uitnodigen</a>
+                        <a href="/" class="btn btn-primary" th:href="'/event/invite/'+${event.getId()}">Vrienden uitnodigen</a>
                     </div>
                 </div>
             </div>
