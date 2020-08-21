@@ -267,7 +267,8 @@ public class EventController {
         }
         model.addAttribute("friends", profile.getFriends());
         model.addAttribute("user", user);
-        return "";
+        model.addAttribute("eventId", eventId);
+        return "event/inviteFriends";
     }
 
     private void addUser(Principal principal, Model model) {

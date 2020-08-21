@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/img/icon.png" type="image/gif" sizes="16x16">
+    <title>Invite Friends</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css">
+</head>
+<body>
+<div th:replace="fragments/header">Header</div>
+<div class="container">
+    <div class="card-columns">
+        <div th:each="profile :${friends}">
+            <form th:action="@{|/event/inviteFriends/${eventId}/${profile.getUserId().getId()}|}"
+                  method="post">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-12">
+                                <p th:text="${profile.getUserId().getUsername()}"></p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>e-mail: </p>
+                                </div>
+                                <div class="col-6">
+                                    <p th:text="${profile.getEmail()}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-12">
+                                <input class="btn btn-primary m-lg-1" type="submit" value="Uitnodigen">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
