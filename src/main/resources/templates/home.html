@@ -142,10 +142,10 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
     let events = /*[[${events}]]*/ 'default'
-    let popUpMessage = /*[[${PopUpMessage}]]*/ 'null'
+    let popUpMessage = /*[[${PopUpMessage}]]*/ ''
     /*]]>*/
     window.addEventListener("DOMContentLoaded", () => {
-        if (popUpMessage!=='null'){
+        if (popUpMessage!==''&& popUpMessage){
             alert(popUpMessage);
         }
         let header = document.getElementById("head-info");
