@@ -6,6 +6,7 @@ import be.thomasmore.setalight.models.User;
 import be.thomasmore.setalight.repositories.EventRepository;
 import be.thomasmore.setalight.repositories.ProductiehuisProfileRepository;
 import be.thomasmore.setalight.repositories.UserRepository;
+import be.thomasmore.setalight.utilities.AddUser;
 import be.thomasmore.setalight.utilities.FileUploader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,6 +82,15 @@ public class EventController {
         ProductiehuisProfile productiehuisProfile = new ProductiehuisProfile();
         Optional<ProductiehuisProfile> productiehuisProfileFromDB = productiehuisProfileRepository.findByUserId(productiehuis);
         if(productiehuisProfileFromDB.isPresent())productiehuisProfile = productiehuisProfileFromDB.get();
+
+        AddUser adduser = new AddUser();
+        User user = adduser.addUser(principal, userRepository);
+        if (event.getUsers().contains(user)){
+            model.addAttribute("Going", true);
+        }
+        else{
+            model.addAttribute("Going", false);
+        }
 
         model.addAttribute("event", event);
         model.addAttribute("productiehuisProfile" ,productiehuisProfile);
