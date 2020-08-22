@@ -271,6 +271,11 @@ public class EventController {
         return "event/inviteFriends";
     }
 
+    @PostMapping("/inviteFriends/{eventId}/{userId}")
+    public String inviteUser(Model model, @PathVariable int eventId, @PathVariable int userId, Principal principal){
+
+    }
+
     private void addUser(Principal principal, Model model) {
         String loggedInName = principal != null ? principal.getName() : "nobody";
         User user = new User();
