@@ -47,6 +47,11 @@ public class HomeController {
             Optional<User> userFromDb = userRepository.findUserByUsername(loggedInName);
             if (userFromDb.isPresent()) {
                 user = userFromDb.get();
+                Optional<Profile> profileFromDb = profileRepository.findByUserId(user);
+                Profile profile = new Profile();
+                if(profileFromDb.isPresent()){
+                    profile = profileFromDb.get();
+                }
                 if (user.getRole().contains("USER")) {
                     String popUpMessage = "";
                     for (Event event:eventRepository.findAllByCanceled(true)){
@@ -56,6 +61,7 @@ public class HomeController {
                             }
                         }
                     }
+                    model.addAttribute("invitedEvents", profile.getInvitedEvents());
                     model.addAttribute("PopUpMessage", popUpMessage);
                 } else if (user.getRole().contains("PRODUCTIEHUIS")) {
                     return "redirect:/productiehuis/";
