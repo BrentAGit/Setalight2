@@ -30,9 +30,11 @@ public class Profile {
     @OneToOne(fetch = FetchType.LAZY)
     private User userId;
     @OneToMany
-    private Collection<Event> checkedEvents = new ArrayList<Event>();
+    private Collection<Event> checkedEvents = new ArrayList<>();
     @OneToMany
     private Collection<Reward> boughtRewards = new ArrayList<>();
+    @OneToMany
+    private Collection<Event> invitedEvents = new ArrayList<>();
 
     public Profile() {
     }
@@ -151,6 +153,14 @@ public class Profile {
 
     public void setRewardPoints(int rewardPoints) {
         this.rewardPoints = rewardPoints;
+    }
+
+    public Collection<Event> getInvitedEvents() {
+        return invitedEvents;
+    }
+
+    public void setInvitedEvents(Collection<Event> invitedEvents) {
+        this.invitedEvents = invitedEvents;
     }
 
     public String getBirthDateString() {
