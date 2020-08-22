@@ -35,6 +35,8 @@ public class Profile {
     private Collection<Reward> boughtRewards = new ArrayList<>();
     @OneToMany
     private Collection<Event> invitedEvents = new ArrayList<>();
+    @OneToMany
+    private Collection<Profile> invitedBy = new ArrayList<>();
 
     public Profile() {
     }
@@ -161,6 +163,14 @@ public class Profile {
 
     public void setInvitedEvents(Collection<Event> invitedEvents) {
         this.invitedEvents = invitedEvents;
+    }
+
+    public Collection<Profile> getInvitedBy() {
+        return invitedBy;
+    }
+
+    public void setInvitedBy(Collection<Profile> invitedBy) {
+        this.invitedBy = invitedBy;
     }
 
     public String getBirthDateString() {
