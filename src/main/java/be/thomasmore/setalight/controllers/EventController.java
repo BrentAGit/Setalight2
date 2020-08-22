@@ -272,7 +272,7 @@ public class EventController {
     }
 
     @PostMapping("/inviteFriends/{eventId}/{userId}")
-    public String inviteUser(@PathVariable int eventId, @PathVariable int userId){
+    public String inviteUser(@PathVariable int eventId, @PathVariable int userId, Principal principal){
         Optional<Profile> profileFromDb = profileRepository.findByUserId(userRepository.findUserById(userId).get());
         Profile profile = new Profile();
         if (profileFromDb.isPresent()){
@@ -284,6 +284,13 @@ public class EventController {
             event = eventFromDb.get();
         }
         profile.getInvitedEvents().add(event);
+        AddUser addUser = new AddUser();
+        Optional<Profile> currentProfileFromDb = profileRepository.findByUserId(addUser.addUser(principal, userRepository));
+        Profile currentProfile = new Profile();
+        if (currentProfileFromDb.isPresent()){
+            currentProfile = currentProfileFromDb.get();
+        }
+        profile.getInvitedBy().add(currentProfile);
         return "redirect:/event/invite/" + eventId;
     }
 
