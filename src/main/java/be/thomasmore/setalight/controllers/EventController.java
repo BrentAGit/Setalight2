@@ -291,6 +291,7 @@ public class EventController {
             currentProfile = currentProfileFromDb.get();
         }
         profile.getInvitedBy().add(currentProfile);
+        profileRepository.save(profile);
         return "redirect:/event/invite/" + eventId;
     }
 
