@@ -62,6 +62,7 @@ public class HomeController {
                         }
                     }
                     model.addAttribute("invitedEvents", profile.getInvitedEvents());
+                    model.addAttribute("invitedBy", profile.getInvitedBy());
                     model.addAttribute("PopUpMessage", popUpMessage);
                 } else if (user.getRole().contains("PRODUCTIEHUIS")) {
                     return "redirect:/productiehuis/";
