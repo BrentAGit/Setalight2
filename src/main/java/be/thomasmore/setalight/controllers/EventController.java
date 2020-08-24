@@ -26,6 +26,7 @@ import java.security.Principal;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -265,7 +266,13 @@ public class EventController {
         if (profileFromDb.isPresent()){
             profile = profileFromDb.get();
         }
-        model.addAttribute("friends", profile.getFriends());
+        ArrayList<Profile> friends = new ArrayList<>();
+        for (Profile p : profile.getFriends()){
+            if (!profile.getAlreadyInvitedUsers().contains(p)){
+                friends.add(p);
+            }
+        }
+        model.addAttribute("friends", friends);
         model.addAttribute("user", user);
         model.addAttribute("eventId", eventId);
         return "event/inviteFriends";
@@ -291,6 +298,8 @@ public class EventController {
             currentProfile = currentProfileFromDb.get();
         }
         profile.getInvitedBy().add(currentProfile);
+        currentProfile.getAlreadyInvitedUsers().add(profile);
+        profileRepository.save(currentProfile);
         profileRepository.save(profile);
         return "redirect:/event/invite/" + eventId;
     }

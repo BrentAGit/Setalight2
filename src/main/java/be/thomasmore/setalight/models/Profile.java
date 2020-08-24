@@ -39,6 +39,8 @@ public class Profile {
     private Collection<Profile> invitedBy = new ArrayList<>();
     @OneToMany
     private Collection<Event> checkedCanceledEvents = new ArrayList<>();
+    @OneToMany
+    private Collection<Profile> alreadyInvitedUsers = new ArrayList<>();
 
     public Profile() {
     }
@@ -191,6 +193,14 @@ public class Profile {
 
     public void setCheckedCanceledEvents(Collection<Event> checkedCanceledEvents) {
         this.checkedCanceledEvents = checkedCanceledEvents;
+    }
+
+    public Collection<Profile> getAlreadyInvitedUsers() {
+        return alreadyInvitedUsers;
+    }
+
+    public void setAlreadyInvitedUsers(Collection<Profile> alreadyInvitedUsers) {
+        this.alreadyInvitedUsers = alreadyInvitedUsers;
     }
 
     public Collection<Reward> getBoughtRewards() {
