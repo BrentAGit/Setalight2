@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -61,8 +62,12 @@ public class HomeController {
                             }
                         }
                     }
+                    ArrayList<String> nameInvitedBy = new ArrayList<>();
+                    for (Profile p:profile.getInvitedBy()){
+                        nameInvitedBy.add(p.getUserId().getUsername());
+                    }
                     model.addAttribute("invitedEvents", profile.getInvitedEvents());
-                    model.addAttribute("invitedBy", profile.getInvitedBy());
+                    model.addAttribute("invitedBy", nameInvitedBy);
                     model.addAttribute("PopUpMessage", popUpMessage);
                 } else if (user.getRole().contains("PRODUCTIEHUIS")) {
                     return "redirect:/productiehuis/";
