@@ -1,5 +1,7 @@
 package be.thomasmore.setalight.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -8,6 +10,7 @@ import java.util.Collection;
 import java.util.Date;
 
 @Entity
+@JsonIgnoreProperties(value = {"users"})
 public class Event {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "event_generator")
     @SequenceGenerator(name = "event_generator", sequenceName = "event_seq",
@@ -31,7 +34,7 @@ public class Event {
     private boolean canceled;
     @ManyToOne
     private User createdBy;
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.LAZY)
     private Collection<User> users;
 
     public Integer getId() {

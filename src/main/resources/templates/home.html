@@ -145,6 +145,7 @@
     let popUpMessage = /*[[${PopUpMessage}]]*/ ''
     let invitedEvents = /*[[${invitedEvents}]]*/ ''
     let invitedBy = /*[[${invitedBy}]]*/ ''
+    let invitedEventIds = /*[[${invitedEventIds}]]*/ ''
     /*]]>*/
     window.addEventListener("DOMContentLoaded", () => {
         if (popUpMessage!==''&& popUpMessage){
@@ -154,9 +155,10 @@
             console.log("test");
             for (let i = 0; i < invitedEvents.length; i++){
                 let event = invitedEvents[i];
-                let profile = invitedBy[i];
-                if(window.confirm(profile.username + ' heeft je uitgenodigd voor ' + event.name)){
-                    window.open('/event/events/' + event.id);
+                let name = invitedBy[i];
+                let id = invitedEventIds[i];
+                if(window.confirm(name + ' heeft je uitgenodigd voor ' + event)){
+                    window.open('/event/events/' + id);
                 }
             }
         }

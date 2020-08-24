@@ -57,18 +57,29 @@ public class HomeController {
                     String popUpMessage = "";
                     for (Event event:eventRepository.findAllByCanceled(true)){
                         for (User u:event.getUsers()){
-                            if (u.equals(user)){
+                            if (u.equals(user)&&!profile.getCheckedEvents().contains(event)){
                                 popUpMessage += event.getName() + " is geannuleerd.\n";
+                                profile.getCheckedEvents().add(event);
                             }
                         }
+                    }
+                    ArrayList<String> nameEvent = new ArrayList<>();
+                    ArrayList<Integer> invitedEventIds = new ArrayList<>();
+                    for (Event e : profile.getInvitedEvents()){
+                        nameEvent.add(e.getName());
+                        invitedEventIds.add(e.getId());
                     }
                     ArrayList<String> nameInvitedBy = new ArrayList<>();
                     for (Profile p:profile.getInvitedBy()){
                         nameInvitedBy.add(p.getUserId().getUsername());
                     }
-                    model.addAttribute("invitedEvents", profile.getInvitedEvents());
+                    model.addAttribute("invitedEvents", nameEvent);
+                    model.addAttribute("invitedEventIds", invitedEventIds);
                     model.addAttribute("invitedBy", nameInvitedBy);
                     model.addAttribute("PopUpMessage", popUpMessage);
+                    profile.getInvitedEvents().clear();
+                    profile.getInvitedBy().clear();
+                    profileRepository.save(profile);
                 } else if (user.getRole().contains("PRODUCTIEHUIS")) {
                     return "redirect:/productiehuis/";
                 }

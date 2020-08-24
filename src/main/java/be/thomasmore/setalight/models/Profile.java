@@ -33,10 +33,12 @@ public class Profile {
     private Collection<Event> checkedEvents = new ArrayList<>();
     @OneToMany(fetch = FetchType.LAZY)
     private Collection<Reward> boughtRewards = new ArrayList<>();
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Event> invitedEvents = new ArrayList<>();
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Profile> invitedBy = new ArrayList<>();
+    @OneToMany
+    private Collection<Event> checkedCanceledEvents = new ArrayList<>();
 
     public Profile() {
     }
@@ -181,6 +183,14 @@ public class Profile {
     public String getBirthDateStringProfile() {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(getBirthDate());
+    }
+
+    public Collection<Event> getCheckedCanceledEvents() {
+        return checkedCanceledEvents;
+    }
+
+    public void setCheckedCanceledEvents(Collection<Event> checkedCanceledEvents) {
+        this.checkedCanceledEvents = checkedCanceledEvents;
     }
 
     public Collection<Reward> getBoughtRewards() {
