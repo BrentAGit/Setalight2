@@ -38,7 +38,7 @@
                         <form th:action="@{|/event/events/${event.getId()}|}" method="post" th:if="${!Going}">
                             <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'Ik kom!'">
                         </form>
-                        <form th:action="/" th:if="${Going and isCancelable}" method="post">
+                        <form th:action="@{|/event/userCancelEvent/${event.getId()}|}" th:if="${Going and isCancelable}" method="post">
                             <input class="btn btn-primary" type="submit" th:value="'Event Afzeggen'">
                         </form>
                     </div>
