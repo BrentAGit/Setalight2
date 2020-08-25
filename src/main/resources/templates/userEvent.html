@@ -38,7 +38,9 @@
                         <form th:action="@{|/event/events/${event.getId()}|}" method="post" th:if="${!Going}">
                             <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'Ik kom!'">
                         </form>
-                        <form th:action="" th:if="${Going and }"></form>
+                        <form th:action="/" th:if="${Going and isCancelable}" method="post">
+                            <input class="btn btn-primary" type="submit" th:value="'Event Afzeggen'">
+                        </form>
                     </div>
                     <div class="col-12 mt-1">
                         <a href="/" th:href="'/user/usersGoing/'+${event.getId()}" class="btn btn-primary">Wie gaat
