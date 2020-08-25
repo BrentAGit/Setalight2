@@ -118,7 +118,7 @@ public class EventController {
         }
 
         eventRepository.save(event);
-        return "redirect:/";
+        return "redirect:/event/events/" + eventsId;
     }
 
     @PostMapping({"event"})

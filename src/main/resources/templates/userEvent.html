@@ -35,7 +35,7 @@
                 </div>
                 <div th:unless="${event.isCanceled()}" class="row">
                     <div class="col-12 mt-1">
-                        <form th:action="@{|/event/events/${event.getId()}|}" method="post">
+                        <form th:action="@{|/event/events/${event.getId()}|}" method="post" th:if="${!Going}">
                             <input class="btn btn-primary" type="submit" id="going" name="going" th:value="'Ik kom!'">
                         </form>
                     </div>
