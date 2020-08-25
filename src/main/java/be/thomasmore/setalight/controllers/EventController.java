@@ -309,6 +309,26 @@ public class EventController {
         return "redirect:/event/invite/" + eventId;
     }
 
+    @PostMapping("/userCancelEvent/{eventId}")
+    private String userCanceledEvent(@PathVariable int eventId, Principal principal){
+        AddUser addUser = new AddUser();
+        User user = addUser.addUser(principal, userRepository);
+        Optional<Event> eventsFromDb = eventRepository.findById(eventId);
+        Event event = new Event();
+        if (eventsFromDb.isPresent()){
+            event = eventsFromDb.get();
+        }
+        Iterator<User> it = event.getUsers().iterator();
+        while (it.hasNext()){
+            User u = it.next();
+            if (u.equals(user)){
+                it.remove();
+            }
+        }
+        eventRepository.save(event);
+        return "redirect:/event/events/" + eventId;
+    }
+
     private void addUser(Principal principal, Model model) {
         String loggedInName = principal != null ? principal.getName() : "nobody";
         User user = new User();
