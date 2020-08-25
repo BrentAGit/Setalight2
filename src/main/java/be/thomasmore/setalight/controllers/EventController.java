@@ -26,10 +26,7 @@ import java.security.Principal;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("/event")
@@ -92,6 +89,14 @@ public class EventController {
         User user = adduser.addUser(principal, userRepository);
         if (event.getUsers().contains(user)){
             model.addAttribute("Going", true);
+            Date date = new Date();
+            Date tomorrow = new Date(date.getTime()+(1000 * 60 * 60* 24));
+            if (tomorrow.before(event.getDate())){
+                model.addAttribute("isCancelable", true);
+            }
+            else {
+                model.addAttribute("isCancelable", false);
+            }
         }
         else{
             model.addAttribute("Going", false);
