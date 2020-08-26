@@ -169,7 +169,6 @@ public class UserController {
         Reward reward = new Reward();
         if (rewardFromDb.isPresent()) reward = rewardFromDb.get();
         profile.setRewardPoints(profile.getRewardPoints() - reward.getPoints());
-        profile.getBoughtRewards().add(reward);
         reward.getUserBoughtRewardName().add(profile.getUserId());
         Date date = new Date();
         reward.getUserBoughtRewardTime().add(date);
@@ -184,7 +183,7 @@ public class UserController {
         ArrayList<Reward> rewardsFromDb = (ArrayList<Reward>) rewardRepository.findAll();
         ArrayList<Reward> rewards = new ArrayList<>();
         for (Reward reward : rewardsFromDb) {
-            if (!profile.getBoughtRewards().contains(reward)) {
+            if (!reward.getUserBoughtRewardName().contains(profile.getUserId())) {
                 rewards.add(reward);
             }
         }
