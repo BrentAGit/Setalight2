@@ -32,9 +32,9 @@ INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
 INSERT INTO PROFILE (ID, USER_ID_ID, LENGTH, EMAIL, BIRTH_DATE, PROFILE_PICTURE, FULL_PICTURE, REWARD_POINTS)
     VALUES (nextval('PROFILE_SEQ'), 2, 1.8, 'r0803085@student.thomasmore.be', '2001-06-23', '/img/profilepicture.png', '/img/fullpicture.png', 1000);
 INSERT INTO PROFILE (ID, USER_ID_ID, LENGTH, EMAIL, BIRTH_DATE, PROFILE_PICTURE, FULL_PICTURE, REWARD_POINTS)
-    VALUES (nextval('PROFILE_SEQ'), 6, 1.9, 'r0803085@student.thomasmore.be', '2000-08-10', '/img/profilepicture.png', '/img/fullpicture.png', 1);
+    VALUES (nextval('PROFILE_SEQ'), 6, 1.9, 'r0803085@student.thomasmore.be', '2000-08-10', '/img/profilepicture.png', '/img/fullpicture.png', 1000);
 INSERT INTO PROFILE (ID, USER_ID_ID, LENGTH, EMAIL, BIRTH_DATE, PROFILE_PICTURE, FULL_PICTURE, REWARD_POINTS)
-    VALUES (nextval('PROFILE_SEQ'), 7, 1.85, 'r0803085@student.thomasmore.be', '1997-02-15', '/img/profilepicture.png', '/img/fullpicture.png', 1);
+    VALUES (nextval('PROFILE_SEQ'), 7, 1.85, 'r0803085@student.thomasmore.be', '1997-02-15', '/img/profilepicture.png', '/img/fullpicture.png', 1000);
 INSERT INTO PROFILE (ID, USER_ID_ID, LENGTH, EMAIL, BIRTH_DATE, PROFILE_PICTURE, FULL_PICTURE, REWARD_POINTS)
     VALUES (nextval('PROFILE_SEQ'), 8, 1.8, 'r0803085@student.thomasmore.be', '2001-06-23', '/img/profilepicture.png', '/img/fullpicture.png', 1);
 INSERT INTO PROFILE (ID, USER_ID_ID, LENGTH, EMAIL, BIRTH_DATE, PROFILE_PICTURE, FULL_PICTURE, REWARD_POINTS)

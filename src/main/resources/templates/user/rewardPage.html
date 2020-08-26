@@ -46,7 +46,8 @@
                 <img class="card-img-top" th:src="${reward.getPicture()}" alt="Reward">
                 <div class="card-body">
                     <h3 th:text="${reward.getName()}"></h3>
-                    <p th:text="'prijs: ' + ${reward.getPoints()} + ' punten'" id="reward-points"></p>
+                    <p th:text="'prijs: ' + ${reward.getPoints()} + ' punten'" id="reward-points" class="mb-4"></p>
+                    <p th:each="user, id : ${reward.getUserBoughtRewardName()}" th:text="'Gekocht door ' + ${user.getUsername()} + ' op ' + ${reward.getUserBoughtRewardTime()[id.index]}" class="font-italic"></p>
                 </div>
                 <div class="card-footer">
                     <div th:if="${reward.isActive()}">
