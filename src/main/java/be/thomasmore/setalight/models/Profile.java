@@ -31,8 +31,6 @@ public class Profile {
     private User userId;
     @OneToMany(fetch = FetchType.LAZY)
     private Collection<Event> checkedEvents = new ArrayList<>();
-    @OneToMany(fetch = FetchType.LAZY)
-    private Collection<Reward> boughtRewards = new ArrayList<>();
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Event> invitedEvents = new ArrayList<>();
     @ManyToMany(fetch = FetchType.LAZY)
@@ -201,13 +199,5 @@ public class Profile {
 
     public void setAlreadyInvitedUsers(Collection<Profile> alreadyInvitedUsers) {
         this.alreadyInvitedUsers = alreadyInvitedUsers;
-    }
-
-    public Collection<Reward> getBoughtRewards() {
-        return boughtRewards;
-    }
-
-    public void setBoughtRewards(Collection<Reward> boughtRewards) {
-        this.boughtRewards = boughtRewards;
     }
 }
