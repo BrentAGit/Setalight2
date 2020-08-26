@@ -170,6 +170,9 @@ public class UserController {
         if (rewardFromDb.isPresent()) reward = rewardFromDb.get();
         profile.setRewardPoints(profile.getRewardPoints() - reward.getPoints());
         profile.getBoughtRewards().add(reward);
+        reward.getUserBoughtRewardName().add(profile.getUserId());
+        Date date = new Date();
+        reward.getUserBoughtRewardTime().add(date);
         profileRepository.save(profile);
         rewardRepository.save(reward);
         return "redirect:/user/rewards/" + userId;

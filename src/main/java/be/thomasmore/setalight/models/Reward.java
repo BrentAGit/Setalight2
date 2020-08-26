@@ -1,6 +1,9 @@
 package be.thomasmore.setalight.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 
 @Entity
 public class Reward {
@@ -14,6 +17,10 @@ public class Reward {
     private String picture;
     private int points;
     private boolean active;
+    @ManyToMany
+    private Collection<User> userBoughtRewardName = new ArrayList<>();
+    @ElementCollection
+    private Collection<Date> userBoughtRewardTime = new ArrayList<>();
 
     public Reward() {
     }
@@ -57,5 +64,21 @@ public class Reward {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Collection<User> getUserBoughtRewardName() {
+        return userBoughtRewardName;
+    }
+
+    public void setUserBoughtRewardName(Collection<User> userBoughtRewardName) {
+        this.userBoughtRewardName = userBoughtRewardName;
+    }
+
+    public Collection<Date> getUserBoughtRewardTime() {
+        return userBoughtRewardTime;
+    }
+
+    public void setUserBoughtRewardTime(Collection<Date> userBoughtRewardTime) {
+        this.userBoughtRewardTime = userBoughtRewardTime;
     }
 }
