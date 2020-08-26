@@ -191,7 +191,7 @@ public class UserController {
         User user = adduser.addUser(principal, userRepository);
         model.addAttribute("user", user);
 
-        if (user == profile.getUserId()){
+        if (user.getRole().equals("USER") || user.getRole().equals("PRODUCTIEHUIS")){
             model.addAttribute("admin", false);
         }
         else{
