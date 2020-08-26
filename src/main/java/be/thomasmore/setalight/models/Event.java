@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -36,6 +37,10 @@ public class Event {
     private User createdBy;
     @ManyToMany (fetch = FetchType.LAZY)
     private Collection<User> users;
+    @ManyToMany
+    private Collection<User> canceledUsers = new ArrayList<>();
+    @ElementCollection
+    private Collection<Date> canceledDate= new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -199,5 +204,21 @@ public class Event {
 
     public void setCanceled(boolean canceled) {
         this.canceled = canceled;
+    }
+
+    public Collection<Date> getCanceledDate() {
+        return canceledDate;
+    }
+
+    public void setCanceledDate(Collection<Date> canceledDate) {
+        this.canceledDate = canceledDate;
+    }
+
+    public Collection<User> getCanceledUsers() {
+        return canceledUsers;
+    }
+
+    public void setCanceledUsers(Collection<User> canceledUsers) {
+        this.canceledUsers = canceledUsers;
     }
 }

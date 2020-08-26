@@ -323,6 +323,9 @@ public class EventController {
             User u = it.next();
             if (u.equals(user)){
                 it.remove();
+                event.getCanceledUsers().add(user);
+                Date date = new Date();
+                event.getCanceledDate().add(date);
             }
         }
         eventRepository.save(event);
