@@ -253,8 +253,13 @@ public class UserController {
         if (profileFromDb.isPresent()) profile = profileFromDb.get();
         Calendar calendar = Calendar.getInstance();
         List<Event> eventFromDb = eventRepository.findAllByUsersAndDateBefore(user, calendar.getTime());
-
+        Calendar calendarWeekBefore = Calendar.getInstance();
+        calendarWeekBefore.add(Calendar.WEEK_OF_MONTH,-1);
         for (Event event : eventFromDb) {
+            if (!profile.getCheckedEvents().contains(event) && event.getDate().before(calendarWeekBefore.getTime())){
+                profile.getCheckedEvents().add(event);
+                profile.setRewardPoints(profile.getRewardPoints()*0.9);
+            }
             if (!profile.getCheckedEvents().contains(event) && event.getRewardCode().equals(code) && eventRepository.findAllByUsers(user).contains(event)) {
                 profile.getCheckedEvents().add(event);
                 profile.setRewardPoints(profile.getRewardPoints() + 20);

@@ -23,7 +23,7 @@ public class Profile {
     private String physicalAttributes;
     private String nationalInsuranceNumber;
     private double length;
-    private int rewardPoints;
+    private double rewardPoints;
     @ManyToMany
     private Collection<Profile> friends;
     private String height;
@@ -151,11 +151,11 @@ public class Profile {
         this.checkedEvents = checkedEvents;
     }
 
-    public int getRewardPoints() {
+    public double getRewardPoints() {
         return rewardPoints;
     }
 
-    public void setRewardPoints(int rewardPoints) {
+    public void setRewardPoints(double rewardPoints) {
         this.rewardPoints = rewardPoints;
     }
 
