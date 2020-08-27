@@ -146,10 +146,17 @@
     let invitedEvents = /*[[${invitedEvents}]]*/ ''
     let invitedBy = /*[[${invitedBy}]]*/ ''
     let invitedEventIds = /*[[${invitedEventIds}]]*/ ''
+    let skippedMessage = /*[[${skippedMessage}]]*/ ''
     /*]]>*/
     window.addEventListener("DOMContentLoaded", () => {
-        if (popUpMessage!==''&& popUpMessage){
+        if (popUpMessage!==''&& popUpMessage && skippedMessage !== '' && skippedMessage){
+            alert(popUpMessage + skippedMessage);
+        }
+        else if (popUpMessage!==''&& popUpMessage){
             alert(popUpMessage);
+        }
+        else if (skippedMessage !== '' && skippedMessage){
+            alert(skippedMessage);
         }
         if (invitedEvents.length >= 0){
             console.log("test");
