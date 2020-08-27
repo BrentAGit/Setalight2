@@ -28,19 +28,20 @@
         </div>
     </div>
     <div class="card-columns">
-        <div th:each="reward : ${rewards}" class="card p-2 border-dark">
-            <form th:action="@{|/user/buy-rewards/${profile.getUserId().getId()}/${reward.getId()}}" method="post"
-                  th:if="${!admin and reward.isActive()}">
-                <img class="card-img-top" th:src="${reward.getPicture()}" alt="Reward">
-                <div class="card-body">
-                    <h3 th:text="${reward.getName()}"></h3>
-                    <p th:text="'prijs: ' + ${reward.getPoints()} + ' punten'" id="reward-points"></p>
-                </div>
-                <div th:if="${profile.getRewardPoints()} >= ${reward.getPoints()}" class="card-footer">
-                    <input type="submit" value="buy">
-                </div>
-            </form>
-            <div th:if="${admin}">
+        <div th:each="reward : ${rewards}">
+            <div class="card p-2 border-dark" th:if="${!admin and reward.isActive()}">
+                <form th:action="@{|/user/buy-rewards/${profile.getUserId().getId()}/${reward.getId()}}" method="post">
+                    <img class="card-img-top" th:src="${reward.getPicture()}" alt="Reward">
+                    <div class="card-body">
+                        <h3 th:text="${reward.getName()}"></h3>
+                        <p th:text="'prijs: ' + ${reward.getPoints()} + ' punten'" id="reward-points"></p>
+                    </div>
+                    <div th:if="${profile.getRewardPoints()} >= ${reward.getPoints()}" class="card-footer">
+                        <input type="submit" value="buy">
+                    </div>
+                </form>
+            </div>
+            <div th:if="${admin}" class="card p-2 border-dark">
                 <img class="card-img-top" th:src="${reward.getPicture()}" alt="Reward">
                 <div class="card-body">
                     <h3 th:text="${reward.getName()}"></h3>
