@@ -55,6 +55,14 @@ public class HomeController {
                 }
                 if (user.getRole().contains("USER")) {
                     String popUpMessage = "";
+                    String skippedMessage = "";
+                    for (Event event:profile.getSkippedEvents()){
+                        skippedMessage = skippedMessage + "U bent niet naar het event " + event.getName() + " geweest, u hebt strafpunten gekregen.\n";
+                    }
+                    profile.getSkippedEvents().clear();
+                    profileRepository.save(profile);
+
+                    model.addAttribute("skippedMessage", skippedMessage);
                     for (Event event:eventRepository.findAllByCanceled(true)){
                         for (User u:event.getUsers()){
                             if (u.equals(user)&&!profile.getCheckedEvents().contains(event)){
