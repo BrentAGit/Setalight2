@@ -40,7 +40,7 @@ public class Profile {
     @OneToMany
     private Collection<Profile> alreadyInvitedUsers = new ArrayList<>();
     @OneToMany
-    private Collection<Event> skippedEvent = new ArrayList<>();
+    private Collection<Event> skippedEvents = new ArrayList<>();
 
     public Profile() {
     }
@@ -203,11 +203,11 @@ public class Profile {
         this.alreadyInvitedUsers = alreadyInvitedUsers;
     }
 
-    public Collection<Event> getSkippedEvent() {
-        return skippedEvent;
+    public Collection<Event> getSkippedEvents() {
+        return skippedEvents;
     }
 
-    public void setSkippedEvent(Collection<Event> skippedEvent) {
-        this.skippedEvent = skippedEvent;
+    public void setSkippedEvents(Collection<Event> skippedEvents) {
+        this.skippedEvents = skippedEvents;
     }
 }

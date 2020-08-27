@@ -210,8 +210,14 @@ public class UserController {
         User user = adduser.addUser(principal, userRepository);
         model.addAttribute("user", user);
         Profile profile = getProfile(user.getId());
+        String skippedMessage = "";
+        for (Event event:profile.getSkippedEvents()){
+            skippedMessage = skippedMessage + "U bent niet naar het event " + event.getName() + " geweest, u hebt strafpunten gekregen.\n";
+        }
+        profile.getSkippedEvents().clear();
+        profileRepository.save(profile);
 
-
+        model.addAttribute("skippedMessage", skippedMessage);
         model.addAttribute("profile", profile);
         return "user/redeemReward";
     }
@@ -259,6 +265,7 @@ public class UserController {
             if (!profile.getCheckedEvents().contains(event) && event.getDate().before(calendarWeekBefore.getTime())){
                 profile.getCheckedEvents().add(event);
                 profile.setRewardPoints(profile.getRewardPoints()*0.9);
+                profile.getSkippedEvents().add(event);
             }
             if (!profile.getCheckedEvents().contains(event) && event.getRewardCode().equals(code) && eventRepository.findAllByUsers(user).contains(event)) {
                 profile.getCheckedEvents().add(event);
