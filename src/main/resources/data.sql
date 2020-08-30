@@ -21,8 +21,6 @@ INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
 INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
     VALUES (nextval('USER_SEQ'), 'karel', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER');--paswoord:password
 INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
-    VALUES (nextval('USER_SEQ'), 'Brent', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'USER');--paswoord:password
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
     VALUES (nextval('USER_SEQ'), 'VTM', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS');--paswoord:
 INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE)
     VALUES (nextval('USER_SEQ'), 'Canvas', '$2a$10$pQnldtWyD5CpMBjWJycMW.jmEOY2zKqjSkCo5V2vKqvW44ORrdpAa', 'PRODUCTIEHUIS');--paswoord:password
