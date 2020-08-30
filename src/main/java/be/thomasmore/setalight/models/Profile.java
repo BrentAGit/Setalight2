@@ -29,7 +29,7 @@ public class Profile {
     private String height;
     @OneToOne(fetch = FetchType.LAZY)
     private User userId;
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Event> checkedEvents = new ArrayList<>();
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Event> invitedEvents = new ArrayList<>();
